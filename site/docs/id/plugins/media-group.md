@@ -5,13 +5,10 @@ next: false
 
 # Pengelompokan Media (bawaan)
 
-Plugin pengelompokan media atau media group berfungsi untuk mengirim kumpulan
-media melalui object `InputMedia`. Object `InputMedia` juga digunakan ketika
-mengubah pesan media, sehingga secara tidak langsung plugin ini juga membantu
-kamu mengubah suatu media.
+Plugin pengelompokan media atau media group berfungsi untuk mengirim kumpulan media melalui object `InputMedia`.
+Object `InputMedia` juga digunakan ketika mengubah pesan media, sehingga secara tidak langsung plugin ini juga membantu kamu mengubah suatu media.
 
-Perlu diingat, object `InputMedia` telah dijelaskan
-[di sini](https://core.telegram.org/bots/api#inputmedia).
+Perlu diingat, object `InputMedia` telah dijelaskan [di sini](https://core.telegram.org/bots/api#inputmedia).
 
 ## Membuat Sebuah Object `InputMedia`
 
@@ -45,11 +42,9 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 :::
 
-Lihat semua method `InputMediaBuilder` yang tersedia di
-[referensi API](/ref/core/inputmediabuilder).
+Lihat semua method `InputMediaBuilder` yang tersedia di [referensi API](/ref/core/inputmediabuilder).
 
-Kamu juga bisa meneruskan URL publik secara langsung yang nantinya akan diunduh
-oleh Telegram.
+Kamu juga bisa meneruskan URL publik secara langsung yang nantinya akan diunduh oleh Telegram.
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
@@ -72,13 +67,11 @@ Kamu bisa mengirim kumpulan media seperti berikut:
 await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 ```
 
-Selain itu, kamu bisa meneruskan sebuah array object `InputMedia` ke
-`ctx.api.sendMediaGroup` atau `bot.api.sendMediaGroup`.
+Selain itu, kamu bisa meneruskan sebuah array object `InputMedia` ke `ctx.api.sendMediaGroup` atau `bot.api.sendMediaGroup`.
 
 ## Mengubah Pesan Media
 
-Karena object `InputMedia` juga digunakan untuk mengubah pesan media, plugin ini
-juga bisa digunakan untuk hal yang serupa:
+Karena object `InputMedia` juga digunakan untuk mengubah pesan media, plugin ini juga bisa digunakan untuk hal yang serupa:
 
 ```ts
 const newMedia = InputMediaBuilder.photo(
@@ -87,13 +80,12 @@ const newMedia = InputMediaBuilder.photo(
 await ctx.editMessageMedia(newMedia);
 ```
 
-Seperti biasa, ia juga bekerja di `ctx.api.editMessageMedia` dan
-`bot.api.editMessageMedia`.
+Seperti biasa, ia juga bekerja di `ctx.api.editMessageMedia` dan `bot.api.editMessageMedia`.
 
 ## Ringkasan Plugin
 
-Plugin ini sudah tersedia secara bawaan. Sehingga, kamu tidak perlu menginstal
-apapun untuk menggunakannya. Cukup import semuanya dari grammY.
+Plugin ini sudah tersedia secara bawaan.
+Sehingga, kamu tidak perlu menginstal apapun untuk menggunakannya.
+Cukup import semuanya dari grammY.
 
-Selain itu, baik dokumentasi maupun referensi API plugin ini, telah dijadikan
-satu dengan package inti.
+Selain itu, baik dokumentasi maupun referensi API plugin ini, telah dijadikan satu dengan package inti.

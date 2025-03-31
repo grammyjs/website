@@ -2,36 +2,27 @@
 
 ## Editing the Documentation
 
-You’re free to edit the documentation in any way you like, and suggest the
-changes in a PR. If we merge it, they’ll go live immediately.
+You’re free to edit the documentation in any way you like, and suggest the changes in a PR.
+If we merge it, they’ll go live immediately.
 
-> **IMPORTANT:** Please write exactly one sentence per line in order to preserve
-> readable `git diff`s.
+> **IMPORTANT:** Please write exactly one sentence per line in order to preserve readable `git diff`s.
 
-If you are planning on adding completely new pages, you may want to ask in the
-[group chat](https://t.me/grammyjs) if those changes are welcome.
+If you are planning on adding completely new pages, you may want to ask in the [group chat](https://t.me/grammyjs) if those changes are welcome.
 
-Remember that you can edit a page directly in the browser by clicking the link
-at the bottom of each page. That makes it very easy to fix typos and other small
-things, as you don’t even have to clone this repository.
+Remember that you can edit a page directly in the browser by clicking the link at the bottom of each page.
+That makes it very easy to fix typos and other small things, as you don’t even have to clone this repository.
 
-Larger changes typically undergo a review process and a few iterations before
-they are merged and published. We have observed that the following workflow
-works well, and we usually try to stick with it:
+Larger changes typically undergo a review process and a few iterations before they are merged and published.
+We have observed that the following workflow works well, and we usually try to stick with it:
 
-1. You (or someone else) starts a PR of unknown quality with a change to the
-   English docs.
-2. Someone else (or you) reviews and comments it, the participants iterate over
-   the changes until they’re good.
-3. A member of @grammyjs approves the PR and adds the label “ready for
-   translation”. From now on, all you need to do is wait.
-4. All translation happens and the labels for the respective languages are
-   added.
-5. The PR now has at least one approval and all translations are ready, so it
-   can be merged.
+1. You (or someone else) starts a PR of unknown quality with a change to the English docs.
+2. Someone else (or you) reviews and comments it, the participants iterate over the changes until they’re good.
+3. A member of @grammyjs approves the PR and adds the label “ready for translation”.
+   From now on, all you need to do is wait.
+4. All translation happens and the labels for the respective languages are added.
+5. The PR now has at least one approval and all translations are ready, so it can be merged.
 
-> Make sure that your PRs have the “Allow edits by maintainers” option checked,
-> so that we are able finalize and accept your pull request.
+> Make sure that your PRs have the “Allow edits by maintainers” option checked, so that we are able finalize and accept your pull request.
 
 ## Translating
 
@@ -39,15 +30,13 @@ See the [Translation Guide](./TRANSLATING.md).
 
 ## Commit Messages
 
-We don’t follow conventional commits in this repository. So don’t use tags like
-chore, ci, etc. Follow the way most of the past commits are written, and these
-general rules:
+We don’t follow conventional commits in this repository.
+So don’t use tags like chore, ci, etc.
+Follow the way most of the past commits are written, and these general rules:
 
-- The commit message can start with a tag like “[Language Name]” if it is only
-  modifying a specific language.
+- The commit message can start with a tag like “[Language Name]” if it is only modifying a specific language.
 - The first letter of the commit message must be in uppercase.
 - The first letter of proper nouns must be in uppercase.
 
-Note that you don’t have to follow these rules if you are pushing to a branch
-other than `main`. In that case, only your pull request’s title should follow
-these rules.
+Note that you don’t have to follow these rules if you are pushing to a branch other than `main`.
+In that case, only your pull request’s title should follow these rules.

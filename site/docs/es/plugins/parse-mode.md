@@ -5,9 +5,7 @@ next: false
 
 # Parsear (`parse-mode`)
 
-Este plugin proporciona un transformador para establecer el `parse_mode` por
-defecto, y un middleware para hidratar el `Context` con los métodos variantes
-familiares de `reply` - es decir, `replyWithHTML`, `replyWithMarkdown`, etc.
+Este plugin proporciona un transformador para establecer el `parse_mode` por defecto, y un middleware para hidratar el `Context` con los métodos variantes familiares de `reply` - es decir, `replyWithHTML`, `replyWithMarkdown`, etc.
 
 ## Uso (Mejorar la experiencia de formateo)
 

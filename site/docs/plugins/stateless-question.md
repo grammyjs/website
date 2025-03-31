@@ -7,20 +7,16 @@ next: false
 
 > Create stateless questions to Telegram users working in privacy mode
 
-You want to keep the privacy of the user with
-[Telegrams privacy mode enabled (by default)](https://core.telegram.org/bots/features#privacy-mode),
-send users translated questions in their language and don't save the state what
-users are currently doing?
+You want to keep the privacy of the user with [Telegrams privacy mode enabled (by default)](https://core.telegram.org/bots/features#privacy-mode), send users translated questions in their language and don't save the state what users are currently doing?
 
 This plugin wants to solve this problem.
 
-The basic idea is to send your question with a
-[special text](https://en.wikipedia.org/wiki/Zero-width_non-joiner) at the end.
-This text is invisible to the user but still visible for your bot. When the user
-replies to a message, the message is checked. If it is containing this special
-text at the end, then it is an answer to the question. This way you can have
-many strings for the same questions as when having translations. You only have
-to make sure the `uniqueIdentifier` is unique within your bot.
+The basic idea is to send your question with a [special text](https://en.wikipedia.org/wiki/Zero-width_non-joiner) at the end.
+This text is invisible to the user but still visible for your bot.
+When the user replies to a message, the message is checked.
+If it is containing this special text at the end, then it is an answer to the question.
+This way you can have many strings for the same questions as when having translations.
+You only have to make sure the `uniqueIdentifier` is unique within your bot.
 
 ## Usage
 
@@ -62,8 +58,7 @@ bot.command("unicorn", async (ctx) => {
 });
 ```
 
-See the [plugin repo README](https://github.com/grammyjs/stateless-question) for
-more information.
+See the [plugin repo README](https://github.com/grammyjs/stateless-question) for more information.
 
 ## Plugin Summary
 

@@ -2,32 +2,25 @@
 
 ## Introducción
 
-Telegram Games es una función muy interesante y muy divertida para jugar. ¿Qué
-puedes hacer con ella? La respuesta es cualquier cosa, cualquier juego HTML5 que
-hayas desarrollado puedes ofrecerlo a los usuarios en Telegram con la ayuda de
-esta función. (Sí, esto significa que tendrás que desarrollar un juego real
-basado en un sitio web que sea accesible públicamente en Internet antes de poder
-integrarlo en tu bot de Telegram).
+Telegram Games es una función muy interesante y muy divertida para jugar.
+¿Qué puedes hacer con ella?
+La respuesta es cualquier cosa, cualquier juego HTML5 que hayas desarrollado puedes ofrecerlo a los usuarios en Telegram con la ayuda de esta función.
+(Sí, esto significa que tendrás que desarrollar un juego real basado en un sitio web que sea accesible públicamente en Internet antes de poder integrarlo en tu bot de Telegram).
 
 ## Configurar un juego con tu bot vía @BotFather
 
-Para simplificar, vamos a suponer que a estas alturas debes haber configurado un
-bot y un juego asociado a tu bot en [@BotFather](https://t.me/BotFather). Si aún
-no lo has hecho, consulta este [artículo](https://core.telegram.org/bots/games)
-del equipo de Telegram.
+Para simplificar, vamos a suponer que a estas alturas debes haber configurado un bot y un juego asociado a tu bot en [@BotFather](https://t.me/BotFather).
+Si aún no lo has hecho, consulta este [artículo](https://core.telegram.org/bots/games) del equipo de Telegram.
 
-> Nota: Sólo aprenderemos el desarrollo del lado del bot. El desarrollo del
-> juego depende enteramente del desarrollador. Todo lo que necesitamos aquí es
-> un enlace del juego HTML5 alojado en internet.
+> Nota: Sólo aprenderemos el desarrollo del lado del bot.
+> El desarrollo del juego depende enteramente del desarrollador.
+> Todo lo que necesitamos aquí es un enlace del juego HTML5 alojado en internet.
 
 ## Enviando el juego a través de un bot
 
-Podemos enviar el juego en grammY a través del método `replyWithGame` que toma
-como argumento el nombre del juego creado con BotFather. Alternativamente,
-también podemos utilizar el método `api.sendGame` (grammY proporciona todos los
-métodos oficiales de la [API del Bot](https://core.telegram.org/bots/api)). Una
-ventaja de usar el método `api.sendGame` es que puedes especificar el `chat.id`
-de un usuario específico al que enviarlo.
+Podemos enviar el juego en grammY a través del método `replyWithGame` que toma como argumento el nombre del juego creado con BotFather.
+Alternativamente, también podemos utilizar el método `api.sendGame` (grammY proporciona todos los métodos oficiales de la [API del Bot](https://core.telegram.org/bots/api)).
+Una ventaja de usar el método `api.sendGame` es que puedes especificar el `chat.id` de un usuario específico al que enviarlo.
 
 1. Envío del juego a través de `replyWithGame`
 
@@ -50,13 +43,10 @@ de un usuario específico al que enviarlo.
    });
    ```
 
-> [Recuerde](./basics#envio-de-mensajes) que puede especificar más opciones al
-> enviar mensajes utilizando el objeto de opciones de tipo `Other`.
+> [Recuerde](./basics#envio-de-mensajes) que puede especificar más opciones al enviar mensajes utilizando el objeto de opciones de tipo `Other`.
 
-También puedes especificar un
-[teclado en línea](../plugins/keyboard#teclados-en-linea) personalizado para que
-el juego muestre los botones. Por defecto, se enviará con un botón con nombre
-como `Play my_game`, donde _my_game_ es el nombre de su juego.
+También puedes especificar un [teclado en línea](../plugins/keyboard#teclados-en-linea) personalizado para que el juego muestre los botones.
+Por defecto, se enviará con un botón con nombre como `Play my_game`, donde _my_game_ es el nombre de su juego.
 
 ```ts
 // Definir un nuevo teclado en línea. Puedes escribir cualquier texto que se muestre
@@ -77,10 +67,8 @@ await ctx.api.sendGame(chatId, "my_game", { reply_markup: keyboard });
 
 ## Escuchando el Callback de nuestro botón de juego
 
-Para dotar de lógica al botón cuando es pulsado, y para redirigir a nuestros
-usuarios a nuestro juego y muchas cosas más, escuchamos el evento
-`callback_query:game_short_name` que nos indica que un botón de juego ha sido
-pulsado por el usuario. Todo lo que tenemos que hacer es
+Para dotar de lógica al botón cuando es pulsado, y para redirigir a nuestros usuarios a nuestro juego y muchas cosas más, escuchamos el evento `callback_query:game_short_name` que nos indica que un botón de juego ha sido pulsado por el usuario.
+Todo lo que tenemos que hacer es
 
 ```ts
 // Pasa aquí la url de tu juego que debe estar ya alojado en la web.
@@ -107,9 +95,7 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-> Recuerda añadir un adecuado [manejo de errores](./errors) a tu bot antes de
-> ponerlo en marcha.
+> Recuerda añadir un adecuado [manejo de errores](./errors) a tu bot antes de ponerlo en marcha.
 
-Puede que ampliemos este artículo en el futuro con más secciones avanzadas y
-preguntas frecuentes, pero esto es ya todo lo que necesitas para empezar tu
-juego en Telegram. ¡Diviértete jugando! :space_invader:
+Puede que ampliemos este artículo en el futuro con más secciones avanzadas y preguntas frecuentes, pero esto es ya todo lo que necesitas para empezar tu juego en Telegram.
+¡Diviértete jugando! :space_invader:

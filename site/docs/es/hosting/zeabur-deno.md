@@ -5,21 +5,19 @@ next: false
 
 # Alojamiento: Zeabur (Deno)
 
-[Zeabur](https://zeabur.com) es una plataforma que te permite desplegar tus
-aplicaciones full-stack con facilidad. Soporta varios lenguajes de programación
-y frameworks, incluyendo Deno y grammY.
+[Zeabur](https://zeabur.com) es una plataforma que te permite desplegar tus aplicaciones full-stack con facilidad.
+Soporta varios lenguajes de programación y frameworks, incluyendo Deno y grammY.
 
-Este tutorial te guiará en el despliegue de tus bots grammY con Deno en
-[Zeabur](https://zeabur.com).
+Este tutorial te guiará en el despliegue de tus bots grammY con Deno en [Zeabur](https://zeabur.com).
 
-::: tip ¿Buscas la versión para Node.js? Este tutorial explica cómo desplegar un
-bot de Telegram en Zeabur usando Deno. Si estás buscando la versión Node.js, por
-favor revisa [este tutorial](./zeabur-nodejs) en su lugar. :::
+::: tip ¿Buscas la versión para Node.js?
+Este tutorial explica cómo desplegar un bot de Telegram en Zeabur usando Deno.
+Si estás buscando la versión Node.js, por favor revisa [este tutorial](./zeabur-nodejs) en su lugar.
+:::
 
 ## Requisitos previos
 
-Para seguirnos, necesitas tener cuentas [GitHub](https://github.com) y
-[Zeabur](https://zeabur.com).
+Para seguirnos, necesitas tener cuentas [GitHub](https://github.com) y [Zeabur](https://zeabur.com).
 
 ### Método 1: Crear un nuevo proyecto desde cero
 
@@ -56,12 +54,9 @@ bot.on("message:text", (ctx) => ctx.reply("¿En qué puedo ayudarle?"));
 bot.start();
 ```
 
-> Nota: Obtén tu bot token con [@BotFather](https://t.me/BotFather) en Telegram,
-> y establécelo como variable de entorno `TELEGRAM_BOT_TOKEN` en Zeabur.
+> Nota: Obtén tu bot token con [@BotFather](https://t.me/BotFather) en Telegram, y establécelo como variable de entorno `TELEGRAM_BOT_TOKEN` en Zeabur.
 >
-> Puedes consultar
-> [este tutorial](https://zeabur.com/docs/en-US/deploy/variables) para
-> establecer variables de entorno en Zeabur.
+> Puedes consultar [este tutorial](https://zeabur.com/docs/en-US/deploy/variables) para establecer variables de entorno en Zeabur.
 
 Luego ejecuta el siguiente comando para iniciar tu bot:
 
@@ -69,13 +64,12 @@ Luego ejecuta el siguiente comando para iniciar tu bot:
 deno -IN main.ts
 ```
 
-Deno descargará automáticamente las dependencias, generará el archivo de bloqueo
-e iniciará tu bot.
+Deno descargará automáticamente las dependencias, generará el archivo de bloqueo e iniciará tu bot.
 
 ### Método 2: Utilizar la plantilla de Zeabur
 
-Zeabur ya ha proporcionado una plantilla para su uso. Puedes encontrarla
-[aquí](https://github.com/zeabur/deno-telegram-bot-starter).
+Zeabur ya ha proporcionado una plantilla para su uso.
+Puedes encontrarla [aquí](https://github.com/zeabur/deno-telegram-bot-starter).
 
 Puedes usar la plantilla y empezar a escribir el código de tu bot.
 
@@ -83,13 +77,10 @@ Puedes usar la plantilla y empezar a escribir el código de tu bot.
 
 ### Método 1: Despliegue desde GitHub en el Dashboard de Zeabur
 
-1. Crea un repositorio en GitHub, puede ser público o privado y empuja tu código
-   a él.
+1. Crea un repositorio en GitHub, puede ser público o privado y empuja tu código a él.
 2. Ve a [Zeabur dashboard](https://dash.zeabur.com).
-3. Haz click en el botón `New Project`, y haz click en el botón
-   `Deploy New Service`, elige `GitHub` como fuente y selecciona tu repositorio.
-4. Ve a la pestaña `Variables` para añadir tus variables de entorno como
-   `TELEGRAM_BOT_TOKEN`.
+3. Haz click en el botón `New Project`, y haz click en el botón `Deploy New Service`, elige `GitHub` como fuente y selecciona tu repositorio.
+4. Ve a la pestaña `Variables` para añadir tus variables de entorno como `TELEGRAM_BOT_TOKEN`.
 5. Tu servicio se desplegará automáticamente.
 
 ### Método 2: Despliegue con Zeabur CLI
@@ -100,5 +91,4 @@ Puedes usar la plantilla y empezar a escribir el código de tu bot.
 npx @zeabur/cli deploy
 ```
 
-Siga las instrucciones para seleccionar una región para desplegar, y su bot se
-desplegará automáticamente.
+Siga las instrucciones para seleccionar una región para desplegar, y su bot se desplegará automáticamente.

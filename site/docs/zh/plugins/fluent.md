@@ -5,15 +5,15 @@ next: false
 
 # 使用 Fluent 进行国际化 (`fluent`)
 
-[Fluent](https://projectfluent.org/) 是 Mozilla
-基金会制作的一个本地化系统，用于自然发音的翻译。
+[Fluent](https://projectfluent.org/) 是 Mozilla 基金会制作的一个本地化系统，用于自然发音的翻译。
 它有一个非常强大和优雅的语法，可以让任何人写出高效和完全可理解的翻译。
-这个插件利用了这个惊人的本地化系统，使得由 grammY 驱动的 bot
-能够流畅地进行高质量的翻译。
+这个插件利用了这个惊人的本地化系统，使得由 grammY 驱动的 bot 能够流畅地进行高质量的翻译。
 
-::: tip 不要困惑 不要将它与 [i18n](./i18n) 混淆。
+::: tip 不要困惑
+不要将它与 [i18n](./i18n) 混淆。
 
-[i18n](./i18n) 是这个插件的改进版，它可以在 Deno 和 Node.js 上使用。 :::
+[i18n](./i18n) 是这个插件的改进版，它可以在 Deno 和 Node.js 上使用。
+:::
 
 ## 初始化 Fluent
 
@@ -51,9 +51,8 @@ await fluent.addTranslation({
 
 ## 撰写翻译消息
 
-Fluent 的语法很容易掌握。 你可以从
-[官方示例](https://projectfluent.org/#examples) 或
-[综合性语法指南](https://projectfluent.org/fluent/guide/) 中开始。
+Fluent 的语法很容易掌握。
+你可以从 [官方示例](https://projectfluent.org/#examples) 或 [综合性语法指南](https://projectfluent.org/fluent/guide/) 中开始。
 
 让我们从这个示例开始吧：
 
@@ -69,32 +68,26 @@ welcome =
   }.
 ```
 
-它演示了 Fluent 中三个重要的功能，分别是： **terms**， **variable substitution**
-(即 _placeables_) 和 **pluralization**。
+它演示了 Fluent 中三个重要的功能，分别是： **terms**， **variable substitution** (即 _placeables_) 和 **pluralization**。
 
 `welcome` 是消息 ID，后面跟着的是消息体，在渲染时会通过 `welcome` 来引用消息体。
 
-语句 `-bot-name = Apples Bot` 定义了一个 **term**，名称为 `bot-name`，值为
-`Apples Bot`。 `{-bot-name}` 结构引用了之前定义的 term，在渲染时会被 term
-的值替换。
+语句 `-bot-name = Apples Bot` 定义了一个 **term**，名称为 `bot-name`，值为 `Apples Bot`。
+`{-bot-name}` 结构引用了之前定义的 term，在渲染时会被 term 的值替换。
 
 语句 `{$name}` 将会被替换为 `name` 变量的值，你需要自己传递给翻译函数。
 
-最后一条语句 (_第 5 行到第 9 行_) 定义了一个 **selector**（非常类似于 switch
-语句），它接收应用于 `applesCount` 变量的特殊 `NUMBER`
-函数的结果，并根据匹配的值选择三种可能的信息之一来渲染。 `NUMBER`
-函数将根据提供的值和使用的语言返回一个
-[CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html)。
+最后一条语句 (_第 5 行到第 9 行_) 定义了一个 **selector**（非常类似于 switch 语句），它接收应用于 `applesCount` 变量的特殊 `NUMBER` 函数的结果，并根据匹配的值选择三种可能的信息之一来渲染。
+`NUMBER` 函数将根据提供的值和使用的语言返回一个 [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html)。
 这有效地实现了 pluralization。
 
 ## grammY 配置
 
-现在，让我们看看上面这条消息如何被 bot 渲染出来。 但首先，我们需要配置 grammY
-使用该插件。
+现在，让我们看看上面这条消息如何被 bot 渲染出来。
+但首先，我们需要配置 grammY 使用该插件。
 
 在所有其他方面之前，你需要配置你的 bot 使用 Fluent 上下文调味剂。
-如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context#上下文调味剂)
-的官方文档。
+如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context#上下文调味剂) 的官方文档。
 
 ```ts
 import { Context } from "grammy";
@@ -139,25 +132,24 @@ bot.command("i18n_test", async (ctx) => {
 });
 ```
 
-现在你可以启动你的 bot，并使用 `/i18n_test` 命令。 它应该渲染以下消息：
+现在你可以启动你的 bot，并使用 `/i18n_test` 命令。
+它应该渲染以下消息：
 
 ```text
 Welcome, Slava, to the Apples Bot!
 You have 1 apple.
 ```
 
-当然，你将会看到你自己的名字而不是 "Slava"。 试着改变 `applesCount`
-变量的值，看看渲染的消息会有什么变化！
+当然，你将会看到你自己的名字而不是 "Slava"。
+试着改变 `applesCount` 变量的值，看看渲染的消息会有什么变化！
 
-请注意，你现在可以在任何有 `Context` 的地方使用翻译函数。 这个库将根据每个与你的
-bot 互动的用户的个人偏好（在 Telegram
-客户端设置中设置的语言）来自动确定最佳的语言。
+请注意，你现在可以在任何有 `Context` 的地方使用翻译函数。
+这个库将根据每个与你的 bot 互动的用户的个人偏好（在 Telegram 客户端设置中设置的语言）来自动确定最佳的语言。
 你只需要创建几个翻译文件并确保所有的翻译都正确同步。
 
 ## 更进一步
 
-- 阅读 [Fluent 文档](https://projectfluent.org/)，尤其是
-  [语法指南](https://projectfluent.org/fluent/guide/)。
+- 阅读 [Fluent 文档](https://projectfluent.org/)，尤其是 [语法指南](https://projectfluent.org/fluent/guide/)。
 - [从 `i18n` 插件迁移。](https://github.com/grammyjs/fluent#i18n-plugin-replacement)
 - 熟悉了解 [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme)。
 

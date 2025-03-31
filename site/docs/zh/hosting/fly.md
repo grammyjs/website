@@ -5,8 +5,7 @@ next: false
 
 # 托管: Fly
 
-本指南介绍了使用 Deno 或 Node.js 在 [Fly](https://fly.io) 上托管 grammY bot
-的方法。
+本指南介绍了使用 Deno 或 Node.js 在 [Fly](https://fly.io) 上托管 grammY bot 的方法。
 
 ## 准备你的代码
 
@@ -17,8 +16,7 @@ next: false
 > 请记住，使用 webhook 时不应在代码中调用 `bot.start()`。
 
 1. 确保你有一个导出 `Bot` 对象的文件，以便你稍后可以导入它来运行。
-2. 创建一个名为 `app.ts` 或 `app.js`
-   的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
+2. 创建一个名为 `app.ts` 或 `app.js` 的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
 
 ::: code-group
 
@@ -66,8 +64,7 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 
 ### 长轮询
 
-创建一个名为 `app.ts` 或 `app.js`
-的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
+创建一个名为 `app.ts` 或 `app.js` 的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
 
 ::: code-group
 
@@ -111,15 +108,15 @@ bot.start();
 
 :::
 
-正如你在上面突出显示的行中看到的那样，我们从环境变量中获取了一些敏感值（你的bot
-token）。 Fly 允许我们通过运行以下命令来存储该密钥：
+正如你在上面突出显示的行中看到的那样，我们从环境变量中获取了一些敏感值（你的bot token）。
+Fly 允许我们通过运行以下命令来存储该密钥：
 
 ```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
-你可以以相同的方式指定其他机密。 有关此 _密钥_ 的更多信息，请参阅
-<https://fly.io/docs/apps/secrets/>。
+你可以以相同的方式指定其他机密。
+有关此 _密钥_ 的更多信息，请参阅 <https://fly.io/docs/apps/secrets/>。
 
 ## 部署
 
@@ -127,8 +124,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 
 这是最简单的方法。
 
-1. 安装 [flyctl](https://fly.io/docs/flyctl/install/) 并
-   [登录](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. 安装 [flyctl](https://fly.io/docs/flyctl/install/) 并 [登录](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. 运行 `flyctl launch` 来为部署生成一个 `Dockerfile` 和 `fly.toml` 文件。
    但是**不要**部署。
 
@@ -181,9 +177,8 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 3. **Deno**：修改 Deno 版本并删除 `CMD`（如果 `Dockerfile` 文件中存在）。
    例如，在这种情况下，我们将 `DENO_VERSION` 更新为 `1.25.2`。
 
-   **Node.js**：要修改 Node.js 版本，你需要在 `package.json` 中的 `"engines"`
-   属性中插入一个 `"node"` 属性。 例如，我们在下面的示例中将 Node.js 版本更新为
-   `16.14.0`。
+   **Node.js**：要修改 Node.js 版本，你需要在 `package.json` 中的 `"engines"` 属性中插入一个 `"node"` 属性。
+   例如，我们在下面的示例中将 Node.js 版本更新为 `16.14.0`。
 
    ::: code-group
 
@@ -242,10 +237,10 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 
    :::
 
-4. 编辑 `fly.toml` 文件中的 `app`。 下面示例中的路径 `./app.ts`（或 Node.js 的
-   `./app.js`）指的是主文件目录。 你可以修改它们以匹配你的项目目录。
-   如果你使用的是 webhook，请确保端口与你的 [配置](#webhooks) (`8000`)
-   中的端口相同。
+4. 编辑 `fly.toml` 文件中的 `app`。
+   下面示例中的路径 `./app.ts`（或 Node.js 的 `./app.js`）指的是主文件目录。
+   你可以修改它们以匹配你的项目目录。
+   如果你使用的是 webhook，请确保端口与你的 [配置](#webhooks) (`8000`) 中的端口相同。
 
    ::: code-group
 
@@ -367,17 +362,13 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 
 ### 方法 2: 通过 GitHub Actions
 
-以下方法的主要优点是 Fly 将监视包含你的 bot
-代码的仓库中的更改，并且它将自动部署新版本。 访问
-<https://fly.io/docs/launch/continuous-deployment-with-github-actions/>
-获取更多详细说明。
+以下方法的主要优点是 Fly 将监视包含你的 bot 代码的仓库中的更改，并且它将自动部署新版本。
+访问 <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> 获取更多详细说明。
 
-1. 安装 [flyctl](https://fly.io/docs/flyctl/install/) 并
-   [登录](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. 安装 [flyctl](https://fly.io/docs/flyctl/install/) 并 [登录](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. 通过运行 `flyctl auth token` 获取 Fly API token .
 3. 在 GitHub 上创建一个仓库，它可以是私有的也可以是公共的。
-4. 跳转到设置，选择 Secrets 并使用第 2 步中的 token 创建一个名为 `FLY_API_TOKEN`
-   的密钥。
+4. 跳转到设置，选择 Secrets 并使用第 2 步中的 token 创建一个名为 `FLY_API_TOKEN` 的密钥。
 5. 使用以下内容创建 `.github/workflows/main.yml`：
 
    ```yml
@@ -402,23 +393,21 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 
 ### 设置 Webhook URL
 
-如果你使用的是 webhook，在你的应用运行后，你应该配置 bot 的 webhook
-设置以指向你的应用。 为此，请发送请求至
+如果你使用的是 webhook，在你的应用运行后，你应该配置 bot 的 webhook 设置以指向你的应用。
+为此，请发送请求至
 
 ```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-将 `<token>` 替换为你的 bot token，将 `<url>` 替换为你的应用程序的完整 URL 以及
-webhook 处理程序的路径。
+将 `<token>` 替换为你的 bot token，将 `<url>` 替换为你的应用程序的完整 URL 以及 webhook 处理程序的路径。
 
 ### Dockerfile 优化
 
-当我们的 `Dockerfile` 运行时，它会将目录中的所有内容复制到 Docker 映像中。 对于
-Node.js 应用程序，无论如何都会重建一些目录，例如
-`node_modules`，因此无需复制它们。 创建一个 `.dockerignore` 文件并向其中添加
-`node_modules` 以执行此操作。 你还可以使用 `.dockerignore`
-来不复制运行时不需要的任何其他文件。
+当我们的 `Dockerfile` 运行时，它会将目录中的所有内容复制到 Docker 映像中。
+对于 Node.js 应用程序，无论如何都会重建一些目录，例如 `node_modules`，因此无需复制它们。
+创建一个 `.dockerignore` 文件并向其中添加 `node_modules` 以执行此操作。
+你还可以使用 `.dockerignore` 来不复制运行时不需要的任何其他文件。
 
 ## 参考
 

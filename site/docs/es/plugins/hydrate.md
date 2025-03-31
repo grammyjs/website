@@ -10,9 +10,8 @@ Este plugin instala métodos útiles en dos tipos de objetos, a saber
 1. los resultados de las llamadas a la API, y
 2. los objetos del objeto de contexto `ctx`.
 
-En lugar de tener que llamar a `ctx.api` o `bot.api` y tener que suministrar
-todo tipo de identificadores, ahora puedes simplemente llamar a los métodos de
-los objetos y simplemente funcionarán. Esto se ilustra mejor con un ejemplo.
+En lugar de tener que llamar a `ctx.api` o `bot.api` y tener que suministrar todo tipo de identificadores, ahora puedes simplemente llamar a los métodos de los objetos y simplemente funcionarán.
+Esto se ilustra mejor con un ejemplo.
 
 **SIN** este plugin:
 
@@ -56,8 +55,7 @@ Hay dos maneras de instalar este plugin.
 
 ### Instalación simple
 
-Este plugin se puede instalar de una manera sencilla que debería ser suficiente
-para la mayoría de los usuarios.
+Este plugin se puede instalar de una manera sencilla que debería ser suficiente para la mayoría de los usuarios.
 
 ::: code-group
 
@@ -99,16 +97,14 @@ bot.use(hydrate());
 
 ### Instalación avanzada
 
-Al utilizar la instalación simple, sólo se hidratarán los resultados de las
-llamadas a la API que pasen por `ctx.api`, por ejemplo, `ctx.reply`. Estas son
-la mayoría de las llamadas para la mayoría de los bots.
+Al utilizar la instalación simple, sólo se hidratarán los resultados de las llamadas a la API que pasen por `ctx.api`, por ejemplo, `ctx.reply`.
+Estas son la mayoría de las llamadas para la mayoría de los bots.
 
-Sin embargo, algunos bots pueden necesitar hacer llamadas a `bot.api`. En este
-caso, deberías utilizar esta instalación avanzada.
+Sin embargo, algunos bots pueden necesitar hacer llamadas a `bot.api`.
+En este caso, deberías utilizar esta instalación avanzada.
 
-Integrará la hidratación del contexto y la hidratación de los resultados de las
-llamadas a la API por separado en tu bot. Ten en cuenta que ahora también tienes
-que instalar un [API flavor](../advanced/transformers#api-flavoring).
+Integrará la hidratación del contexto y la hidratación de los resultados de las llamadas a la API por separado en tu bot.
+Ten en cuenta que ahora también tienes que instalar un [API flavor](../advanced/transformers#api-flavoring).
 
 ::: code-group
 

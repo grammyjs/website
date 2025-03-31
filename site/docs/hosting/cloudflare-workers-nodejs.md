@@ -5,26 +5,20 @@ next: false
 
 # Hosting: Cloudflare Workers (Node.js)
 
-[Cloudflare Workers](https://workers.cloudflare.com) is a public serverless
-computing platform that offers a convenient and simple solution for running
-JavaScript at the [edge](https://en.wikipedia.org/wiki/Edge_computing). Having
-the ability to handle HTTP traffic and being based on the
-[Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API),
-building Telegram bots becomes a breeze. In addition, you can even develop
-[Web Apps](https://core.telegram.org/bots/webapps) at the edge, all for free
-within certain quotas.
+[Cloudflare Workers](https://workers.cloudflare.com) is a public serverless computing platform that offers a convenient and simple solution for running JavaScript at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
+Having the ability to handle HTTP traffic and being based on the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), building Telegram bots becomes a breeze.
+In addition, you can even develop [Web Apps](https://core.telegram.org/bots/webapps) at the edge, all for free within certain quotas.
 
-This guide will take you through the process of hosting your Telegram bots on
-Cloudflare Workers.
+This guide will take you through the process of hosting your Telegram bots on Cloudflare Workers.
 
-::: tip Looking for the Deno Version? This tutorial explains how to deploy a
-Telegram bot to Cloudflare Workers using Node.js. If you're looking for the Deno
-version, please check out [this tutorial](./cloudflare-workers) instead. :::
+::: tip Looking for the Deno Version?
+This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Node.js.
+If you're looking for the Deno version, please check out [this tutorial](./cloudflare-workers) instead.
+:::
 
 ## Prerequisites
 
-1. a [Cloudflare account](https://dash.cloudflare.com/login) with your workers
-   subdomain [configured](https://dash.cloudflare.com/?account=workers).
+1. a [Cloudflare account](https://dash.cloudflare.com/login) with your workers subdomain [configured](https://dash.cloudflare.com/?account=workers).
 2. a working [Node.js](https://nodejs.org/) environment with `npm` installed.
 
 ## Setting Things Up
@@ -46,13 +40,13 @@ using create-cloudflare version 2.17.1
   ./grammybot  // [!code focus]
 ```
 
-Here we create a project named `grammybot`, you can choose your own, this will
-be the name of your worker as well as a part of the request URL.
+Here we create a project named `grammybot`, you can choose your own, this will be the name of your worker as well as a part of the request URL.
 
-::: tip You can change the name of your worker in `wrangler.toml` later. :::
+::: tip
+You can change the name of your worker in `wrangler.toml` later.
+:::
 
-Next, you will be asked to select the type of your worker, here we choose
-`"Hello World" Worker`:
+Next, you will be asked to select the type of your worker, here we choose `"Hello World" Worker`:
 
 ```ansi{8}
 using create-cloudflare version 2.17.1
@@ -74,8 +68,8 @@ using create-cloudflare version 2.17.1
   ○ Worker built from a template hosted in a git repository  // [!code focus]
 ```
 
-Next, you will be asked to choose whether you want to use TypeScript, if you
-want to use JavaScript, choose `No`. Here we choose `Yes`:
+Next, you will be asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`.
+Here we choose `Yes`:
 
 ```ansi{11}
 using create-cloudflare version 2.17.1
@@ -92,10 +86,8 @@ using create-cloudflare version 2.17.1
   Yes / No  // [!code focus]
 ```
 
-Your project will be set up in a few minutes. After that, you will be asked
-whether you want to use git for version control, choose `Yes` if you want the
-repo to be initialized automatically or `No` if you want to initialize it by
-yourself later.
+Your project will be set up in a few minutes.
+After that, you will be asked whether you want to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize it by yourself later.
 
 Here we choose `Yes`:
 
@@ -139,8 +131,7 @@ using create-cloudflare version 2.17.1
   Yes / No  // [!code focus]
 ```
 
-Finally, you will be asked whether you want to deploy your worker, choose `No`,
-since we are going to deploy it when we have a working Telegram bot:
+Finally, you will be asked whether you want to deploy your worker, choose `No`, since we are going to deploy it when we have a working Telegram bot:
 
 ```ansi{49}
 using create-cloudflare version 2.17.1
@@ -197,8 +188,7 @@ using create-cloudflare version 2.17.1
 
 ## Install Dependencies
 
-`cd` into `grammybot` (replace this by your worker's name you set above),
-install `grammy`, and other packages you might need:
+`cd` into `grammybot` (replace this by your worker's name you set above), install `grammy`, and other packages you might need:
 
 ```sh
 npm install grammy
@@ -259,16 +249,15 @@ export default {
 
 Here, we first import `Bot`, `Context` and `webhookCallback` from `grammy`.
 
-Inside the interface `Env`, we add a variable `BOT_INFO`, this is an environment
-variable that stores your bot info, you can get your bot info by calling
-Telegram Bot API with `getMe` method. Open this link in your web browser:
+Inside the interface `Env`, we add a variable `BOT_INFO`, this is an environment variable that stores your bot info, you can get your bot info by calling Telegram Bot API with `getMe` method.
+Open this link in your web browser:
 
 ```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/getMe
 ```
 
-Replace `<BOT_TOKEN>` with your bot token. If successful, you will see a JSON
-response similar to this:
+Replace `<BOT_TOKEN>` with your bot token.
+If successful, you will see a JSON response similar to this:
 
 ```json{3-12}
 {
@@ -286,9 +275,7 @@ response similar to this:
 }
 ```
 
-Now, open `wrangler.toml` in the root of your project and add an environment
-variable `BOT_INFO` under `[vars]` section with the value from `result` object
-you get above like this:
+Now, open `wrangler.toml` in the root of your project and add an environment variable `BOT_INFO` under `[vars]` section with the value from `result` object you get above like this:
 
 ```toml
 [vars]
@@ -304,21 +291,18 @@ BOT_INFO = """{
 }"""
 ```
 
-Replace the bot info with what you get from the web browser. Pay attention to
-the three double quotation marks `"""` at the beginning and end.
+Replace the bot info with what you get from the web browser.
+Pay attention to the three double quotation marks `"""` at the beginning and end.
 
-In addition to `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an
-environment variable that stores your bot token that is used to create your bot.
+In addition to `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an environment variable that stores your bot token that is used to create your bot.
 
-You may notice that we just define the variable `BOT_TOKEN`, but didn't assign
-it yet. Usually you need to store your environment variable in `wrangler.toml`,
-however, this is not safe in our case, since the bot token should be kept
-secret. Cloudflare Workers provide us a safe way to store sensitive information
-like API keys and auth tokens in environment variable:
-[secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)!
+You may notice that we just define the variable `BOT_TOKEN`, but didn't assign it yet.
+Usually you need to store your environment variable in `wrangler.toml`, however, this is not safe in our case, since the bot token should be kept secret.
+Cloudflare Workers provide us a safe way to store sensitive information like API keys and auth tokens in environment variable: [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)!
 
-::: tip Secret values are not visible within Wrangler or the Cloudflare
-dashboard after you define them. :::
+::: tip
+Secret values are not visible within Wrangler or the Cloudflare dashboard after you define them.
+:::
 
 You can add a secret to your project using the following command:
 
@@ -326,14 +310,13 @@ You can add a secret to your project using the following command:
 npx wrangler secret put BOT_TOKEN
 ```
 
-Follow the instruction and input your bot token, your bot token will be uploaded
-and encrypted.
+Follow the instruction and input your bot token, your bot token will be uploaded and encrypted.
 
-::: tip You can change to whatever name you want for the environment variables,
-but keep in mind that you do the same in following steps. :::
+::: tip
+You can change to whatever name you want for the environment variables, but keep in mind that you do the same in following steps.
+:::
 
-Inside the function `fetch()`, we create a bot with `BOT_TOKEN` which replies
-"Hello, world!" when it receives `/start`.
+Inside the function `fetch()`, we create a bot with `BOT_TOKEN` which replies "Hello, world!" when it receives `/start`.
 
 ## Deploying Your Bot
 
@@ -345,16 +328,14 @@ npm run deploy
 
 ## Setting Your Webhook
 
-We need to tell Telegram where to send updates to. Open your browser and visit
-this URL:
+We need to tell Telegram where to send updates to.
+Open your browser and visit this URL:
 
 ```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
-Replace `<BOT_TOKEN>` with your bot token, replace `<MY_BOT>` with the name of
-your worker, replace `<MY_SUBDOMAIN>` with your worker subdomain configured on
-the Cloudflare dashboard.
+Replace `<BOT_TOKEN>` with your bot token, replace `<MY_BOT>` with the name of your worker, replace `<MY_SUBDOMAIN>` with your worker subdomain configured on the Cloudflare dashboard.
 
 If the setup is successful, you'll see a JSON response like this:
 
@@ -368,33 +349,28 @@ If the setup is successful, you'll see a JSON response like this:
 
 ## Testing Your Bot
 
-Open your Telegram app, and start your bot. If it responds, it means you're good
-to go!
+Open your Telegram app, and start your bot.
+If it responds, it means you're good to go!
 
 ## Debugging Your Bot
 
-For testing and debugging purposes, you can run a local or remote development
-server before deploying your bot to production.
+For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
 
-In a development environment, your bot doesn't have access to your secret
-environment variables. So,
-[according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#local-development-with-secrets),
-you can create a `.dev.vars` file in the root of your project to define secrets:
+In a development environment, your bot doesn't have access to your secret environment variables.
+So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#local-development-with-secrets), you can create a `.dev.vars` file in the root of your project to define secrets:
 
 ```env
 BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
 
-Don't forget to add `BOT_INFO` for development as well. Click
-[here](https://developers.cloudflare.com/workers/configuration/environment-variables/)
-and [here](https://developers.cloudflare.com/workers/configuration/secrets/) for
-more details about environment variables and secrets.
+Don't forget to add `BOT_INFO` for development as well.
+Click [here](https://developers.cloudflare.com/workers/configuration/environment-variables/) and [here](https://developers.cloudflare.com/workers/configuration/secrets/) for more details about environment variables and secrets.
 
-Replace `BOT_INFO` and `BOT_TOKEN` with your value if you change the environment
-variable name in the previous step.
+Replace `BOT_INFO` and `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
 
-::: tip You can use a different bot token for development to ensure it doesn't
-affect production. :::
+::: tip
+You can use a different bot token for development to ensure it doesn't affect production.
+:::
 
 Now, you can run the following command to start a development server:
 
@@ -402,24 +378,18 @@ Now, you can run the following command to start a development server:
 npm run dev
 ```
 
-Once the development server has started, you can test your bot by sending sample
-updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or
-[Postman](https://postman.com). Refer to
-[here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates)
-for update examples and [here](https://core.telegram.org/bots/api#update) for
-more information on the update structure.
+Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
+Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for update examples and [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
 
-If you don't want to construct the update, or if you want to test with a real
-update, you can get the update from Telegram Bot API with `getUpdates` method.
-To do that, you will need to delete the webhook first. Open your web browser and
-visit this link:
+If you don't want to construct the update, or if you want to test with a real update, you can get the update from Telegram Bot API with `getUpdates` method.
+To do that, you will need to delete the webhook first.
+Open your web browser and visit this link:
 
 ```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/deleteWebhook
 ```
 
-Replace `<BOT_TOKEN>` with your bot token, you will see a JSON response like
-this:
+Replace `<BOT_TOKEN>` with your bot token, you will see a JSON response like this:
 
 ```json
 {
@@ -429,8 +399,7 @@ this:
 }
 ```
 
-Then, open your Telegram client and send something to the bot, e.g. send
-`/start`.
+Then, open your Telegram client and send something to the bot, e.g. send `/start`.
 
 Now visit this link in your web browser to get the updates:
 
@@ -438,8 +407,7 @@ Now visit this link in your web browser to get the updates:
 https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
 ```
 
-Again, replace `<BOT_TOKEN>` with your bot token, if successful, you will see a
-JSON response similar to this:
+Again, replace `<BOT_TOKEN>` with your bot token, if successful, you will see a JSON response similar to this:
 
 ```json{4-29}
 {
@@ -475,35 +443,25 @@ JSON response similar to this:
 }
 ```
 
-`result` is an array of update objects (above only contains one update object),
-you should only copy one object and test your bot by post this object to the
-development server with the tools mentioned above.
+`result` is an array of update objects (above only contains one update object), you should only copy one object and test your bot by post this object to the development server with the tools mentioned above.
 
-If you want to ignore outdated updates (e.g., ignore all updates during
-development before deploying to production environment), you can add a parameter
-`offset` to the `getUpdates` method like this:
+If you want to ignore outdated updates (e.g., ignore all updates during development before deploying to production environment), you can add a parameter `offset` to the `getUpdates` method like this:
 
 ```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/getUpdates?offset=<update_id>
 ```
 
-Replace `<BOT_TOKEN>` with your bot token, and replace `<update_id>` with the
-`update_id` of the latest update you received (the one with largest number), you
-will then only receive updates later than that update and will never be able to
-get the updates from earlier.
+Replace `<BOT_TOKEN>` with your bot token, and replace `<update_id>` with the `update_id` of the latest update you received (the one with largest number), you will then only receive updates later than that update and will never be able to get the updates from earlier.
 
-Now, you can test your bot with real update objects in your local development
-environment!
+Now, you can test your bot with real update objects in your local development environment!
 
-You can also expose your local development server to the public internet using
-some reverse proxy services like [Ngrok](https://ngrok.com/) and set the webhook
-to the URL you get from them, or you can set up your own reverse proxy if you
-have a public IP address, a domain name and a SSL certificate, but that is
-beyond the of scope of this guide. For more information about setting up a
-reverse proxy, see the documentation for the software you are using.
+You can also expose your local development server to the public internet using some reverse proxy services like [Ngrok](https://ngrok.com/) and set the webhook to the URL you get from them, or you can set up your own reverse proxy if you have a public IP address, a domain name and a SSL certificate, but that is beyond the of scope of this guide.
+For more information about setting up a reverse proxy, see the documentation for the software you are using.
 
-::: warning Using a third-party reverse proxy may result in information leakage!
+::: warning
+Using a third-party reverse proxy may result in information leakage!
 :::
 
-::: tip Don't forget to [set the webhook back](#setting-your-webhook) when you
-deploy to production environment. :::
+::: tip
+Don't forget to [set the webhook back](#setting-your-webhook) when you deploy to production environment.
+:::

@@ -5,21 +5,19 @@ next: false
 
 # Hosting: Zeabur (Node.js)
 
-[Zeabur](https://zeabur.com) is a platform that allows you to deploy your
-full-stack applications with ease. It supports various programming languages and
-frameworks, including Node.js and grammY.
+[Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease.
+It supports various programming languages and frameworks, including Node.js and grammY.
 
-This tutorial will guide you how to deploy your grammY bots with Node.js to
-[Zeabur](https://zeabur.com).
+This tutorial will guide you how to deploy your grammY bots with Node.js to [Zeabur](https://zeabur.com).
 
-::: tip Looking for the Deno Version? This tutorial explains how to deploy a
-Telegram bot to Zeabur using Node.js. If you're looking for the Deno version,
-please check out [this tutorial](./zeabur-deno) instead. :::
+::: tip Looking for the Deno Version?
+This tutorial explains how to deploy a Telegram bot to Zeabur using Node.js.
+If you're looking for the Deno version, please check out [this tutorial](./zeabur-deno) instead.
+:::
 
 ## Prerequisites
 
-To follow along, you need to have [GitHub](https://github.com) and
-[Zeabur](https://zeabur.com) accounts.
+To follow along, you need to have [GitHub](https://github.com) and [Zeabur](https://zeabur.com) accounts.
 
 ### Method 1: Create a New Project from Scratch
 
@@ -41,8 +39,8 @@ npm install -D typescript ts-node @types/node
 npx tsc --init
 ```
 
-Then, `cd` into `src/`, and create a file named `bot.ts`. It is where you will
-write your bot's code.
+Then, `cd` into `src/`, and create a file named `bot.ts`.
+It is where you will write your bot's code.
 
 Now, you can start writing your bot's code in `src/bot.ts`.
 
@@ -65,13 +63,9 @@ bot.on("message:text", async (ctx) => {
 bot.start();
 ```
 
-> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on
-> Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in
-> Zeabur.
+> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur.
 >
-> You can check out
-> [this tutorial](https://zeabur.com/docs/en-US/deploy/variables) for setting
-> environment variables in Zeabur.
+> You can check out [this tutorial](https://zeabur.com/docs/en-US/deploy/variables) for setting environment variables in Zeabur.
 
 Now your project's root directory should now look like this:
 
@@ -85,8 +79,8 @@ Now your project's root directory should now look like this:
 └── tsconfig.json
 ```
 
-And then we have to add `start` scripts to our `package.json`. Our
-`package.json` should now be similar to this:
+And then we have to add `start` scripts to our `package.json`.
+Our `package.json` should now be similar to this:
 
 ```json
 {
@@ -117,8 +111,8 @@ npm run start
 
 ### Method 2: Use Zeabur's Template
 
-Zeabur has already provided a template for you to use. You can find it
-[here](https://github.com/zeabur/telegram-bot-starter).
+Zeabur has already provided a template for you to use.
+You can find it [here](https://github.com/zeabur/telegram-bot-starter).
 
 You can just use the template and start writing your bot's code.
 
@@ -126,13 +120,10 @@ You can just use the template and start writing your bot's code.
 
 ### Method 1: Deploy From GitHub in Zeabur's Dashboard
 
-1. Create a repository on GitHub, it can be public or private and push your code
-   to it.
+1. Create a repository on GitHub, it can be public or private and push your code to it.
 2. Go to [Zeabur dashboard](https://dash.zeabur.com).
-3. Click on the `New Project` button, and click on the `Deploy New Service`
-   button, choose `GitHub` as the source and select your repository.
-4. Go to `Variables` tab to add your environment variables like
-   `TELEGRAM_BOT_TOKEN`.
+3. Click on the `New Project` button, and click on the `Deploy New Service` button, choose `GitHub` as the source and select your repository.
+4. Go to `Variables` tab to add your environment variables like `TELEGRAM_BOT_TOKEN`.
 5. Your service will be deployed automatically.
 
 ### Method 2: Deploy With Zeabur CLI
@@ -143,5 +134,4 @@ You can just use the template and start writing your bot's code.
 npx @zeabur/cli deploy
 ```
 
-Follow the instructions to select a region to deploy, and your bot will be
-deployed automatically.
+Follow the instructions to select a region to deploy, and your bot will be deployed automatically.

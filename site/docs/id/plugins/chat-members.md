@@ -5,32 +5,26 @@ next: false
 
 # Plugin Chat Members (`chat-members`)
 
-Mengambil serta menyimpan informasi user dari suatu chat secara mudah dan
-otomatis. Plugin ini bekerja dengan cara memantau anggota grup dan channel, lalu
-menyimpannya ke dalam sebuah daftar.
+Mengambil serta menyimpan informasi user dari suatu chat secara mudah dan otomatis.
+Plugin ini bekerja dengan cara memantau anggota grup dan channel, lalu menyimpannya ke dalam sebuah daftar.
 
 ## Pengenalan
 
-Sering kali, suatu bot perlu memiliki informasi semua pengguna dari suatu chat
-tertentu. Sayangnya, hingga saat ini, Telegram belum memiliki method API yang
-memungkinkan kita untuk mendapatkan informasi tersebut.
+Sering kali, suatu bot perlu memiliki informasi semua pengguna dari suatu chat tertentu.
+Sayangnya, hingga saat ini, Telegram belum memiliki method API yang memungkinkan kita untuk mendapatkan informasi tersebut.
 
-Plugin ini hadir untuk membantu! Ia mampu memantau event `chat_member` serta
-menyimpan semua object `ChatMember` secara otomatis.
+Plugin ini hadir untuk membantu!
+Ia mampu memantau event `chat_member` serta menyimpan semua object `ChatMember` secara otomatis.
 
 ## Penggunaan
 
 ### Menyimpan Anggota Chat
 
-Kamu bisa menggunakan [storage adapter](./session#storage-adapter-yang-tersedia)
-grammY yang valid atau instance dari kelas apapun yang mengimplementasikan
-interface [`StorageAdapter`](/ref/core/storageadapter).
+Kamu bisa menggunakan [storage adapter](./session#storage-adapter-yang-tersedia) grammY yang valid atau
+instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`](/ref/core/storageadapter).
 
-Perlu diketahui, berdasarkan
-[dokumentasi resmi Telegram](https://core.telegram.org/bots/api#getupdates), bot
-kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti
-yang ditampilkan pada contoh di bawah. Artinya, kamu juga perlu mencantumkan
-event lain yang diperlukan.
+Perlu diketahui, berdasarkan [dokumentasi resmi Telegram](https://core.telegram.org/bots/api#getupdates), bot kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti yang ditampilkan pada contoh di bawah.
+Artinya, kamu juga perlu mencantumkan event lain yang diperlukan.
 
 ::: code-group
 
@@ -99,14 +93,9 @@ bot.start({
 
 ### Membaca Anggota Chat
 
-Plugin ini juga menambahkan function `ctx.chatMembers.getChatMember` untuk
-memeriksa informasi anggota chat yang tersimpan, sebelum melakukan query ke
-Telegram. Apabila anggota itu ada di dalam penyimpanan, maka function akan
-mengembalikan informasi anggota tersebut. Sebaliknya, jika tidak tersedia, maka
-`ctx.api.getChatMember` akan dipanggil dan hasilnya akan disimpan ke dalam
-penyimpanan, sehingga pemanggilan berikutnya menjadi lebih cepat serta
-mengurangi pemanggilan berulang ke Telegram untuk user dan chat tersebut di masa
-mendatang.
+Plugin ini juga menambahkan function `ctx.chatMembers.getChatMember` untuk memeriksa informasi anggota chat yang tersimpan, sebelum melakukan query ke Telegram.
+Apabila anggota itu ada di dalam penyimpanan, maka function akan mengembalikan informasi anggota tersebut.
+Sebaliknya, jika tidak tersedia, maka `ctx.api.getChatMember` akan dipanggil dan hasilnya akan disimpan ke dalam penyimpanan, sehingga pemanggilan berikutnya menjadi lebih cepat serta mengurangi pemanggilan berulang ke Telegram untuk user dan chat tersebut di masa mendatang.
 
 Berikut contohnya:
 
@@ -143,25 +132,18 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-Function akan menghasilkan error apabila kamu tidak mencantumkan identifier chat
-atau property `chat` tidak tersedia di dalam context tersebut (misalnya, pada
-update inline query). Hal yang sama juga berlaku apabila context tidak memiliki
-`ctx.from`.
+Function akan menghasilkan error apabila kamu tidak mencantumkan identifier chat atau property `chat` tidak tersedia di dalam context tersebut (misalnya, pada update inline query).
+Hal yang sama juga berlaku apabila context tidak memiliki `ctx.from`.
 
 ## Aggressive Storage
 
-Opsi konfigurasi `enableAggressiveStorage` akan menginstal middleware untuk
-menyimpan cache anggota chat tanpa bergantung pada event `chat_member`. Setiap
-adanya update, middleware akan memeriksa apakah `ctx.chat` dan `ctx.from`
-tersedia. Jika keduanya tersedia, ia kemudian memanggil
-`ctx.chatMembers.getChatMember` untuk menambahkan informasi anggota ke
-penyimpanan, jika informasi tersebut belum tersimpan.
+Opsi konfigurasi `enableAggressiveStorage` akan menginstal middleware untuk menyimpan cache anggota chat tanpa bergantung pada event `chat_member`.
+Setiap adanya update, middleware akan memeriksa apakah `ctx.chat` dan `ctx.from` tersedia.
+Jika keduanya tersedia, ia kemudian memanggil `ctx.chatMembers.getChatMember` untuk menambahkan informasi anggota ke penyimpanan, jika informasi tersebut belum tersimpan.
 
-Harap perhatikan bahwa ini berarti penyimpanan akan dipanggil **setiap adanya
-update**, yang mana jumlahnya mungkin sangat banyak, tergantung dari berapa
-banyak update yang diterima oleh bot. Plugin ini bisa mempengaruhi performa bot
-kamu secara signifikan. Hanya gunakan ini apabila kamu _benar-benar_ paham
-dengan perilaku, resiko, dan konsekuensinya.
+Harap perhatikan bahwa ini berarti penyimpanan akan dipanggil **setiap adanya update**, yang mana jumlahnya mungkin sangat banyak, tergantung dari berapa banyak update yang diterima oleh bot.
+Plugin ini bisa mempengaruhi performa bot kamu secara signifikan.
+Hanya gunakan ini apabila kamu _benar-benar_ paham dengan perilaku, resiko, dan konsekuensinya.
 
 ## Ringkasan Plugin
 

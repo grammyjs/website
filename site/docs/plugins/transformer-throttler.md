@@ -7,22 +7,18 @@ next: false
 
 > Consider using the [auto-retry plugin](./auto-retry) instead.
 
-This plugin enqueues outgoing API requests instance via
-[Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your
-bot from hitting
-[rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
-as described in this [advanced section](../advanced/flood) of the documentation.
+This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood) of the documentation.
 
-::: warning Undocumented API Limits Exist Telegram implements unspecified and
-undocumented rate limits for some API calls. These undocumented limits are **not
-accounted for** by the throttler. If you still want to use this plugin, consider
-using the [auto-retry plugin](./auto-retry) together with it. :::
+::: warning Undocumented API Limits Exist
+Telegram implements unspecified and undocumented rate limits for some API calls.
+These undocumented limits are **not accounted for** by the throttler.
+If you still want to use this plugin, consider using the [auto-retry plugin](./auto-retry) together with it.
+:::
 
 ## Usage
 
-Here is an example of how to use this plugin with the default options. Note that
-the default options are aligned with the actual rate limits enforced by
-Telegram, so they should be good to go.
+Here is an example of how to use this plugin with the default options.
+Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
 
 ::: code-group
 
@@ -88,13 +84,10 @@ type ThrottlerOptions = {
 };
 ```
 
-The full list of object properties available for `Bottleneck.ConstructorOptions`
-can be found at
-[Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
+The full list of object properties available for `Bottleneck.ConstructorOptions` can be found at [Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
 
-If no argument is passed, the throttler created will use the default
-configuration settings which should be appropriate for most use cases. The
-default configuration are as follows:
+If no argument is passed, the throttler created will use the default configuration settings which should be appropriate for most use cases.
+The default configuration are as follows:
 
 ```ts
 // Outgoing Global Throttler

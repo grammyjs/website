@@ -1,6 +1,7 @@
 ---
 layout: home
 titleTemplate: false
+
 hero:
   name: grammY
   text: Фреймворк для створення Telegram ботів.
@@ -24,6 +25,7 @@ hero:
     - theme: alt
       text: Документація
       link: ./guide/
+
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="анімація пляжу"></lazy-tgs-player>
     title: Простий у використанні
@@ -40,8 +42,7 @@ features:
 
 ## Швидкий старт
 
-Боти, написані на [TypeScript](https://www.typescriptlang.org) або JavaScript,
-працюють на різних платформах, зокрема [Node.js](https://nodejs.org).
+Боти, написані на [TypeScript](https://www.typescriptlang.org) або JavaScript, працюють на різних платформах, зокрема [Node.js](https://nodejs.org).
 
 `npm install grammy` і вставте наступний код:
 
@@ -98,9 +99,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2025 &middot; grammY підтримує Telegram Bot API 8.2, який був
-[випущений](https://core.telegram.org/bots/api#january-1-2025) 1-го січня 2025
-року. Остання зміна: верифікація користувачів та чатів.
+© 2021-2025 &middot; grammY підтримує Telegram Bot API 8.2, який був [випущений](https://core.telegram.org/bots/api#january-1-2025) 1-го січня 2025 року.
+Остання зміна: верифікація користувачів та чатів.
 
 </div>
 </footer>

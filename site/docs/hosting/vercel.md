@@ -5,17 +5,12 @@ next: false
 
 # Hosting: Vercel Serverless Functions
 
-This tutorial will guide you on how to deploy your bot to
-[Vercel](https://vercel.com/) by using
-[Vercel Serverless Functions](https://vercel.com/docs/functions), assuming that
-you already have a [Vercel](https://vercel.com) account.
+This tutorial will guide you on how to deploy your bot to [Vercel](https://vercel.com/) by using [Vercel Serverless Functions](https://vercel.com/docs/functions), assuming that you already have a [Vercel](https://vercel.com) account.
 
 ## Project Structure
 
-The only prerequisite to get started with **Vercel Serverless Functions** is to
-move your code to the `api/` directory as shown below. You can also see
-[Vercel's documentation](https://vercel.com/docs/functions/quickstart) for more
-on this.
+The only prerequisite to get started with **Vercel Serverless Functions** is to move your code to the `api/` directory as shown below.
+You can also see [Vercel's documentation](https://vercel.com/docs/functions/quickstart) for more on this.
 
 ```asciiart:no-line-numbers
 .
@@ -28,13 +23,12 @@ on this.
 └── tsconfig.json
 ```
 
-If you are using TypeScript, you might as well want to install `@vercel/node` as
-a dev dependency, but it is not mandatory for following this guide.
+If you are using TypeScript, you might as well want to install `@vercel/node` as a dev dependency, but it is not mandatory for following this guide.
 
 ## Configuring Vercel
 
-The next step is to create a `vercel.json` file at the top level of your
-project. For our example structure, its content would be:
+The next step is to create a `vercel.json` file at the top level of your project.
+For our example structure, its content would be:
 
 ```json
 {
@@ -47,17 +41,14 @@ project. For our example structure, its content would be:
 }
 ```
 
-> If you want to use Vercel's free subscription, your `memory` and `maxDuration`
-> configurations might look like above to not bypass its limits.
+> If you want to use Vercel's free subscription, your `memory` and `maxDuration` configurations might look like above to not bypass its limits.
 
-If you want to learn more about the `vercel.json` configuration file, see
-[its documentation](https://vercel.com/docs/projects/project-configuration).
+If you want to learn more about the `vercel.json` configuration file, see [its documentation](https://vercel.com/docs/projects/project-configuration).
 
 ## Configuring TypeScript
 
-In our `tsconfig.json`, we have to specify our output directory as `build/`, and
-our root directory as `api/`. This is important since we will specify them in
-Vercel's deploy options.
+In our `tsconfig.json`, we have to specify our output directory as `build/`, and our root directory as `api/`.
+This is important since we will specify them in Vercel's deploy options.
 
 ```json{5,8}
 {
@@ -78,8 +69,8 @@ Vercel's deploy options.
 
 ## The Main File
 
-Regardless of using TypeScript or JavaScript, we should have a source file
-through which our bot runs. It should look roughly like this:
+Regardless of using TypeScript or JavaScript, we should have a source file through which our bot runs.
+It should look roughly like this:
 
 ```ts
 import { Bot, webhookCallback } from "grammy";
@@ -92,14 +83,10 @@ const bot = new Bot(token);
 export default webhookCallback(bot, "https");
 ```
 
-::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) provides
-limited support for grammY You can still use the core grammY package and a
-number of plugins, but others may be incompatible due to Node.js-only
-dependencies that might not be supported by Vercel's
-[Edge Runtime](https://edge-runtime.vercel.app).
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) provides limited support for grammY
+You can still use the core grammY package and a number of plugins, but others may be incompatible due to Node.js-only dependencies that might not be supported by Vercel's [Edge Runtime](https://edge-runtime.vercel.app).
 
-Currently, we don't have a comprehensive list of compatible plugins, so you need
-to test it by yourself.
+Currently, we don't have a comprehensive list of compatible plugins, so you need to test it by yourself.
 
 Use this snippet below if you want to switch to Edge Functions:
 
@@ -122,29 +109,26 @@ export default webhookCallback(bot, "std/http");
 
 ## In Vercel's Dashboard
 
-Assuming that you already have a Vercel account your GitHub is connected to, add
-a new project and select your bot's repository. In _Build & Development
-Settings_:
+Assuming that you already have a Vercel account your GitHub is connected to, add a new project and select your bot's repository.
+In _Build & Development Settings_:
 
 - Output directory: `build`
 - Install command: `npm install`
 
-Don't forget to add the secrets such as your bot token as environment variables
-in the settings. Once you have done that, you can deploy it!
+Don't forget to add the secrets such as your bot token as environment variables in the settings.
+Once you have done that, you can deploy it!
 
 ## Setting the Webhook
 
-The last step is to connect your Vercel app with Telegram. Modify the below URL
-to your credentials and visit it from your browser:
+The last step is to connect your Vercel app with Telegram.
+Modify the below URL to your credentials and visit it from your browser:
 
 ```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 
-The `HOST_URL` is a little tricky, because you need to use your **Vercel app
-domain following with the route to the bot code**, for example
-`https://appname.vercel.app/api/bot`. Where `bot` is referring to your `bot.ts`
-or `bot.js` file.
+The `HOST_URL` is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`.
+Where `bot` is referring to your `bot.ts` or `bot.js` file.
 
 You should then see a response like this:
 
@@ -156,4 +140,5 @@ You should then see a response like this:
 }
 ```
 
-Congratulations! Your bot should now be up and running.
+Congratulations!
+Your bot should now be up and running.

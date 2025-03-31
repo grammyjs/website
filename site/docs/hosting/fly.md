@@ -5,24 +5,18 @@ next: false
 
 # Hosting: Fly
 
-This guide tells you about the ways you can host your grammY bots on
-[Fly](https://fly.io), either using Deno or Node.js.
+This guide tells you about the ways you can host your grammY bots on [Fly](https://fly.io), either using Deno or Node.js.
 
 ## Preparing Your Code
 
-You can run your bot using both
-[webhooks or long polling](../guide/deployment-types).
+You can run your bot using both [webhooks or long polling](../guide/deployment-types).
 
 ### Webhooks
 
-> Remember that you should not call `bot.start()` in your code when using
-> webhooks.
+> Remember that you should not call `bot.start()` in your code when using webhooks.
 
-1. Make sure that you have a file which exports your `Bot` object, so that you
-   can import it later to run it.
-2. Create a file named `app.ts` or `app.js`, or actually any name you like (but
-   you should be remembering and using this as the main file to deploy), with
-   the following content:
+1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
+2. Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ::: code-group
 
@@ -65,15 +59,12 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 
 :::
 
-We advise you to have your handler on some secret path rather than the root
-(`/`). As shown in the highlighted line above, we are using the bot token
-(`/<bot token>`) as the secret path.
+We advise you to have your handler on some secret path rather than the root (`/`).
+As shown in the highlighted line above, we are using the bot token (`/<bot token>`) as the secret path.
 
 ### Long Polling
 
-Create a file named `app.ts` or `app.js`, or actually any name you like (but you
-should be remembering and using this as the main file to deploy), with the
-following content:
+Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ::: code-group
 
@@ -117,16 +108,15 @@ bot.start();
 
 :::
 
-As you can see in the highlighted line above, we take some sensitive values
-(your bot token) from environment variables. Fly allow us to store that secret
-by running this command:
+As you can see in the highlighted line above, we take some sensitive values (your bot token) from environment variables.
+Fly allow us to store that secret by running this command:
 
 ```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
-You can specify other secrets in the same way. For more information about this
-_secrets_, see <https://fly.io/docs/apps/secrets/>.
+You can specify other secrets in the same way.
+For more information about this _secrets_, see <https://fly.io/docs/apps/secrets/>.
 
 ## Deploying
 
@@ -134,10 +124,9 @@ _secrets_, see <https://fly.io/docs/apps/secrets/>.
 
 This is the easiest method to go with.
 
-1. Install [flyctl](https://fly.io/docs/flyctl/install/) and
-   [sign in](https://fly.io/docs/getting-started/sign-up-sign-in/).
-2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for
-   deployment. But **DO NOT** deploy.
+1. Install [flyctl](https://fly.io/docs/flyctl/install/) and [sign in](https://fly.io/docs/getting-started/sign-up-sign-in/).
+2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
+   But **DO NOT** deploy.
 
    ::: code-group
 
@@ -185,13 +174,11 @@ This is the easiest method to go with.
 
    :::
 
-3. **Deno**: Change the Deno version and remove `CMD` if exist within the
-   `Dockerfile` file. For example, in this case, we update `DENO_VERSION` to
-   `1.25.2`.
+3. **Deno**: Change the Deno version and remove `CMD` if exist within the `Dockerfile` file.
+   For example, in this case, we update `DENO_VERSION` to `1.25.2`.
 
-   **Node.js**: To change the Node.js version, you need to insert a `"node"`
-   property inside an `"engines"` property inside `package.json`. For instance,
-   we update the Node.js version to `16.14.0` in the example below.
+   **Node.js**: To change the Node.js version, you need to insert a `"node"` property inside an `"engines"` property inside `package.json`.
+   For instance, we update the Node.js version to `16.14.0` in the example below.
 
    ::: code-group
 
@@ -250,11 +237,10 @@ This is the easiest method to go with.
 
    :::
 
-4. Edit `app` inside the `fly.toml` file. The path `./app.ts` (or `./app.js` for
-   Node.js) in the example below refers to the main file directory. You might
-   modify them to match with your project's directory. If you are using
-   webhooks, make sure the port is same as the one in your
-   [configuration](#webhooks) (`8000`).
+4. Edit `app` inside the `fly.toml` file.
+   The path `./app.ts` (or `./app.js` for Node.js) in the example below refers to the main file directory.
+   You might modify them to match with your project's directory.
+   If you are using webhooks, make sure the port is same as the one in your [configuration](#webhooks) (`8000`).
 
    ::: code-group
 
@@ -375,18 +361,13 @@ This is the easiest method to go with.
 
 ### Method 2: With GitHub Actions
 
-The main advantage of following method is that Fly will watch for changes in
-your repository which includes your bot code, and it will deploy new versions
-automatically. Visit
-<https://fly.io/docs/launch/continuous-deployment-with-github-actions/> for more
-detailed instructions.
+The main advantage of following method is that Fly will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
+Visit <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> for more detailed instructions.
 
-1. Install [flyctl](https://fly.io/docs/flyctl/install/) and
-   [sign in](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. Install [flyctl](https://fly.io/docs/flyctl/install/) and [sign in](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. Get a Fly API token by running `flyctl auth token`.
 3. Create a repository on GitHub, it can be either private or public.
-4. Go to Settings, choose Secrets and create a secret called `FLY_API_TOKEN`
-   with the value of the token from step 2.
+4. Go to Settings, choose Secrets and create a secret called `FLY_API_TOKEN` with the value of the token from step 2.
 5. Create `.github/workflows/main.yml` with these contents:
 
    ```yml
@@ -404,32 +385,28 @@ detailed instructions.
        - run: flyctl deploy --remote-only
    ```
 
-6. Follow steps 2 until 4 from [Method 1](#method-1-with-flyctl) above. Remember
-   to skip the last step (step 5) since we are not deploying the code directly.
+6. Follow steps 2 until 4 from [Method 1](#method-1-with-flyctl) above.
+   Remember to skip the last step (step 5) since we are not deploying the code directly.
 7. Commit your changes and push them up to GitHub.
-8. This is where the magic happens---the push will have triggered a deploy and
-   from now on, whenever you push a change, the app will automatically be
-   redeployed.
+8. This is where the magic happens---the push will have triggered a deploy and from now on, whenever you push a change, the app will automatically be redeployed.
 
 ### Setting the Webhook URL
 
-If you are using webhooks, after getting your app running, you should configure
-your bot's webhook settings to point to your app. To do that, send a request to
+If you are using webhooks, after getting your app running, you should configure your bot's webhook settings to point to your app.
+To do that, send a request to
 
 ```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-replacing `<token>` with your bot token, and `<url>` with the full URL of your
-app along with the path to the webhook handler.
+replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.
 
 ### Dockerfile Optimization
 
-When our `Dockerfile` is run, it copies everything from the directory over to
-the Docker image. For Node.js applications, some directories like `node_modules`
-are going to be rebuilt anyway so there's no need to copy them. Create a
-`.dockerignore` file and add `node_modules` to it to do this. You can also use
-`.dockerignore` to not copy any other files which aren't needed at runtime.
+When our `Dockerfile` is run, it copies everything from the directory over to the Docker image.
+For Node.js applications, some directories like `node_modules` are going to be rebuilt anyway so there's no need to copy them.
+Create a `.dockerignore` file and add `node_modules` to it to do this.
+You can also use `.dockerignore` to not copy any other files which aren't needed at runtime.
 
 ## Reference
 

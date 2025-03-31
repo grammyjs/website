@@ -5,21 +5,14 @@ next: false
 
 # Registro en la consola mientras se depura
 
-Si estás familiarizado con JavaScript / TypeScript probablemente hayas utilizado
-[`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static)
-o
-[`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static)
-para comprobar lo que está sucediendo mientras depuras algo. Mientras trabajas
-en tu bot o middleware puede que quieras comprobar algo similar: ¿Qué ha pasado
-y cuánto tiempo ha tardado?
+Si estás familiarizado con JavaScript / TypeScript probablemente hayas utilizado [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) o [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static) para comprobar lo que está sucediendo mientras depuras algo.
+Mientras trabajas en tu bot o middleware puede que quieras comprobar algo similar: ¿Qué ha pasado y cuánto tiempo ha tardado?
 
-Este plugin está interesado en peticiones individuales para depurar problemas
-individuales. Estando en un entorno de producción, probablemente quieras algo
-opuesto para tener una visión general. Por ejemplo: al depurar por qué falla
-`/start` comprobarás la actualización individual de Telegram. En un contexto de
-producción estás más interesado en todos los mensajes `/start` que están
-ocurriendo. Esta librería está pensada para ayudar con las actualizaciones
-individuales.
+Este plugin está interesado en peticiones individuales para depurar problemas individuales.
+Estando en un entorno de producción, probablemente quieras algo opuesto para tener una visión general.
+Por ejemplo: al depurar por qué falla `/start` comprobarás la actualización individual de Telegram.
+En un contexto de producción estás más interesado en todos los mensajes `/start` que están ocurriendo.
+Esta librería está pensada para ayudar con las actualizaciones individuales.
 
 ## Depurar tu implementación
 
@@ -45,16 +38,14 @@ que dará salida a cosas como esta:
 
 El `490af` es el `update_id`.
 
-El número que precede a los comandos es la longitud total del contenido. Esto es
-útil cuando se considera la longitud máxima para cosas como los datos de
-devolución de llamada.
+El número que precede a los comandos es la longitud total del contenido.
+Esto es útil cuando se considera la longitud máxima para cosas como los datos de devolución de llamada.
 
 El contenido en sí se acorta para evitar el spam de los registros.
 
 ## Depurar tu middleware
 
-Cuando creas tu propio middleware o asumes los tiempos lentos de otro middleware
-puedes usar estos middlewares para crear un perfil de tiempos.
+Cuando creas tu propio middleware o asumes los tiempos lentos de otro middleware puedes usar estos middlewares para crear un perfil de tiempos.
 
 ```ts
 import {
@@ -87,8 +78,7 @@ El resultado será algo así:
 490ai foo total: 891.849ms
 ```
 
-Esto indica que el middleware comprobado por sí solo tardó 800ms y no tiene el
-rendimiento que quizás se necesita.
+Esto indica que el middleware comprobado por sí solo tardó 800ms y no tiene el rendimiento que quizás se necesita.
 
 ## Resumen del plugin
 

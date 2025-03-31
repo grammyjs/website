@@ -31,12 +31,12 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-同样，你也可以访问消息对象的其他属性，例如 `ctx.message.chat`
-，以了解消息发送地的聊天信息。 请查看
-[Telegram Bot API 参考 中关于 `Message` 的部分](https://core.telegram.org/bots/api#message)，看看哪些数据是可用的。
+同样，你也可以访问消息对象的其他属性，例如 `ctx.message.chat` ，以了解消息发送地的聊天信息。
+请查看 [Telegram Bot API 参考 中关于 `Message` 的部分](https://core.telegram.org/bots/api#message)，看看哪些数据是可用的。
 另外，你可以简单地在你的代码编辑器中使用自动完成功能来查看可能的选项。
 
-如果你为其他类型的监听器注册监听，`ctx` 也会给你关于这些的信息。 示例：
+如果你为其他类型的监听器注册监听，`ctx` 也会给你关于这些的信息。
+示例：
 
 ```ts
 bot.on("edited_message", async (ctx) => {
@@ -45,8 +45,7 @@ bot.on("edited_message", async (ctx) => {
 });
 ```
 
-此外，你可以访问 Telegram 发送给你的 bot 的原始 `Update`
-对象（[Telegram Bot API 参考](https://core.telegram.org/bots/api#update)）。
+此外，你可以访问 Telegram 发送给你的 bot 的原始 `Update` 对象（[Telegram Bot API 参考](https://core.telegram.org/bots/api#update)）。
 这个更新对象（`ctx.update`）包含了 `ctx.message` 之类的所有数据来源。
 
 上下文对象包含关于你的机器人的信息，可以通过 `ctx.me` 访问。
@@ -105,22 +104,22 @@ bot.on("message_reaction", async (ctx) => {
 
 > 如果你对它们感兴趣，请直接跳至 ​​[反应](./reactions)。
 
-因此，如果你愿意，你可以忘记 `ctx.message` 和 `ctx.channelPost` 以及
-`ctx.editedMessage` 等等，而只是一直使用 `ctx.msg` 来代替。
+因此，如果你愿意，你可以忘记 `ctx.message` 和 `ctx.channelPost` 以及 `ctx.editedMessage` 等等，而只是一直使用 `ctx.msg` 来代替。
 
 ## 通过 Has Checks 进行检测
 
-上下文对象有一些方法可以让你为某些事情检测包含的数据。 例如，你可以调用
-`ctx.hasCommand("start")` 来查看上下文对象是否包含了一个 `/start` 命令。
+上下文对象有一些方法可以让你为某些事情检测包含的数据。
+例如，你可以调用 `ctx.hasCommand("start")` 来查看上下文对象是否包含了一个 `/start` 命令。
 这就是为什么这些方法被统称为 _has checks_ 。
 
-::: 知道什么时候使用 Has Checks 这与 `bot.command("start")` 使用的逻辑完全相同。
-请注意，你通常应该使用 [filter 查询](./filter-queries) 或者类似的方法。 has
-checks 在 [conversations 插件](../plugins/conversations) 里面使用效果最好。 :::
+::: 知道什么时候使用 Has Checks
+这与 `bot.command("start")` 使用的逻辑完全相同。
+请注意，你通常应该使用 [filter 查询](./filter-queries) 或者类似的方法。
+has checks 在 [conversations 插件](../plugins/conversations) 里面使用效果最好。
+:::
 
 has checks 正确地缩小了上下文类型的范围。
-这意味着，检查上下文是否具有回调查询数据，将告诉 TypeScript 该上下文具有
-`ctx.callbackQuery.data` 字段。
+这意味着，检查上下文是否具有回调查询数据，将告诉 TypeScript 该上下文具有 `ctx.callbackQuery.data` 字段。
 
 ```ts
 if (ctx.hasCallbackQuery(/query-data-\d+/)) {
@@ -129,10 +128,9 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 }
 ```
 
-这同样适用于所有其他 has checks。 阅读
-[上下文对象的 API 参考](/ref/core/context#has) 来获取查看 has checks 的列表。
-阅读 [API 参考](/ref/core/context#has) 中的静态属性 `Context.has` ，
-这能让你创建高效的判定函数来检测大量上下文对象。
+这同样适用于所有其他 has checks。
+阅读 [上下文对象的 API 参考](/ref/core/context#has) 来获取查看 has checks 的列表。
+阅读 [API 参考](/ref/core/context#has) 中的静态属性 `Context.has` ， 这能让你创建高效的判定函数来检测大量上下文对象。
 
 ## 可用操作
 
@@ -151,18 +149,18 @@ bot.on("message", async (ctx) => {
 
 你可以注意到，这有两点不是最佳的选择：
 
-1. 我们必须能够访问 `bot` 对象。 这意味着我们必须在我们的代码库中传递 `bot`
-   对象，以便做出反应，当你有多个源文件，并且在其他地方定义了你的监听器时，这就很烦人。
+1. 我们必须能够访问 `bot` 对象。
+   这意味着我们必须在我们的代码库中传递 `bot` 对象，以便做出反应，当你有多个源文件，并且在其他地方定义了你的监听器时，这就很烦人。
 2. 我们必须取出上下文的聊天标识符，并再次明确将其传递给 `sendMessage`。
    这也很烦人，因为你很可能总是想回复发出信息的同一个用户。
    想象一下！你会有多频繁地一遍又一遍，一遍又一遍打出同样的东西
 
-关于第 1 点，上下文对象只是为你提供了访问 `bot.api` 上的相同的API对象，它被称为
-`ctx.api`。 你现在可以写 `ctx.api.sendMessage` 来代替，你不再需要传递你的 `bot`
-对象。 很简单。
+关于第 1 点，上下文对象只是为你提供了访问 `bot.api` 上的相同的API对象，它被称为 `ctx.api`。
+你现在可以写 `ctx.api.sendMessage` 来代替，你不再需要传递你的 `bot` 对象。
+很简单。
 
-然而，真正需要花大力气解决的是第二点。 `ctx`
-对象可以让你简单地发送一个像这样的回复：
+然而，真正需要花大力气解决的是第二点。
+`ctx` 对象可以让你简单地发送一个像这样的回复：
 
 ```ts
 bot.on("message", async (ctx) => {
@@ -175,23 +173,17 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 
 简洁优雅! :tada:
 
-在后台，上下文 _已经知道_ 它的聊天标识符（即 `ctx.msg.chat.id`），所以它给你
-`reply` 方法，让你向同一个聊天记录发送消息。 在内部，`reply` 再次调用
-`sendMessage`，并为您预先填写了聊天标识符。
+在后台，上下文 _已经知道_ 它的聊天标识符（即 `ctx.msg.chat.id`），所以它给你 `reply` 方法，让你向同一个聊天记录发送消息。
+在内部，`reply` 再次调用 `sendMessage`，并为您预先填写了聊天标识符。
 
-因此，正如 [前面](./basics#发送信息) 所解释的，上下文对象的所有方法都可以接受
-`Other` 类型的选项对象，以传递给每个 API 调用。 这可以用于向每个 API
-调用传递进一步的配置。
+因此，正如 [前面](./basics#发送信息) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
+这可以用于向每个 API 调用传递进一步的配置。
 
-::: tip Telegram 的回复功能 尽管该方法在 grammY （和许多其他框架）中被称为
-`ctx.reply`，但它并没有使用
-[Telegram 的回复功能](https://telegram.org/blog/replies-mentions-hashtags#replies)，因为在
-Telegram 中，前一条信息是被链接的。
+::: tip Telegram 的回复功能
+尽管该方法在 grammY （和许多其他框架）中被称为 `ctx.reply`，但它并没有使用 [Telegram 的回复功能](https://telegram.org/blog/replies-mentions-hashtags#replies)，因为在 Telegram 中，前一条信息是被链接的。
 
-如果你在 [Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看
-`sendMessage`
-能做什么，你会看到一些选项，比如`parse_mode`，`link_preview_options` 和
-`reply_parameters`。 最后的那个选项可以使一条消息成为回复：
+如果你在 [Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看 `sendMessage` 能做什么，你会看到一些选项，比如`parse_mode`，`link_preview_options` 和 `reply_parameters`。
+最后的那个选项可以使一条消息成为回复：
 
 ```ts
 await ctx.reply("^ This is a message!", {
@@ -200,32 +192,26 @@ await ctx.reply("^ This is a message!", {
 ```
 
 同样的选项对象可以传递给 `bot.api.sendMessage` 和 `ctx.api.sendMessage`。
-在你的代码编辑器中使用自动完成来查看可用的选项。 :::
+在你的代码编辑器中使用自动完成来查看可用的选项。
+:::
 
-当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如
-`ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink`
-用来获取相应聊天的邀请链接。
-如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有
-[grammY API 参考](/ref/core/context)。
+当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。
+如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](/ref/core/context)。
 
-请注意，你可能不希望总是在同一个聊天中做出回复。 在这种情况下，你可以退回到使用
-`ctx.api` 方法，并在调用它们时指定所有选项。 例如，如果你收到来自 Alice
-的消息，并想通过向 Bob 发送消息来做出反应，那么你不能使用 `ctx.reply`
-，因为它总是会向 Alice 的聊天室发送消息。 那么你就可以调用 `ctx.api.sendMessage`
-并指定 Bob 的聊天标识符。
+请注意，你可能不希望总是在同一个聊天中做出回复。
+在这种情况下，你可以退回到使用 `ctx.api` 方法，并在调用它们时指定所有选项。
+例如，如果你收到来自 Alice 的消息，并想通过向 Bob 发送消息来做出反应，那么你不能使用 `ctx.reply` ，因为它总是会向 Alice 的聊天室发送消息。
+那么你就可以调用 `ctx.api.sendMessage` 并指定 Bob 的聊天标识符。
 
 ## 上下文对象是如何被创造的？
 
 每当你的机器人从 Telegram 收到一条新消息时，它就会被包裹在一个 update 对象中。
-事实上，update
-对象不仅可以包含新的消息，还可以包含所有其他种类的东西，例如对消息的编辑、投票的回答，以及
-[更多](https://core.telegram.org/bots/api#update)。
+事实上，update 对象不仅可以包含新的消息，还可以包含所有其他种类的东西，例如对消息的编辑、投票的回答，以及 [更多](https://core.telegram.org/bots/api#update)。
 
-对于每一个传入的 update，都会精确地创建一个新的 `Context` 对象。 不同 update
-的上下文是完全不相关的对象，它们只是通过 `ctx.me` 引用相同的 bot 信息。
+对于每一个传入的 update，都会精确地创建一个新的 `Context` 对象。
+不同 update 的上下文是完全不相关的对象，它们只是通过 `ctx.me` 引用相同的 bot 信息。
 
-一个 update 的相同上下文对象将被 bot
-上所有安装的中间件（[docs](./middleware)）共享。
+一个 update 的相同上下文对象将被 bot 上所有安装的中间件（[docs](./middleware)）共享。
 
 ## 定制你的上下文对象
 
@@ -237,17 +223,16 @@ await ctx.reply("^ This is a message!", {
 
 在 [中间件](./middleware) 中，可以轻松完成定制。
 
-::: tip 什么是中间件？ 本节需要对中间件有所了解，所以如果你还没有跳过到这一
-[部分](./middleware)，那么这里有一个非常简短的总结。
+::: tip 什么是中间件？
+本节需要对中间件有所了解，所以如果你还没有跳过到这一 [部分](./middleware)，那么这里有一个非常简短的总结。
 
 你需要知道，多个处理程序可以处理相同的上下文对象。
-有一些特殊处理程序可以在任何其他处理程序之前修改
-`ctx`，并且第一个处理程序的修改对所有后续处理程序都是可见的。 :::
+有一些特殊处理程序可以在任何其他处理程序之前修改 `ctx`，并且第一个处理程序的修改对所有后续处理程序都是可见的。
+:::
 
 这个思想是在注册其他监听器之前安装中间件。
-然后你可以在这些处理程序中设置你想要的属性。 如果你在一个处理程序中
-`ctx.yourCustomPropertyName = yourCustomValue`， 那么
-`ctx.yourCustomPropertyName` 属性也能够在后续的处理程序中被使用。
+然后你可以在这些处理程序中设置你想要的属性。
+如果你在一个处理程序中 `ctx.yourCustomPropertyName = yourCustomValue`， 那么 `ctx.yourCustomPropertyName` 属性也能够在后续的处理程序中被使用。
 
 为了便于说明，我们假设你想要在上下文对象上设置一个属性 `ctx.config`。
 在这个例子中，我们将使用它来存储一些项目相关的配置，以便所有处理程序都能访问它。
@@ -279,8 +264,7 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-然而，你会发现 TypeScript 不知道 `ctx.config`
-是可用的，即使我们正确地赋值了属性。
+然而，你会发现 TypeScript 不知道 `ctx.config` 是可用的，即使我们正确地赋值了属性。
 因此，尽管这段代码在运行时可以正常工作，但是它不能编译。
 为了解决这个问题，我们需要调整上下文的类型，并且添加属性。
 
@@ -362,15 +346,13 @@ bot.command("start", async (ctx) => {
 
 :::
 
-当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如
-[组合器](/ref/core/composer)。
+当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](/ref/core/composer)。
 
 ```ts
 const composer = new Composer<MyContext>();
 ```
 
-一些插件也需要你传递自定义上下文类型，比如 [路由器](../plugins/router) 或
-[互动菜单](../plugins/menu) 插件。
+一些插件也需要你传递自定义上下文类型，比如 [路由器](../plugins/router) 或 [互动菜单](../plugins/menu) 插件。
 请查看它们的文档，以了解它们如何使用自定义上下文类型。
 这些类型被称为上下文调味剂，如 [下面](#上下文调味剂) 所述。
 
@@ -384,13 +366,11 @@ class MyContext extends Context {
 }
 ```
 
-然而，我们建议你 [通过中间件](#通过中间件-推荐)
-来自定义上下文对象，因为它更加灵活，并且在你想要安装插件的情况下工作得更好。
+然而，我们建议你 [通过中间件](#通过中间件-推荐) 来自定义上下文对象，因为它更加灵活，并且在你想要安装插件的情况下工作得更好。
 
 我们现在将看看如何为上下文对象使用自定义类。
 
-当你构建你的 bot
-时，你可以传递一个自定义上下文构造函数，这个函数将用于实例化上下文对象。
+当你构建你的 bot 时，你可以传递一个自定义上下文构造函数，这个函数将用于实例化上下文对象。
 请注意，你的类必须继承 `Context`。
 
 ::: code-group
@@ -483,8 +463,8 @@ bot.start();
 
 :::
 
-请注意，当你使用自定义上下文类的子类时，类型会被自动推断。 你不再需要写
-`Bot<MyContext>` 因为你已经在 `new Bot()` 的选项对象中指定了你的子类构造函数。
+请注意，当你使用自定义上下文类的子类时，类型会被自动推断。
+你不再需要写 `Bot<MyContext>` 因为你已经在 `new Bot()` 的选项对象中指定了你的子类构造函数。
 
 然而，这使得安装插件非常困难，因为它们通常需要你安装上下文调味剂。
 
@@ -497,12 +477,12 @@ bot.start();
 
 ### 添加式上下文调味剂
 
-正如上文所提到的，我们有两种不同类型的上下文调味剂。 最基本的被称为
-_添加式上下文调味剂_，而且每当我们谈论 _给上下文烹饪调味_
-时，我们一般指这种基本形式。 让我们来看看它是如何工作的：
+正如上文所提到的，我们有两种不同类型的上下文调味剂。
+最基本的被称为 _添加式上下文调味剂_，而且每当我们谈论 _给上下文烹饪调味_ 时，我们一般指这种基本形式。
+让我们来看看它是如何工作的：
 
-举个例子，当你有 [会话数据](../plugins/session) 时，你必须在上下文类型上注册
-`ctx.session`。 否则：
+举个例子，当你有 [会话数据](../plugins/session) 时，你必须在上下文类型上注册 `ctx.session`。
+否则：
 
 1. 你不能安装内置的 session 插件
 2. 你在听众中没有访问 `ctx.session` 的权限
@@ -519,11 +499,11 @@ interface SessionFlavor<S> {
 }
 ```
 
-`SessionFlavor`
-类型（[API 参考](/ref/core/sessionflavor)）是清晰的：它只定义了属性 `session`。
+`SessionFlavor` 类型（[API 参考](/ref/core/sessionflavor)）是清晰的：它只定义了属性 `session`。
 它需要一个类型参数，用来定义会话数据的实际结构。
 
-这有什么用呢？ 这里是一个例子：如果使用 `session` 数据来给上下文增鲜亮色。
+这有什么用呢？
+这里是一个例子：如果使用 `session` 数据来给上下文增鲜亮色。
 
 ```ts
 import { Context, SessionFlavor } from "grammy";
@@ -545,13 +525,13 @@ bot.on("message", async (ctx) => {
 ```
 
 请注意，你不仅应该将 `MyContext` 传递给 `Bot` 实例。
-你还需要在许多其他地方使用它。 例如，如果你创建一个新的 `Composer` 实例，请使用
-[路由器插件](../plugins/router) 或
-[将中间件提取到函数中](../advanced/structuring#提取的中间件的类型定义)，你现在应该指定自定义上下文类型。
+你还需要在许多其他地方使用它。
+例如，如果你创建一个新的 `Composer` 实例，请使用 [路由器插件](../plugins/router) 或 [将中间件提取到函数中](../advanced/structuring#提取的中间件的类型定义)，你现在应该指定自定义上下文类型。
 
 ### 转换式上下文调味剂
 
-另一种上下文调味剂更强大。 它们不是用`&`操作符来配置，而是需要像这样配置：
+另一种上下文调味剂更强大。
+它们不是用`&`操作符来配置，而是需要像这样配置：
 
 ```ts
 import { Context } from "grammy";
@@ -580,8 +560,7 @@ type MyContext = Context & FlavorA & FlavorB & FlavorC;
 type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
-在这里，顺序可能很重要，因为 `Context` 先转换为 `FlavorZ`， 然后再转换为
-`FlavorY`，最后转换为 `FlavorX`。
+在这里，顺序可能很重要，因为 `Context` 先转换为 `FlavorZ`， 然后再转换为 `FlavorY`，最后转换为 `FlavorX`。
 
 你甚至可以混合添加式和转化式的，以"烹饪"出更佳的上下文。
 

@@ -1,8 +1,7 @@
 # Mengirim dan Menerima Pesan
 
-Begitu kamu menjalankan bot dengan `bot.start()`, grammY akan menyuplai listener
-dengan pesan-pesan yang telah dikirim oleh user ke bot kamu. grammY juga
-menyediakan cara yang mudah untuk membalas pesan-pesan tersebut.
+Begitu kamu menjalankan bot dengan `bot.start()`, grammY akan menyuplai listener dengan pesan-pesan yang telah dikirim oleh user ke bot kamu.
+grammY juga menyediakan cara yang mudah untuk membalas pesan-pesan tersebut.
 
 ## Menerima Pesan
 
@@ -24,18 +23,13 @@ bot.command("start", async (ctx) => { ... });
 bot.hears(/echo *(.+)?/, async (ctx) => { ... });
 ```
 
-Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua
-pilihan yang tersedia, ataupun melihat secara manual
-[daftar method](/ref/core/composer) dari sebuah class `Composer`.
+Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](/ref/core/composer) dari sebuah class `Composer`.
 
-> [Baca lebih lanjut](./filter-queries) tentang pemfilteran untuk jenis pesan
-> tertentu menggunakan `bot.on()`.
+> [Baca lebih lanjut](./filter-queries) tentang pemfilteran untuk jenis pesan tertentu menggunakan `bot.on()`.
 
 ## Mengirim Pesan
 
-Semua method yang dapat digunakan oleh bot
-(**[daftar penting](https://core.telegram.org/bots/api#available-methods)**)
-tersedia di object `bot.api`.
+Semua method yang dapat digunakan oleh bot (**[daftar penting](https://core.telegram.org/bots/api#available-methods)**) tersedia di object `bot.api`.
 
 ```ts
 // Mengirim sebuah pesan ke pengguna 12345.
@@ -52,26 +46,19 @@ const me = await bot.api.getMe();
 // Dan lain-lain
 ```
 
-Setiap method memiliki opsi tambahan untuk object type `Other`, yang
-memungkinkan kamu untuk menetapkan opsi tambahan ketika memanggil API. Opsi-opsi
-dari object ini sama persis dengan opsi yang ada di daftar method di link atas
-tadi. Kamu juga dapat menggunakan fitur auto-complete di code editor untuk
-melihat semua opsi yang tersedia, ataupun melihat secara manual
-[daftar method](/ref/core/api) dari sebuah class `Api`.
+Setiap method memiliki opsi tambahan untuk object type `Other`, yang memungkinkan kamu untuk menetapkan opsi tambahan ketika memanggil API.
+Opsi-opsi dari object ini sama persis dengan opsi yang ada di daftar method di link atas tadi.
+Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](/ref/core/api) dari sebuah class `Api`.
 
-Selain itu, coba lihat [materi selanjutnya](./context) untuk mempelajari
-bagaimana object context dari suatu listener bisa membuat pengiriman pesan
-menjadi sangat mudah dilakukan!
+Selain itu, coba lihat [materi selanjutnya](./context) untuk mempelajari bagaimana object context dari suatu listener bisa membuat pengiriman pesan menjadi sangat mudah dilakukan!
 
 ## Mengirim Pesan dengan Reply
 
 > Catatan penerjemah: Kami membedakan kata "balas" dan "reply" agar tidak rancu.
-> _Balas_ berarti membalas chat seperti pada umumnya. Sedangkan _reply_ merujuk
-> ke
-> [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies).
+> _Balas_ berarti membalas chat seperti pada umumnya.
+> Sedangkan _reply_ merujuk ke [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies).
 
-Kamu dapat menggunakan fitur `reply-to` milik Telegram dengan menentukan id
-pesan yang akan di-reply menggunakan `reply_parameters`.
+Kamu dapat menggunakan fitur `reply-to` milik Telegram dengan menentukan id pesan yang akan di-reply menggunakan `reply_parameters`.
 
 ```ts
 bot.hears("ping", async (ctx) => {
@@ -83,32 +70,25 @@ bot.hears("ping", async (ctx) => {
 });
 ```
 
-> Perhatikan bahwa dengan mengirim pesan melalui `ctx.reply` **BUKAN** berarti
-> kamu secara otomatis me-reply pesan begitu saja. Sebaliknya, kamu harus
-> mengisi `reply_parameters` untuk menentukan pesan mana yang mau di-reply.
-> Function `ctx.reply` cuma alias dari `ctx.api.sendMessage`, lihat
-> [materi berikutnya](./context#aksi-yang-tersedia).
+> Perhatikan bahwa dengan mengirim pesan melalui `ctx.reply` **BUKAN** berarti kamu secara otomatis me-reply pesan begitu saja.
+> Sebaliknya, kamu harus mengisi `reply_parameters` untuk menentukan pesan mana yang mau di-reply.
+> Function `ctx.reply` cuma alias dari `ctx.api.sendMessage`, lihat [materi berikutnya](./context#aksi-yang-tersedia).
 
-Parameter reply juga bisa digunakan untuk membalas pesan di chat lain, mengutip
-suatu pesan, atau bahkan kedua-duanya secara bersamaan! Silahkan lihat
-[dokumentasi API Bot untuk parameter reply](https://core.telegram.org/bots/api#replyparameters).
+Parameter reply juga bisa digunakan untuk membalas pesan di chat lain, mengutip suatu pesan, atau bahkan kedua-duanya secara bersamaan!
+Silahkan lihat [dokumentasi API Bot untuk parameter reply](https://core.telegram.org/bots/api#replyparameters).
 
 ## Mengirim Pesan dengan Format Tertentu
 
-> Lihat
-> [bagian opsi pemformatan](https://core.telegram.org/bots/api#formatting-options)
-> di Referensi API Bot Telegram yang ditulis oleh tim Telegram.
+> Lihat [bagian opsi pemformatan](https://core.telegram.org/bots/api#formatting-options) di Referensi API Bot Telegram yang ditulis oleh tim Telegram.
 
-Kamu dapat mengirim pesan dengan teks **bold**, _italic_, format URL, dan banyak
-lagi. Ada dua cara untuk melakukannya: Markdown dan HTML. Referensinya bisa
-dilihat [di sini](https://core.telegram.org/bots/api#formatting-options)
+Kamu dapat mengirim pesan dengan teks **bold**, _italic_, format URL, dan banyak lagi.
+Ada dua cara untuk melakukannya: Markdown dan HTML. Referensinya bisa dilihat [di sini](https://core.telegram.org/bots/api#formatting-options)
 
 ### Markdown
 
 > Lihat juga <https://core.telegram.org/bots/api#markdownv2-style>
 
-Kirim pesan dengan markdown di dalamnya, lalu cantumkan
-`parse_mode: "MarkdownV2"`.
+Kirim pesan dengan markdown di dalamnya, lalu cantumkan `parse_mode: "MarkdownV2"`.
 
 ```ts
 await bot.api.sendMessage(
@@ -122,8 +102,7 @@ await bot.api.sendMessage(
 
 > Lihat juga <https://core.telegram.org/bots/api#html-style>
 
-Kirim pesan dengan element HTML di dalamnya, lalu cantumkan
-`parse_mode: "HTML"`.
+Kirim pesan dengan element HTML di dalamnya, lalu cantumkan `parse_mode: "HTML"`.
 
 ```ts
 await bot.api.sendMessage(
@@ -135,21 +114,15 @@ await bot.api.sendMessage(
 
 ## Mengirim File
 
-Pemrosesan file dijelaskan secara lengkap di
-[materi lain](./files#mengirim-file).
+Pemrosesan file dijelaskan secara lengkap di [materi lain](./files#mengirim-file).
 
 ## Reply Paksa (Force Reply)
 
-> Force reply berguna jika bot kamu berjalan dalam
-> [mode privasi](https://core.telegram.org/bots/features#privacy-mode) di chat
-> grup.
+> Force reply berguna jika bot kamu berjalan dalam [mode privasi](https://core.telegram.org/bots/features#privacy-mode) di chat grup.
 
-Saat mengirim pesan, kamu dapat membuat aplikasi Telegram pengguna secara
-otomatis me-reply pesan tersebut. Artinya, pengguna akan "dipaksa" me-reply
-pesan bot tadi (kecuali mereka menghapus reply tersebut secara manual).
-Keuntungannya, bot masih bisa menerima pesan dari pengguna di dalam chat grup
-meskipun sedang berjalan dalam
-[mode privasi](https://core.telegram.org/bots/features#privacy-mode).
+Saat mengirim pesan, kamu dapat membuat aplikasi Telegram pengguna secara otomatis me-reply pesan tersebut.
+Artinya, pengguna akan "dipaksa" me-reply pesan bot tadi (kecuali mereka menghapus reply tersebut secara manual).
+Keuntungannya, bot masih bisa menerima pesan dari pengguna di dalam chat grup meskipun sedang berjalan dalam [mode privasi](https://core.telegram.org/bots/features#privacy-mode).
 
 Kamu dapat menggunakan force reply seperti ini:
 

@@ -5,54 +5,39 @@ next: false
 
 # Daftar Perbandingan Penyedia Hosting
 
-Ada banyak penyedia hosting yang mengizinkan kamu menjalankan bot di server
-mereka. Namun, sering kali kita mengalami kesulitan untuk memperkirakan seberapa
-mahal dan seberapa bagus performa server yang mereka sediakan. Itulah kenapa
-komunitas grammY mengumpulkan review dari beberapa pengguna yang menggunakan
-penyedia hosting tersebut.
+Ada banyak penyedia hosting yang mengizinkan kamu menjalankan bot di server mereka.
+Namun, sering kali kita mengalami kesulitan untuk memperkirakan seberapa mahal dan seberapa bagus performa server yang mereka sediakan.
+Itulah kenapa komunitas grammY mengumpulkan review dari beberapa pengguna yang menggunakan penyedia hosting tersebut.
 
 ## Apa itu Penyedia Hosting?
 
-Agar bot bisa berjalan selama 24 jam sehari, kamu memerlukan sebuah komputer
-yang dapat berjalan selama itu juga. Seperti yang telah
-[dijelaskan di pengenalan](../guide/introduction#cara-membuat-bot-tetap-berjalan),
-kamu pasti tidak ingin melakukannya di laptop ataupun pc rumah kamu. Jadi, kamu
-perlu menyewa komputer dari suatu perusahaan untuk menjalankan bot di cloud.
+Agar bot bisa berjalan selama 24 jam sehari, kamu memerlukan sebuah komputer yang dapat berjalan selama itu juga.
+Seperti yang telah [dijelaskan di pengenalan](../guide/introduction#cara-membuat-bot-tetap-berjalan), kamu pasti tidak ingin melakukannya di laptop ataupun pc rumah kamu.
+Jadi, kamu perlu menyewa komputer dari suatu perusahaan untuk menjalankan bot di cloud.
 
 Dengan kata lain, kamu menjalankan bot di komputer milik orang lain.
 
 ## Tabel Perbandingan
 
-> Silahkan tekan tombol edit di bawah halaman untuk menambahkan penyedia hosting
-> lain atau mengedit daftar yang sudah ada!
+> Silahkan tekan tombol edit di bawah halaman untuk menambahkan penyedia hosting lain atau mengedit daftar yang sudah ada!
 
-Kami menyediakan dua tabel perbandingan: satu untuk
-[hosting serverless dan PaaS](#serverless-dan-paas) serta satu lagi untuk
-[VPS](#vps).
+Kami menyediakan dua tabel perbandingan: satu untuk [hosting serverless dan PaaS](#serverless-dan-paas) serta satu lagi untuk [VPS](#vps).
 
 ### Serverless dan PaaS
 
 Serverless artinya kamu tidak mengontrol perangkat yang menjalankan bot kamu.
-Sebaliknya, penyedia hosting-lah yang akan menghidupkan dan mematikan
-perangkat-perangkat yang dibutuhkan untuk menjalankan kode kamu. Karena alasan
-tersebut, akses yang diberikan ke kamu cuma sebatas untuk mengunggah kode yang
-akan dijalankan.
+Sebaliknya, penyedia hosting-lah yang akan menghidupkan dan mematikan perangkat-perangkat yang dibutuhkan untuk menjalankan kode kamu.
+Karena alasan tersebut, akses yang diberikan ke kamu cuma sebatas untuk mengunggah kode yang akan dijalankan.
 
-Selain itu, kamu diharuskan menggunakan [webhooks](../guide/deployment-types)
-ketika menggunakan serverless. Kebanyakan penyedia hosting di bawah ini akan
-mengalami kendala ketika kamu menjalankan bot menggunakan polling (`bot.start()`
-atau [grammY runner](../plugins/runner)).
+Selain itu, kamu diharuskan menggunakan [webhooks](../guide/deployment-types) ketika menggunakan serverless.
+Kebanyakan penyedia hosting di bawah ini akan mengalami kendala ketika kamu menjalankan bot menggunakan polling (`bot.start()` atau [grammY runner](../plugins/runner)).
 
-Di sisi lain, PaaS (Platform as a Service) menyediakan layanan yang serupa,
-namun lebih bisa dikontrol. Misalnya, kamu bisa mengatur jumlah perangkat yang
-bekerja untuk menjalankan bot kamu. Menggunakan
-[polling](../guide/deployment-types) juga bisa di PaaS jika penyedia layanan
-tersebut memperbolehkan untuk membiarkan salah satu instance berjalan sepanjang
-waktu.
+Di sisi lain, PaaS (Platform as a Service) menyediakan layanan yang serupa, namun lebih bisa dikontrol.
+Misalnya, kamu bisa mengatur jumlah perangkat yang bekerja untuk menjalankan bot kamu.
+Menggunakan [polling](../guide/deployment-types) juga bisa di PaaS jika penyedia layanan tersebut memperbolehkan untuk membiarkan salah satu instance berjalan sepanjang waktu.
 
-Serverless dan PaaS memiliki kekurangan yang sama, yaitu tidak memiliki
-penyimpanan bawaan secara permanen, misalnya sistem file lokal. Oleh karena itu,
-biasanya diperlukan database yang terpisah untuk menyimpan data secara permanen.
+Serverless dan PaaS memiliki kekurangan yang sama, yaitu tidak memiliki penyimpanan bawaan secara permanen, misalnya sistem file lokal.
+Oleh karena itu, biasanya diperlukan database yang terpisah untuk menyimpan data secara permanen.
 
 | Nama                   | Harga (min) | Biaya                                                                                                         | Batasan                                                                                               | Node.js                                                                                  | Deno                                           | Web                                               | Catatan                                                                                                    |
 | ---------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -72,13 +57,11 @@ biasanya diperlukan database yang terpisah untuk menyimpan data secara permanen.
 
 ### VPS
 
-_Virtual private server_ atau VPS adalah sebuah perangkat virtual yang bisa kamu
-kontrol sepenuhnya. Pada umumnya, kamu bisa mengakses VPS melalui
-[SSH](https://en.wikipedia.org/wiki/Secure_Shell). Di sana, kamu bisa menginstal
-berbagai macam software, melakukan pembaruan sistem, dan sebagainya.
+_Virtual private server_ atau VPS adalah sebuah perangkat virtual yang bisa kamu kontrol sepenuhnya.
+Pada umumnya, kamu bisa mengakses VPS melalui [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
+Di sana, kamu bisa menginstal berbagai macam software, melakukan pembaruan sistem, dan sebagainya.
 
-Kamu bisa menjalankan bot baik menggunakan long polling ataupun webhooks di
-sebuah VPS.
+Kamu bisa menjalankan bot baik menggunakan long polling ataupun webhooks di sebuah VPS.
 
 Lihat tutorial pemasangan bot ke sebuah VPS [berikut](./vps).
 

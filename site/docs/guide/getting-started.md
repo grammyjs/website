@@ -1,16 +1,14 @@
 # Getting Started
 
-Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
-Deno guide.)
+Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a Deno guide.)
 
 ## Getting Started on Node.js
 
-> This guide assumes that you have [Node.js](https://nodejs.org) installed, and
-> `npm` should come with it. If you don't know what these things are, check out
-> our [Introduction](./introduction)!
+> This guide assumes that you have [Node.js](https://nodejs.org) installed, and `npm` should come with it.
+> If you don't know what these things are, check out our [Introduction](./introduction)!
 
-Create a new TypeScript project and install the `grammy` package. Do this by
-opening a terminal and typing:
+Create a new TypeScript project and install the `grammy` package.
+Do this by opening a terminal and typing:
 
 ::: code-group
 
@@ -55,8 +53,8 @@ pnpm add grammy
 
 :::
 
-Create a new empty text file, e.g. called `bot.ts`. Your folder structure should
-now look like this:
+Create a new empty text file, e.g. called `bot.ts`.
+Your folder structure should now look like this:
 
 ```asciiart:no-line-numbers
 .
@@ -67,13 +65,13 @@ now look like this:
 └── tsconfig.json
 ```
 
-Now, it's time to open Telegram to create a bot account, and obtain a bot token
-for it. Talk to [@BotFather](https://t.me/BotFather) to do this. The bot token
-looks like `123456:aBcDeF_gHiJkLmNoP-q`. It is used to authenticate your bot.
+Now, it's time to open Telegram to create a bot account, and obtain a bot token for it.
+Talk to [@BotFather](https://t.me/BotFather) to do this.
+The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+It is used to authenticate your bot.
 
-Got the token? You can now code your bot in the `bot.ts` file. You can copy the
-following example bot into that file, and pass your token to the `Bot`
-constructor:
+Got the token? You can now code your bot in the `bot.ts` file.
+You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 ::: code-group
 
@@ -127,7 +125,8 @@ Compile the code by running
 npx tsc
 ```
 
-in your terminal. This generates the JavaScript file `bot.js`.
+in your terminal.
+This generates the JavaScript file `bot.js`.
 
 You can now run the bot by executing
 
@@ -135,25 +134,27 @@ You can now run the bot by executing
 node bot.js
 ```
 
-in your terminal. Done! :tada:
+in your terminal.
+Done! :tada:
 
 Head over to Telegram to watch your bot respond to messages!
 
-::: tip Enabling Logging You can enable basic logging by running
+::: tip Enabling Logging
+You can enable basic logging by running
 
 ```sh
 export DEBUG="grammy*"
 ```
 
-in your terminal before you execute `node bot.js`. This makes it easier to debug
-your bot. :::
+in your terminal before you execute `node bot.js`.
+This makes it easier to debug your bot.
+:::
 
 ## Getting Started on Deno
 
 > This guide assumes that you have [Deno](https://deno.com) installed.
 
-Create a new directory somewhere and create a new empty text file in it, e.g.
-called `bot.ts`.
+Create a new directory somewhere and create a new empty text file in it, e.g. called `bot.ts`.
 
 ```sh
 mkdir ./my-bot
@@ -161,13 +162,13 @@ cd ./my-bot
 touch bot.ts
 ```
 
-Now, it's time to open Telegram to create a bot account, and obtain a bot token
-for it. Talk to [@BotFather](https://t.me/BotFather) to do this. The bot token
-looks like `123456:aBcDeF_gHiJkLmNoP-q`. It is used to authenticate your bot.
+Now, it's time to open Telegram to create a bot account, and obtain a bot token for it.
+Talk to [@BotFather](https://t.me/BotFather) to do this.
+The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+It is used to authenticate your bot.
 
-Got the token? You can now code your bot in the `bot.ts` file. You can copy the
-following example bot into that file, and pass your token to the `Bot`
-constructor:
+Got the token? You can now code your bot in the `bot.ts` file.
+You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -196,22 +197,23 @@ You can now run the bot by executing
 deno -IN bot.ts
 ```
 
-in your terminal. The `-IN` is short for `--allow-import --allow-net`. These
-permissions have to be specified because Deno is
-[secure by default](https://docs.deno.com/runtime/fundamentals/security/).
+in your terminal.
+The `-IN` is short for `--allow-import --allow-net`.
+These permissions have to be specified because Deno is [secure by default](https://docs.deno.com/runtime/fundamentals/security/).
 
 Done! :tada:
 
 Head over to Telegram to watch your bot respond to messages!
 
-::: tip Enabling Logging You can enable basic logging by running
+::: tip Enabling Logging
+You can enable basic logging by running
 
 ```sh
 export DEBUG="grammy*"
 ```
 
-in your terminal before you run your bot. This makes it easier to debug your
-bot.
+in your terminal before you run your bot.
+This makes it easier to debug your bot.
 
 You now need to grant the bot `--allow-env` permissions and run it using
 
@@ -219,4 +221,5 @@ You now need to grant the bot `--allow-env` permissions and run it using
 deno -EIN bot.ts
 ```
 
-so grammY can detect that `DEBUG` is set. :::
+so grammY can detect that `DEBUG` is set.
+:::

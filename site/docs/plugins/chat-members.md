@@ -10,26 +10,19 @@ Track group and channel members, and list them.
 
 ## Introduction
 
-In many situations, it is necessary for a bot to have information about all the
-users of a given chat. Currently, though, the Telegram Bot API exposes no method
-that allows us to retrieve this information.
+In many situations, it is necessary for a bot to have information about all the users of a given chat.
+Currently, though, the Telegram Bot API exposes no method that allows us to retrieve this information.
 
-This plugin comes to the rescue: automatically listening to `chat_member` events
-and storing all `ChatMember` objects.
+This plugin comes to the rescue: automatically listening to `chat_member` events and storing all `ChatMember` objects.
 
 ## Usage
 
 ### Storing Chat Members
 
-You can use a valid grammY [storage adapter](./session#known-storage-adapters)
-or an instance of any class that implements the
-[`StorageAdapter`](/ref/core/storageadapter) interface.
+You can use a valid grammY [storage adapter](./session#known-storage-adapters) or an instance of any class that implements the [`StorageAdapter`](/ref/core/storageadapter) interface.
 
-Please note that as per the
-[official Telegram docs](https://core.telegram.org/bots/api#getupdates), your
-bot needs to specify the `chat_member` update in the `allowed_updates` array, as
-shown in the example below. This means you also need to specify any other events
-you'd like to receive.
+Please note that as per the [official Telegram docs](https://core.telegram.org/bots/api#getupdates), your bot needs to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
+This means you also need to specify any other events you'd like to receive.
 
 ::: code-group
 
@@ -98,12 +91,9 @@ bot.start({
 
 ### Reading Chat Members
 
-This plugin also adds a new `ctx.chatMembers.getChatMember` function that will
-check the storage for information about a chat member before querying Telegram
-for it. If the chat member exists in the storage, it will be returned.
-Otherwise, `ctx.api.getChatMember` will be called and the result will be saved
-to the storage, making subsequent calls faster and removing the need to call
-Telegram again for that user and chat in the future.
+This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a chat member before querying Telegram for it.
+If the chat member exists in the storage, it will be returned.
+Otherwise, `ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and removing the need to call Telegram again for that user and chat in the future.
 
 Here's an example:
 
@@ -140,23 +130,18 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-Please notice that, if you don't provide a chat identifier and there's no `chat`
-property inside the context (for example, on inline query updates), this will
-throw an error. The same will happen if there's no `ctx.from` in the context.
+Please notice that, if you don't provide a chat identifier and there's no `chat` property inside the context (for example, on inline query updates), this will throw an error.
+The same will happen if there's no `ctx.from` in the context.
 
 ## Aggressive Storage
 
-The `enableAggressiveStorage` config option will install middleware to cache
-chat members without depending on the `chat_member` event. For every update, the
-middleware checks if `ctx.chat` and `ctx.from` exist. If they both do, it then
-proceeds to call `ctx.chatMembers.getChatMember` to add the chat member
-information to the storage in case it doesn't exist.
+The `enableAggressiveStorage` config option will install middleware to cache chat members without depending on the `chat_member` event.
+For every update, the middleware checks if `ctx.chat` and `ctx.from` exist.
+If they both do, it then proceeds to call `ctx.chatMembers.getChatMember` to add the chat member information to the storage in case it doesn't exist.
 
-Please note that this means the storage will be called for **every update**,
-which may be a lot, depending on how many updates your bot receives. This has
-the potential to impact the performance of your bot drastically. Only use this
-if you _really_ know what you're doing and are okay with the risks and
-consequences.
+Please note that this means the storage will be called for **every update**, which may be a lot, depending on how many updates your bot receives.
+This has the potential to impact the performance of your bot drastically.
+Only use this if you _really_ know what you're doing and are okay with the risks and consequences.
 
 ## Plugin Summary
 

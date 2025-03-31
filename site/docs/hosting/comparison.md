@@ -5,51 +5,38 @@ next: false
 
 # Comparison of Hosting Providers
 
-There are many different hosting providers that allow you to run your bot. It
-can sometimes be hard to keep track of how much they cost and how good their
-performance is. This is why the grammY community is collecting their experiences
-on this page.
+There are many different hosting providers that allow you to run your bot.
+It can sometimes be hard to keep track of how much they cost and how good their performance is.
+This is why the grammY community is collecting their experiences on this page.
 
 ## What Is a Hosting Provider?
 
-In order to keep a bot online 24 hours a day, you need to run a computer 24
-hours a day. As
-[mentioned in the introduction](../guide/introduction#how-to-keep-a-bot-running),
-you most likely don't want to do that with your laptop or home computer.
+In order to keep a bot online 24 hours a day, you need to run a computer 24 hours a day.
+As [mentioned in the introduction](../guide/introduction#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
 Instead, you can ask a company to run the bot in the cloud.
 
 In other words, you just run it on someone else's computer.
 
 ## Comparison Tables
 
-> Please click the edit button at the bottom of the page to add more providers
-> or to edit existing ones!
+> Please click the edit button at the bottom of the page to add more providers or to edit existing ones!
 
-We have two comparison tables: one for
-[serverless hosting and PaaS](#serverless-and-paas) and one for [VPS](#vps).
+We have two comparison tables: one for [serverless hosting and PaaS](#serverless-and-paas) and one for [VPS](#vps).
 
 ### Serverless and PaaS
 
-Serverless means that you do not control a single machine on which your bot is
-run. Instead, these hosting providers will rather allow you to upload your code,
-and then start and stop different machines as necessary to make sure that your
-bot always works.
+Serverless means that you do not control a single machine on which your bot is run.
+Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
 
-The main thing to know about them is that on serverless infrastructures you are
-required to use [webhooks](../guide/deployment-types). Most of providers below
-will have issues when you try running your bot with polling (`bot.start()` or
-[grammY runner](../plugins/runner)) on them.
+The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types).
+Most of providers below will have issues when you try running your bot with polling (`bot.start()` or [grammY runner](../plugins/runner)) on them.
 
-On the other hand, PaaS (Platform as a Service) provides a similar but more
-controllable solution. You can choose how many machine instances will be serving
-your bot, and when they are running. Using [polling](../guide/deployment-types)
-is also possible with PaaS if the provider you choose lets you keep exactly
-single instance running at all times.
+On the other hand, PaaS (Platform as a Service) provides a similar but more controllable solution.
+You can choose how many machine instances will be serving your bot, and when they are running.
+Using [polling](../guide/deployment-types) is also possible with PaaS if the provider you choose lets you keep exactly single instance running at all times.
 
-Serverless and PaaS have a downside that doesn't provide you with a persistent
-storage by default, such as a local file system. Instead, you will often have to
-have a database separately and connect to it if you need to store data
-permanently.
+Serverless and PaaS have a downside that doesn't provide you with a persistent storage by default, such as a local file system.
+Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
 
 | Name                   | Min. price | Pricing                                                                                                    | Limits                                                                                             | Node.js                                                                                  | Deno                                           | Web                                               | Notes                                                                                            |
 | ---------------------- | ---------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
@@ -71,8 +58,7 @@ permanently.
 
 A virtual private server is a virtual machine that you have full control over.
 You can usually access it via [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
-You can install any software there, and you are responsible for system upgrades
-and so on.
+You can install any software there, and you are responsible for system upgrades and so on.
 
 On a VPS, you can run bots using both long polling or webhooks.
 

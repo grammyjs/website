@@ -1,37 +1,27 @@
 # Scaling Up I: Large Codebase
 
-As soon as your bot grows in complexity, you are going to face the challenge of
-how to structure your application code base. Naturally, you can split it across
-files.
+As soon as your bot grows in complexity, you are going to face the challenge of how to structure your application code base.
+Naturally, you can split it across files.
 
 ## Possible Solution
 
-> grammY is still pretty young and does not provide any official integrations
-> with DI containers yet. Subscribe to
-> [@grammyjs_news](https://t.me/grammyjs_news) to be notified as soon as we
-> support this.
+> grammY is still pretty young and does not provide any official integrations with DI containers yet.
+> Subscribe to [@grammyjs_news](https://t.me/grammyjs_news) to be notified as soon as we support this.
 
-You are free to structure your code however you like, and there is no
-one-size-fits-all solution. That being said, a straightforward and proven
-strategy to structure your code is the following.
+You are free to structure your code however you like, and there is no one-size-fits-all solution.
+That being said, a straightforward and proven strategy to structure your code is the following.
 
-1. Group things that semantically belong together in the same file (or,
-   depending on the code size, directory). Every single one of these parts
-   exposes middleware that will handle the designated messages.
-2. Create a bot instance centrally that merges all middleware by installing it
-   onto the bot.
-3. (Optional.) Pre-filter the updates centrally, and send down updates the right
-   way only. You may also want to check out `bot.route`
-   ([API Reference](/ref/core/composer#route)) or alternatively the
-   [router plugin](../plugins/router) for that.
+1. Group things that semantically belong together in the same file (or, depending on the code size, directory).
+   Every single one of these parts exposes middleware that will handle the designated messages.
+2. Create a bot instance centrally that merges all middleware by installing it onto the bot.
+3. (Optional.) Pre-filter the updates centrally, and send down updates the right way only.
+   You may also want to check out `bot.route` ([API Reference](/ref/core/composer#route)) or alternatively the [router plugin](../plugins/router) for that.
 
-A runnable example that implements the above strategy can be found in the
-[Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
+A runnable example that implements the above strategy can be found in the [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
 
 ## Example Structure
 
-For a very simple bot that manages a TODO list, you could imagine this
-structure.
+For a very simple bot that manages a TODO list, you could imagine this structure.
 
 ```asciiart:no-line-numbers
 src/
@@ -41,8 +31,7 @@ src/
     └── list.ts
 ```
 
-`item.ts` just defines some stuff about TODO items, and these code parts are
-used in `list.ts`.
+`item.ts` just defines some stuff about TODO items, and these code parts are used in `list.ts`.
 
 In `list.ts`, you would then do something like this:
 
@@ -53,13 +42,10 @@ export const lists = new Composer();
 lists.on("message", async (ctx) => {/* ... */});
 ```
 
-> Note that if you use TypeScript, you need to pass your
-> [custom context type](../guide/context#customizing-the-context-object) when
-> creating the composer. For example, you'll need to use
-> `new Composer<MyContext>()`.
+> Note that if you use TypeScript, you need to pass your [custom context type](../guide/context#customizing-the-context-object) when creating the composer.
+> For example, you'll need to use `new Composer<MyContext>()`.
 
-Optionally, you can use an [error boundary](../guide/errors#error-boundaries) to
-handle all errors that happen inside your module.
+Optionally, you can use an [error boundary](../guide/errors#error-boundaries) to handle all errors that happen inside your module.
 
 Now, in `bot.ts`, you can install this module like so:
 
@@ -74,29 +60,22 @@ bot.use(lists);
 bot.start();
 ```
 
-Optionally, you can use the [router plugin](../plugins/router) or
-[`bot.route`](/ref/core/composer#route) to bundle up the different modules, if
-you're able to determine which middleware is responsible upfront.
+Optionally, you can use the [router plugin](../plugins/router) or [`bot.route`](/ref/core/composer#route) to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
 
-However, remember that the exact way of how to structure your bot is very hard
-to say generically. As always in software, do it in a way that makes the most
-sense :wink:
+However, remember that the exact way of how to structure your bot is very hard to say generically.
+As always in software, do it in a way that makes the most sense :wink:
 
 ## Type Definitions for Extracted Middleware
 
-The above structure using composers works well. However, sometimes you may find
-yourself in the situation that you want to extract a handler into a function,
-rather than creating a new composer and adding the logic to it. This requires
-you to add the correct middleware type definitions to your handlers because they
-can no longer be inferred through the composer.
+The above structure using composers works well.
+However, sometimes you may find yourself in the situation that you want to extract a handler into a function, rather than creating a new composer and adding the logic to it.
+This requires you to add the correct middleware type definitions to your handlers because they can no longer be inferred through the composer.
 
-grammY exports type definitions for all **narrowed types of middleware**, such
-as the middleware that you can pass to command handlers. In addition, it exports
-the type definitions for the **narrowed context objects** that are being used in
-that middleware. Both types are parameterized with your
-[custom context object](../guide/context#customizing-the-context-object). Hence,
-a command handler would have the type `CommandMiddleware<MyContext>` and its
-context object `CommandContext<MyContext>`. They can be used as follows.
+grammY exports type definitions for all **narrowed types of middleware**, such as the middleware that you can pass to command handlers.
+In addition, it exports the type definitions for the **narrowed context objects** that are being used in that middleware.
+Both types are parameterized with your [custom context object](../guide/context#customizing-the-context-object).
+Hence, a command handler would have the type `CommandMiddleware<MyContext>` and its context object `CommandContext<MyContext>`.
+They can be used as follows.
 
 ::: code-group
 
@@ -138,5 +117,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 
 :::
 
-Check out the [type aliases API reference](/ref/core/#type-aliases) to see an
-overview over all type aliases that grammY exports.
+Check out the [type aliases API reference](/ref/core/#type-aliases) to see an overview over all type aliases that grammY exports.

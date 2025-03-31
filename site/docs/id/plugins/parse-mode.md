@@ -5,10 +5,7 @@ next: false
 
 # Plugin Parse Mode (`parse-mode`)
 
-Plugin ini menyediakan sebuah transformer untuk menyetel pengaturan bawaan
-`parse_mode` dan sebuah middleware untuk menghidrasi `Context` dengan varian
-method `reply` yang lebih familiar, contohnya: `replyWithHTML`,
-`replyWithMarkdown`, dsb.
+Plugin ini menyediakan sebuah transformer untuk menyetel pengaturan bawaan `parse_mode` dan sebuah middleware untuk menghidrasi `Context` dengan varian method `reply` yang lebih familiar, contohnya: `replyWithHTML`, `replyWithMarkdown`, dsb.
 
 ## Penggunaan (Melakukan Pemformatan dengan Mudah)
 

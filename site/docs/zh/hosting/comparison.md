@@ -6,13 +6,13 @@ next: false
 # 托管服务商的对比
 
 在互联网上有许多不同的托管服务商，能够运行你的 bot。
-但有时候很难跟踪它们的成本和性能。 这就是为什么 grammY
-社区在这个页面收集并分享他们的经验。
+但有时候很难跟踪它们的成本和性能。
+这就是为什么 grammY 社区在这个页面收集并分享他们的经验。
 
 ## 什么是托管服务商？
 
-为了每天 24 小时保持 bot 在线，你需要每天 24 小时运行一台电脑。 正如
-[介绍中提到的](../guide/introduction#如何保持-bot-的运行)，你很可能不想在你的笔记本或家用电脑上做这件事。
+为了每天 24 小时保持 bot 在线，你需要每天 24 小时运行一台电脑。
+正如 [介绍中提到的](../guide/introduction#如何保持-bot-的运行)，你很可能不想在你的笔记本或家用电脑上做这件事。
 相反，你可以请求一家公司来在云端运行你的 bot。
 
 换句话说，你只是在别人的电脑上运行它。
@@ -21,27 +21,21 @@ next: false
 
 > 请点击页面底部的编辑按钮来添加更多提供商或编辑现有的提供商！
 
-我们有两个对比表格：一个是 [serverless 托管和 PaaS](#serverless-和-paas)，一个是
-[VPS](#vps) 托管。
+我们有两个对比表格：一个是 [serverless 托管和 PaaS](#serverless-和-paas)，一个是 [VPS](#vps) 托管。
 
 ### Serverless 和 PaaS
 
 Serverless 意味着你不控制运行 bot 的单个机器。
-相反，这些托管服务商会允许你上传你的代码，然后根据需要启动和停止不同的机器，以保证你的
-bot 始终工作。
+相反，这些托管服务商会允许你上传你的代码，然后根据需要启动和停止不同的机器，以保证你的 bot 始终工作。
 
-你需要知道的是，在 serverless 基础设施下，你必须使用
-[webhooks](../guide/deployment-types)。 当你尝试通过轮询（`bot.start()` 或
-[grammY runner](../plugins/runner)）运行 bot
-时，下面的大多数服务商都会遇到问题。
+你需要知道的是，在 serverless 基础设施下，你必须使用 [webhooks](../guide/deployment-types)。
+当你尝试通过轮询（`bot.start()` 或 [grammY runner](../plugins/runner)）运行 bot 时，下面的大多数服务商都会遇到问题。
 
 另一方面，PaaS（Platform as a Service）提供了类似但更可控的解决方案。
 你可以选择有多少机器实例将为你的 bot 服务，以及它们何时运行。
-如果你选择的服务商允许你的单个实例始终保持运行，那么
-[polling](../guide/deployment-types) 也可以用于 PaaS。
+如果你选择的服务商允许你的单个实例始终保持运行，那么 [polling](../guide/deployment-types) 也可以用于 PaaS。
 
-Serverless 和 PaaS
-有一个缺点，默认情况下不会为你提供持久存储，例如本地文件系统。
+Serverless 和 PaaS 有一个缺点，默认情况下不会为你提供持久存储，例如本地文件系统。
 相反，如果你需要永久存储数据，你通常必须单独拥有一个数据库并连接到它。
 
 | 名字                   | 最低价格 | 价格                                                                                                         | 限制                                                                                               | Node.js                                                                                  | Deno                                           | Web                                               | 备注                                                                           |
@@ -62,8 +56,8 @@ Serverless 和 PaaS
 
 ### VPS
 
-虚拟私人服务器是一个你拥有完全控制权限的虚拟机器。 你通常可以通过
-[SSH](https://en.wikipedia.org/wiki/Secure_Shell) 访问它。
+虚拟私人服务器是一个你拥有完全控制权限的虚拟机器。
+你通常可以通过 [SSH](https://en.wikipedia.org/wiki/Secure_Shell) 访问它。
 你可以在里面安装任何软件，并且由你自己负责系统升级和其他事情。
 
 在 VPS 上，你可以使用轮询或者 webhooks 来运行 bot。

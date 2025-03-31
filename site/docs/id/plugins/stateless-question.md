@@ -7,20 +7,15 @@ next: false
 
 > Membuat stateless question di mode privasi
 
-Apakah kamu ingin mengirim pertanyaan menggunakan bahasa yang sedang digunakan
-user tanpa perlu mematikan
-[mode privasi Telegram](https://core.telegram.org/bots/features#privacy-mode)
-serta tidak menyimpan statusnya saat ini?
+Apakah kamu ingin mengirim pertanyaan menggunakan bahasa yang sedang digunakan user tanpa perlu mematikan [mode privasi Telegram](https://core.telegram.org/bots/features#privacy-mode) serta tidak menyimpan statusnya saat ini?
 
 Plugin ini bisa mengatasi masalah tersebut dengan mudah.
 
-Konsep dasarnya adalah dengan mengirim sebuah pertanyaan menggunakan
-[teks spesial](https://en.wikipedia.org/wiki/Zero-width_non-joiner) di akhir
-kalimat. Teks spesial ini tidak terlihat oleh user, namun dapat dibaca oleh bot.
-Ketika user membalas pesan tersebut, maka pesan akan diperiksa apakah mengandung
-teks spesial di akhir kalimatnya. Jika ada, balasan pesan tersebut adalah
-jawaban dari pertanyaan yang kita berikan. Dengan demikian, kamu bisa memasukkan
-string berapapun jumlahnya ke pertanyaan yang sama ketika melakukan terjemahan.
+Konsep dasarnya adalah dengan mengirim sebuah pertanyaan menggunakan [teks spesial](https://en.wikipedia.org/wiki/Zero-width_non-joiner) di akhir kalimat.
+Teks spesial ini tidak terlihat oleh user, namun dapat dibaca oleh bot.
+Ketika user membalas pesan tersebut, maka pesan akan diperiksa apakah mengandung teks spesial di akhir kalimatnya.
+Jika ada, balasan pesan tersebut adalah jawaban dari pertanyaan yang kita berikan.
+Dengan demikian, kamu bisa memasukkan string berapapun jumlahnya ke pertanyaan yang sama ketika melakukan terjemahan.
 Kamu hanya perlu memastikan nilai `uniqueIdentifier`-nya benar-benar unik.
 
 ## Penggunaan
@@ -64,8 +59,7 @@ bot.command("unicorn", async (ctx) => {
 });
 ```
 
-Lihat [README repo plugin](https://github.com/grammyjs/stateless-question) untuk
-informasi lebih lanjut.
+Lihat [README repo plugin](https://github.com/grammyjs/stateless-question) untuk informasi lebih lanjut.
 
 ## Ringkasan Plugin
 

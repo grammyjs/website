@@ -5,16 +5,15 @@ next: false
 
 # Manejo de archivos simplificado en grammY (`files`)
 
-Este plugin te permite descargar fácilmente archivos de los servidores de
-Telegram, y obtener una URL para que puedas descargar el archivo tú mismo.
+Este plugin te permite descargar fácilmente archivos de los servidores de Telegram, y obtener una URL para que puedas descargar el archivo tú mismo.
 
 > [Recuerda](../guide/files) cómo funcionan los archivos y cómo subirlos.
 
 ## Descargando Archivos
 
-Necesitas pasar el token de tu bot a este plugin porque debe autenticarse como
-tu bot cuando descarga archivos. Este plugin entonces instala el método
-`download` en los resultados de la llamada `getFile`. Ejemplo:
+Necesitas pasar el token de tu bot a este plugin porque debe autenticarse como tu bot cuando descarga archivos.
+Este plugin entonces instala el método `download` en los resultados de la llamada `getFile`.
+Ejemplo:
 
 ::: code-group
 
@@ -92,31 +91,24 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 :::
 
-Puedes pasar una cadena con una ruta de archivo a `download` si no quieres crear
-un archivo temporal. Simplemente haga `await file.download("/ruta/al/archivo")`.
+Puedes pasar una cadena con una ruta de archivo a `download` si no quieres crear un archivo temporal.
+Simplemente haga `await file.download("/ruta/al/archivo")`.
 
-Si sólo quieres obtener la URL del archivo para poder descargarlo tú mismo,
-utiliza `file.getUrl`. Esto devolverá un enlace HTTPS a su archivo que es válido
-durante al menos una hora.
+Si sólo quieres obtener la URL del archivo para poder descargarlo tú mismo, utiliza `file.getUrl`.
+Esto devolverá un enlace HTTPS a su archivo que es válido durante al menos una hora.
 
 ## Servidor local del Bot API
 
-Si estás usando un
-[servidor local de Bot API](https://core.telegram.org/bots/api#using-a-local-bot-api-server),
-entonces la llamada `getFile` efectivamente descarga el archivo en tu disco ya.
+Si estás usando un [servidor local de Bot API](https://core.telegram.org/bots/api#using-a-local-bot-api-server), entonces la llamada `getFile` efectivamente descarga el archivo en tu disco ya.
 
 A su vez, puedes llamar a `file.getUrl()` para acceder a esa ruta de archivo.
-Tenga en cuenta que `await file.download()` simplemente copiará ese archivo
-localmente presente en una ubicación temporal (o en la ruta dada si se
-especifica).
+Tenga en cuenta que `await file.download()` simplemente copiará ese archivo localmente presente en una ubicación temporal (o en la ruta dada si se especifica).
 
 ## Apoyo a las llamadas de `bot.api`
 
-Por defecto, los resultados de `await bot.api.getFile()` también contarán con
-los métodos `download` y `getUrl`. Sin embargo, esto no se refleja en los tipos.
-Si necesitas estas llamadas, también debes instalar un
-[API flavor](../advanced/transformers#api-flavoring) en el objeto bot llamado
-`FileApiFlavor`:
+Por defecto, los resultados de `await bot.api.getFile()` también contarán con los métodos `download` y `getUrl`.
+Sin embargo, esto no se refleja en los tipos.
+Si necesitas estas llamadas, también debes instalar un [API flavor](../advanced/transformers#api-flavoring) en el objeto bot llamado `FileApiFlavor`:
 
 ::: code-group
 

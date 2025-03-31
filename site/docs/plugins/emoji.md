@@ -5,35 +5,29 @@ next: false
 
 # Emoji Plugin (`emoji`)
 
-With this plugin, you can easily insert emojis on your replies searching for
-them instead of manually copying and pasting an emoji from web at your code.
+With this plugin, you can easily insert emojis on your replies searching for them instead of manually copying and pasting an emoji from web at your code.
 
 ## Why Should I Use This?
 
-Why not? People use emojis in their code all the time to better illustrate the
-message they're willing to pass or to organize things. But you lose your focus
-every time you need a new emoji, see:
+Why not? People use emojis in their code all the time to better illustrate the message they're willing to pass or to organize things.
+But you lose your focus every time you need a new emoji, see:
 
 1. You stop coding to search for a specific emoji.
-2. You go to a Telegram chat and spent ~6 seconds (to not say more) searching
-   for the emoji you want.
+2. You go to a Telegram chat and spent ~6 seconds (to not say more) searching for the emoji you want.
 3. You copy-paste them into your code and get back coding, but with lost focus.
 
 With this plugin, you just don't stop coding as also you don't lose your focus.
-There is also bad-frickin'-laggy systems and/or editors that doesn't like and
-don't show emojis, so you end up pasting a white square, like this
-sad-little-squary message: `I'm so happy □`.
+There is also bad-frickin'-laggy systems and/or editors that doesn't like and don't show emojis, so you end up pasting a white square, like this sad-little-squary message: `I'm so happy □`.
 
-This plugin aims to solve these issues, handling for you the hard task of
-parsing emojis in all systems and letting you only search for them in a easy way
-(autocomplete is available). Now, the above steps can be reduced to this one:
+This plugin aims to solve these issues, handling for you the hard task of parsing emojis in all systems and letting you only search for them in a easy way (autocomplete is available).
+Now, the above steps can be reduced to this one:
 
 1. Describe the emoji you want and use it. Right in your code. Simple as that.
 
 ### Is This Sorcery?
 
-No, it is called template strings. You can read more about them
-[here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+No, it is called template strings.
+You can read more about them [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
 ## Installing and Examples
 
@@ -100,17 +94,15 @@ bot.command("ping", async (ctx) => {
 });
 ```
 
-::: warning Keep in Mind That `ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS**
-use template strings. If you're unfamiliar with this syntax, you can read more
-about it
-[here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+::: warning Keep in Mind That
+`ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings.
+If you're unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
 ## Useful Data for Reactions
 
-When you use [reactions](../guide/reactions) with your bot, you will have to
-program a lot with emoji, too! This is equally annoying, and since this plugin
-is the wet dream of all your emoji usage, it can help you with reactions, too.
+When you use [reactions](../guide/reactions) with your bot, you will have to program a lot with emoji, too!
+This is equally annoying, and since this plugin is the wet dream of all your emoji usage, it can help you with reactions, too.
 
 You can import `Reactions` from this plugin and then use it as follows.
 

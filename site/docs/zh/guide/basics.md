@@ -1,7 +1,7 @@
 # 发送和接收信息
 
-一旦你用 `bot.start()` 启动你的 bot，grammY 将为你的监听器提供用户发送给你的 bot
-的信息。 grammY 还提供了方便回复的方法。
+一旦你用 `bot.start()` 启动你的 bot，grammY 将为你的监听器提供用户发送给你的 bot 的信息。
+grammY 还提供了方便回复的方法。
 
 ## 接收信息
 
@@ -23,16 +23,13 @@ bot.command("start", async (ctx) => {/* ... */});
 bot.hears(/echo *+)?/, async (ctx) => {/* ... */});
 ```
 
-你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Composer`
-类的 [所有方法](/ref/core/composer)。
+你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Composer` 类的 [所有方法](/ref/core/composer)。
 
 > [了解更多](./filter-queries) 关于使用 `bot.on()` 来筛选请求的内容。
 
 ## 发送信息
 
-Bot
-可以使用的所有方法（**[重要的列表](https://core.telegram.org/bots/api#available-methods)**）都可以通过
-`bot.api` 对象上使用。
+Bot 可以使用的所有方法（**[重要的列表](https://core.telegram.org/bots/api#available-methods)**）都可以通过 `bot.api` 对象上使用。
 
 ```ts
 // 向用户 12345 发送一条消息。
@@ -49,13 +46,12 @@ const me = await bot.api.getMe();
 // 及其他
 ```
 
-每个方法都接受一个可选的 `Other` 类型的选项对象，它允许你为你的 API
-调用设置更多选项。 这些选项对象与上面列出的方法的选项对象完全对应。
-你也可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的
-[所有方法](/ref/core/api)。 本页的其余部分展示了一些相关示例。
+每个方法都接受一个可选的 `Other` 类型的选项对象，它允许你为你的 API 调用设置更多选项。
+这些选项对象与上面列出的方法的选项对象完全对应。
+你也可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](/ref/core/api)。
+本页的其余部分展示了一些相关示例。
 
-同时，请看
-[下一节](./context)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
+同时，请看 [下一节](./context)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
 
 ## 发送带回复的信息
 
@@ -72,22 +68,18 @@ bot.hears("ping", async (ctx) => {
 ```
 
 > 注意，只通过 `ctx.reply` 发送消息**并不**意味着你会自动回复任何东西。
-> 相反，你应该为此指定 `reply_parameters` 。 函数 `ctx.reply` 只是
-> `ctx.api.sendMessage` 的一个别名，见 [下一节](./context#可用操作)。
+> 相反，你应该为此指定 `reply_parameters` 。
+> 函数 `ctx.reply` 只是 `ctx.api.sendMessage` 的一个别名，见 [下一节](./context#可用操作)。
 
 回复参数还允许你回复其他聊天中的消息，以及引用消息的部分内容，甚至同时引用这两者！
-请查看 Bot API 的
-[回复参数文档](https://core.telegram.org/bots/api#replyparameters)。
+请查看 Bot API 的 [回复参数文档](https://core.telegram.org/bots/api#replyparameters)。
 
 ## 发送格式化的信息
 
-> 查看 Telegram 团队编写的 Telegram Bot API
-> 参考中的[关于格式化选项的部分](https://core.telegram.org/bots/api#formatting-options)。
+> 查看 Telegram 团队编写的 Telegram Bot API 参考中的[关于格式化选项的部分](https://core.telegram.org/bots/api#formatting-options)。
 
 你可以通过 **加粗** 或 _斜体_ 文字，使用超链接以及其他来发送消息。
-有两种方法可以实现这一点，如
-[关于格式化选项的部分](https://core.telegram.org/bots/api#formatting-options)
-所述，即 Markdown 和 HTML 。
+有两种方法可以实现这一点，如 [关于格式化选项的部分](https://core.telegram.org/bots/api#formatting-options) 所述，即 Markdown 和 HTML 。
 
 ### Markdown
 
@@ -123,15 +115,11 @@ await bot.api.sendMessage(
 
 ## 强行回复
 
-> 如果你的 bot 在群聊中以
-> [隐私模式](https://core.telegram.org/bots/features#privacy-mode)
-> 运行，这应该会很有用。
+> 如果你的 bot 在群聊中以 [隐私模式](https://core.telegram.org/bots/features#privacy-mode) 运行，这应该会很有用。
 
 当你发送消息时，你可以让用户的 Telegram 客户端自动指定该消息为回复。
 这意味着，用户会自动回复你 bot 的消息（除非他们手动删除回复）。
-因此，即使在群聊中以
-[隐私模式](https://core.telegram.org/bots/features#privacy-mode) 运行，你的 bot
-也会收到用户的信息。
+因此，即使在群聊中以 [隐私模式](https://core.telegram.org/bots/features#privacy-mode) 运行，你的 bot 也会收到用户的信息。
 
 你可以像这样强行回复：
 

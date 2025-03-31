@@ -5,13 +5,10 @@ next: false
 
 # Medios de comunicación (incorporado)
 
-El plugin de grupo de medios te ayuda a enviar grupos de medios permitiéndote
-construir objetos `InputMedia`. Por cierto, los objetos `InputMedia` también se
-utilizan cuando se editan mensajes multimedia, así que este plugin también te
-ayuda a editar multimedia.
+El plugin de grupo de medios te ayuda a enviar grupos de medios permitiéndote construir objetos `InputMedia`.
+Por cierto, los objetos `InputMedia` también se utilizan cuando se editan mensajes multimedia, así que este plugin también te ayuda a editar multimedia.
 
-Recuerda que los objetos `InputMedia` se especifican
-[aquí](https://core.telegram.org/bots/api#inputmedia).
+Recuerda que los objetos `InputMedia` se especifican [aquí](https://core.telegram.org/bots/api#inputmedia).
 
 ## Creación de un objeto `InputMedia`
 
@@ -45,8 +42,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 :::
 
-Echa un vistazo a todos los métodos de `InputMediaBuilder` en la
-[referencia API](/ref/core/inputmediabuilder).
+Echa un vistazo a todos los métodos de `InputMediaBuilder` en la [referencia API](/ref/core/inputmediabuilder).
 
 También puedes pasar directamente URLs públicas que Telegram obtiene.
 
@@ -71,13 +67,11 @@ Puede enviar un grupo de medios de la siguiente manera:
 await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 ```
 
-Del mismo modo, puedes pasar un array de objetos `InputMedia` a
-`ctx.api.sendMediaGroup` o `bot.api.sendMediaGroup`.
+Del mismo modo, puedes pasar un array de objetos `InputMedia` a `ctx.api.sendMediaGroup` o `bot.api.sendMediaGroup`.
 
 ## Editar un mensaje multimedia
 
-Dado que los objetos `InputMedia` también se utilizan para editar mensajes
-multimedia, este plugin también te ayudará en este caso:
+Dado que los objetos `InputMedia` también se utilizan para editar mensajes multimedia, este plugin también te ayudará en este caso:
 
 ```ts
 const newMedia = InputMediaBuilder.photo(
@@ -86,13 +80,12 @@ const newMedia = InputMediaBuilder.photo(
 await ctx.editMessageMedia(newMedia);
 ```
 
-Como siempre, esto funciona también para `ctx.api.editMessageMedia` y
-`bot.api.editMessageMedia`.
+Como siempre, esto funciona también para `ctx.api.editMessageMedia` y `bot.api.editMessageMedia`.
 
 ## Resumen del plugin
 
-Este plugin está integrado en el núcleo de grammY. No necesitas instalar nada
-para usarlo. Simplemente importa todo desde el propio grammY.
+Este plugin está integrado en el núcleo de grammY.
+No necesitas instalar nada para usarlo.
+Simplemente importa todo desde el propio grammY.
 
-Además, tanto la documentación como la referencia API de este plugin están
-unificadas con el paquete core.
+Además, tanto la documentación como la referencia API de este plugin están unificadas con el paquete core.

@@ -1,36 +1,26 @@
 # Peningkatan I: Codebase Skala Besar
 
-Ketika bot-mu terus berkembang dan semakin kompleks, kamu akan mengalami
-kesulitan dalam mengatur struktur codebase untuk aplikasimu. Umumnya, kamu bisa
-membagi codebase menjadi beberapa file.
+Ketika bot-mu terus berkembang dan semakin kompleks, kamu akan mengalami kesulitan dalam mengatur struktur codebase untuk aplikasimu.
+Umumnya, kamu bisa membagi codebase menjadi beberapa file.
 
 ## Solusi yang Tersedia
 
 > grammY masih cukup muda dan belum menyediakan integrasi resmi _DI container_.
-> Ikuti [@grammyjs_news](https://t.me/grammyjs_news) untuk mendapatkan
-> notifikasi ketika integrasi sudah tersedia.
+> Ikuti [@grammyjs_news](https://t.me/grammyjs_news) untuk mendapatkan notifikasi ketika integrasi sudah tersedia.
 
-Perlu dicatat bahwa tidak ada satu solusi yang cocok untuk semua orang, sehingga
-kamu dapat dengan bebas mengatur struktur kode sesukamu. Berikut strategi yang
-sudah terbukti sesuai dalam penyusunan struktur kode.
+Perlu dicatat bahwa tidak ada satu solusi yang cocok untuk semua orang, sehingga kamu dapat dengan bebas mengatur struktur kode sesukamu.
+Berikut strategi yang sudah terbukti sesuai dalam penyusunan struktur kode.
 
-1. Kelompokkan hal-hal yang saling berkaitan di dalam file yang sama (atau di
-   direktori yang sama, tergantung dari seberapa besar kode kamu).
-2. Buat sebuah instance bot terpusat yang menggabungkan semua middleware dengan
-   cara memasangnya ke dalam bot.
-3. (Opsional) Filter update secara terpusat terlebih dahulu, lalu sebar update
-   dengan cara yang sesuai. Untuk melakukannya, silahkan cek `bot.route`
-   ([API Reference](/ref/core/composer#route)) atau bisa juga menggunakan
-   [plugin router](../plugins/router).
+1. Kelompokkan hal-hal yang saling berkaitan di dalam file yang sama (atau di direktori yang sama, tergantung dari seberapa besar kode kamu).
+2. Buat sebuah instance bot terpusat yang menggabungkan semua middleware dengan cara memasangnya ke dalam bot.
+3. (Opsional) Filter update secara terpusat terlebih dahulu, lalu sebar update dengan cara yang sesuai.
+   Untuk melakukannya, silahkan cek `bot.route` ([API Reference](/ref/core/composer#route)) atau bisa juga menggunakan [plugin router](../plugins/router).
 
-Contoh siap pakai yang mengimplementasikan strategi-strategi di atas bisa
-ditemukan di
-[Repositori Contoh Bot](https://github.com/grammyjs/examples/tree/main/scaling).
+Contoh siap pakai yang mengimplementasikan strategi-strategi di atas bisa ditemukan di [Repositori Contoh Bot](https://github.com/grammyjs/examples/tree/main/scaling).
 
 ## Contoh Struktur
 
-Untuk bot sederhana yang menangani _TODO list_, kamu bisa menggunakan struktur
-berikut.
+Untuk bot sederhana yang menangani _TODO list_, kamu bisa menggunakan struktur berikut.
 
 ```asciiart:no-line-numbers
 src/
@@ -40,9 +30,7 @@ src/
     └── list.ts
 ```
 
-`item.ts` hanya diperuntukkan untuk mendefinisikan hal-hal yang berhubungan
-dengan item-item TODO, kemudian bagian kode tersebut akan digunakan di
-`list.ts`.
+`item.ts` hanya diperuntukkan untuk mendefinisikan hal-hal yang berhubungan dengan item-item TODO, kemudian bagian kode tersebut akan digunakan di `list.ts`.
 
 Di `list.ts`, kamu bisa melakukan hal seperti berikut:
 
@@ -54,13 +42,10 @@ export const lists = new Composer();
 lists.on("message", async (ctx) => {/* ... */});
 ```
 
-> Catatan: Jika menggunakan TypeScript, kamu perlu menambahkan
-> [custom context type](../guide/context#memodifikasi-object-context)-nya juga
-> ketika membuat sebuah composer. Contohnya, `new Composer<MyContext>()`.
+> Catatan: Jika menggunakan TypeScript, kamu perlu menambahkan [custom context type](../guide/context#memodifikasi-object-context)-nya juga ketika membuat sebuah composer.
+> Contohnya, `new Composer<MyContext>()`.
 
-Sebagai tambahan, kamu bisa menambahkan sebuah
-[error boundary](../guide/errors#error-boundary) untuk mengatasi semua error
-yang terjadi di dalam module-mu.
+Sebagai tambahan, kamu bisa menambahkan sebuah [error boundary](../guide/errors#error-boundary) untuk mengatasi semua error yang terjadi di dalam module-mu.
 
 Sekarang, kamu bisa memasang module-nya di `bot.ts` seperti ini:
 
@@ -75,33 +60,22 @@ bot.use(lists);
 bot.start();
 ```
 
-Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router) atau
-[`bot.route`](/ref/core/composer#route) untuk menggabungkan module-module yang
-berbeda dengan menentukan middleware mana yang akan digunakan di awal.
+Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router) atau [`bot.route`](/ref/core/composer#route) untuk menggabungkan module-module yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
 
-Yang perlu diingat adalah tidak ada satu cara mutlak untuk mengatur struktur bot
-kamu, karena masing-masing bot memiliki kasus yang berbeda. Seperti biasa, pilih
-cara yang menurutmu paling sesuai dan cocok untuk bot kamu, karena kamulah
-sebagai pencipta yang paham mengenai seluk-beluk dari bot kamu. :wink:
+Yang perlu diingat adalah tidak ada satu cara mutlak untuk mengatur struktur bot kamu, karena masing-masing bot memiliki kasus yang berbeda.
+Seperti biasa, pilih cara yang menurutmu paling sesuai dan cocok untuk bot kamu, karena kamulah sebagai pencipta yang paham mengenai seluk-beluk dari bot kamu. :wink:
 
 ## Type Definition untuk Middleware yang Telah Di-extract
 
-Struktur di atas dapat bekerja dengan baik menggunakan sebuah composer. Tetapi,
-di situasi tertentu kamu mungkin ingin meng-extract sebuah handler ke dalam
-sebuah function, alih-alih membuat sebuah composer baru lalu menambahkan logika
-ke dalamnya. Untuk melakukannya, kamu perlu menambahkan type definition
-middleware yang sesuai ke handler terkait karena mereka tidak bisa lagi
-mengambilnya dari composer.
+Struktur di atas dapat bekerja dengan baik menggunakan sebuah composer.
+Tetapi, di situasi tertentu kamu mungkin ingin meng-extract sebuah handler ke dalam sebuah function, alih-alih membuat sebuah composer baru lalu menambahkan logika ke dalamnya.
+Untuk melakukannya, kamu perlu menambahkan type definition middleware yang sesuai ke handler terkait karena mereka tidak bisa lagi mengambilnya dari composer.
 
-grammY meng-export type definition untuk semua **type middleware yang telah
-dikerucutkan**, misalnya sebuah middleware yang bisa kamu tambahkan ke command
-handler. Selain itu, ia juga meng-export type definition beberapa **context
-object yang telah dikerucutkan** yang digunakan di middleware tersebut. Kedua
-type tersebut parameternya ditulis ulang dengan
-[custom context object](../guide/context#memodifikasi-object-context) kamu. Oleh
-karena itu, command handler akan memiliki type `CommandMiddleware<MyContext>`
-serta `CommandContext<MyContext>` di context objectnya. Mereka bisa digunakan
-dengan cara seperti ini:
+grammY meng-export type definition untuk semua **type middleware yang telah dikerucutkan**, misalnya sebuah middleware yang bisa kamu tambahkan ke command handler.
+Selain itu, ia juga meng-export type definition beberapa **context object yang telah dikerucutkan** yang digunakan di middleware tersebut.
+Kedua type tersebut parameternya ditulis ulang dengan [custom context object](../guide/context#memodifikasi-object-context) kamu.
+Oleh karena itu, command handler akan memiliki type `CommandMiddleware<MyContext>` serta `CommandContext<MyContext>` di context objectnya.
+Mereka bisa digunakan dengan cara seperti ini:
 
 ::: code-group
 
@@ -143,5 +117,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 
 :::
 
-Kunjungi [referensi API type aliases](/ref/core/#type-aliases) untuk melihat
-gambaran umum semua type aliases yang telah di-export oleh grammY.
+Kunjungi [referensi API type aliases](/ref/core/#type-aliases) untuk melihat gambaran umum semua type aliases yang telah di-export oleh grammY.

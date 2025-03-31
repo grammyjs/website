@@ -5,12 +5,10 @@ next: false
 
 # Media Groups (built-in)
 
-The media group plugin helps you send media groups by letting you build
-`InputMedia` objects. Incidentally, `InputMedia` object are also used when
-editing media messages, so this plugin also helps you to edit media.
+The media group plugin helps you send media groups by letting you build `InputMedia` objects.
+Incidentally, `InputMedia` object are also used when editing media messages, so this plugin also helps you to edit media.
 
-Remember that `InputMedia` objects are specified
-[here](https://core.telegram.org/bots/api#inputmedia).
+Remember that `InputMedia` objects are specified [here](https://core.telegram.org/bots/api#inputmedia).
 
 ## Building an `InputMedia` Object
 
@@ -44,8 +42,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 :::
 
-Check out all methods of `InputMediaBuilder` in the
-[API reference](/ref/core/inputmediabuilder).
+Check out all methods of `InputMediaBuilder` in the [API reference](/ref/core/inputmediabuilder).
 
 You can also directly pass public URLs which Telegram fetches.
 
@@ -70,13 +67,11 @@ You can send a media group as follows:
 await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 ```
 
-Likewise, you can pass an array of `InputMedia` objects to
-`ctx.api.sendMediaGroup` or `bot.api.sendMediaGroup`.
+Likewise, you can pass an array of `InputMedia` objects to `ctx.api.sendMediaGroup` or `bot.api.sendMediaGroup`.
 
 ## Editing a Media Message
 
-Since `InputMedia` objects are also used to edit media messages, this plugin
-will assist you here, too:
+Since `InputMedia` objects are also used to edit media messages, this plugin will assist you here, too:
 
 ```ts
 const newMedia = InputMediaBuilder.photo(
@@ -85,13 +80,12 @@ const newMedia = InputMediaBuilder.photo(
 await ctx.editMessageMedia(newMedia);
 ```
 
-As always, this works for `ctx.api.editMessageMedia` and
-`bot.api.editMessageMedia`, too.
+As always, this works for `ctx.api.editMessageMedia` and `bot.api.editMessageMedia`, too.
 
 ## Plugin Summary
 
-This plugin is built-in into the core of grammY. You don't need to install
-anything to use it. Simply import everything from grammY itself.
+This plugin is built-in into the core of grammY.
+You don't need to install anything to use it.
+Simply import everything from grammY itself.
 
-Also, both the documentation and the API reference of this plugin are unified
-with the core package.
+Also, both the documentation and the API reference of this plugin are unified with the core package.

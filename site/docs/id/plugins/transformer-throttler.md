@@ -7,23 +7,19 @@ next: false
 
 > Pertimbangkan untuk menggunakan [plugin auto-retry](./auto-retry).
 
-Plugin ini menjaga bot kamu agar terhindar dari
-[rate limit](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)---lihat
-[materi tingkat lanjut berikut](../advanced/flood)---dengan cara membuat daftar
-antrian API request yang keluar menggunakan
-[Bottleneck](https://github.com/SGrondin/bottleneck).
+Plugin ini menjaga bot kamu agar terhindar dari [rate limit](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)---lihat [materi tingkat lanjut berikut](../advanced/flood)---dengan cara membuat daftar antrian API request yang keluar menggunakan [Bottleneck](https://github.com/SGrondin/bottleneck).
 
-::: warning Aturan Pembatasan API yang Tidak Didokumentasikan Telegram memiliki
-beberapa aturan rate limit yang tidak didokumentasikan. Sayangnya, aturan-aturan
-tersebut **tidak diperhitungkan** oleh throttler. Jika kamu hendak menggunakan
-plugin ini, sebaiknya gunakan juga [plugin auto-retry](./auto-retry). :::
+::: warning Aturan Pembatasan API yang Tidak Didokumentasikan
+Telegram memiliki beberapa aturan rate limit yang tidak didokumentasikan.
+Sayangnya, aturan-aturan tersebut **tidak diperhitungkan** oleh throttler.
+Jika kamu hendak menggunakan plugin ini, sebaiknya gunakan juga [plugin auto-retry](./auto-retry).
+:::
 
 ## Penggunaan
 
-Perlu diketahui, pengaturan opsi bawaan plugin ini menggunakan aturan rate limit
-asli yang diterapkan oleh Telegram. Semestinya, pengaturan bawaan tersebut sudah
-cukup sesuai untuk sebagian besar bot. Berikut contoh penggunaan plugin ini
-dengan menggunakan opsi bawaan:
+Perlu diketahui, pengaturan opsi bawaan plugin ini menggunakan aturan rate limit asli yang diterapkan oleh Telegram.
+Semestinya, pengaturan bawaan tersebut sudah cukup sesuai untuk sebagian besar bot.
+Berikut contoh penggunaan plugin ini dengan menggunakan opsi bawaan:
 
 ::: code-group
 
@@ -92,12 +88,10 @@ type ThrottlerOptions = {
 };
 ```
 
-Daftar lengkap object property apa saja yang tersedia untuk
-`Bottleneck.ConstructorOptions` bisa ditemukan di
-[Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
+Daftar lengkap object property apa saja yang tersedia untuk `Bottleneck.ConstructorOptions` bisa ditemukan di [Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
 
-Jika tidak ada argument yang disertakan, throttler akan menggunakan konfigurasi
-bawaan. Berikut konfigurasi bawaannya:
+Jika tidak ada argument yang disertakan, throttler akan menggunakan konfigurasi bawaan.
+Berikut konfigurasi bawaannya:
 
 ```ts
 // Throttler Keluaran Secara Keseluruhan
