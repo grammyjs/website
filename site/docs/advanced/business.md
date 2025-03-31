@@ -93,7 +93,7 @@ bot.on("business_message").filter(async (ctx) => {
   const conn = await ctx.getBusinessConnection();
   return ctx.msg.text == "This message will be edited" && ctx.from.id == conn.user.id
 }, async (ctx) => {
-  await ctx.editMessageText("Edited!")
+  await ctx.editMessageText("Edited!");
 })
 ```
 
