@@ -20,11 +20,15 @@ bot.on("message", (ctx) => ctx.react("👍"));
 
 // Utilice `ctx.api.setMessageReaction` para reacciones en otro lugar.
 bot.on("message", async (ctx) => {
-  await ctx.api.setMessageReaction(chat_id, message_id, "🎉");
+  await ctx.api.setMessageReaction(chat_id, message_id, [
+    { type: "emoji", emoji: "🎉" },
+  ]);
 });
 
 // Utiliza `bot.api.setMessageReaction` fuera de los manejadores.
-await bot.api.setMessageReaction(chat_id, message_id, "💯");
+await bot.api.setMessageReaction(chat_id, message_id, [
+  { type: "emoji", emoji: "💯" },
+]);
 ```
 
 Como de costumbre, TypeScript proporcionará autocompletado para los emojis que puedes usar.
