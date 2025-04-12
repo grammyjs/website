@@ -20,11 +20,15 @@ bot.on("message", (ctx) => ctx.react("👍"));
 
 // `ctx.api.setMessageReaction` untuk mereaksi pesan tertentu.
 bot.on("message", async (ctx) => {
-  await ctx.api.setMessageReaction(chat_id, message_id, "🎉");
+  await ctx.api.setMessageReaction(chat_id, message_id, [
+    { type: "emoji", emoji: "🎉" },
+  ]);
 });
 
 // Penggunaan `bot.api.setMessageReaction` tanpa handler.
-await bot.api.setMessageReaction(chat_id, message_id, "💯");
+await bot.api.setMessageReaction(chat_id, message_id, [
+  { type: "emoji", emoji: "💯" },
+]);
 ```
 
 Seperti biasa, TypeScript akan menyediakan auto-complete daftar emoji yang bisa digunakan.

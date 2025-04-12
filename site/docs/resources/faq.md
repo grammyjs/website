@@ -58,7 +58,7 @@ However,
 - there is no way of knowing when the last message in an album was received, and
 - other messages such text messages, service messages, etc may be sent in between album messages.
 
-So yes, in theory, you can know which messages belong to together, but only regarding the messages you have received so far.
+So yes, in theory, you can know which messages belong together, but only regarding the messages you have received so far.
 You cannot know if there will be more messages added to the album at a later point.
 If you ever receive an album on a Telegram client while having _extremely_ bad internet connection, you can actually see how the client repeatedly regroups the album as new messages arrive.
 

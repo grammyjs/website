@@ -26,7 +26,7 @@ import {
   TsTypePredicateDef,
   TsTypeRefDef,
 } from "@deno/doc/types";
-import { JSX } from "preact/jsx-runtime";
+import { Fragment, JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
 import { LinkGetter } from "./types.ts";
 import {
@@ -137,7 +137,7 @@ function TypeParams({
     <>
       &lt;
       {typeParams
-        .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
         .reduce((a, b) => <>{a}, {b}</>)}
       &gt;
     </>
@@ -187,7 +187,7 @@ function Union({
   children: TsTypeDef[];
 }) {
   return union
-    .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+    .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
     .reduce((a, b) => (
       <>
         {a} <StyleKw>|</StyleKw> {b}
@@ -203,7 +203,7 @@ function Intersection({
   children: TsTypeDef[];
 }) {
   return intersection
-    .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+    .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
     .reduce((a, b) => (
       <>
         {a} <StyleKw>&</StyleKw> {b}
@@ -235,7 +235,7 @@ function Tuple({
   return (
     <>
       [{tuple
-        .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
         .reduce((a, b) => <>{a}, {b}</>)}]
     </>
   );
@@ -482,7 +482,7 @@ function LiteralIndexSignatures(
   if (!signatures.length) {
     return null;
   }
-  const items = signatures.map(({ params, readonly, tsType }) => {
+  const items = signatures.map(({ params, readonly, tsType }, i) => {
     const item = (
       <>
         {readonly ? <StyleKw>{"readonly "}</StyleKw> : undefined}[<Params
@@ -497,7 +497,7 @@ function LiteralIndexSignatures(
         )};{" "}
       </>
     );
-    return <>{"  "}{item}</>;
+    return <Fragment key={i}>{"  "}{item}</Fragment>;
   });
   return <>{"  "}{items}</>;
 }
@@ -510,7 +510,7 @@ function LiteralCallSignatures(
 ) {
   return (
     <>
-      {items.map(({ typeParams, params, tsType }) => {
+      {items.map(({ typeParams, params, tsType }, i) => {
         const item = (
           <>
             <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(<Params
@@ -526,7 +526,7 @@ function LiteralCallSignatures(
               )};{" "}
           </>
         );
-        return <>{"  "}{item}</>;
+        return <Fragment key={i}>{"  "}{item}</Fragment>;
       })}
     </>
   );
@@ -677,8 +677,8 @@ function ParamArray({
   optional: boolean;
   getLink: LinkGetter;
 }) {
-  const elements = param.elements.map((e) =>
-    e && <Param getLink={getLink}>{e}</Param>
+  const elements = param.elements.map((e, i) =>
+    e && <Param key={i} getLink={getLink}>{e}</Param>
   );
   let elementsElement: JSX.Element | undefined;
   if (elements.length) {
@@ -917,7 +917,7 @@ export function Params({
     <>
       {"\n  " + indent}
       {params
-        .map((param) => <Param getLink={getLink}>{param}</Param>)
+        .map((param, i) => <Param key={i} getLink={getLink}>{param}</Param>)
         .reduce((a, b) => (
           <>
             {a}
