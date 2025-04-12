@@ -26,7 +26,7 @@ export function TypeAlias(
       <Sector title="Type Parameters" show={!!typeParams.length}>
         <TypeParams getLink={getLink}>{typeParams}</TypeParams>
       </Sector>
-      <Sector title="Type" show={true}>
+      <Sector title="Type" show>
         <CodeBlock>
           <TsType getLink={getLink}>{typeAlias.typeAliasDef.tsType}</TsType>
         </CodeBlock>
