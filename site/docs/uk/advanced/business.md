@@ -92,8 +92,8 @@ bot.on("business_message").filter(
 ```ts
 bot.on("business_message").filter(async (ctx) => {
   const conn = await ctx.getBusinessConnection();
-  return ctx.msg.text == "Це повідомлення буде відредаговано" &&
-    ctx.from.id == conn.user.id;
+  return ctx.msg.text === "Це повідомлення буде відредаговано" &&
+    ctx.from.id === conn.user.id;
 }, async (ctx) => {
   await ctx.editMessageText("Відредаговано!");
 });
