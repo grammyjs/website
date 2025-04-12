@@ -235,10 +235,9 @@ groups.filter(
   async (ctx) => {
     const from = ctx.from;
     const { status: oldStatus, user } = ctx.chatMember.old_chat_member;
+    const lifted = oldStatus === "kicked" ? "ban" : "restrictions";
     await ctx.reply(
-      `${from.first_name} lifted ` +
-        `${oldStatus === "kicked" ? "ban" : "restrictions"} ` +
-        `from ${user.first_name}`,
+      `${from.first_name} lifted ${lifted} from ${user.first_name}`,
     );
   },
 );
