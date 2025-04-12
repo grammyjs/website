@@ -246,14 +246,13 @@ groups.filter(
 
 #### Example Usage
 
-The best way to use the filters is to pick a set of relevant statuses, for example 'out', 'regular' and 'admin', then
-make a table of the transitions between them:
+The best way to use the filters is to pick a set of relevant statuses, for example `out`, `regular` and `admin`, then make a table of the transitions between them:
 
-| ↱           | Out         | Regular              | Admin               |
-| ----------- | ----------- | -------------------- | ------------------- |
-| **Out**     | ban-changed | join                 | join-and-promoted   |
-| **Regular** | exit        | restrictions-changed | promoted            |
-| **Admin**   | exit        | demoted              | permissions-changed |
+| ↱         | `out`       | `regular`            | `admin`             |
+| --------- | ----------- | -------------------- | ------------------- |
+| `out`     | ban-changed | join                 | join-and-promoted   |
+| `regular` | exit        | restrictions-changed | promoted            |
+| `admin`   | exit        | demoted              | permissions-changed |
 
 Assign a listener to all the transitions that are relevant to your use-case.
 
