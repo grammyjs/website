@@ -71,7 +71,7 @@ Transformer 函数像中间件一样灵活，并且他们也有很多不同的�
 - 增加 [重试行为](../plugins/auto-retry)
 - 或者更多其它的事情
 
-注意，不过重试一个 API 调用会有偶然的副作用：如果你调用 `senDocument` 并且将一个可读流实例传递给 `InputFile`，可读流将会在尝试请求时第一时间被读取。
+注意，不过重试一个 API 调用会有偶然的副作用：如果你调用 `sendDocument` 并且将一个可读流实例传递给 `InputFile`，可读流将会在尝试请求时第一时间被读取。
 如果你再次调用 `prev`，这个流可能已经被（部分地）读取，会导致读取到损坏的文件。
 因此它是将文件路径传递给 `InputFile` 的更加可靠的做法，grammY 可以在必要的时候重建这个流。
 
@@ -81,8 +81,8 @@ grammY 具有 [上下文调味剂](../guide/context#上下文调味剂) 可以�
 这包括 API 方法——包括那些直接包含在上下文对象中的像 `ctx.reply` ，并且在 `ctx.api` 和 `ctx.api.raw` 中的方法。
 不过你不能通过上下文调味剂来调整 `bot.api` 和 `bot.api.raw` 的类型。
 
-这是为什么 grammY 支持 API 风格
-它们解决了这个问题：
+这就是为什么 grammY 支持 _API 风格_。
+它解决了这个问题：
 
 ```ts
 import { Api, Bot, Context } from "grammy";
