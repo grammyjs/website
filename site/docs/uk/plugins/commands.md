@@ -112,7 +112,7 @@ await myCommands.setCommands(bot); // [!code highlight]
 // Використовуйте розширювач, щоб створити власний контекст.
 type MyContext = CommandsFlavor<Context>;
 
-// Використовуйте новий контекст для створення бота.
+// Використайте новий контекст для створення бота.
 const bot = new Bot<MyContext>(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
 
 // Зареєструйте плагін.
