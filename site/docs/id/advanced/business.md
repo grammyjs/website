@@ -87,7 +87,19 @@ Ketika kamu atau pelangganmu mengedit atau menghapus pesan di obrolan kamu, bot 
 Lebih tepatnya, ia akan menerima update baik berupa `edited_business_message` ataupun `deleted_business_messages`.
 Seperti update pada umumnya, ia bisa ditangani menggunakan `bot.on` dan beragam [filter query](../guide/filter-queries) lainnya.
 
-Meski demikian, bot kamu **TIDAK** bisa mengedit atau menghapus pesan di chat tersebut.
+Kamu bisa mengedit pesan dengan cara biasa, yaitu dengan menggunakan `ctx.editMessageText` atau varian lainnya.
+
+```ts
+bot.on("business_message").filter(async (ctx) => {
+  const conn = await ctx.getBusinessConnection();
+  return ctx.msg.text === "Pesan ini akan diedit" &&
+    ctx.from.id === conn.user.id;
+}, async (ctx) => {
+  await ctx.editMessageText("Diedit!");
+});
+```
+Meski demikian, bot kamu **TIDAK** bisa menghapus pesan di chat tersebut.
+
 Bot juga **TIDAK** bisa meneruskan pesan dari chat tersebut ataupun menyalinnya ke tempat lain.
 Semua operasi tersebut diserahkan ke manusia.
 
