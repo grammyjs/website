@@ -51,6 +51,7 @@ Sub-filters that go one level deeper:
 
 ```ts
 bot.on("message:entities:url"); // messages containing a URL
+bot.on("message:caption_entities:url"); // captions containing a URL
 bot.on("message:entities:code"); // messages containing a code snippet
 bot.on("edited_message:entities"); // edited messages with any kind of entities
 ```
@@ -331,6 +332,7 @@ Example:
 | `"message"`                  | `"message"` | `undefined`  | `undefined` |
 | `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
 | `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
+| `"message:caption_entities:url"` | `"message"` | `"caption_entities"` | `"url"` |
 
 ### Query Validation
 
