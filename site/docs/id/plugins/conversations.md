@@ -1382,7 +1382,7 @@ Dengan begitu, kita dapat membuat titik cek di sepanjang proses tersebut.
 Titik cek berisi informasi mengenai seberapa jauh _function_ percakapan terkait telah dijalankan.
 Nantinya, informasi tersebut akan digunakan untuk kembali ke titik cek yang telah ditentukan.
 
-Aksi apapun yang sudah telanjur dilakukan tentunya tidak dapat dianulir.
+Operasi Input/Output (IO) apapun yang sudah telanjur dilakukan tentunya tidak dapat dianulir.
 Artinya, memutar balik ke titik cek tidak akan menganulir pesan yang sudah telanjur terkirim.
 
 ```ts

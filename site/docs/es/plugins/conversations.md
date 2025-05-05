@@ -1268,7 +1268,7 @@ Esto te permite crear un punto de control a lo largo del camino.
 Un punto de control contiene información sobre hasta dónde se ha ejecutado la función hasta el momento.
 Se puede utilizar para volver más tarde a este punto.
 
-Naturalmente, las acciones realizadas mientras tanto no se desharán.
+Naturalmente, cualquier operación de E/S realizada mientras tanto no se podrá deshacer.
 En particular, rebobinar hasta un punto de control no anulará mágicamente ningún mensaje.
 
 ```ts
