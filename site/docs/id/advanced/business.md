@@ -98,6 +98,7 @@ bot.on("business_message").filter(async (ctx) => {
   await ctx.editMessageText("Diedit!");
 });
 ```
+
 Meski demikian, bot kamu **TIDAK** bisa menghapus pesan di chat tersebut.
 
 Bot juga **TIDAK** bisa meneruskan pesan dari chat tersebut ataupun menyalinnya ke tempat lain.
