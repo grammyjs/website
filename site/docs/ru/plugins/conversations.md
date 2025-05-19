@@ -1141,20 +1141,6 @@ const op = await conversation.form.select(["+", "-", "*", "/"], {
 
 Conversational forms even allow you to build custom form fields via [`conversation.form.build`](/ref/conversations/conversationform#build).
 
-## Wait Timeouts
-
-Every time you wait for an update, you can pass a timeout value.
-
-```ts
-// Ожидание выбора базовой операции вычисления.
-const op = await conversation.form.select(["+", "-", "*", "/"], {
-  action: (ctx) => ctx.deleteMessage(),
-  otherwise: (ctx) => ctx.reply("Ожидается +, -, *, или /!"),
-});
-```
-
-Диалоговые формы также позволяют создавать пользовательские поля формы с помощью метода [`conversation.form.build`](/ref/conversations/conversationform#build).
-
 ## Таймаут ожидания
 
 Каждый раз, когда вы ожидаете обновления, вы можете указать значение таймаута.
