@@ -174,6 +174,7 @@ bot.start();
 ## Core Concepts
 
 ### `FormattedString` as unified return type
+
 The `FormattedString` class is a core component of the `parse-mode` plugin, providing a unified interface for working with formatted text. The return value of `fmt`, `new FormattedString` and `FormattedString.<staticMethod>` returns an instance of `FormattedString`. This means that different style of usages can be combined.
 
 For example, it is possible to use `fmt`, followed by chainable instance methods of `FormattedString`, and then passing the result into another `fmt` tagged template.
@@ -190,19 +191,22 @@ bot.on("msg:text", async ctx => {
   const response = fmt`${header}${body}${footer}`;
   await ctx.reply(response.text, { entities: response.entities });
 });
-
 ```
 
 ### Things that `fmt` accepts
+
 The `fmt` tagged template accepts a wide variety of values for constructing your `FormattedString`, including:
- - `TextWithEntities` (implemented by `FormattedString` and regular Telegram text messages)
- - `CaptionWithEntities` (implemented by `FormattedString` and regular Telegram media messages with captions)
- - EntityTag (such as your `b()` and `a(url)` functions)
- - Nullary functions that returns an EntityTag (such as `b` and `i`)
- - Any types that implements `toString()` (will be treated as plain text value)
+
+- `TextWithEntities` (implemented by `FormattedString` and regular Telegram text messages)
+- `CaptionWithEntities` (implemented by `FormattedString` and regular Telegram media messages with captions)
+- EntityTag (such as your `b()` and `a(url)` functions)
+- Nullary functions that returns an EntityTag (such as `b` and `i`)
+- Any types that implements `toString()` (will be treated as plain text value)
 
 ### TextWithEntities
+
 The `TextWithEntities` interface represents text with optional formatting entities.
+
 ```ts
 interface TextWithEntities {
   text: string;
@@ -213,14 +217,16 @@ interface TextWithEntities {
 Notice that the shape of this type implies that regular text messages from Telegram also implement `TextWithEntities` implicitly. This means that it is in fact possible to do the following:
 
 ```ts
-bot.on("msg:text", async ctx => {
+bot.on("msg:text", async (ctx) => {
   const response = fmt`${ctx.msg}`.plain("\n---\n").bold("This is my response");
   await ctx.reply(response.text, { entities: response.entities });
 });
 ```
 
 ### CaptionWithEntities
+
 The `CaptionWithEntities` interface represents a caption with optional formatting entities.
+
 ```ts
 interface CaptionWithEntities {
   caption: string;
@@ -231,13 +237,11 @@ interface CaptionWithEntities {
 Likewise, notice that the shape of this type implies that regular media messages with caption from Telegram also implement `CaptionWithEntities` implicitly. This means that it is also in fact possible to do the following:
 
 ```ts
-bot.on("msg:caption", async ctx => {
+bot.on("msg:caption", async (ctx) => {
   const response = fmt`${ctx.msg}`.plain("\n---\n").bold("This is my response");
   await ctx.reply(response.text, { entities: response.entities });
 });
 ```
-
-
 
 ## Plugin Summary
 
