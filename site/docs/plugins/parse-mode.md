@@ -5,19 +5,27 @@ next: false
 
 # Parse Mode Plugin (`parse-mode`)
 
-This library provides simplified formatting utilities for the [grammY](https://grammy.dev) Telegram Bot framework. It enables you to compose richly formatted messages using a declarative, type-safe API.
+Telegram supports [styled messages](https://core.telegram.org/bots/api#messageentity).
+This library brings simplified formatting utilities to grammY.
+It enables you to compose richly formatted messages using a declarative, type-safe API.
 
-In the Telegram Bot API, formatted text is represented using "entities" - special markers that define which parts of the text should be formatted in specific ways. Each entity has a type (e.g., `bold`, `italic`), an offset (where it starts in the text), and a length (how many characters it affects).
+In the Telegram Bot API, formatted text is represented using _entities_---special markers that define which parts of the text should be formatted in specific ways.
+Each entity has a _type_ (e.g. `bold`, `italic`, etc), an _offset_ (where it starts in the text), and a _length_ (how many characters it affects).
 
-Working directly with these entities can be cumbersome as you need to manually track offsets and lengths. The Parse Mode plugin solves this problem by providing a simple, declarative API for formatting text.
+Working directly with these entities can be cumbersome as you need to manually track offsets and lengths.
+The Parse Mode plugin solves this problem by providing a simple, declarative API for formatting text.
 
 ## Two Approaches: `fmt` and `FormattedString`
 
 This library offers two main approaches to text formatting:
 
-1. **`fmt` Tagged Template Function**: A template literal tag that allows you to write formatted text in a natural way using template expressions. It internally manages entity offsets and lengths for you.
+1. **`fmt` Tagged Template Function**:
+   A [template literal tag](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) that allows you to write formatted text in a natural way using template expressions.
+   It internally manages entity offsets and lengths for you.
 
-2. **`FormattedString` Class**: A class-based approach that allows you to build formatted text through method chaining. This is particularly useful for programmatically constructing complex formatted messages.
+2. **`FormattedString` Class**:
+   A class-based approach that allows you to build formatted text through method chaining.
+   This is particularly useful for programmatically constructing complex formatted messages.
 
 Both approaches produce a unified `FormattedString` object that can be used to manipulate formatted text.
 
@@ -27,17 +35,17 @@ Both approaches produce a unified `FormattedString` object that can be used to m
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
-import { fmt, b, u } from "@grammyjs/parse-mode";
+import { b, fmt, u } from "@grammyjs/parse-mode";
 
 const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   // Using return values of fmt
   const combined = fmt`${b}bolded${b} ${ctx.msg.text} ${u}underlined${u}`;
-  await ctx.reply(combined.text { entities: combined.entities });
+  await ctx.reply(combined.text, { entities: combined.entities });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: combined.caption, caption_entities: combined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    { caption: combined.caption, caption_entities: combined.caption_entities },
   );
 });
 
@@ -53,10 +61,10 @@ const bot = new Bot("");
 bot.command("demo", async (ctx) => {
   // Using return values of fmt
   const combined = fmt`${b}bolded${b} ${ctx.msg.text} ${u}underlined${u}`;
-  await ctx.reply(combined.text { entities: combined.entities });
+  await ctx.reply(combined.text, { entities: combined.entities });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: combined.caption, caption_entities: combined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    { caption: combined.caption, caption_entities: combined.caption_entities },
   );
 });
 
@@ -65,17 +73,17 @@ bot.start();
 
 ```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { fmt, b, u } from "https://deno.land/x/grammy_parse_mode/mod.ts";
+import { b, fmt, u } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
 const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   // Using return values of fmt
   const combined = fmt`${b}bolded${b} ${ctx.msg.text} ${u}underlined${u}`;
-  await ctx.reply(combined.text { entities: combined.entities });
+  await ctx.reply(combined.text, { entities: combined.entities });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: combined.caption, caption_entities: combined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    { caption: combined.caption, caption_entities: combined.caption_entities },
   );
 });
 
@@ -96,19 +104,30 @@ const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   // Static method
-  const staticCombined = FormattedString.b("bolded").plain(` ${ctx.msg.text} `).u("underlined");
-  await ctx.reply(staticCombined.text { entities: staticCombined.entities });
+  const staticCombined = FormattedString.b("bolded").plain(` ${ctx.msg.text} `)
+    .u("underlined");
+  await ctx.reply(staticCombined.text, { entities: staticCombined.entities });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: staticCombined.caption, caption_entities: staticCombined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: staticCombined.caption,
+      caption_entities: staticCombined.caption_entities,
+    },
   );
 
   // Or constructor
-  const constructorCombined = (new FormattedString("")).b("bolded").plain(` ${ctx.msg.text} `).u("underlined");
-  await ctx.reply(constructorCombined.text { entities: constructorCombined.entities });
+  const constructorCombined = (new FormattedString("")).b("bolded").plain(
+    ` ${ctx.msg.text} `,
+  ).u("underlined");
+  await ctx.reply(constructorCombined.text, {
+    entities: constructorCombined.entities,
+  });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: constructorCombined.caption, caption_entities: constructorCombined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: constructorCombined.caption,
+      caption_entities: constructorCombined.caption_entities,
+    },
   );
 });
 
@@ -123,19 +142,30 @@ const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   // Static method
-  const staticCombined = FormattedString.b("bolded").plain(` ${ctx.msg.text} `).u("underlined");
-  await ctx.reply(staticCombined.text { entities: staticCombined.entities });
+  const staticCombined = FormattedString.b("bolded").plain(` ${ctx.msg.text} `)
+    .u("underlined");
+  await ctx.reply(staticCombined.text, { entities: staticCombined.entities });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: staticCombined.caption, caption_entities: staticCombined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: staticCombined.caption,
+      caption_entities: staticCombined.caption_entities,
+    },
   );
 
   // Or constructor
-  const constructorCombined = (new FormattedString("")).b("bolded").plain(` ${ctx.msg.text} `).u("underlined");
-  await ctx.reply(constructorCombined.text { entities: constructorCombined.entities });
+  const constructorCombined = (new FormattedString("")).b("bolded").plain(
+    ` ${ctx.msg.text} `,
+  ).u("underlined");
+  await ctx.reply(constructorCombined.text, {
+    entities: constructorCombined.entities,
+  });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: constructorCombined.caption, caption_entities: constructorCombined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: constructorCombined.caption,
+      caption_entities: constructorCombined.caption_entities,
+    },
   );
 });
 
@@ -150,19 +180,30 @@ const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   // Static method
-  const staticCombined = FormattedString.b("bolded").plain(` ${ctx.msg.text} `).u("underlined");
-  await ctx.reply(staticCombined.text { entities: staticCombined.entities });
+  const staticCombined = FormattedString.b("bolded").plain(` ${ctx.msg.text} `)
+    .u("underlined");
+  await ctx.reply(staticCombined.text, { entities: staticCombined.entities });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: staticCombined.caption, caption_entities: staticCombined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: staticCombined.caption,
+      caption_entities: staticCombined.caption_entities,
+    },
   );
 
   // Or constructor
-  const constructorCombined = (new FormattedString("")).b("bolded").plain(` ${ctx.msg.text} `).u("underlined");
-  await ctx.reply(constructorCombined.text { entities: constructorCombined.entities });
+  const constructorCombined = (new FormattedString("")).b("bolded").plain(
+    ` ${ctx.msg.text} `,
+  ).u("underlined");
+  await ctx.reply(constructorCombined.text, {
+    entities: constructorCombined.entities,
+  });
   await ctx.replyWithPhoto(
-    'https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png',
-    { caption: constructorCombined.caption, caption_entities: constructorCombined.caption_entities }
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: constructorCombined.caption,
+      caption_entities: constructorCombined.caption_entities,
+    },
   );
 });
 
@@ -175,7 +216,9 @@ bot.start();
 
 ### `FormattedString` as unified return type
 
-The `FormattedString` class is a core component of the `parse-mode` plugin, providing a unified interface for working with formatted text. The return value of `fmt`, `new FormattedString` and `FormattedString.<staticMethod>` returns an instance of `FormattedString`. This means that different style of usages can be combined.
+The `FormattedString` class is a core component of the `parse-mode` plugin, providing a unified interface for working with formatted text.
+The return value of `fmt`, `new FormattedString` and `FormattedString.<staticMethod>` returns an instance of `FormattedString`.
+This means that different style of usages can be combined.
 
 For example, it is possible to use `fmt`, followed by chainable instance methods of `FormattedString`, and then passing the result into another `fmt` tagged template.
 
@@ -214,7 +257,8 @@ interface TextWithEntities {
 }
 ```
 
-Notice that the shape of this type implies that regular text messages from Telegram also implement `TextWithEntities` implicitly. This means that it is in fact possible to do the following:
+Notice that the shape of this type implies that regular text messages from Telegram also implement `TextWithEntities` implicitly.
+This means that it is in fact possible to do the following:
 
 ```ts
 bot.on("msg:text", async (ctx) => {
@@ -234,7 +278,8 @@ interface CaptionWithEntities {
 }
 ```
 
-Likewise, notice that the shape of this type implies that regular media messages with caption from Telegram also implement `CaptionWithEntities` implicitly. This means that it is also in fact possible to do the following:
+Likewise, notice that the shape of this type implies that regular media messages with caption from Telegram also implement `CaptionWithEntities` implicitly.
+This means that it is also in fact possible to do the following:
 
 ```ts
 bot.on("msg:caption", async (ctx) => {
