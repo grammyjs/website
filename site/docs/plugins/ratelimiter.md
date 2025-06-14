@@ -190,15 +190,23 @@ new Limiter().limitFor((ctx) => {
 
 ### Key Prefix: `.withKeyPrefix()`
 
-By default, all keys are prefixed with `GRAMMY:RATELIMITER:` to avoid collisions with other data in your storage. You can override this with `.withKeyPrefix()` if you have multiple different rules that might target the same user or chat.
+::: danger IMPORTANT: Using Multiple Limiter Rules
+When using more than one limiter rule in your bot, you **must** assign a unique key prefix to each one using `.withKeyPrefix()`.
+
+Failing to do so will cause different rules to read and write to the same location in your storage. This can lead to unexpected behavior (incorrect limits) or crashes when different strategies (e.g., `fixedWindow` and `tokenBucket`) are used on the same entity. The key prefix ensures each rule has its own isolated data.
 
 ```ts
-// Keys from this rule will be prefixed with "COMMANDS:"
-new Limiter().withKeyPrefix("COMMANDS").limitFor(/*...*/);
+// BAD: Two rules without prefixes will collide in storage.
+const messageLimiter = new Limiter()...
+const commandLimiter = new Limiter()...
+
+// GOOD: Each rule has its own namespace.
+const messageLimiter = new Limiter().withKeyPrefix("message")...
+const commandLimiter = new Limiter().withKeyPrefix("command")...
 ```
 
-::: warning Key Prefixes and Collisions
-Setting your own prefix will override the default prefix (`GRAMMY:RATELIMITER:`). Be careful not to cause key collisions with other data in your Redis database. If you cause any collisions, debugging would be your _rage quit_ moment in larger bots with thousands of keys.
+If you cause any collisions, debugging would be your _rage quit_ moment in larger bots with thousands of keys.
+
 :::
 
 ## Advanced Features
