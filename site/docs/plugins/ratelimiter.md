@@ -42,7 +42,7 @@ The configured rule is then passed to the `limit()` middleware function and regi
 ::: code-group
 
 ```ts [TypeScript / Node.js]
-import { Bot } from "grammy";
+import { Bot, Context } from "grammy";
 import { limit, Limiter } from "@grammyjs/ratelimiter";
 import { MemoryStore } from "@grammyjs/ratelimiter/storages";
 
@@ -52,7 +52,7 @@ const bot = new Bot(""); // <-- Put your bot token here
 const storage = new MemoryStore();
 
 // 2. Build the rule with the fluent API.
-const limiter = new Limiter()
+const limiter = new Limiter<Context>()
   // Use the Token Bucket algorithm (recommended).
   .tokenBucket({
     bucketSize: 5, // Allow a user to send a burst of 5 messages...
@@ -72,7 +72,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, type Context } from "https://deno.land/x/grammy/mod.ts";
 import { limit, Limiter } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 import { MemoryStore } from "https://deno.land/x/grammy_ratelimiter/storages.ts";
 
@@ -82,7 +82,7 @@ const bot = new Bot(""); // <-- Put your bot token here
 const storage = new MemoryStore();
 
 // 2. Build the rule with the fluent API.
-const limiter = new Limiter()
+const limiter = new Limiter<Context>()
   .tokenBucket({
     bucketSize: 5,
     tokensPerInterval: 2,
@@ -123,9 +123,12 @@ This is the most advanced and user-friendly strategy. It models a bucket of "tok
 This algorithm allows users who have been inactive to send a quick burst of messages, which provides a more natural user experience.
 
 ```ts
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
 // Allow a burst of 10 messages.
 // Afterwards, the user's limit refills at a rate of 3 tokens per 5 seconds.
-new Limiter().tokenBucket({
+new Limiter<Context>().tokenBucket({
   bucketSize: 10,
   tokensPerInterval: 3,
   interval: 5000,
@@ -142,8 +145,11 @@ This is a simpler, more traditional strategy. It counts the number of requests r
 This strategy is stricter and is useful for actions that should have a hard, predictable cap.
 
 ```ts
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
 // Allow exactly 1 request every 30 seconds.
-new Limiter().fixedWindow({
+new Limiter<Context>().fixedWindow({
   limit: 1,
   timeFrame: 30_000,
 });
@@ -178,7 +184,10 @@ With `.limitFor()`, you define the entity to which the limit is applied.
 This rule limits a user to 5 uses of `/commandA` and 5 uses of `/commandB` per minute, with each command's limit counted separately.
 
 ```ts
-new Limiter().limitFor((ctx) => {
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
+new Limiter<Context>().limitFor((ctx) => {
   const userId = ctx.from?.id;
   const command = ctx.message?.text?.split(" "); // e.g., "/commandA"
 
@@ -196,13 +205,16 @@ When using more than one limiter rule in your bot, you **must** assign a unique 
 Failing to do so will cause different rules to read and write to the same location in your storage. This can lead to unexpected behavior (incorrect limits) or crashes when different strategies (e.g., `fixedWindow` and `tokenBucket`) are used on the same entity. The key prefix ensures each rule has its own isolated data.
 
 ```ts
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
 // BAD: Two rules without prefixes will collide in storage.
-const messageLimiter = new Limiter()...
-const commandLimiter = new Limiter()...
+const messageLimiter = new Limiter<Context>()...
+const commandLimiter = new Limiter<Context>()...
 
 // GOOD: Each rule has its own namespace.
-const messageLimiter = new Limiter().withKeyPrefix("message")...
-const commandLimiter = new Limiter().withKeyPrefix("command")...
+const messageLimiter = new Limiter<Context>().withKeyPrefix("message")...
+const commandLimiter = new Limiter<Context>().withKeyPrefix("command")...
 ```
 
 If you cause any collisions, debugging would be your _rage quit_ moment in larger bots with thousands of keys.
@@ -220,7 +232,10 @@ The `.onlyIf()` method allows a limit to be applied only under specific conditio
 **Example: Only limit users when they send stickers**
 
 ```ts
-new Limiter()
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
+new Limiter<Context>()
   .fixedWindow({ limit: 5, timeFrame: 60_000 }) // 5 stickers per minute
   .onlyIf((ctx) => ctx.message?.sticker !== undefined); // Run only for stickers
 ```
@@ -238,7 +253,10 @@ The callback receives three arguments:
 **Example: A simple (but unsafe) reply**
 
 ```ts
-new Limiter().onThrottled(async (ctx, info) => {
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
+new Limiter<Context>().onThrottled(async (ctx, info) => {
   const remainingSeconds = Math.ceil(info.reset / 1000);
   await ctx.reply(
     `You are sending messages too fast! Please wait ${remainingSeconds} seconds.`,
@@ -261,9 +279,12 @@ To safely notify a user only once per throttled period, you must implement a "no
 For the `FixedWindowStrategy`, you can use the state provided in the `info` object to reply only on the very first throttled request. This is the most efficient method for this strategy as it requires no extra storage calls. Let's say your `limit` is `5`. The 6th request is the first to be throttled, at which point `info.remaining` will equal `-1`.
 
 ```ts
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
 const MY_LIMIT = 5;
 
-new Limiter().fixedWindow({ limit: MY_LIMIT, timeFrame: 60_000 }).onThrottled(
+new Limiter<Context>().fixedWindow({ limit: MY_LIMIT, timeFrame: 60_000 }).onThrottled(
   async (ctx, info) => {
     // Check if this is the first throttled request in the window.
     if (info.remaining === -1) {
@@ -283,8 +304,11 @@ new Limiter().fixedWindow({ limit: MY_LIMIT, timeFrame: 60_000 }).onThrottled(
 The `TokenBucketStrategy`'s state is continuous and doesn't have a simple "first throttled" signal. For this, and for a pattern that works universally across _all_ strategies, the **notification lock** is the fix-all solution. This pattern uses the storage engine to set a temporary flag indicating that we've already notified the user.
 
 ```ts
-new Limiter()
-  .tokenBucket({ bucketSize: 10, ... })
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
+new Limiter<Context>()
+  .tokenBucket({ bucketSize: 10, tokensPerInterval: 3, interval: 3000 })
   .onThrottled(async (ctx, info, storage) => { // <-- `storage` is passed
     const userId = ctx.from?.id;
     if (!userId) return; // Cannot create a lock without a user ID
@@ -322,13 +346,16 @@ The `.fixedWindow()` strategy supports a **dynamic limit generator**. Instead of
 **Example: Give chat admins a higher limit**
 
 ```ts
-async function isAdmin(ctx) {
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
+async function isAdmin(ctx: Context) {
   if (!ctx.chat || ctx.chat.type === "private") return false;
   const user = await ctx.getChatMember(ctx.from.id);
   return ["creator", "administrator"].includes(user.status);
 }
 
-new Limiter().fixedWindow({
+new Limiter<Context>().fixedWindow({
   // `limit` is now a function that returns a number.
   limit: async (ctx) => ((await isAdmin(ctx)) ? 100 : 5),
   timeFrame: 60_000,
@@ -341,15 +368,21 @@ The `dynamicLimitGenerator` feature is currently exclusive to the `.fixedWindow(
 However, it is possible to achieve similar dynamic behavior for token buckets by **composing multiple, separate rules** and using `.onlyIf()` to select the appropriate one for the context.
 
 ```ts
+import { Bot, type Context } from "grammy";
+import { limit, Limiter } from "@grammyjs/ratelimiter";
+
+declare const bot: Bot;
+declare function isAdmin(ctx: Context): Promise<boolean>;
+
 // Rule for regular users
-bot.use(limit(new Limiter()
-  .tokenBucket({ bucketSize: 5, ... })
+bot.use(limit(new Limiter<Context>()
+  .tokenBucket({ bucketSize: 5, tokensPerInterval: 2, interval: 3000 })
   .onlyIf((ctx) => !isAdmin(ctx))
 ));
 
 // A separate, more generous rule for admins
-bot.use(limit(new Limiter()
-  .tokenBucket({ bucketSize: 100, ... })
+bot.use(limit(new Limiter<Context>()
+  .tokenBucket({ bucketSize: 100, tokensPerInterval: 50, interval: 1000 })
   .onlyIf((ctx) => isAdmin(ctx))
 ));
 ```
@@ -365,10 +398,13 @@ For persistent spammers, the **Penalty Box** feature allows you to temporarily "
 **Example: Mute a user and increase the penalty for repeat offenses**
 
 ```ts
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
+
 // For a production bot, this state should be stored in a proper database.
 const penaltyCounts = new Map<number, number>();
 
-new Limiter().withPenalty({
+new Limiter<Context>().withPenalty({
   penaltyTime: (ctx, info) => {
     const userId = ctx.from.id;
     const count = (penaltyCounts.get(userId) ?? 0) + 1;
@@ -395,7 +431,12 @@ For advanced logging, analytics, or monitoring, you can listen to events that th
 **Example: Logging penalties**
 
 ```ts
-const commandLimiter = new Limiter().fixedWindow({
+import { Bot, type Context } from "grammy";
+import { limit, Limiter } from "@grammyjs/ratelimiter";
+
+declare const bot: Bot;
+
+const commandLimiter = new Limiter<Context>().fixedWindow({
   limit: 1,
   timeFrame: 10_000,
 }).withPenalty({ penaltyTime: 30_000 });
@@ -478,6 +519,8 @@ Most popular Redis libraries are structurally compatible. You only need to use a
 ::: code-group
 
 ```ts [ioredis (Node.js)]
+import type { Context } from "grammy";
+import { Limiter } from "@grammyjs/ratelimiter";
 import { type IRedisClient, RedisStore } from "@grammyjs/ratelimiter/storages";
 import Ioredis from "ioredis";
 
@@ -489,10 +532,12 @@ const ioredisClient = new Ioredis();
 const storage = new RedisStore(ioredisClient as unknown as IRedisClient);
 
 // 3. Use it in your limiter.
-new Limiter().useStorage(storage);
+new Limiter<Context>().useStorage(storage);
 ```
 
 ```ts [deno-redis (Deno)]
+import type { Context } from "https://deno.land/x/grammy/mod.ts";
+import { Limiter } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 import {
   type IRedisClient,
   RedisStore,
@@ -506,7 +551,7 @@ const denoRedisClient = await connect({ hostname: "127.0.0.1" });
 const storage = new RedisStore(denoRedisClient as unknown as IRedisClient);
 
 // 3. Use it in your limiter.
-new Limiter().useStorage(storage);
+new Limiter<Context>().useStorage(storage);
 ```
 
 :::
@@ -522,11 +567,14 @@ If your Redis client has different method names, you can easily create an adapte
 **Example: Adapting a fictional `weird-redis` client**
 
 ```ts
+import type { IRedisClient } from "@grammyjs/ratelimiter/storages";
+import { RedisStore } from "@grammyjs/ratelimiter/storages";
+
 class WeirdRedisClient {
-  weirdLoad(script) {
+  weirdLoad(script: string): Promise<string> {
     // some implementation
   }
-  weirdRun(sha, params) {
+  weirdRun(sha: string, params: { keys: string[], args: (string | number)[] }): Promise<unknown> {
     // some implementation
   }
   // ... other different methods
@@ -571,6 +619,7 @@ This file will be the single source of truth for all your rate-limiting rules.
 **File: `src/middlewares/ratelimiter.ts`**
 
 ```typescript
+import { type Context } from "grammy";
 import { limit, Limiter } from '@grammyjs/ratelimiter';
 import { RedisStore, type IRedisClient } from '@grammyjs/ratelimiter/storages';
 import Ioredis from 'ioredis';
@@ -579,17 +628,17 @@ const ioredisClient = new Ioredis();
 const storage = new RedisStore(ioredisClient as unknown as IRedisClient);
 
 // Define all your rules here...
-const globalLimiter = new Limiter()...
-const imagineLimiter = new Limiter()...
-const privateChatLimiter = new Limiter()...
+const globalLimiter = new Limiter<Context>()...
+const imagineLimiter = new Limiter<Context>()...
+const privateChatLimiter = new Limiter<Context>()...
 
 // Set up event listeners...
 imagineLimiter.on('penaltyApplied', ...);
 
 // Export the configured middleware, ready to use.
 export const rateLimiters = [
-	limit(globalLimiter.build()),
-	limit(imagineLimiter), // You can also pass the builder directly
+	limit(globalLimiter),
+	limit(imagineLimiter),
 	limit(privateChatLimiter.build()),
 ];
 ```
