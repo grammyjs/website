@@ -87,7 +87,20 @@ bot.on("business_message").filter(
 更具体地说，你将收到 `edited_business_message` 或 `deleted_business_messages` update。
 你的 bot 可以正常使用 `bot.on` 及其无数的 [filter queries](../guide/filter-queries) 处理它们。
 
-然而，你的 bot **不能**编辑或删除聊天中的消息。
+你可以使用 `ctx.editMessageText` 或其变体以通常的方式编辑消息。
+
+```ts
+bot.on("business_message").filter(async (ctx) => {
+  const conn = await ctx.getBusinessConnection();
+  return ctx.msg.text === "This message will be edited" &&
+    ctx.from.id === conn.user.id;
+}, async (ctx) => {
+  await ctx.editMessageText("Edited!");
+});
+```
+
+然而，你的 bot **不能**删除聊天中的消息。
+
 同样，你的 bot 也**不能**转发消息，或将其复制到其他地方。
 所有这些事情都留给真人去做。
 
