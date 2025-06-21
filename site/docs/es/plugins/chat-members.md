@@ -36,7 +36,6 @@ import { API_CONSTANTS, Bot } from "grammy";
 import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
 
 const bot = new Bot("");
-
 const groups = bot.chatType(["group", "supergroup"]);
 
 // SIN este plugin, para reaccionar cada vez que un usuario se une a un grupo, tienes que
@@ -96,7 +95,6 @@ import { API_CONSTANTS, Bot } from "grammy";
 import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
 
 const bot = new Bot("");
-
 const groups = bot.chatType(["group", "supergroup"]);
 
 // SIN este plugin, para reaccionar cada vez que un usuario se une a un grupo, tienes que
@@ -159,7 +157,6 @@ import {
 } from "https://deno.land/x/grammy_chat_members/mod.ts";
 
 const bot = new Bot("");
-
 const groups = bot.chatType(["group", "supergroup"]);
 
 // SIN este plugin, para reaccionar cada vez que un usuario se une a un grupo, tienes que
