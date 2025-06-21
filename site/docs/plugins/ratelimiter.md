@@ -284,19 +284,20 @@ import { Limiter } from "@grammyjs/ratelimiter";
 
 const MY_LIMIT = 5;
 
-new Limiter<Context>().fixedWindow({ limit: MY_LIMIT, timeFrame: 60_000 }).onThrottled(
-  async (ctx, info) => {
-    // Check if this is the first throttled request in the window.
-    if (info.remaining === -1) {
-      const remainingSeconds = Math.ceil(info.reset / 1000);
+new Limiter<Context>().fixedWindow({ limit: MY_LIMIT, timeFrame: 60_000 })
+  .onThrottled(
+    async (ctx, info) => {
+      // Check if this is the first throttled request in the window.
+      if (info.remaining === -1) {
+        const remainingSeconds = Math.ceil(info.reset / 1000);
 
-      await ctx.reply(
-        `You have hit the limit. Please wait ${remainingSeconds} seconds.`,
-      );
-    }
-    // For all subsequent throttled requests (remaining < -1), this block is skipped.
-  },
-);
+        await ctx.reply(
+          `You have hit the limit. Please wait ${remainingSeconds} seconds.`,
+        );
+      }
+      // For all subsequent throttled requests (remaining < -1), this block is skipped.
+    },
+  );
 ```
 
 ##### **Method 2: The Notification Lock (Universal Solution)**
@@ -320,7 +321,7 @@ new Limiter<Context>()
       const remainingSeconds = Math.ceil(info.reset / 1000);
 
       await ctx.reply(
-        `You are sending messages too fast! Please wait ${remainingSeconds} seconds.`
+        `You are sending messages too fast! Please wait ${remainingSeconds} seconds.`,
       );
 
       // Set the lock with a 60-second TTL.
@@ -375,15 +376,17 @@ declare const bot: Bot;
 declare function isAdmin(ctx: Context): Promise<boolean>;
 
 // Rule for regular users
-bot.use(limit(new Limiter<Context>()
-  .tokenBucket({ bucketSize: 5, tokensPerInterval: 2, interval: 3000 })
-  .onlyIf((ctx) => !isAdmin(ctx))
+bot.use(limit(
+  new Limiter<Context>()
+    .tokenBucket({ bucketSize: 5, tokensPerInterval: 2, interval: 3000 })
+    .onlyIf((ctx) => !isAdmin(ctx)),
 ));
 
 // A separate, more generous rule for admins
-bot.use(limit(new Limiter<Context>()
-  .tokenBucket({ bucketSize: 100, tokensPerInterval: 50, interval: 1000 })
-  .onlyIf((ctx) => isAdmin(ctx))
+bot.use(limit(
+  new Limiter<Context>()
+    .tokenBucket({ bucketSize: 100, tokensPerInterval: 50, interval: 1000 })
+    .onlyIf((ctx) => isAdmin(ctx)),
 ));
 ```
 
@@ -574,7 +577,10 @@ class WeirdRedisClient {
   weirdLoad(script: string): Promise<string> {
     // some implementation
   }
-  weirdRun(sha: string, params: { keys: string[], args: (string | number)[] }): Promise<unknown> {
+  weirdRun(
+    sha: string,
+    params: { keys: string[]; args: (string | number)[] },
+  ): Promise<unknown> {
     // some implementation
   }
   // ... other different methods
