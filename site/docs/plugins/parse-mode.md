@@ -5,6 +5,7 @@ next: false
 
 # Parse Mode Plugin (`parse-mode`)
 
+
 Telegram supports [styled messages](https://core.telegram.org/bots/api#messageentity).
 This library brings simplified formatting utilities to grammY.
 It enables you to compose richly formatted messages using a declarative, type-safe API.
