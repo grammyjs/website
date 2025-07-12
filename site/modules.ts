@@ -100,6 +100,7 @@ export const modules: ModuleConfig[] = [
   {
     repo: "ratelimiter",
     slug: "ratelimiter",
+    entrypoint: "mod.ts",
     name: "Ratelimiter Plugin",
     description: desc(
       "the [ratelimiter plugin](/plugins/ratelimiter)",
