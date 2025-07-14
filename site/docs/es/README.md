@@ -100,8 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2025 &middot; grammY soporta Telegram Bot API 9.0 que fue [liberada](https://core.telegram.org/bots/api#april-11-2025) el 11 de Abril del 2025.
-(Última novedad: Mejoras en la cuenta de empresa y en los regalos)
+© 2021-2025 &middot; grammY soporta Telegram Bot API 9.1 que fue [liberada](https://core.telegram.org/bots/api#july-3-2025) el 3 de Julio del 2025.
+(Última novedad: Listas de verificación)
 
 </div>
 </footer>
