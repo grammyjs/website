@@ -45,7 +45,7 @@ cd my-bot
 
 # Set up TypeScript (skip if you use JavaScript).
 pnpm add -D typescript
-npx tsc --init
+pnpm exec tsc --init
 
 # Install grammY.
 pnpm add grammy
