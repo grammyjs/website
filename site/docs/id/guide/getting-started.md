@@ -46,7 +46,7 @@ cd my-bot
 
 # Siapkan TypeScript (lewati jika menggunakan JavaScript).
 pnpm add -D typescript
-npx tsc --init
+pnpm exec tsc --init
 
 # Pasang grammY.
 pnpm add grammy
