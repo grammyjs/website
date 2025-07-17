@@ -1139,7 +1139,7 @@ const op = await conversation.form.select(["+", "-", "*", "/"], {
 });
 ```
 
-Conversational forms even allow you to build custom form fields via [`conversation.form.build`](/ref/conversations/conversationform#build).
+Диалоговые формы так же позволяют вам создавать кастомные поля с помощью [`conversation.form.build`](/ref/conversations/conversationform#build).
 
 ## Таймаут ожидания
 

@@ -42,7 +42,7 @@ mkdir my-bot
 cd my-bot
 # Instala TypeScript (sáltate si usas JavaScript).
 pnpm add -D typescript
-npx tsc --init
+pnpm exec tsc --init
 # Instala grammY.
 pnpm add grammy
 ```
