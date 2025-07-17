@@ -150,6 +150,119 @@ in your terminal before you execute `node bot.js`.
 This makes it easier to debug your bot.
 :::
 
+## Getting Started on Bun
+
+> This guide assumes that you have [Bun](https://bun.sh) installed.
+> If you don't know what these things are, check out our [Introduction](./introduction)!
+
+Create a new project and install the `grammy` package.
+Do this by opening a terminal and typing:
+
+```sh
+# Create a new directory and change into it.
+mkdir my-bot
+cd my-bot
+```
+
+Next, you should initialize your project.
+
+```sh
+# Use bun to init Typescript config
+bunx tsc --init
+# Run bun init to scaffold a new project.
+bun init
+```
+
+After running the command, the script will prompt you to select a project name and an entry point.
+
+```ansi{3-4,12}
+bun init helps you get started with a minimal project and tries to guess sensible defaults. Press ^C anytime to quit
+
+package name (my-bot): my-bot // [!code focus]
+entry point (index.ts): bot.ts // [!code focus]
+
+Done! A package.json file was saved in the current directory.
+ + bot.ts
+ + .gitignore
+ + tsconfig.json (for editor auto-complete)
+ + README.md
+
+To get started, run: // [!code focus]
+  bun run bot.ts // [!code focus]
+```
+
+Finally, you can add the `grammy` package.
+
+```sh
+# Install grammY.
+bun add grammy
+```
+
+Your folder structure should look like this:
+
+```asciiart:no-line-numbers
+.
+├── node_modules/
+├── .gitignore
+├── bot.ts
+├── bun.lockb
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
+Now, it's time to open Telegram to create a bot account, and obtain a bot token for it.
+Talk to [@BotFather](https://t.me/BotFather) to do this.
+The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+It is used to authenticate your bot.
+
+Got the token?
+You can now code your bot in the `bot.ts` file.
+Copy the following example bot into that file, and pass your token to the `Bot` constructor:
+
+```ts [TypeScript]
+import { Bot } from "grammy";
+
+// Create an instance of the `Bot` class and pass your bot token to it.
+const bot = new Bot(""); // <-- put your bot token between the ""
+
+// You can now register listeners on your bot object `bot`.
+// grammY will call the listeners when users send messages to your bot.
+
+// Handle the /start command.
+bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+// Handle other messages.
+bot.on("message", (ctx) => ctx.reply("Got another message!"));
+
+// Now that you specified how to handle messages, you can start your bot.
+// This will connect to the Telegram servers and wait for messages.
+
+// Start the bot.
+bot.start();
+```
+
+You can now run the bot by executing
+
+```sh
+bun run bot.ts
+```
+
+in your terminal.
+Done! :tada:
+
+Head over to Telegram to watch your bot respond to messages!
+
+::: tip Enabling Logging
+You can enable basic logging by running
+
+```sh
+export DEBUG="grammy*"
+```
+
+in your terminal before you execute `bun run bot.ts`.
+This will make it easier to debug your bot.
+:::
+
 ## Getting Started on Deno
 
 > This guide assumes that you have [Deno](https://deno.com) installed.
