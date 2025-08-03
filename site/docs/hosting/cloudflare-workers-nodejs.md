@@ -23,172 +23,19 @@ If you're looking for the Deno version, please check out [this tutorial](./cloud
 
 ## Setting Things Up
 
-First, create a new project:
+First, [create a new project](https://developers.cloudflare.com/workers/get-started/guide/#1-create-a-new-worker-project):
 
 ```sh
 npm create cloudflare@latest
 ```
 
-Then, you will be asked to enter the name of the worker:
-
-```ansi{6}
-using create-cloudflare version 2.17.1
-
-╭ Create an application with Cloudflare Step 1 of 3
-│
-╰ In which directory do you want to create your application? also used as application name  // [!code focus]
-  ./grammybot  // [!code focus]
-```
-
-Here we create a project named `grammybot`, you can choose your own, this will be the name of your worker as well as a part of the request URL.
-
-::: tip
-You can change the name of your worker in `wrangler.toml` later.
-:::
-
-Next, you will be asked to select the type of your worker, here we choose `"Hello World" Worker`:
-
-```ansi{8}
-using create-cloudflare version 2.17.1
-
-╭ Create an application with Cloudflare Step 1 of 3
-│
-├ In which directory do you want to create your application?
-│ dir ./grammybot
-│
-╰ What type of application do you want to create?  // [!code focus]
-  ● "Hello World" Worker  // [!code focus]
-  ○ "Hello World" Worker (Python)  // [!code focus]
-  ○ "Hello World" Durable Object  // [!code focus]
-  ○ Website or web app  // [!code focus]
-  ○ Example router & proxy Worker  // [!code focus]
-  ○ Scheduled Worker (Cron Trigger)  // [!code focus]
-  ○ Queue consumer & producer Worker  // [!code focus]
-  ○ API starter (OpenAPI compliant)  // [!code focus]
-  ○ Worker built from a template hosted in a git repository  // [!code focus]
-```
-
-Next, you will be asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`.
-Here we choose `Yes`:
-
-```ansi{11}
-using create-cloudflare version 2.17.1
-
-╭ Create an application with Cloudflare Step 1 of 3
-│
-├ In which directory do you want to create your application?
-│ dir ./grammybot
-│
-├ What type of application do you want to create?
-│ type "Hello World" Worker
-│
-╰ Do you want to use TypeScript?  // [!code focus]
-  Yes / No  // [!code focus]
-```
-
-Your project will be set up in a few minutes.
-After that, you will be asked whether you want to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize it by yourself later.
-
-Here we choose `Yes`:
-
-```ansi{36}
-using create-cloudflare version 2.17.1
-
-╭ Create an application with Cloudflare Step 1 of 3
-│
-├ In which directory do you want to create your application?
-│ dir ./grammybot
-│
-├ What type of application do you want to create?
-│ type "Hello World" Worker
-│
-├ Do you want to use TypeScript?
-│ yes typescript
-│
-├ Copying template files
-│ files copied to project directory
-│
-├ Updating name in `package.json`
-│ updated `package.json`
-│
-├ Installing dependencies
-│ installed via `npm install`
-│
-╰ Application created
-
-╭ Configuring your application for Cloudflare Step 2 of 3
-│
-├ Installing @cloudflare/workers-types
-│ installed via npm
-│
-├ Adding latest types to `tsconfig.json`
-│ added @cloudflare/workers-types/2023-07-01
-│
-├ Retrieving current workerd compatibility date
-│ compatibility date 2024-04-05
-│
-╰ Do you want to use git for version control?  // [!code focus]
-  Yes / No  // [!code focus]
-```
-
-Finally, you will be asked whether you want to deploy your worker, choose `No`, since we are going to deploy it when we have a working Telegram bot:
-
-```ansi{49}
-using create-cloudflare version 2.17.1
-
-╭ Create an application with Cloudflare Step 1 of 3
-│
-├ In which directory do you want to create your application?
-│ dir ./grammybot
-│
-├ What type of application do you want to create?
-│ type "Hello World" Worker
-│
-├ Do you want to use TypeScript?
-│ yes typescript
-│
-├ Copying template files
-│ files copied to project directory
-│
-├ Updating name in `package.json`
-│ updated `package.json`
-│
-├ Installing dependencies
-│ installed via `npm install`
-│
-╰ Application created
-
-╭ Configuring your application for Cloudflare Step 2 of 3
-│
-├ Installing @cloudflare/workers-types
-│ installed via npm
-│
-├ Adding latest types to `tsconfig.json`
-│ added @cloudflare/workers-types/2023-07-01
-│
-├ Retrieving current workerd compatibility date
-│ compatibility date 2024-04-05
-│
-├ Do you want to use git for version control?
-│ yes git
-│
-├ Initializing git repo
-│ initialized git
-│
-├ Committing new files
-│ git commit
-│
-╰ Application configured
-
-╭ Deploy with Cloudflare Step 3 of 3
-│
-╰ Do you want to deploy your application?  // [!code focus]
-  Yes / No  // [!code focus]
-```
+Follow the instructions to set up the project.
+In this guide, we assume that you start the project with the `Hello World` example in TypeScript.
+The rest of the options are on your own.
 
 ## Install Dependencies
 
-`cd` into `grammybot` (replace this by your worker's name you set above), install `grammy`, and other packages you might need:
+`cd` into your project directory, install `grammy`, and other packages you might need:
 
 ```sh
 npm install grammy
@@ -196,7 +43,7 @@ npm install grammy
 
 ## Creating Your Bot
 
-Edit `src/index.js` or `src/index.ts`, and write this code inside:
+Edit `src/index.ts`, and write this code inside:
 
 ```ts{12,29-30,33-38,41}
 /**
@@ -243,9 +90,13 @@ export default {
 };
 ```
 
-Here, we first import `Bot`, `Context` and `webhookCallback` from `grammy`.
+Here, we first import `env` from `cloudflare:workers` to access your environment variables and secrets in the global scope.
+Then, we import `Bot`, `Context` and `webhookCallback` from `grammy` to set up the bot.
 
-Inside the interface `Env`, we add a variable `BOT_INFO`, this is an environment variable that stores your bot info, you can get your bot info by calling Telegram Bot API with `getMe` method.
+Inside the interface `Env`, we add a variable `BOT_INFO`.
+This is an environment variable that stores your bot info.
+You can get your bot info by calling Telegram Bot API with `getMe` method.
+
 Open this link in your web browser:
 
 ```ansi:no-line-numbers
@@ -271,11 +122,12 @@ If successful, you will see a JSON response similar to this:
 }
 ```
 
-Now, open `wrangler.toml` in the root of your project and add an environment variable `BOT_INFO` under `[vars]` section with the value from `result` object you get above like this:
+Store this info as the [secrets](https://developers.cloudflare.com/workers/configuration/secrets/) of your project.
+In development, they can be set in the `.dev.vars` file, and in production, via the dashboard.
 
-```toml
-[vars]
-BOT_INFO = """{
+```env
+BOT_TOKEN=
+BOT_INFO='{
     "id": 1234567890,
     "is_bot": true,
     "first_name": "mybot",
@@ -284,35 +136,8 @@ BOT_INFO = """{
     "can_read_all_group_messages": false,
     "supports_inline_queries": true,
     "can_connect_to_business": false
-}"""
+}'
 ```
-
-Replace the bot info with what you get from the web browser.
-Pay attention to the three double quotation marks `"""` at the beginning and end.
-
-In addition to `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an environment variable that stores your bot token that is used to create your bot.
-
-You may notice that we just define the variable `BOT_TOKEN`, but didn't assign it yet.
-Usually you need to store your environment variable in `wrangler.toml`, however, this is not safe in our case, since the bot token should be kept secret.
-Cloudflare Workers provide us a safe way to store sensitive information like API keys and auth tokens in environment variable: [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)!
-
-::: tip
-Secret values are not visible within Wrangler or the Cloudflare dashboard after you define them.
-:::
-
-You can add a secret to your project using the following command:
-
-```sh
-npx wrangler secret put BOT_TOKEN
-```
-
-Follow the instruction and input your bot token, your bot token will be uploaded and encrypted.
-
-::: tip
-You can change to whatever name you want for the environment variables, but keep in mind that you do the same in following steps.
-:::
-
-Inside the function `fetch()`, we create a bot with `BOT_TOKEN` which replies "Hello, world!" when it receives `/start`.
 
 ## Deploying Your Bot
 
@@ -337,9 +162,9 @@ If the setup is successful, you'll see a JSON response like this:
 
 ```json
 {
-  "ok": true,
-  "result": true,
-  "description": "Webhook was set"
+    "ok": true,
+    "result": true,
+    "description": "Webhook was set"
 }
 ```
 
@@ -351,28 +176,6 @@ If it responds, it means you're good to go!
 ## Debugging Your Bot
 
 For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
-
-In a development environment, your bot doesn't have access to your secret environment variables.
-So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#local-development-with-secrets), you can create a `.dev.vars` file in the root of your project to define secrets:
-
-```env
-BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
-```
-
-Don't forget to add `BOT_INFO` for development as well.
-Click [here](https://developers.cloudflare.com/workers/configuration/environment-variables/) and [here](https://developers.cloudflare.com/workers/configuration/secrets/) for more details about environment variables and secrets.
-
-Replace `BOT_INFO` and `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
-
-::: tip
-You can use a different bot token for development to ensure it doesn't affect production.
-:::
-
-Now, you can run the following command to start a development server:
-
-```sh
-npm run dev
-```
 
 Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
 Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for update examples and [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
