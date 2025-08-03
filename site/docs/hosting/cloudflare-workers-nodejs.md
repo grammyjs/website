@@ -45,7 +45,7 @@ npm install grammy
 
 Edit `src/index.ts`, and write this code inside:
 
-```ts{12,29-30,33-38,41}
+```ts
 import { env } from "cloudflare:workers";
 import { Bot, Context, webhookCallback } from "grammy";
 
