@@ -1264,7 +1264,7 @@ This allows you to create a checkpoint along the way.
 A checkpoint contains information about how far the function has run so far.
 It can be used to later jump back to this point.
 
-Naturally, any actions performed in the meantime will not be undone.
+Naturally, any IO performed in the meantime will not be undone.
 In particular, rewinding to a checkpoint will not magically unsend any messages.
 
 ```ts

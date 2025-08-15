@@ -87,7 +87,20 @@ Cuando usted o su cliente editen o borren mensajes en su chat, su bot será noti
 Más concretamente, recibirá las actualizaciones `edited_business_message` o `deleted_business_messages`.
 Tu bot puede gestionarlas de forma normal utilizando `bot.on` y sus innumerables [consultas de filtro](../guide/filter-queries).
 
-Sin embargo, tu bot **NO** puede editar o borrar mensajes en el chat.
+Puede editar el mensaje de la forma habitual, utilizando `ctx.editMessageText` u otras variantes del mismo.
+
+```ts
+bot.on("business_message").filter(async (ctx) => {
+  const conn = await ctx.getBusinessConnection();
+  return ctx.msg.text === "Este mensaje será editado" &&
+    ctx.from.id === conn.user.id;
+}, async (ctx) => {
+  await ctx.editMessageText("¡Editado!");
+});
+```
+
+Sin embargo, tu bot **NO** puede borrar mensajes en el chat.
+
 Del mismo modo, tu bot **NO** puede reenviar mensajes desde el chat, o copiarlos en otro lugar.
 Todo esto queda en manos de los humanos.
 

@@ -1139,7 +1139,7 @@ const op = await conversation.form.select(["+", "-", "*", "/"], {
 });
 ```
 
-Conversational forms even allow you to build custom form fields via [`conversation.form.build`](/ref/conversations/conversationform#build).
+Диалоговые формы так же позволяют вам создавать кастомные поля с помощью [`conversation.form.build`](/ref/conversations/conversationform#build).
 
 ## Wait Timeouts
 
@@ -1277,7 +1277,7 @@ async function convo(conversation, ctx) {
 Контрольная точка содержит информацию о том, насколько далеко выполнена функция на текущий момент.
 Она может быть использована для возврата к этой точке позже.
 
-Естественно, любые действия, выполненные в промежутке, не будут отменены.
+Естественно, все выполненные за это время операции ввода-вывода не будут отменены.
 В частности, возврат к контрольной точке не отменяет отправленные сообщения.
 
 ```ts
