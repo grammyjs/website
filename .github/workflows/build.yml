@@ -27,7 +27,7 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@main
         with:
-          deno-version: "2.3.7"
+          deno-version: "2.1.6"
 
       - name: Generate files
         run: deno task setup
