@@ -618,6 +618,7 @@ This feature is for those who are really looking to go wild, it allows you to cr
 myCommands
   .command(
     /delete_([a-zA-Z]+)/,
+    "Delete this",
     (ctx) => ctx.reply(`Deleting ${ctx.msg?.text?.split("_")[1]}`),
   );
 ```
