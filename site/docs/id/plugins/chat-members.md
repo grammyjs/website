@@ -5,8 +5,8 @@ next: false
 
 # Plugin Chat Members (`chat-members`)
 
-Mengambil serta menyimpan informasi user dari suatu chat secara mudah dan otomatis.
-Plugin ini bekerja dengan cara memantau anggota grup dan channel, lalu menyimpannya ke dalam sebuah daftar.
+Telegram tidak menyediakan metode di Bot API untuk mendapatkan informasi anggota chat, sehingga kita perlu mengambilnya secara manual.
+Plugin ini mempermudah penggunaan objek `ChatMember`, dengan memberikan cara yang mudah untuk memantau perubahan melalui filter khusus, serta menyimpan dan memperbarui objek.
 
 ## Pengenalan
 
