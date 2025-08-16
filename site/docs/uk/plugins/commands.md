@@ -638,6 +638,7 @@ bot
 myCommands
   .command(
     /delete_([a-zA-Z]+)/,
+    "Видалити це",
     (ctx) => ctx.reply(`Видалення ${ctx.msg?.text?.split("_")[1]}`),
   );
 ```

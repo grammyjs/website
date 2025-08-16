@@ -630,6 +630,7 @@ A basic example would look like this:
 myCommands
   .command(
     /delete_([a-zA-Z]+)/,
+    "Delete this",
     (ctx) => ctx.reply(`Deleting ${ctx.msg?.text?.split("_")[1]}`),
   );
 ```

@@ -630,6 +630,7 @@ bot
 myCommands
   .command(
     /delete_([a-zA-Z]+)/,
+    "删除这个",
     (ctx) => ctx.reply(`Deleting ${ctx.msg?.text?.split("_")[1]}`),
   );
 ```
