@@ -218,6 +218,7 @@ await loggedOutCommands.setCommands(bot);
 Обратите внимание на разные шаблоны, используемые в файлах `admin.ts` и `group.ts`.
 
 ::: code-group
+
 ```ts [bot.ts]
 import { devCommands } from "./commands/admin.ts";
 import { userCommands } from "./commands/users/group.ts";

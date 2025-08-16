@@ -279,9 +279,13 @@ export default new Command<MyContext>("halo", "Ucapkan salam", async (ctx) => {
 ```ts [salam-perpisahan.ts]
 import type { MyContext } from "../../types.ts";
 
-export default new Command<MyContext>("bye", "Ucapkan selamat tinggal", async (ctx) => {
-  await ctx.reply("Sampai jumpa :)");
-});
+export default new Command<MyContext>(
+  "bye",
+  "Ucapkan selamat tinggal",
+  async (ctx) => {
+    await ctx.reply("Sampai jumpa :)");
+  },
+);
 ```
 
 :::
