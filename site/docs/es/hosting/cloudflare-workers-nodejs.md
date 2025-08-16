@@ -198,7 +198,7 @@ npm install grammy
 
 Edita `src/index.js` o `src/index.ts`, y escribe este código dentro:
 
-```ts{11,28-29,38,40-42,44}
+```ts{12,29-30,33-38,41}
 /**
  * ¡Bienvenido a Cloudflare Workers! Este es su primer worker.
  *
@@ -209,6 +209,7 @@ Edita `src/index.js` o `src/index.ts`, y escribe este código dentro:
  * Más información en https://developers.cloudflare.com/workers/
  */
 
+import { env } from "cloudflare:workers";
 import { Bot, Context, webhookCallback } from "grammy";
 
 export interface Env {
@@ -230,20 +231,15 @@ export interface Env {
   BOT_TOKEN: string;
 }
 
+const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
+const handleUpdate = webhookCallback(bot, "cloudflare-mod");
+
+bot.command("start", async (ctx: Context) => {
+  await ctx.reply("¡Hola, mundo!");
+});
+
 export default {
-  async fetch(
-    request: Request,
-    env: Env,
-    ctx: ExecutionContext,
-  ): Promise<Response> {
-    const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
-
-    bot.command("start", async (ctx: Context) => {
-      await ctx.reply("¡Hola, mundo!");
-    });
-
-    return webhookCallback(bot, "cloudflare-mod")(request);
-  },
+  fetch: handleUpdate
 };
 ```
 
