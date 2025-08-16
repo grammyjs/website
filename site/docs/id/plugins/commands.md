@@ -650,6 +650,7 @@ Berikut contoh sederhananya:
 myCommands
   .command(
     /hapus_([a-zA-Z]+)/,
+    "Hapus ini",
     (ctx) => ctx.reply(`Menghapus ${ctx.msg?.text?.split("_")[1]}`),
   );
 ```
