@@ -539,7 +539,7 @@ El predicado `commandNotFound` toma algunas opciones para personalizar su compor
 Además, puedes buscar en varias instancias de `CommandGroup` proporcionando una matriz de `CommandGroup` en lugar de una sola instancia.
 
 La función `commandNotFound` sólo se activará para actualizaciones que contengan texto similar a comandos registrados.
-Por ejemplo, si sólo tienes registrados [comandos con un prefijo personalizado](#prefijo) como `?`, se activará el controlador para cualquier cosa que se parezca a tus comandos, por ejemplo `?sayhi` pero no `/definitivamente_un_comando`.
+Por ejemplo, si sólo tienes registrados [comandos con un prefijo personalizado](#prefix) como `?`, se activará el controlador para cualquier cosa que se parezca a tus comandos, por ejemplo `?sayhi` pero no `/definitivamente_un_comando`.
 
 Lo mismo ocurre a la inversa, si sólo tienes comandos con el prefijo por defecto, sólo se activará en las actualizaciones que se parezcan a `/regular` y `/commands`.
 
@@ -616,7 +616,7 @@ Los comandos con prefijos personalizados no pueden mostrarse en el Menú Comando
 
 ### `matchOnlyAtStart`
 
-Cuando [maneja comandos](../guía/comandos), la biblioteca central de grammY reconoce comandos sólo si empiezan en el primer carácter de un mensaje.
+Cuando [maneja comandos](../guide/commands), la biblioteca central de grammY reconoce comandos sólo si empiezan en el primer carácter de un mensaje.
 El plugin de comandos, sin embargo, te permite escuchar comandos en medio del texto del mensaje, o al final, ¡no importa!
 Simplemente establece la opción `matchOnlyAtStart` en `false`, y el complemento se encargará del resto.
 
