@@ -29,6 +29,10 @@ jobs:
         with:
           deno-version: "2.1.6"
 
+      - name: Install deps
+        run: deno install
+        working-directory: site/
+
       - name: Generate files
         run: deno task setup
         working-directory: site/
