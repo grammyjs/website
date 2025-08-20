@@ -27,7 +27,7 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@main
         with:
-          deno-version: "2.1.6"
+          deno-version: "2.4.4"
 
       - name: Install deps
         run: deno install
