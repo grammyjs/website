@@ -7,14 +7,14 @@ next: false
 
 Paket lengkap penanganan perintah (command).
 
-Plugin ini menyediakan berbagai fitur tambahan yang tidak tersedia di [library inti](../guide/commands).
+Plugin ini menyediakan penanganan perintah (command-handling) tingkat lanjut diluar [library inti](../guide/commands).
 Berikut manfaat yang dapat kamu peroleh:
 
-- Kode jadi lebih mudah dibaca.
+- Kode jadi lebih mudah dibaca dengan merangkum middleware bersama definisi perintah.
 - Sinkronisasi menu perintah user melalui `setMyCommands`.
 - Perintah lebih tertata karena dapat dikelompokkan.
-- Penerapan perintah untuk lingkup tertentu saja, misalnya diatur hanya tersedia untuk admin grup atau channel, dsb.
-- Penerjemahan perintah.
+- Jangkauan perintah, misalnya membatasi akses hanya untuk admin grup atau saluran tertentu.
+- Dukungan penerjemahan perintah.
 - Fitur `Mungkin maksud Anda ...?` yang akan membantu menemukan perintah yang dimaksud ketika user salah ketik.
 - Pencocokan perintah yang tidak peka huruf kapital (case-insensitive).
 - Perilaku tersuai untuk perintah yang secara eksplisit terkandung di mention bot, seperti `/start@bot_kamu`.
@@ -42,7 +42,7 @@ Sekarang, mari kita pelajari alat-alat tambahan yang tersedia di plugin ini.
 
 ## Melakukan Import
 
-Berikut cara meng-import semua class beserta type yang diperlukan:
+Berikut cara meng-import semua class beserta type yang diperlukan dan kelas yang disediakan plugin:
 
 ::: code-group
 
@@ -56,7 +56,7 @@ import {
 ```
 
 ```js [JavaScript]
-const { CommandGroup, commands, commandNotFound } = require(
+const { CommandGroup, commandNotFound, commands } = require(
   "@grammyjs/commands",
 );
 ```
@@ -83,16 +83,12 @@ Method tersebut bertugas untuk mendaftarkan seluruh perintah tadi ke bot kamu.
 ```ts
 const myCommands = new CommandGroup();
 
-myCommands.command(
-  "halo",
-  "Ucapkan salam",
-  (ctx) => ctx.reply("Halo, semuanya!"),
-);
-myCommands.command("start", "Mulai bot", (ctx) => ctx.reply("Memulai..."));
+myCommands.command("halo", "Ucapkan salam", (ctx) => ctx.reply(`Halo, dunia!`));
 
 bot.use(myCommands);
 
-await myCommands.setCommands(bot);
+// Update the user command menu
+await myCommands.setCommands(bot); // [!code highlight]
 ```
 
 Kode di atas akan menampilkan setiap perintah ke menu yang berada di chat pribadi bot kamu, atau setiap kali user mengetik `/` di sebuah chat yang di dalamnya terdapat bot kamu juga.
@@ -108,33 +104,29 @@ Berikut cara mengatasinya menggunakan plugin commands:
 
 ```ts [TypeScript]
 // Gunakan flavor untuk context tersuai.
-type MyContext = Context & CommandsFlavor;
+type MyContext = CommandsFlavor<Context>;
 
 // Gunakan context yang telah dibuat untuk menginisiasi bot kamu.
-const bot = new Bot<MyContext>("token");
+const bot = new Bot<MyContext>(""); // <-- masukkan token bot kamu di antara "" (https://t.me/BotFather)
 
 // Daftarkan pintasan context-nya.
 bot.use(commands());
 
-// Perintah untuk logout.
-const loggedOutCommands = new CommandGroup();
-// Perintah untuk login.
-const loggedInCommands = new CommandGroup();
+const loggedOutCommands = new CommandGroup<MyContext>();
+const loggedInCommands = new CommandGroup<MyContext>();
 
-// Tampilkan perintah masuk (login) ketika user keluar (logout).
 loggedOutCommands.command(
   "login",
-  "Mulai sesi baru",
+  "Mulai sesi dengan bot",
   async (ctx) => {
     await ctx.setMyCommands(loggedInCommands);
     await ctx.reply("Selamat datang! Sesi telah dimulai!");
   },
 );
 
-// Tampilkan perintah keluar (logout) ketika user masuk (login).
 loggedInCommands.command(
   "logout",
-  "Akhiri sesi",
+  "Akhiri sesi dengan bot",
   async (ctx) => {
     await ctx.setMyCommands(loggedOutCommands);
     await ctx.reply("Sampai jumpa :)");
@@ -150,28 +142,26 @@ await loggedOutCommands.setCommands(bot);
 ```
 
 ```js [JavaScript]
+const bot = new Bot(""); // <-- masukkan token bot kamu di antara "" (https://t.me/BotFather)
+
 // Daftarkan pintasan context-nya.
 bot.use(commands());
 
-// Perintah untuk logout.
 const loggedOutCommands = new CommandGroup();
-// Perintah untuk login.
 const loggedInCommands = new CommandGroup();
 
-// Tampilkan perintah masuk (login) ketika user keluar (logout).
 loggedOutCommands.command(
   "login",
-  "Mulai sesi baru",
+  "Mulai sesi dengan bot",
   async (ctx) => {
     await ctx.setMyCommands(loggedInCommands);
     await ctx.reply("Selamat datang! Sesi telah dimulai!");
   },
 );
 
-// Tampilkan perintah keluar (logout) ketika user masuk (login).
 loggedInCommands.command(
   "logout",
-  "Akhiri sesi",
+  "Akhiri sesi dengan bot",
   async (ctx) => {
     await ctx.setMyCommands(loggedOutCommands);
     await ctx.reply("Sampai jumpa :)");
@@ -194,8 +184,8 @@ Keren, bukan?
 ::: danger Ketentuan untuk Nama Perintah
 Seperti yang telah diutarakan di [dokumentasi API Bot Telegram](https://core.telegram.org/bots/api#botcommand), nama perintah hanya boleh terdiri atas:
 
-> 1-32 karakter.
-> Karakter yang diperbolehkan hanya huruf abjad non-kapital (a-z), angka (0-9), dan garis bawah (_).
+1. Antara 1 hingga 32 karakter.
+2. Karakter yang diperbolehkan hanya huruf abjad non-kapital (a-z), angka (0-9), dan garis bawah (_).
 
 Itulah kenapa, pemanggilan `setCommands` atau `setMyCommands` di luar ketentuan di atas menyebabkan sebuah galat atau error.
 Perintah yang tidak mengikuti ketentuan tersebut masih bisa ditambahkan, digunakan, dan ditangani, tetapi tidak akan pernah bisa ditampilkan di menu user.
@@ -212,17 +202,15 @@ Sebagai contoh, kita ingin perintah tertentu hanya tersedia untuk para developer
 Kita bisa melakukannya menggunakan struktur kode berikut:
 
 ```ascii
-src/
-├─ commands/
-│  ├─ admin.ts
-│  ├─ users/
-│  │  ├─ grup.ts
-│  │  ├─ salam-sambutan.ts
-│  │  ├─ salam-perpisahan.ts
-│  │  ├─ ...
-├─ bot.ts
-├─ types.ts
-tsconfig.json
+.
+├── bot.ts
+├── types.ts
+└── commands/
+    ├── admin.ts
+    └── users/
+        ├── group.ts
+        ├── say-hello.ts
+        └── say-bye.ts
 ```
 
 Berikut contoh kode untuk membuat grup perintah yang hanya tersedia untuk developer, serta memperbarui menu perintah di aplikasi Telegram user.
@@ -231,73 +219,73 @@ Perhatikan perbedaan pola yang digunakan di tab `admin.ts` dan `group.ts`.
 ::: code-group
 
 ```ts [types.ts]
-export type MyContext = Context & CommandsFlavor<MyContext>;
+import type { Context } from "grammy";
+
+export type MyContext = CommandsFlavor<Context>;
 ```
 
 ```ts [bot.ts]
-import { commandDev } from "./commands/admin.ts";
-import { commandUser } from "./commands/users/grup.ts";
+import { devCommands } from "./commands/admin.ts";
+import { userCommands } from "./commands/users/group.ts";
 import type { MyContext } from "./types.ts";
 
-export const bot = new Bot<MyContext>("TokenBot");
+export const bot = new Bot<MyContext>(""); // <-- masukkan token bot kamu di antara "" (https://t.me/BotFather)
 
 bot.use(commands());
 
-bot.use(commandDev);
-bot.use(commandUser);
+bot.use(userCommands);
+bot.filter((ctx) => ctx.from?.id == /** Masukkan ID kamu di sini **/)
+      .use(devCommands);
 ```
 
 ```ts [admin.ts]
-import { commandUser } from './users/grup.ts'
-import type { MyContext } from '../types.ts'
+import { userCommands } from './users/group.ts';
+import type { MyContext } from '../types.ts';
 
-export const commandDev = new CommandGroup<MyContext>()
+export const devCommands = new CommandGroup<MyContext>();
 
-commandDev.command('dev_login', 'Ucapkan salam', async (ctx, next) => {
-   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
-      await ctx.reply('Halo, diriku sendiri!')
-      await ctx.setMyCommands(commandUser, commandDev)
-   } else {
-     await next()
-   }
-})
+devCommands.command("devlogin", "Atur menu perintah ke mode dev", async (ctx, next) => {
+  await ctx.reply("Halo, sesama developer! Apakah kita ngopi hari ini juga?");
+  await ctx.setMyCommands(userCommands, devCommands);
+});
 
-commandDev.command('jumlah_user', 'Ucapkan salam', async (ctx, next) => {
-   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
-      await ctx.reply(
-        `User aktif: ${/** Tulis alur kodemu di sini */}`
-    )
-   } else {
-     await next()
-   }
-})
+devCommands.command("usercount", "Tampilkan jumlah user", async (ctx, next) => {
+  await ctx.reply(`Total user: ${/** Logika bisnis kamu */}`);
+});
 
-commandDev.command('dev_logout', 'Ucapkan salam', async (ctx, next) => {
-    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
-       await ctx.reply('Sampai jumpa, diriku!')
-       await ctx.setMyCommands(commandUser)
-   } else {
-     await next()
-   }
- })
+devCommands.command("devlogout", "Reset menu perintah ke mode user", async (ctx, next) => {
+  await ctx.reply("Sampai commit berikutnya!");
+  await ctx.setMyCommands(userCommands);
+});
 ```
 
-```ts [grup.ts]
+```ts [group.ts]
 import salamSambutan from "./salam-sambutan.ts";
 import salamPerpisahan from "./salam-perpisahan.ts";
-import dsb from "./command-lainnya.ts";
 import type { MyContext } from "../../types.ts";
 
 export const userCommands = new CommandGroup<MyContext>()
   .add([salamSambutan, salamPerpisahan]);
 ```
 
-```ts [salamSambutan.ts]
+```ts [salam-sambutan.ts]
 import type { MyContext } from "../../types.ts";
 
 export default new Command<MyContext>("halo", "Ucapkan salam", async (ctx) => {
   await ctx.reply("Halo, user keren!");
 });
+```
+
+```ts [salam-perpisahan.ts]
+import type { MyContext } from "../../types.ts";
+
+export default new Command<MyContext>(
+  "bye",
+  "Ucapkan selamat tinggal",
+  async (ctx) => {
+    await ctx.reply("Sampai jumpa :)");
+  },
+);
 ```
 
 :::
@@ -337,20 +325,20 @@ Berikut contoh penggunaan lingkup perintah:
 const myCommands = new CommandGroup();
 
 myCommands
-  .command("start", "Mulai konfigurasi bot")
-  .addToScope(
-    { type: "all_private_chats" },
-    (ctx) => ctx.reply(`Halo, ${ctx.chat.first_name}!`),
-  )
+  .command("halo", "Ucapkan salam")
   .addToScope(
     { type: "all_group_chats" },
     (ctx) => ctx.reply(`Halo, anggota ${ctx.chat.title}!`),
+  )
+  .addToScope(
+    { type: "all_private_chats" },
+    (ctx) => ctx.reply(`Halo, ${ctx.chat.first_name}!`),
   );
 ```
 
-Perintah `start` sekarang bisa dipanggil baik dari obrolan privat maupun grup.
+Perintah `halo` sekarang bisa dipanggil baik dari obrolan privat maupun grup.
 Responnya pun akan berbeda berdasarkan sumber obrolannya.
-Selain itu, jika kamu memanggil `myCommands.setCommands`, perintah `start` akan ditambahkan baik untuk obrolan privat maupun grup.
+Selain itu, jika kamu memanggil `myCommands.setCommands`, perintah `halo` akan ditambahkan baik untuk obrolan privat maupun grup.
 
 Berikut contoh sebuah perintah yang hanya bisa diakses melalui grup admin.
 
@@ -421,47 +409,47 @@ Untuk mempermudah pekerjaan, grammY menyediakan sebuah object enum `LanguageCode
 ::: code-group
 
 ```ts [TypeScript]
-import { LanguageCodes } from "grammy/types";
+import { LanguageCodes } from "@grammyjs/commands";
 
 myCommands.command(
   "chef",
-  "Fried chicken delivery",
-  (ctx) => ctx.reply("Fried chicken on the plate!"),
+  "Steak delivery",
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
     LanguageCodes.Indonesian,
-    "Sajikan ayam goreng",
-    "Ayam goreng siap disajikan!",
+    "koki",
+    "Pengiriman steak",
   );
 ```
 
 ```js [JavaScript]
-const { LanguageCodes } = require("grammy/types");
+const { LanguageCodes } = require("@grammyjs/commands");
 
 myCommands.command(
   "chef",
-  "Fried chicken delivery",
-  (ctx) => ctx.reply("Fried chicken on the plate!"),
+  "Steak delivery",
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
     LanguageCodes.Indonesian,
-    "Sajikan ayam goreng",
-    "Ayam goreng siap disajikan!",
+    "koki",
+    "Pengiriman steak",
   );
 ```
 
 ```ts [Deno]
-import { LanguageCodes } from "https://deno.land/x/grammy/types.ts";
+import { LanguageCodes } from "https://deno.land/x/grammy_commands/mod.ts";
 
 myCommands.command(
   "chef",
-  "Fried chicken delivery",
-  (ctx) => ctx.reply("Fried chicken on the plate!"),
+  "Steak delivery",
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
     LanguageCodes.Indonesian,
-    "Sajikan ayam goreng",
-    "Ayam goreng siap disajikan!",
+    "koki",
+    "Pengiriman steak",
   );
 ```
 
@@ -501,7 +489,7 @@ Cara penggunaanya pun tidak rumit:
 type MyContext = Context & CommandsFlavor;
 
 // Gunakan context yang telah dibuat untuk menginisiasi bot kamu.
-const bot = new Bot<MyContext>("token");
+const bot = new Bot<MyContext>(""); // <-- masukkan token bot kamu di antara "" (https://t.me/BotFather)
 const myCommands = new CommandGroup<MyContext>();
 
 // ... Daftarkan perintah-perintahnya.
@@ -524,7 +512,7 @@ bot
 ```
 
 ```js [JavaScript]
-const bot = new Bot("token");
+const bot = new Bot(""); // <-- masukkan token bot kamu di antara "" (https://t.me/BotFather)
 const myCommands = new CommandGroup();
 
 // ... Daftarkan perintah-perintahnya.
@@ -548,10 +536,13 @@ bot
 
 :::
 
-Di balik layar, `commandNotFound` menggunakan method context `getNearestCommand` yang secara bawaan memprioritaskan perintah berdasarkan bahasa user.
-Jika kamu tidak menghendakinya, atur nilai flag `ignoreLocalization` menjadi `true`.
-Pencarian di beberapa instansiasi `CommandGroup` juga dimungkinkan karena `ctx.commandSuggestion` juga akan mencari perintah yang paling mirip di semua instansiasi tersebut.
-Selain itu, kamu bisa mengatur flag `ignoreCase` untuk mengabaikan peka huruf kapital (case-sensitive) ketika mencari perintah yang serupa, dan flag `similarityThreshold` untuk mengatur tingkat kemiripan suatu perintah hingga layak dijadikan sebuah saran.
+Predicate `commandNotFound` menerima beberapa opsi untuk menyesuaikan perilakunya:
+
+- `ignoreLocalization`: Jangan prioritaskan perintah yang sesuai dengan bahasa user.
+- `ignoreCase`: Memungkinkan plugin mengabaikan perbedaan huruf kapital ketika mencari perintah yang mirip.
+- `similarityThreshold`: Menentukan seberapa mirip nama perintah harus dengan input user agar bisa disarankan.
+
+Selain itu, kamu bisa mencari di beberapa instansiasi `CommandGroup` dengan menyediakan array `CommandGroup` alih-alih hanya satu instansiasi.
 
 Function `commandNotFound` akan terpicu hanya untuk update yang mengandung teks perintah yang mirip dengan perintah-perintah yang kamu telah kamu daftarkan.
 Misalnya, jika kamu mendaftarkan [perintah yang menggunakan awalan tersuai](#prefix) seperti `?`, ia akan memicu penangan terkait untuk semua entitas yang mirip dengan perintah tersebut.
@@ -630,15 +621,17 @@ Kamu bisa memanfaatkan opsi `prefix` supaya plugin mencari awalan yang dimaksud 
 Jika kamu perlu mengambil entity `botCommand` dari suatu update untuk kemudian dihidrasi menggunakan awalan tersuai yang telah didaftarkan, kamu bisa menggunakan method bernama `ctx.getCommandEntities(perintahKamu)`.
 Ia mengembalikan interface yang sama dengan `ctx.entities('bot_command')`.
 
-:::tip
+::: danger
+
 Perintah dengan awalan tersuai tidak dapat ditampilkan di menu perintah user.
+
 :::
 
 ### `matchOnlyAtStart`
 
-Ketika [menangani perintah](../guide/commands), library inti grammY hanya akan mengenali perintah yang terletak di awal kalimat.
+Ketika [menangani perintah](../guide/commands), library inti grammY mengenali perintah yang terletak di awal karakter pada pesan.
 Berbeda dengan plugin commands, Ia mampu menyimak perintah baik yang terletak di pertengahan, maupun di akhir kalimat.
-Cukup atur nilai opsi `matchOnlyAtStart` menjadi `false` untuk mengaktifkannya.
+Cukup atur nilai opsi `matchOnlyAtStart` menjadi `false`, dan plugin akan menangani sisanya.
 
 ## Perintah RegExp
 
