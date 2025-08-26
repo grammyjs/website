@@ -380,7 +380,7 @@ Sin embargo, aunque este comportamiento tiene algunos casos de uso válidos, est
 Recuerda que una vez que respondas a una solicitud de webhook, Telegram enviará la siguiente actualización para ese chat.
 Sin embargo, como la antigua actualización todavía se está procesando, dos actualizaciones que antes se procesaban secuencialmente, de repente se procesan en paralelo.
 Esto puede llevar a condiciones de carrera.
-Por ejemplo, el plugin de sesión se romperá inevitablemente debido a los peligros de [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)).
+Por ejemplo, el plugin de sesión se romperá inevitablemente debido a los peligros de [WAR](https://handwiki.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)).
 **Esto provoca la pérdida de datos.**
 Otros plugins e incluso su propio middleware pueden romperse también.
 El alcance de esto es desconocido y depende de tu bot.
