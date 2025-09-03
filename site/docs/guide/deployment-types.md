@@ -379,7 +379,7 @@ However, while this behavior has some valid use cases, such a solution usually c
 Remember that once you respond to a webhook request, Telegram will send the next update for that chat.
 However, as the old update is still being processed, two updates which were previously processed sequentially, are suddenly processed in parallel.
 This can lead to race conditions.
-For example, the session plugin will inevitably break due to [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) hazards.
+For example, the session plugin will inevitably break due to [WAR](https://handwiki.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) hazards.
 **This causes data loss!**
 Other plugins and even your own middleware may break too.
 The extent of this is unknown and depends on your bot.

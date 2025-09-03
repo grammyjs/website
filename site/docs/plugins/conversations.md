@@ -512,7 +512,7 @@ If you only specify `otherwise` in one of the chained wait calls, then it will o
 
 ### Inspecting Context Objects
 
-It is very common to [destructure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the received context objects.
+It is very common to [destructure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring) the received context objects.
 You can then perform further checks on the received data.
 
 ```ts
