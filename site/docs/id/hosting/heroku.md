@@ -191,7 +191,7 @@ Setiap kali server dimulai, grammY akan mengambil sejumlah [informasi mengenai b
 Kita bisa mengisi [informasi bot](/ref/core/botconfig#botinfo) tersebut secara manual untuk menghindari pemanggilan `getMe` secara berlebihan.
 
 1. Buka link `https://api.telegram.org/bot<bot_token>/getMe` di web browser favoritmu.
-   Kami merekomendasikan untuk menggunakan browser [Firefox](https://www.mozilla.org/en-US/firefox/) karena ia mampu menampilkan format `json` dengan baik.
+   Kami merekomendasikan untuk menggunakan browser [Firefox](https://www.firefox.com/en-US/) karena ia mampu menampilkan format `json` dengan baik.
 2. Ubah kode di baris ke-4 di atas dengan value yang telah kita dapat dari `getMe` tadi:
 
    ```ts

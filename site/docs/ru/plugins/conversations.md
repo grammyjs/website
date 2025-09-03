@@ -512,7 +512,7 @@ photoWithCaption = await conversation
 
 ### Осмотр объектов контекста
 
-Часто возникает необходимость [деструктуризации](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) полученных объектов контекста.
+Часто возникает необходимость [деструктуризации](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring) полученных объектов контекста.
 Это позволяет проводить дополнительные проверки данных.
 
 ```ts

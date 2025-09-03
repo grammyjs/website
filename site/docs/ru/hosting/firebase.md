@@ -36,7 +36,7 @@ next: false
 
 > Важно отметить, что в настоящее время Firebase Functions поддерживает только
 > Node.js версий 14, 16 и 18. Подробнее о поддерживаемых версиях Node.js читайте
-> [здесь](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
+> [здесь](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js).
 
 После установки Node.js и npm установите Firebase CLI глобально:
 

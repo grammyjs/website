@@ -28,7 +28,7 @@ Supabase Edge Functions идеально подходит для большин�
 
 Чтобы развернуть Supabase Edge Function, вам нужно создать учетную запись
 Supabase, установить их CLI и создать проект Supabase. Сначала вам следует
-[следовать их документации](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project),
+[следовать их документации](https://supabase.com/docs/guides/functions/quickstart#step-1-create-or-configure-your-project),
 чтобы все настроить.
 
 Создайте новую функцию Supabase Function, выполнив следующую команду:
