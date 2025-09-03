@@ -73,7 +73,7 @@ Ganti `<alamat-ip>` dengan alamat IP server kamu, yang bisa ditemukan di halaman
 
 ::: tip Mengatur SSH
 Memilah alamat IP yang diperlukan untuk menyambung ke suatu server akan sangat merepotkan.
-Untuk menghilangkan repetisi tersebut, kamu bisa mengatur SSH dengan membuat sebuah file `~/.ssh/config`(<https://linuxhandbook.com/ssh-config-file>) di komputer kamu yang memuat semua data yang diperlukan agar bisa tersambung ke server terkait berdasarkan nilai identifikasi yang telah ditentukan.
+Untuk menghilangkan repetisi tersebut, kamu bisa mengatur SSH dengan membuat sebuah file `~/.ssh/config`(<https://linuxhandbook.com/ssh-config-file/>) di komputer kamu yang memuat semua data yang diperlukan agar bisa tersambung ke server terkait berdasarkan nilai identifikasi yang telah ditentukan.
 Karena topik tersebut di luar cakupan dari pembahasan artikel ini, maka kamu perlu menyetelnya secara mandiri.
 :::
 
@@ -267,7 +267,7 @@ pnpm add -g pm2
 PM2 menawarkan dua cara untuk membuat sebuah aplikasi:
 
 1. Menggunakan command line interface (CLI).
-2. Menggunakan [file konfigurasi](https://pm2.keymetrics.io/docs/usage/application-declaration).
+2. Menggunakan [file konfigurasi](https://pm2.keymetrics.io/docs/usage/application-declaration/).
 
 Cara pertama lebih mudah digunakan untuk yang baru pertama kali mengenal PM2.
 Namun, selama proses produksi atau deployment, kamu harus menggunakan cara kedua, yang akan kita terapkan di panduan ini.
@@ -403,7 +403,7 @@ Ubah record tersebut dengan mengubah alamat IP di kolom "Points to" ke IP addres
 Selanjutnya, cari dan hapus record dengan tipe `CNAME` yang memiliki nama `www`.
 Sebagai gantinya, buat sebuah record tipe `A` baru dengan nama `www`, lalu arahkan ke IP address VPS-mu, kemudian atur TTL-nya menjadi 3600.
 
-> Jika kamu mengalami kendala, coba gunakan metode lain yang telah dijabarkan di [pengetahuan dasar berikut](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps-at-hostinger).
+> Jika kamu mengalami kendala, coba gunakan metode lain yang telah dijabarkan di [pengetahuan dasar berikut](https://www.hostinger.com/support/1583227-how-to-point-a-domain-to-your-vps-at-hostinger/).
 
 ### Menyiapkan Web Server
 
@@ -526,8 +526,8 @@ Ganti `<token>` dengan token bot kamu dan `<domain>` dengan domain kamu.
 
 ## CI/CD
 
-[CI/CD](https://about.gitlab.com/topics/ci-cd) merupakan salah satu bagian yang krusial dalam proses pengembangan software modern.
-Panduan ini mencangkup hampir keseluruhan [pipeline CI/CD](https://about.gitlab.com/topics/ci-cd/cicd-pipeline).
+[CI/CD](https://about.gitlab.com/topics/ci-cd/) merupakan salah satu bagian yang krusial dalam proses pengembangan software modern.
+Panduan ini mencangkup hampir keseluruhan [pipeline CI/CD](https://about.gitlab.com/topics/ci-cd/cicd-pipeline/).
 
 Kali ini, kita akan fokus menulis script untuk GitHub dan GitLab.
 Jika diperlukan, kamu bisa dengan mudah memodifikasi contoh di bawah sesuai dengan layanan CI/CD yang kamu gunakan, misalnya Jenkins, Buddy, dsb.

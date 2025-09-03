@@ -73,7 +73,7 @@ Sustituya `<dirección-ip>` por la dirección IP de su servidor, que encontrará
 
 ::: tip Configuración de SSH
 Puede resultar difícil y tedioso recordar qué dirección IP y qué nombre necesita para conectarse a un servidor.
-Para eliminar estos pasos rutinarios y mejorar su experiencia con el servidor, puede configurar SSH creando un archivo `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file>) en su ordenador que almacene todos los datos que necesita para conectarse al servidor bajo ciertos identificadores arbitrarios.
+Para eliminar estos pasos rutinarios y mejorar su experiencia con el servidor, puede configurar SSH creando un archivo `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file/>) en su ordenador que almacene todos los datos que necesita para conectarse al servidor bajo ciertos identificadores arbitrarios.
 Esto está fuera del alcance de este artículo, así que tendrás que configurarlo tú mismo.
 :::
 
@@ -267,7 +267,7 @@ pnpm add -g pm2
 PM2 ofrece dos formas de crear una aplicación:
 
 1. Utilizar la interfaz de línea de comandos.
-2. Utilizar el [archivo de configuración](https://pm2.keymetrics.io/docs/usage/application-declaration).
+2. Utilizar el [archivo de configuración](https://pm2.keymetrics.io/docs/usage/application-declaration/).
 
 El primer método es conveniente para conocer PM2.
 Sin embargo, durante el despliegue, debe utilizar el segundo método, que es lo que hicimos en nuestro caso.
@@ -403,7 +403,7 @@ Edite este registro cambiando la dirección IP en el campo "Points to" a la dire
 A continuación, busque y elimine el registro de tipo `CNAME` con el nombre `www`.
 En su lugar, cree un nuevo registro de tipo `A` con el nombre `www`, apuntando a la dirección IP de su VPS, y establezca el TTL a 3600.
 
-> Si tiene problemas, utilice el otro método descrito en la [base de conocimientos](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps-at-hostinger).
+> Si tiene problemas, utilice el otro método descrito en la [base de conocimientos](https://www.hostinger.com/support/1583227-how-to-point-a-domain-to-your-vps-at-hostinger/).
 
 ### Configurar un Servidor Web
 
@@ -526,8 +526,8 @@ Sustituye `<token>` por tu bot token y `<dominio>` por tu dominio.
 
 ## CI/CD
 
-[CI/CD](https://about.gitlab.com/topics/ci-cd) es una parte importante del proceso moderno de desarrollo de software.
-Esta guía cubre casi todo el [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline).
+[CI/CD](https://about.gitlab.com/topics/ci-cd/) es una parte importante del proceso moderno de desarrollo de software.
+Esta guía cubre casi todo el [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline/).
 
 Nos centraremos en escribir scripts para GitHub y GitLab.
 Puedes adaptar fácilmente los ejemplos de abajo al servicio CI/CD de tu elección, como Jenkins, Buddy, etc., si es necesario.

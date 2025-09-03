@@ -73,7 +73,7 @@ ssh root@<ip-address>
 
 ::: tip 配置 SSH
 要记住连接服务器所需的 IP 地址和名称可能既困难又乏味。
-为了省去这些例行步骤并改善你的服务器体验，你可以在计算机上创建一个 `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file>) 文件来配置 SSH，该文件以某些任意标识符存储连接服务器所需的所有数据。
+为了省去这些例行步骤并改善你的服务器体验，你可以在计算机上创建一个 `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file/>) 文件来配置 SSH，该文件以某些任意标识符存储连接服务器所需的所有数据。
 这超出了本文的讨论范围，因此你需要自行配置。
 :::
 
@@ -267,7 +267,7 @@ pnpm add -g pm2
 PM2 提供两种创建应用程序的方法：
 
 1. 使用命令行界面。
-2. 使用 [配置文件](https://pm2.keymetrics.io/docs/usage/application-declaration).
+2. 使用 [配置文件](https://pm2.keymetrics.io/docs/usage/application-declaration/).
 
 如果熟悉 PM2，则第一种方法更方便。
 不过，在部署过程中，你应该使用第二种方法，就是我们在本例中所做的那样。
@@ -403,7 +403,7 @@ Deno.serve(async (req) => {
 然后，找到并删除名称为 `www` 的 `CNAME` 类型的记录。
 取而代之的是，创建一个名称为 `www` 的 `A` 类型的新记录，指向你的 VPS 的 IP 地址，并将 TTL 设置为 3600。
 
-> 如果你遇到了问题，请使用 [知识库](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps-at-hostinger) 中介绍的其他方法。
+> 如果你遇到了问题，请使用 [知识库](https://www.hostinger.com/support/1583227-how-to-point-a-domain-to-your-vps-at-hostinger/) 中介绍的其他方法。
 
 ### 搭建 Web 服务器
 
@@ -526,8 +526,8 @@ https://api.telegram.org/bot<token>/setWebhook?url=https://<domain>/<token>
 
 ## CI/CD
 
-[CI/CD](https://about.gitlab.com/topics/ci-cd) 是现代软件开发流程的重要组成部分。
-本指南几乎涵盖了 [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline) 的所有内容。
+[CI/CD](https://about.gitlab.com/topics/ci-cd/) 是现代软件开发流程的重要组成部分。
+本指南几乎涵盖了 [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline/) 的所有内容。
 
 我们将重点为 GitHub 和 GitLab 编写脚本。
 如有需要，你可以根据自己选择的 CI/CD 服务（如 Jenkins、Buddy 等）轻松地修改下面的示例。
