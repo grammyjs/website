@@ -1,6 +1,6 @@
 {
   "lock": true,
-  "nodeModulesDir": "auto",
+  "nodeModulesDir": "manual",
   "fmt": {
     "proseWrap": "preserve"
   },

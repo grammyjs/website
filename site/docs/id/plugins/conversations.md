@@ -601,7 +601,7 @@ Jika kamu menerapkan `otherwise` ke salah satu pemanggilan `wait` saja, ia hanya
 
 ### Memeriksa Context Object
 
-[Mengurai](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) _context object_ merupakan hal yang cukup umum untuk dilakukan.
+[Mengurai](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring) _context object_ merupakan hal yang cukup umum untuk dilakukan.
 Dengan melakukan penguraian, kamu bisa melakukan pengecekan secara mendalam untuk setiap data yang diterima.
 
 ```ts

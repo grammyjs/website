@@ -43,7 +43,7 @@ Sehingga, untuk contoh struktur kita tadi, isi file-nya kurang lebih terlihat se
 
 > Jika kamu menggunakan paket Vercel yang versi gratis, konfigurasi `memory` dan `maxDuration` kamu sebaiknya mengikuti contoh di atas agar batas limit tidak terlampaui.
 
-Jika kamu tertarik untuk mempelajari file konfigurasi `vercel.json` ini, silahkan baca [dokumentasi berikut](https://vercel.com/docs/projects/project-configuration).
+Jika kamu tertarik untuk mempelajari file konfigurasi `vercel.json` ini, silahkan baca [dokumentasi berikut](https://vercel.com/docs/project-configuration).
 
 ## Mengatur TypeScript
 

@@ -512,7 +512,7 @@ Si sólo especifica `otherwise` en una de las llamadas de espera encadenadas, s�
 
 ### Inspección de los objetos de contexto
 
-Es muy habitual [desestructurar](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) los objetos de contexto recibidos.
+Es muy habitual [desestructurar](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring) los objetos de contexto recibidos.
 A continuación, puede realizar otras comprobaciones de los datos recibidos.
 
 ```ts
