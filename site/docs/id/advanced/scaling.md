@@ -51,7 +51,7 @@ Beberapa masalah akan timbul jika bot kamu memproses semua update secara bersama
 Contohnya, saat dua pesan dari chat yang sama diterima oleh pemanggilan `getUpdates` yang sama pula, maka kedua pesan ini akan diproses secara bersamaan.
 Sehingga, kita tidak dapat memastikan urutan pesan tersebut sudah teracak atau tidak.
 
-Titik utama dimana kedua pesan dapat bertabrakan adalah disaat kamu menggunakan [session](../plugins/session), yang mana terjadinya [write-after-read hazard](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) sangat mungkin terjadi.
+Titik utama dimana kedua pesan dapat bertabrakan adalah disaat kamu menggunakan [session](../plugins/session), yang mana terjadinya [write-after-read hazard](https://handwiki.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) sangat mungkin terjadi.
 Bayangkan kejadian berikut:
 
 1. Ani mengirim pesan A.

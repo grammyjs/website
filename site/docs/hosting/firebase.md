@@ -30,7 +30,7 @@ If you need more detailed explanations on each step that you'll take, refer to t
 To write functions and deploy them to the Firebase Functions runtime, you'll need to set up a Node.js environment and install the Firebase CLI.
 
 > It's important to note that only the Node.js versions 14, 16, and 18 are currently supported by Firebase Functions.
-> For more on the supported Node.js versions, refer to [here](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
+> For more on the supported Node.js versions, refer to [here](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js).
 
 Once you have Node.js and npm installed, install Firebase CLI globally:
 
