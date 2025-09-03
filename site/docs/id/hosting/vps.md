@@ -15,7 +15,7 @@ Virtual Private Server, atau biasa dikenal dengan VPS, adalah sebuah perangkat v
 > Langkah-langkahnya akan dijelaskan di bagian ini.
 > Jika kamu sudah memiliki sebuah VPS, silahkan lanjut ke [bagian selanjutnya](#memulai-bot).
 
-Di panduan ini, kita akan memanfaatkan layanan dari [Hostinger](https://hostinger.com).
+Di panduan ini, kita akan memanfaatkan layanan dari [Hostinger](https://www.hostinger.com/1).
 
 > Kamu bebas memilih provider yang kamu mau.
 > Karena semua provider menyediakan layanan yang serupa, seharusnya kamu tidak akan menemui masalah selama mengikuti panduan ini.
@@ -28,7 +28,7 @@ Caranya, gunakan sebuah aplikasi semacam [VirtualBox](https://virtualbox.org).
 Kemudian, buat sebuah virtual machine dengan distribusi Linux yang diinginkan untuk menyimulasikan sebuah server Linux.
 :::
 
-Kunjungi [halaman Hosting VPS](https://hostinger.com/vps-hosting).
+Kunjungi [halaman Hosting VPS](https://www.hostinger.com/1/vps-hosting).
 Kita akan memilih paket "KVM 1".
 Sumber daya yang disediakan oleh "KVM 1" cukup sesuai untuk bot dengan jumlah pengguna yang masif, apalagi hanya untuk mengetes bot.
 
