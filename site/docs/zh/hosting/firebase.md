@@ -30,7 +30,7 @@ next: false
 要编写函数并将它们部署到 Firebase Functions 运行时，你需要搭建 Node.js 环境并安装 Firebase CLI。
 
 > 请务必注意，Firebase Functions 当前仅支持 Node.js 版本 14、16 和 18。
-> 有关受支持的 Node.js 版本的更多信息，请参阅 [此处](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version)。
+> 有关受支持的 Node.js 版本的更多信息，请参阅 [此处](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js)。
 
 当你安装 Node.js 和 npm 后，全局安装 Firebase CLI：
 

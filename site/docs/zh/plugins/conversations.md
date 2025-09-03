@@ -512,7 +512,7 @@ photoWithCaption = await conversation
 
 ### 检查上下文对象
 
-对接收到的上下文对象进行 [解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 是很常见的。
+对接收到的上下文对象进行 [解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring) 是很常见的。
 因此你可以对接收的数据进行进一步的检查。
 
 ```ts
