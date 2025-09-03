@@ -30,7 +30,7 @@ next: false
 Щоб писати функції та розгортати їх в середовищі Firebase Functions, вам потрібно налаштувати середовище Node.js та встановити Firebase CLI.
 
 > Важливо зауважити, що на даний момент Firebase Functions підтримує версії Node.js 14, 16 та 18.
-> Для отримання додаткової інформації про підтримувані версії Node.js зверніться [сюди](https://firebase.google.com/docs/functions/manage-functions?hl=ru#set_nodejs_version).
+> Для отримання додаткової інформації про підтримувані версії Node.js зверніться [сюди](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js).
 
 Після встановлення Node.js та npm, глобально встановіть Firebase CLI:
 

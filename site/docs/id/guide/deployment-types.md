@@ -385,7 +385,7 @@ Meskipun bisa dilakukan, solusi seperti ini biasanya menyebabkan banyak masalah.
 Ingat! Ketika kamu merespon webhook, Telegram akan mengirim update berikutnya untuk chat yang sama.
 Namun, karena update yang lama masih dikerjakan, maka dua update yang seharusnya diproses berurutan sekarang diproses bersamaan.
 Ini akan menyebabkan _race condition_.
-Contohnya, kerusakan di plugin session menjadi tidak terhindarkan karena _[WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) hazard_.
+Contohnya, kerusakan di plugin session menjadi tidak terhindarkan karena _[WAR](https://handwiki.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) hazard_.
 **Kondisi ini akan menyebabkan bot kehilangan data!**
 Plugin lainnya dan bahkan middleware-mu sendiri juga mungkin akan ikut rusak.
 Sejauh mana hal ini bisa dilakukan tergantung dari bot kamu.

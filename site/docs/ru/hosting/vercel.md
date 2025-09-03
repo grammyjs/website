@@ -43,7 +43,7 @@ next: false
 
 > Если вы хотите использовать бесплатную подписку Vercel, ваши конфигурации `memory` и `maxDuration` могут выглядеть так, как указано выше, чтобы не обходить ограничения.
 
-Если вы хотите узнать больше о конфигурационном файле `vercel.json`, смотрите [его документацию](https://vercel.com/docs/projects/project-configuration).
+Если вы хотите узнать больше о конфигурационном файле `vercel.json`, смотрите [его документацию](https://vercel.com/docs/project-configuration).
 
 ## Настройка TypeScript
 
