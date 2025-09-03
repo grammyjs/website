@@ -43,7 +43,7 @@ For our example structure, its content would be:
 
 > If you want to use Vercel's free subscription, your `memory` and `maxDuration` configurations might look like above to not bypass its limits.
 
-If you want to learn more about the `vercel.json` configuration file, see [its documentation](https://vercel.com/docs/projects/project-configuration).
+If you want to learn more about the `vercel.json` configuration file, see [its documentation](https://vercel.com/docs/project-configuration).
 
 ## Configuring TypeScript
 
