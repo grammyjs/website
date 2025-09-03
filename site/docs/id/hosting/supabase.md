@@ -19,7 +19,7 @@ Hasil dari tutorial ini bisa dilihat di [repositori bot kami](https://github.com
 ## Pemasangan
 
 Untuk men-deploy bot ke Supabase Edge Functions, kamu harus membuat sebuah akun Supabase, menginstal CLI mereka, dan membuat sebuah proyek Supabase.
-Cara pemasangannya bisa dilihat di [dokumentasi yang mereka sediakan](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project).
+Cara pemasangannya bisa dilihat di [dokumentasi yang mereka sediakan](https://supabase.com/docs/guides/functions/quickstart#step-1-create-or-configure-your-project).
 
 Buat sebuah Supabase Function dengan cara menjalankan perintah berikut:
 

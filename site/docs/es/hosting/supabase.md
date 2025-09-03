@@ -19,7 +19,7 @@ El resultado de este tutorial [se puede ver en nuestro repositorio de bots de ej
 ## Configuración
 
 Para desplegar una función de borde de Supabase, necesitarás crear una cuenta de Supabase, instalar su CLI, y crear un proyecto de Supabase.
-Primero debes [seguir su documentación](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project) para configurar las cosas.
+Primero debes [seguir su documentación](https://supabase.com/docs/guides/functions/quickstart#step-1-create-or-configure-your-project) para configurar las cosas.
 
 Crea una nueva Función Supabase ejecutando este comando:
 
