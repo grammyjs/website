@@ -19,7 +19,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 ## Setup
 
 In order to deploy a Supabase Edge Function, you will need to create a Supabase account, install their CLI, and create a Supabase project.
-You should first [follow their documentation](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project) to set things up.
+You should first [follow their documentation](https://supabase.com/docs/guides/functions/quickstart#step-1-create-or-configure-your-project) to set things up.
 
 Create a new Supabase Function by running this command:
 
