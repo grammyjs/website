@@ -172,7 +172,7 @@ JavaScript является однопоточным.
 grammY runner позволяет вам создать несколько worker'ов, которые могут обрабатывать ваши обновления параллельно на фактически разных ядрах (используя разные циклы событий и отдельную память).
 
 На Node.js grammY runner использует [Worker Threads](https://nodejs.org/api/worker_threads.html).
-На Deno grammY runner использует [Web Workers](https://docs.deno.com/runtime/reference/web_platform_apis).
+На Deno grammY runner использует [Web Workers](https://docs.deno.com/runtime/reference/web_platform_apis/).
 
 Концептуально, grammY runner предоставляет вам класс `BotWorker`, который может обрабатывать обновления.
 Он равносилен обычному классу `Bot` (фактически, он даже расширяет `Bot`).

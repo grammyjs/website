@@ -30,7 +30,7 @@ Jika kamu memerlukan penjelasan yang lebih detail untuk setiap langkah-langkahny
 Untuk membuat sebuah function serta men-deploy-nya ke runtime Firebase Functions, kamu perlu menginstal Node.js dan Firebase CLI terlebih dahulu.
 
 > Perlu diketahui bahwa Firebase Functions hanya mendukung Node.js versi 14, 16, dan 18.
-> Untuk informasi lebih lanjut mengenai versi Node.js yang didukung, lihat [dokumentasi berikut](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
+> Untuk informasi lebih lanjut mengenai versi Node.js yang didukung, lihat [dokumentasi berikut](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js).
 
 Sesudah Node.js dan npm terpasang, instal Firebase CLI secara global:
 
