@@ -256,9 +256,8 @@ interface TextWithEntities {
   entities?: MessageEntity[];
 }
 ```
-
-Notice that the shape of this type implies that regular text messages from Telegram also implement `TextWithEntities` implicitly.
-This means that it is in fact possible to do the following:
+Perhatikan bahwa bentuk tipe ini menyiratkan bahwa pesan teks biasa dari Telegram juga mengimplementasikan `TextWithEntities` secara implisit.
+Ini berarti bahwa sebenarnya memungkinkan untuk melakukan hal berikut:
 
 ```ts
 bot.on("msg:text", async (ctx) => {
@@ -269,7 +268,7 @@ bot.on("msg:text", async (ctx) => {
 
 ### CaptionWithEntities
 
-The `CaptionWithEntities` interface represents a caption with optional formatting entities.
+Interface `CaptionWithEntities` merepresentasikan sebuah caption dengan entitas performatan opsional.
 
 ```ts
 interface CaptionWithEntities {
@@ -278,224 +277,15 @@ interface CaptionWithEntities {
 }
 ```
 
-Likewise, notice that the shape of this type implies that regular media messages with caption from Telegram also implement `CaptionWithEntities` implicitly.
-This means that it is also in fact possible to do the following:
+Demikian perhatikan bahwa bentuk tipe ini menyiratkan bahwa pesan media biasa dengan caption dari Telegram juga secara implisit mengimplementasikan `CaptionWithEntities`.
+Ini berarti bahwa sebenarnya juga memungkinkan untuk melakukan hal berikut:
 
 ```ts
 bot.on("msg:caption", async (ctx) => {
-  const response = fmt`${ctx.msg}`.plain("\n---\n").bold("This is my response");
+  const response = fmt`${ctx.msg}`.plain("\n---\n").bold("Ini respon saya");
   await ctx.reply(response.text, { entities: response.entities });
 });
 ```
-
-
-## Penggunaan (Melakukan Pemformatan dengan Mudah)
-
-::: code-group
-
-```ts [TypeScript]
-import { Bot, Context } from "grammy";
-import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
-
-import type { ParseModeFlavor } from "@grammyjs/parse-mode";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Instal plugin-nya.
-bot.use(hydrateReply);
-
-bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("bold!")}
-${bold(italic("bitalic!"))}
-${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
-
-  // fmt juga bisa dipanggil seperti function lainnya.
-  await ctx.replyFmt(
-    fmt(
-      ["", " dan ", " dan ", ""],
-      fmt`${bold("bold")}`,
-      fmt`${bold(italic("bitalic"))}`,
-      fmt`${italic("italic")}`,
-    ),
-  );
-});
-
-bot.start();
-```
-
-```js [JavaScript]
-const { Bot, Context } = require("grammy");
-const { bold, fmt, hydrateReply, italic, link } = require(
-  "@grammyjs/parse-mode",
-);
-
-const bot = new Bot("");
-
-// Instal plugin-nya.
-bot.use(hydrateReply);
-
-bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("bold!")}
-${bold(italic("bitalic!"))}
-${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
-
-  // fmt juga bisa dipanggil seperti function lainnya.
-  await ctx.replyFmt(
-    fmt(
-      ["", " dan ", " dan ", ""],
-      fmt`${bold("bold")}`,
-      fmt`${bold(italic("bitalic"))}`,
-      fmt`${italic("italic")}`,
-    ),
-  );
-});
-
-bot.start();
-```
-
-```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import {
-  bold,
-  fmt,
-  hydrateReply,
-  italic,
-  link,
-} from "https://deno.land/x/grammy_parse_mode/mod.ts";
-
-import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Instal plugin-nya.
-bot.use(hydrateReply);
-
-bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("bold!")}
-${bold(italic("bitalic!"))}
-${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
-
-  // fmt juga bisa dipanggil seperti function lainnya.
-  await ctx.replyFmt(
-    fmt(
-      ["", " dan ", " dan ", ""],
-      fmt`${bold("bold")}`,
-      fmt`${bold(italic("bitalic"))}`,
-      fmt`${italic("italic")}`,
-    ),
-  );
-});
-
-bot.start();
-```
-
-:::
-
-## Penggunaan (Parse Mode dan Method Reply Bawaan)
-
-::: code-group
-
-```ts [TypeScript]
-import { Bot, Context } from "grammy";
-import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
-
-import type { ParseModeFlavor } from "@grammyjs/parse-mode";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Instal plugin-nya
-bot.use(hydrateReply);
-
-// Atur parse_mode bawaan untuk ctx.reply
-bot.api.config.use(parseMode("MarkdownV2"));
-
-bot.command("demo", async (ctx) => {
-  await ctx.reply("*Teks* ini _diformat_ menggunakan `format bawaan`");
-  await ctx.replyWithHTML(
-    "<b>Teks</b> ini <i>diformat</i> menggunakan <code>withHTML</code>",
-  );
-  await ctx.replyWithMarkdown(
-    "*Teks* ini _diformat_ menggunakan `withMarkdown`",
-  );
-  await ctx.replyWithMarkdownV1(
-    "*Teks* ini _diformat_ menggunakan `withMarkdownV1`",
-  );
-  await ctx.replyWithMarkdownV2(
-    "*Teks* ini _diformat_ menggunakan `withMarkdownV2`",
-  );
-});
-
-bot.start();
-```
-
-```js [JavaScript]
-const { Bot, Context } = require("grammy");
-const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
-
-const bot = new Bot("");
-
-// Install plugin-nya.
-bot.use(hydrateReply);
-
-// Atur parse_mode bawaan untuk ctx.reply
-bot.api.config.use(parseMode("MarkdownV2"));
-
-bot.command("demo", async (ctx) => {
-  await ctx.reply("*Teks* ini _diformat_ menggunakan `format bawaan`");
-  await ctx.replyWithHTML(
-    "<b>Teks</b> ini <i>diformat</i> menggunakan <code>withHTML</code>",
-  );
-  await ctx.replyWithMarkdown(
-    "*Teks* ini _diformat_ menggunakan `withMarkdown`",
-  );
-  await ctx.replyWithMarkdownV1(
-    "*Teks* ini _diformat_ menggunakan `withMarkdownV1`",
-  );
-  await ctx.replyWithMarkdownV2(
-    "*Teks* ini _diformat_ menggunakan `withMarkdownV2`",
-  );
-});
-
-bot.start();
-```
-
-```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import {
-  hydrateReply,
-  parseMode,
-} from "https://deno.land/x/grammy_parse_mode/mod.ts";
-
-import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Install plugin-nya.
-bot.use(hydrateReply);
-
-// Atur parse_mode bawaan untuk ctx.reply
-bot.api.config.use(parseMode("MarkdownV2"));
-
-bot.command("demo", async (ctx) => {
-  await ctx.reply("*Teks* ini _diformat_ menggunakan `format bawaan`");
-  await ctx.replyWithHTML(
-    "<b>Teks</b> ini <i>diformat</i> menggunakan <code>withHTML</code>",
-  );
-  await ctx.replyWithMarkdown(
-    "*Teks* ini _diformat_ menggunakan `withMarkdown`",
-  );
-  await ctx.replyWithMarkdownV1(
-    "*Teks* ini _diformat_ menggunakan `withMarkdownV1`",
-  );
-  await ctx.replyWithMarkdownV2(
-    "*Teks* ini _diformat_ menggunakan `withMarkdownV2`",
-  );
-});
-
-bot.start();
-```
-
-:::
 
 ## Ringkasan Plugin
 
