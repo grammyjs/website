@@ -5,36 +5,47 @@ next: false
 
 # Режим форматування (`parse-mode`)
 
-Цей плагін надає перетворювач для встановлення стандартного `parse_mode`, а також проміжний обробник для гідратації `Context` звичними варіантами методу `reply`, а саме: `replyWithHTML`, `replyWithMarkdown` тощо.
+Як відомо, Telegram підтримує [стилізовані повідомлення](https://core.telegram.org/bots/api#messageentity).
+Ця бібліотека надає спрощені утиліти форматування для grammY.
+Вона дозволяє створювати різноманітно оформлені повідомлення за допомогою декларативного, типобезпечного API.
 
-## Використання (покращення досвіду форматування)
+У Telegram Bot API форматований текст представлено за допомогою _сутностей_ --- спеціальних маркерів, які визначають, як слід форматувати певні частини тексту.
+Кожна сутність має _тип_ (наприклад, `bold`, `italic` тощо), _зсув_ (де вона починається в тексті) та _довжину_ (на скільки символів вона впливає).
+
+Робота безпосередньо з цими сутностями може бути громіздкою, оскільки потрібно вручну відстежувати зсуви та довжини.
+Цей плагін вирішує цю проблему, надаючи простий, декларативний API для форматування тексту.
+
+## Два підходи: `fmt` та `FormattedString`
+
+Ця бібліотека надає два основні підходи для форматування тексту:
+
+1. **Шаблонна функція `fmt`**:
+   [Шаблонна функція](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates), яка дозволяє писати форматований текст природним чином за допомогою шаблонних виразів.
+   Всередині вона керує зсувами та довжинами сутностей за вас.
+
+2. **Клас `FormattedString`**:
+   Підхід на основі класів, який дозволяє створювати форматований текст через ланцюжок методів.
+   Це особливо корисно для програмного створення складних форматованих повідомлень.
+
+Обидва підходи створюють уніфікований обʼєкт `FormattedString`, який можна використовувати для маніпулювання форматованим текстом.
+
+## Використання (за допомогою `fmt`)
 
 ::: code-group
 
 ```ts [TypeScript]
-import { Bot, Context } from "grammy";
-import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
+import { Bot } from "grammy";
+import { b, fmt, u } from "@grammyjs/parse-mode";
 
-import type { ParseModeFlavor } from "@grammyjs/parse-mode";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Встановлюємо плагін.
-bot.use(hydrateReply);
+const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("жирний!")}
-${bold(italic("жирний курсив!"))}
-${bold(fmt`жирний ${link("жирне посилання", "example.com")} жирний`)}`);
-
-  // `fmt` також можна викликати як будь-яку іншу функцію.
-  await ctx.replyFmt(
-    fmt(
-      ["", " і ", " і ", ""],
-      fmt`${bold("жирний")}`,
-      fmt`${bold(italic("жирний курсив"))}`,
-      fmt`${italic("курсив")}`,
-    ),
+  // Використання значень, що повертаються функцією `fmt`.
+  const combined = fmt`${b}жирний${b} ${ctx.msg.text} ${u}підкреслений${u}`;
+  await ctx.reply(combined.text, { entities: combined.entities });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    { caption: combined.caption, caption_entities: combined.caption_entities },
   );
 });
 
@@ -42,29 +53,18 @@ bot.start();
 ```
 
 ```js [JavaScript]
-const { Bot, Context } = require("grammy");
-const { bold, fmt, hydrateReply, italic, link } = require(
-  "@grammyjs/parse-mode",
-);
+const { Bot } = require("grammy");
+const { fmt, b, u } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// Встановлюємо плагін.
-bot.use(hydrateReply);
-
 bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("жирний!")}
-${bold(italic("жирний курсив!"))}
-${bold(fmt`жирний ${link("жирне посилання", "example.com")} жирний`)}`);
-
-  // `fmt` також можна викликати як будь-яку іншу функцію.
-  await ctx.replyFmt(
-    fmt(
-      ["", " і ", " і ", ""],
-      fmt`${bold("жирний")}`,
-      fmt`${bold(italic("жирний курсив"))}`,
-      fmt`${italic("курсив")}`,
-    ),
+  // Використання значень, що повертаються функцією `fmt`.
+  const combined = fmt`${b}жирний${b} ${ctx.msg.text} ${u}підкреслений${u}`;
+  await ctx.reply(combined.text, { entities: combined.entities });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    { caption: combined.caption, caption_entities: combined.caption_entities },
   );
 });
 
@@ -72,35 +72,18 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import {
-  bold,
-  fmt,
-  hydrateReply,
-  italic,
-  link,
-} from "https://deno.land/x/grammy_parse_mode/mod.ts";
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { b, fmt, u } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
-import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Встановлюємо плагін.
-bot.use(hydrateReply);
+const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("жирний!")}
-${bold(italic("жирний курсив!"))}
-${bold(fmt`жирний ${link("жирне посилання", "example.com")} жирний`)}`);
-
-  // `fmt` також можна викликати як будь-яку іншу функцію.
-  await ctx.replyFmt(
-    fmt(
-      ["", " і ", " і ", ""],
-      fmt`${bold("жирний")}`,
-      fmt`${bold(italic("жирний курсив"))}`,
-      fmt`${italic("курсив")}`,
-    ),
+  // Використання значень, що повертаються функцією `fmt`.
+  const combined = fmt`${b}жирний${b} ${ctx.msg.text} ${u}підкреслений${u}`;
+  await ctx.reply(combined.text, { entities: combined.entities });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    { caption: combined.caption, caption_entities: combined.caption_entities },
   );
 });
 
@@ -109,93 +92,201 @@ bot.start();
 
 :::
 
-## Використання (типовий режим форматування та методи відповіді)
+## Використання (за допомогою `FormattedString`)
 
 ::: code-group
 
 ```ts [TypeScript]
-import { Bot, Context } from "grammy";
-import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
+import { Bot } from "grammy";
+import { FormattedString } from "@grammyjs/parse-mode";
 
-import type { ParseModeFlavor } from "@grammyjs/parse-mode";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Встановлюємо плагін.
-bot.use(hydrateReply);
-
-// Встановлюємо типовий режим форматування для `ctx.reply`
-bot.api.config.use(parseMode("MarkdownV2"));
+const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Це* `форматування` _за_ замовчуванням");
-  await ctx.replyWithHTML(
-    "<b>Це</b> <code>форматування</code> методу <i>withHTML</i> ",
+  // Статичні методи.
+  const staticCombined = FormattedString.b("жирний").plain(` ${ctx.msg.text} `)
+    .u("підкреслений");
+  await ctx.reply(staticCombined.text, { entities: staticCombined.entities });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: staticCombined.caption,
+      caption_entities: staticCombined.caption_entities,
+    },
   );
-  await ctx.replyWithMarkdown("*Це* `форматування` методу _withMarkdown_");
-  await ctx.replyWithMarkdownV1("*Це* `форматування` методу _withMarkdownV1_");
-  await ctx.replyWithMarkdownV2("*Це* `форматування` методу _withMarkdownV2_");
+
+  // Або конструктор.
+  const constructorCombined = (new FormattedString("")).b("жирний").plain(
+    ` ${ctx.msg.text} `,
+  ).u("підкреслений");
+  await ctx.reply(constructorCombined.text, {
+    entities: constructorCombined.entities,
+  });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: constructorCombined.caption,
+      caption_entities: constructorCombined.caption_entities,
+    },
+  );
 });
 
 bot.start();
 ```
 
 ```js [JavaScript]
-const { Bot, Context } = require("grammy");
-const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
+const { Bot } = require("grammy");
+const { FormattedString } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// Встановлюємо плагін.
-bot.use(hydrateReply);
-
-// Встановлюємо типовий режим форматування для `ctx.reply`
-bot.api.config.use(parseMode("MarkdownV2"));
-
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Це* `форматування` _за_ замовчуванням");
-  await ctx.replyWithHTML(
-    "<b>Це</b> <code>форматування</code> методу <i>withHTML</i> ",
+  // Статичні методи.
+  const staticCombined = FormattedString.b("жирний").plain(` ${ctx.msg.text} `)
+    .u("підкреслений");
+  await ctx.reply(staticCombined.text, { entities: staticCombined.entities });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: staticCombined.caption,
+      caption_entities: staticCombined.caption_entities,
+    },
   );
-  await ctx.replyWithMarkdown("*Це* `форматування` методу _withMarkdown_");
-  await ctx.replyWithMarkdownV1("*Це* `форматування` методу _withMarkdownV1_");
-  await ctx.replyWithMarkdownV2("*Це* `форматування` методу _withMarkdownV2_");
+
+  // Або конструктор.
+  const constructorCombined = (new FormattedString("")).b("жирний").plain(
+    ` ${ctx.msg.text} `,
+  ).u("підкреслений");
+  await ctx.reply(constructorCombined.text, {
+    entities: constructorCombined.entities,
+  });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: constructorCombined.caption,
+      caption_entities: constructorCombined.caption_entities,
+    },
+  );
 });
 
 bot.start();
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import {
-  hydrateReply,
-  parseMode,
-} from "https://deno.land/x/grammy_parse_mode/mod.ts";
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { FormattedString } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
-import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
-
-const bot = new Bot<ParseModeFlavor<Context>>("");
-
-// Встановлюємо плагін.
-bot.use(hydrateReply);
-
-// Встановлюємо типовий режим форматування для `ctx.reply`
-bot.api.config.use(parseMode("MarkdownV2"));
+const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Це* `форматування` _за_ замовчуванням");
-  await ctx.replyWithHTML(
-    "<b>Це</b> <code>форматування</code> методу <i>withHTML</i> ",
+  // Статичні методи.
+  const staticCombined = FormattedString.b("жирний").plain(` ${ctx.msg.text} `)
+    .u("підкреслений");
+  await ctx.reply(staticCombined.text, { entities: staticCombined.entities });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: staticCombined.caption,
+      caption_entities: staticCombined.caption_entities,
+    },
   );
-  await ctx.replyWithMarkdown("*Це* `форматування` методу _withMarkdown_");
-  await ctx.replyWithMarkdownV1("*Це* `форматування` методу _withMarkdownV1_");
-  await ctx.replyWithMarkdownV2("*Це* `форматування` методу _withMarkdownV2_");
+
+  // Або конструктор.
+  const constructorCombined = (new FormattedString("")).b("жирний").plain(
+    ` ${ctx.msg.text} `,
+  ).u("підкреслений");
+  await ctx.reply(constructorCombined.text, {
+    entities: constructorCombined.entities,
+  });
+  await ctx.replyWithPhoto(
+    "https://raw.githubusercontent.com/grammyjs/website/main/logos/grammY.png",
+    {
+      caption: constructorCombined.caption,
+      caption_entities: constructorCombined.caption_entities,
+    },
+  );
 });
 
 bot.start();
 ```
 
 :::
+
+## Основні концепції
+
+### `FormattedString` як уніфікований тип повернення
+
+Клас `FormattedString` є основним компонентом плагіна режиму форматування (`parse-mode`), що надає уніфікований інтерфейс для роботи з форматованим текстом.
+Значення, повернене `fmt`, `new FormattedString` та `FormattedString.<staticMethod>`, повертає екземпляр `FormattedString`.
+Це означає, що можливо комібуванти різні стилі використання.
+
+Наприклад, можна використати шаблонну функцію `fmt`, за якою слідує ланцюжок методів екземпляра `FormattedString`, а потім передати результат в іншу шаблонну функцію `fmt`.
+
+```ts
+bot.on("msg:text", async (ctx) => {
+  // Результат fmt`${u}Памʼять оновлено!${u}` є екземпляром `FormattedString`,
+  // чий виклик методу екземпляра `.plain("\n")` також повертає `FormattedString`.
+  const header = fmt`${u}Памʼять оновлено!${u}`.plain("\n");
+  const body = FormattedString.plain("Я запам'ятаю це!");
+  const footer = "\n - від grammY AI";
+
+  // Також допустимо, що ви можете передати `FormattedString` та рядок до `fmt`.
+  const response = fmt`${header}${body}${footer}`;
+  await ctx.reply(response.text, { entities: response.entities });
+});
+```
+
+### Що приймає `fmt`
+
+Шаблонна функція `fmt` приймає широкий спектр значень для створення вашого екземпляру `FormattedString`, включно з:
+
+- `TextWithEntities`, реалізований `FormattedString` та звичайними текстовими повідомленнями Telegram.
+- `CaptionWithEntities`, реалізований `FormattedString` та звичайними медіаповідомленнями Telegram з підписами.
+- `EntityTag`, як-от ваші функції `b()` та `a(url)`.
+- Функції без аргументів, що повертають `EntityTag` (наприклад, `b` та `i`).
+- Будь-які типи, що реалізують `toString()` (вони будуть оброблені як звичайний текст).
+
+### `TextWithEntities`
+
+Інтерфейс `TextWithEntities` представляє текст з необовʼязковими сутностями форматування.
+
+```ts
+interface TextWithEntities {
+  text: string;
+  entities?: MessageEntity[];
+}
+```
+
+Зауважте, що форма цього типу означає, що звичайні текстові повідомлення від Telegram також неявно реалізують `TextWithEntities`.
+Це означає, що насправді можна зробити наступне:
+
+```ts
+bot.on("msg:text", async (ctx) => {
+  const response = fmt`${ctx.msg}`.plain("\n---\n").bold("Це моя відповідь");
+  await ctx.reply(response.text, { entities: response.entities });
+});
+```
+
+### `CaptionWithEntities`
+
+Інтерфейс `CaptionWithEntities` представляє підпис з необовʼязковими сутностями форматування.
+
+```ts
+interface CaptionWithEntities {
+  caption: string;
+  caption_entities?: MessageEntity[];
+}
+```
+
+Так само зауважте, що форма цього типу означає, що звичайні медіаповідомлення з підписом від Telegram також неявно реалізують `CaptionWithEntities`.
+Це означає, що також насправді можна зробити наступне:
+
+```ts
+bot.on("msg:caption", async (ctx) => {
+  const response = fmt`${ctx.msg}`.plain("\n---\n").bold("Це моя відповідь");
+  await ctx.reply(response.text, { entities: response.entities });
+});
+```
 
 ## Загальні відомості про плагін
 
