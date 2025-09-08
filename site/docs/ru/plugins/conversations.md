@@ -1141,7 +1141,6 @@ const op = await conversation.form.select(["+", "-", "*", "/"], {
 
 Диалоговые формы так же позволяют вам создавать кастомные поля с помощью [`conversation.form.build`](/ref/conversations/conversationform#build).
 
-
 ## Таймаут ожидания
 
 Каждый раз, когда вы ожидаете обновления, вы можете указать значение таймаута.
