@@ -87,7 +87,7 @@ They solve this problem:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "some-plugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin, somePluginMethod } from "some-plugin";
 
 // Context flavoring
 type MyContext = Context & SomeContextFlavor;
@@ -97,8 +97,16 @@ type MyApi = Api & SomeApiFlavor;
 // Use both flavors.
 const bot = new Bot<MyContext, MyApi>("");
 
-// Use a plugin.
+// Use a transformer function from the plugin.
 bot.api.config.use(somePlugin());
+
+// Add a new method to the bot's API object,
+// as well as to the API object of each context.
+bot.api.somePluginMethod = somePluginMethod;
+bot.use(async (ctx, next) => {
+  ctx.api.somePluginMethod = somePluginMethod;
+  await next();
+});
 
 // Now call `bot.api` with adjusted types from API flavor.
 bot.api.somePluginMethod();
