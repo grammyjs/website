@@ -227,7 +227,7 @@ bot.on("msg:text", async (ctx) => {
   // Результат fmt`${u}Памʼять оновлено!${u}` є екземпляром `FormattedString`,
   // чий виклик методу екземпляра `.plain("\n")` також повертає `FormattedString`.
   const header = fmt`${u}Памʼять оновлено!${u}`.plain("\n");
-  const body = FormattedString.plain("Я запам'ятаю це!");
+  const body = FormattedString.plain("Я запамʼятаю це!");
   const footer = "\n - від grammY AI";
 
   // Також допустимо, що ви можете передати `FormattedString` та рядок до `fmt`.
@@ -258,7 +258,7 @@ interface TextWithEntities {
 ```
 
 Зауважте, що форма цього типу означає, що звичайні текстові повідомлення від Telegram також неявно реалізують `TextWithEntities`.
-Це означає, що насправді можна зробити наступне:
+Це означає, що можна зробити наступне:
 
 ```ts
 bot.on("msg:text", async (ctx) => {
@@ -279,7 +279,7 @@ interface CaptionWithEntities {
 ```
 
 Так само зауважте, що форма цього типу означає, що звичайні медіаповідомлення з підписом від Telegram також неявно реалізують `CaptionWithEntities`.
-Це означає, що також насправді можна зробити наступне:
+Це означає, що також можна зробити наступне:
 
 ```ts
 bot.on("msg:caption", async (ctx) => {
