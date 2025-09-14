@@ -228,7 +228,7 @@ bot.on("msg:text", async (ctx) => {
   // чий виклик методу екземпляра `.plain("\n")` також повертає `FormattedString`.
   const header = fmt`${u}Памʼять оновлено!${u}`.plain("\n");
   const body = FormattedString.plain("Я запамʼятаю це!");
-  const footer = "\n - від grammY AI";
+  const footer = "\n - від grammY ШІ";
 
   // Також допустимо, що ви можете передати `FormattedString` та рядок до `fmt`.
   const response = fmt`${header}${body}${footer}`;
