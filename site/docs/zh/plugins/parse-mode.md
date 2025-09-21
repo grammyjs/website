@@ -9,8 +9,8 @@ Telegram 支持 [格式化消息](https://core.telegram.org/bots/api#messageenti
 这个库为 grammY 带来了简化的格式化工具。
 它使你能够使用声明式、类型安全的 API 来编写富文本格式的消息。
 
-在 Telegram Bot API 中，格式化文本使用 *实体* 来表示，这些特殊的标记定义了文本的哪些部分应该以特定的方式格式化。
-每个实体都有一个 *类型*（例如 `bold`、`italic` 等）、一个 *偏移量*（它在文本中的起始位置）和一个 *长度*（它影响多少个字符）。
+在 Telegram Bot API 中，格式化文本使用 _实体_ 来表示，这些特殊的标记定义了文本的哪些部分应该以特定的方式格式化。
+每个实体都有一个 _类型_（例如 `bold`、`italic` 等）、一个 _偏移量_（它在文本中的起始位置）和一个 _长度_（它影响多少个字符）。
 
 直接处理这些实体可能很麻烦，因为你需要手动跟踪偏移量和长度。
 解析模式插件通过提供一个简单的、声明式的 API 来格式化文本，解决了这个问题。
@@ -19,13 +19,13 @@ Telegram 支持 [格式化消息](https://core.telegram.org/bots/api#messageenti
 
 这个库提供了两种主要的文本格式化方法：
 
-1.  **`fmt` 标签模板函数**：
-    一个 [带标签的模板字符串](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Template_literals#%E5%B8%A6%E6%A0%87%E7%AD%BE%E7%9A%84%E6%A8%A1%E6%9D%BF)，允许你使用模板表达式以自然的方式编写格式化文本。
-    它在内部为你管理实体的偏移量和长度。
+1. **`fmt` 标签模板函数**：
+   一个 [带标签的模板字符串](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Template_literals#%E5%B8%A6%E6%A0%87%E7%AD%BE%E7%9A%84%E6%A8%A1%E6%9D%BF)，允许你使用模板表达式以自然的方式编写格式化文本。
+   它在内部为你管理实体的偏移量和长度。
 
-2.  **`FormattedString` 类**：
-    一种基于类的方法，允许你通过方法链来构建格式化文本。
-    这对于以编程方式构建复杂的格式化消息特别有用。
+2. **`FormattedString` 类**：
+   一种基于类的方法，允许你通过方法链来构建格式化文本。
+   这对于以编程方式构建复杂的格式化消息特别有用。
 
 两种方法都产生一个统一的 `FormattedString` 对象，可用于操作格式化文本。
 
