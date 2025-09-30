@@ -111,7 +111,7 @@ Después de que se inicien los emuladores, deberías encontrar una línea en la 
 Esa es la URL local de tu función en la nube.
 Sin embargo, tu función sólo está disponible para el localhost de tu ordenador.
 Para probar realmente tu bot, necesitas exponer tu función a Internet para que la API de Telegram pueda enviar actualizaciones a tu bot.
-Hay varios servicios, como [localtunnel](https://localtunnel.me) o [ngrok](https://ngrok.com), que pueden ayudarte con eso.
+Hay varios servicios, como [Cloudflare Tunnel](https://learnaws.io/blog/cloudflare-tunnel) o [ngrok](https://ngrok.com), que pueden ayudarte con eso.
 En este ejemplo, utilizaremos localtunnel.
 
 En primer lugar, vamos a instalar localtunnel:
