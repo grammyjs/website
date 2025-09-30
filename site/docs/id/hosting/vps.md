@@ -15,7 +15,7 @@ Virtual Private Server, atau biasa dikenal dengan VPS, adalah sebuah perangkat v
 > Langkah-langkahnya akan dijelaskan di bagian ini.
 > Jika kamu sudah memiliki sebuah VPS, silahkan lanjut ke [bagian selanjutnya](#memulai-bot).
 
-Di panduan ini, kita akan memanfaatkan layanan dari [Hostinger](https://hostinger.com/1).
+Di panduan ini, kita akan memanfaatkan layanan dari [Hostinger](https://www.hostinger.com/1).
 
 > Kamu bebas memilih provider yang kamu mau.
 > Karena semua provider menyediakan layanan yang serupa, seharusnya kamu tidak akan menemui masalah selama mengikuti panduan ini.

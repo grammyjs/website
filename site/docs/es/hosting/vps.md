@@ -15,7 +15,7 @@ Un servidor virtual privado, más conocido como VPS, es una máquina virtual que
 > Esta sección explicará cómo hacerlo.
 > Si ya tienes un VPS en el que trabajar, pasa a la [siguiente sección](#iniciando-el-bot).
 
-En esta guía, utilizaremos los servicios de [Hostinger](https://hostinger.com/1).
+En esta guía, utilizaremos los servicios de [Hostinger](https://www.hostinger.com/1).
 
 > Eres libre de elegir el proveedor que prefieras.
 > Todos los proveedores ofrecen los mismos servicios, por lo que no tendrás ningún problema con la parte técnica de este artículo.

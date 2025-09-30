@@ -15,7 +15,7 @@ next: false
 > 本节将介绍如何做到这一点。
 > 如果你已经有了一台可用的 VPS，请跳至 [下一节](#启动-bot)。
 
-在本指南中，我们将使用 [Hostinger](https://hostinger.com/1) 的服务。
+在本指南中，我们将使用 [Hostinger](https://www.hostinger.com/1) 的服务。
 
 > 你可以自由选择服务提供商。
 > 所有提供商都提供相同的服务，因此你在本文的技术部分不会遇到任何问题。

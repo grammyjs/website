@@ -15,7 +15,7 @@ A virtual private server, mostly known as VPS, is a virtual machine running in t
 > This section will explain how to do that.
 > If you already have a VPS to work on, skip to the [next section](#starting-the-bot).
 
-In this guide, we will use the services of [Hostinger](https://hostinger.com/1).
+In this guide, we will use the services of [Hostinger](https://www.hostinger.com/1).
 
 > You are free to choose the provider of your choice.
 > All providers provide the same services, so you won't have any problems with the technical part of this article.
