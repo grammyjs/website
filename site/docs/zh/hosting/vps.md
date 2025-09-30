@@ -15,7 +15,7 @@ next: false
 > 本节将介绍如何做到这一点。
 > 如果你已经有了一台可用的 VPS，请跳至 [下一节](#启动-bot)。
 
-在本指南中，我们将使用 [Hostinger](https://hostinger.com) 的服务。
+在本指南中，我们将使用 [Hostinger](https://hostinger.com/1) 的服务。
 
 > 你可以自由选择服务提供商。
 > 所有提供商都提供相同的服务，因此你在本文的技术部分不会遇到任何问题。
@@ -392,7 +392,7 @@ Deno.serve(async (req) => {
 #### 将域名指向 VPS
 
 在你的域名与 VPS 协同工作之前，你需要将域名指向你的服务器。
-为此，在 [Hostinger 控制面板](https://hpanel.hostinger.com) 中，点击域名旁边的 “Manage” 按钮。
+为此，在 [Hostinger 控制面板](https://hpanel.hostinger.com/1) 中，点击域名旁边的 “Manage” 按钮。
 然后，点击左侧菜单中的 “DNS / Name Servers” 按钮，进入 DNS 记录管理页面。
 
 > 首先，找出你的 VPS 的 IP 地址。

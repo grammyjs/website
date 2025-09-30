@@ -15,7 +15,7 @@ A virtual private server, mostly known as VPS, is a virtual machine running in t
 > This section will explain how to do that.
 > If you already have a VPS to work on, skip to the [next section](#starting-the-bot).
 
-In this guide, we will use the services of [Hostinger](https://hostinger.com).
+In this guide, we will use the services of [Hostinger](https://hostinger.com/1).
 
 > You are free to choose the provider of your choice.
 > All providers provide the same services, so you won't have any problems with the technical part of this article.
@@ -392,7 +392,7 @@ Pay for the domain.
 #### Domain Pointing to VPS
 
 Before your domain can work with your VPS, you need to point the domain to your server.
-To do this, in the [Hostinger Control Panel](https://hpanel.hostinger.com), click the "Manage" button next to your domain.
+To do this, in the [Hostinger Control Panel](https://hpanel.hostinger.com/1), click the "Manage" button next to your domain.
 Next, go to the DNS record management page by clicking on the "DNS / Name Servers" button in the menu on the left.
 
 > First, find out the IP address of your VPS.

@@ -15,7 +15,7 @@ Virtual Private Server, atau biasa dikenal dengan VPS, adalah sebuah perangkat v
 > Langkah-langkahnya akan dijelaskan di bagian ini.
 > Jika kamu sudah memiliki sebuah VPS, silahkan lanjut ke [bagian selanjutnya](#memulai-bot).
 
-Di panduan ini, kita akan memanfaatkan layanan dari [Hostinger](https://hostinger.com).
+Di panduan ini, kita akan memanfaatkan layanan dari [Hostinger](https://hostinger.com/1).
 
 > Kamu bebas memilih provider yang kamu mau.
 > Karena semua provider menyediakan layanan yang serupa, seharusnya kamu tidak akan menemui masalah selama mengikuti panduan ini.
@@ -392,7 +392,7 @@ Terakhir, bayar domain-nya.
 #### Mengarahkan Domain ke VPS
 
 Sebelum domain bisa digunakan bersama VPS kamu, kamu perlu mengarahkan domain tersebut ke server kamu terlebih dahulu.
-Caranya, di [Kontrol Panel Hostinger](https://hpanel.hostinger.com), klik tombol "Manage" yang berada di sebelah domain kamu.
+Caranya, di [Kontrol Panel Hostinger](https://hpanel.hostinger.com/1), klik tombol "Manage" yang berada di sebelah domain kamu.
 Kemudian, pergi ke halaman pengelola record DNS dengan cara mengklik tombol "DNS / Name Servers" di menu yang berada di sebelah kiri.
 
 > Cari tahu IP address VPS-mu terlebih dahulu.
