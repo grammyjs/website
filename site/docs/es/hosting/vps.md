@@ -15,7 +15,7 @@ Un servidor virtual privado, más conocido como VPS, es una máquina virtual que
 > Esta sección explicará cómo hacerlo.
 > Si ya tienes un VPS en el que trabajar, pasa a la [siguiente sección](#iniciando-el-bot).
 
-En esta guía, utilizaremos los servicios de [Hostinger](https://www.hostinger.com/1).
+En esta guía, utilizaremos los servicios de [Hostinger](https://hostinger.com).
 
 > Eres libre de elegir el proveedor que prefieras.
 > Todos los proveedores ofrecen los mismos servicios, por lo que no tendrás ningún problema con la parte técnica de este artículo.
@@ -392,7 +392,7 @@ Pague el dominio.
 #### Apuntar un dominio al VPS
 
 Antes de que su dominio pueda funcionar con su VPS, necesita apuntar el dominio a su servidor.
-Para ello, en el [Panel de Control Hostinger](https://hpanel.hostinger.com/1), haga clic en el botón "Administrar" situado junto a su dominio.
+Para ello, en el [Panel de Control Hostinger](https://hpanel.hostinger.com), haga clic en el botón "Administrar" situado junto a su dominio.
 A continuación, vaya a la página de gestión de registros DNS haciendo clic en el botón "DNS / Name Servers" del menú de la izquierda.
 
 > En primer lugar, averigüe la dirección IP de su VPS.
