@@ -127,7 +127,7 @@ npm run build:watch
 только для localhost на вашем компьютере. Чтобы протестировать бота, вам нужно
 вывести функцию в интернет, чтобы Telegram API мог отправлять обновления вашему
 боту. Существует несколько сервисов, таких как
-[localtunnel](https://localtunnel.me) или [ngrok](https://ngrok.com), которые
+[Cloudflare Tunnel](https://learnaws.io/blog/cloudflare-tunnel) или [ngrok](https://ngrok.com), которые
 могут помочь вам в этом. В этом примере мы будем использовать localtunnel.
 
 Сначала давайте установим localtunnel:
