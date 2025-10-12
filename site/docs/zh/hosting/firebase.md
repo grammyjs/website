@@ -111,7 +111,7 @@ npm run build:watch
 这是你的云函数的本地 URL。
 然而，你的函数仅在你的计算机上可用。
 要实际测试你的 bot，你需要将你的函数公开到互联网上，以便 Telegram API 可以向你的 bot 发送 update。
-有多种服务，例如 [localtunnel](https://localtunnel.me) 或 [ngrok](https://ngrok.com)，可以帮助你。
+有多种服务，例如 [Cloudflare Tunnel](https://learnaws.io/blog/cloudflare-tunnel) 或 [ngrok](https://ngrok.com)，可以帮助你。
 在此示例中，我们将使用 localtunnel。
 
 首先，让我们安装localtunnel：
