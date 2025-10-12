@@ -111,7 +111,7 @@ After the emulators start, you should find a line in the console output that loo
 That is the local URL of your cloud function.
 However, your function is only available to the localhost on your computer.
 To actually test your bot, you need to expose your function to the internet so that the Telegram API can send updates to your bot.
-There are several services, such as [localtunnel](https://localtunnel.me) or [ngrok](https://ngrok.com), that can help you with that.
+There are several services, such as [Cloudflare Tunnel](https://learnaws.io/blog/cloudflare-tunnel) or [ngrok](https://ngrok.com), that can help you with that.
 In this example, we will be using localtunnel.
 
 First, let's install localtunnel:
