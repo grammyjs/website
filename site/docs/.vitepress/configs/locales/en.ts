@@ -298,10 +298,6 @@ const resourcesGrammy = {
       link: "https://t.me/grammyjs_news",
     },
     {
-      text: "Twitter",
-      link: "https://twitter.com/grammy_js",
-    },
-    {
       text: "FAQ",
       link: "/resources/faq",
     },
