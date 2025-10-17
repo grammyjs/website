@@ -260,6 +260,10 @@ yarn global add pm2
 pnpm add -g pm2
 ```
 
+```sh [bun]
+bun add -g pm2
+```
+
 :::
 
 #### Creating an Application
