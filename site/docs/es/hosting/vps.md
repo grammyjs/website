@@ -15,7 +15,7 @@ Un servidor virtual privado, más conocido como VPS, es una máquina virtual que
 > Esta sección explicará cómo hacerlo.
 > Si ya tienes un VPS en el que trabajar, pasa a la [siguiente sección](#iniciando-el-bot).
 
-En esta guía, utilizaremos los servicios de [Hostinger](https://hostinger.com).
+En esta guía, utilizaremos los servicios de [Hostinger](https://www.hostinger.com/1).
 
 > Eres libre de elegir el proveedor que prefieras.
 > Todos los proveedores ofrecen los mismos servicios, por lo que no tendrás ningún problema con la parte técnica de este artículo.
@@ -28,7 +28,7 @@ Para ello, utiliza una aplicación como [VirtualBox](https://virtualbox.org).
 Crea una máquina virtual con la distribución de Linux deseada para simular un servidor Linux.
 :::
 
-Vaya a la [página de alojamiento VPS](https://hostinger.com/vps-hosting).
+Vaya a la [página de alojamiento VPS](https://www.hostinger.com/1/vps-hosting).
 Utilizaremos el plan "KVM 1".
 Los recursos de "KVM 1" son suficientes para bots con mucha audiencia, y más aún para nuestro bot de prueba.
 
