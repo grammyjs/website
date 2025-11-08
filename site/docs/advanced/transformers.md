@@ -87,7 +87,7 @@ They solve this problem:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { SomeApiFlavor, SomeContextFlavor, somePlugin, somePluginMethod } from "some-plugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "some-plugin";
 
 // Context flavoring
 type MyContext = Context & SomeContextFlavor;
@@ -100,11 +100,12 @@ const bot = new Bot<MyContext, MyApi>("");
 // Use a transformer function from the plugin.
 bot.api.config.use(somePlugin());
 
-// Add a new method to the bot's API object,
-// as well as to the API object of each context.
-bot.api.somePluginMethod = somePluginMethod;
+// Install an alias so we don't have to type out `.raw`.
+bot.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+
+// Also, install the alias for each context.
 bot.use(async (ctx, next) => {
-  ctx.api.somePluginMethod = somePluginMethod;
+  ctx.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
   await next();
 });
 
