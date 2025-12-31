@@ -15,7 +15,7 @@ next: false
 > 本节将介绍如何做到这一点。
 > 如果你已经有了一台可用的 VPS，请跳至 [下一节](#启动-bot)。
 
-在本指南中，我们将使用 [Hostinger](https://hostinger.com) 的服务。
+在本指南中，我们将使用 [Hostinger](https://www.hostinger.com/1) 的服务。
 
 > 你可以自由选择服务提供商。
 > 所有提供商都提供相同的服务，因此你在本文的技术部分不会遇到任何问题。
@@ -28,7 +28,7 @@ next: false
 使用所需的 Linux 发行版创建虚拟机，以模拟 Linux 服务器。
 :::
 
-进入 [VPS 托管页面](https://hostinger.com/vps-hosting)。
+进入 [VPS 托管页面](https://www.hostinger.com/1/vps-hosting)。
 我们将使用 “KVM 1” 方案。
 “KVM 1” 的资源对于拥有大量受众的 bot 来说已经足够了，对于我们的测试 bot 来说更是如此。
 

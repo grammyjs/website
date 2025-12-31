@@ -275,24 +275,15 @@ https://api.telegram.org/bot<BOT_TOKEN>/getMe
 }
 ```
 
-现在，在项目根目录中打开 `wrangler.toml`，并在 `[vars]` 部分下添加一个环境变量 `BOT_INFO`，其中包含上面获得的 `result` 对象的值，如下所示：
+现在，在项目根目录中打开 `wrangler.jsonc`，并在 `"vars"` 部分下添加一个环境变量 `BOT_INFO`，其中包含上面获得的 `result` 对象的值，如下所示：
 
-```toml
-[vars]
-BOT_INFO = """{
-    "id": 1234567890,
-    "is_bot": true,
-    "first_name": "mybot",
-    "username": "MyBot",
-    "can_join_groups": true,
-    "can_read_all_group_messages": false,
-    "supports_inline_queries": true,
-    "can_connect_to_business": false
-}"""
+```jsonc
+"vars": {
+    "BOT_INFO": "{\"id\": 1234567890,\"is_bot\": true,\"first_name\": \"mybot\",\"username\": \"MyBot\",\"can_join_groups\": true,\"can_read_all_group_messages\": false,\"supports_inline_queries\": true,\"can_connect_to_business\": false}"
+}
 ```
 
 将 bot 信息替换为你从网页浏览器获取的信息。
-注意开头和结尾的三个双引号 `"""`。
 
 除了 `BOT_INFO` 之外，我们还添加了一个变量 `BOT_TOKEN`，这是一个储存 bot token 的环境变量，用来创建你的 bot。
 
