@@ -30,7 +30,7 @@ Jika kamu memerlukan penjelasan yang lebih detail untuk setiap langkah-langkahny
 Untuk membuat sebuah function serta men-deploy-nya ke runtime Firebase Functions, kamu perlu menginstal Node.js dan Firebase CLI terlebih dahulu.
 
 > Perlu diketahui bahwa Firebase Functions hanya mendukung Node.js versi 14, 16, dan 18.
-> Untuk informasi lebih lanjut mengenai versi Node.js yang didukung, lihat [dokumentasi berikut](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
+> Untuk informasi lebih lanjut mengenai versi Node.js yang didukung, lihat [dokumentasi berikut](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js).
 
 Sesudah Node.js dan npm terpasang, instal Firebase CLI secara global:
 
@@ -114,7 +114,7 @@ Setelah emulator dijalankan, semestinya kamu akan menemukan sebuah baris output 
 Itu adalah URL lokal untuk cloud function kamu.
 Sayangnya, function tersebut hanya akan tersedia untuk localhost di komputer kamu saja.
 Untuk menguji bot secara nyata, kamu perlu mengekspos function ke internet agar API Telegram bisa mengirim update ke bot-mu.
-Ada beberapa penyedia layanan yang bisa kamu gunakan untuk melakukan hal tersebut, misalnya [localtunnel](https://localtunnel.me) atau [ngrok](https://ngrok.com).
+Ada beberapa penyedia layanan yang bisa kamu gunakan untuk melakukan hal tersebut, misalnya [Cloudflare Tunnel](https://learnaws.io/blog/cloudflare-tunnel) atau [ngrok](https://ngrok.com).
 Dalam kesempatan kali ini, kita akan menggunakan localtunnel.
 
 Pertama-tama, instal localtunnel:

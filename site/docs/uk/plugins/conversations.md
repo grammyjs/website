@@ -511,7 +511,7 @@ photoWithCaption = await conversation
 
 ### Перевірка обʼєктів контексту
 
-Дуже поширеною практикою є [деструктуризація](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) отриманих обʼєктів контексту.
+Дуже поширеною практикою є [деструктуризація](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring) отриманих обʼєктів контексту.
 Після цього можна виконувати подальші перевірки отриманих даних.
 
 ```ts

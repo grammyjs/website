@@ -512,7 +512,7 @@ photoWithCaption = await conversation
 
 ### Осмотр объектов контекста
 
-Часто возникает необходимость [деструктуризации](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) полученных объектов контекста.
+Часто возникает необходимость [деструктуризации](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring) полученных объектов контекста.
 Это позволяет проводить дополнительные проверки данных.
 
 ```ts
@@ -1132,7 +1132,7 @@ await ctx.replyWithPhoto(scaled);
 Кроме того, они принимают функцию action, которая будет выполнена, если поле формы заполнено корректно.
 
 ```ts
-// Wait for a basic calculation operation.
+// Ожидание выбора базовой операции вычисления.
 const op = await conversation.form.select(["+", "-", "*", "/"], {
   action: (ctx) => ctx.deleteMessage(),
   otherwise: (ctx) => ctx.reply("Expected +, -, *, or /!"),
@@ -1140,20 +1140,6 @@ const op = await conversation.form.select(["+", "-", "*", "/"], {
 ```
 
 Диалоговые формы так же позволяют вам создавать кастомные поля с помощью [`conversation.form.build`](/ref/conversations/conversationform#build).
-
-## Wait Timeouts
-
-Every time you wait for an update, you can pass a timeout value.
-
-```ts
-// Ожидание выбора базовой операции вычисления.
-const op = await conversation.form.select(["+", "-", "*", "/"], {
-  action: (ctx) => ctx.deleteMessage(),
-  otherwise: (ctx) => ctx.reply("Ожидается +, -, *, или /!"),
-});
-```
-
-Диалоговые формы также позволяют создавать пользовательские поля формы с помощью метода [`conversation.form.build`](/ref/conversations/conversationform#build).
 
 ## Таймаут ожидания
 

@@ -30,7 +30,7 @@ If you need more detailed explanations on each step that you'll take, refer to t
 To write functions and deploy them to the Firebase Functions runtime, you'll need to set up a Node.js environment and install the Firebase CLI.
 
 > It's important to note that only the Node.js versions 14, 16, and 18 are currently supported by Firebase Functions.
-> For more on the supported Node.js versions, refer to [here](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
+> For more on the supported Node.js versions, refer to [here](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js).
 
 Once you have Node.js and npm installed, install Firebase CLI globally:
 
@@ -111,7 +111,7 @@ After the emulators start, you should find a line in the console output that loo
 That is the local URL of your cloud function.
 However, your function is only available to the localhost on your computer.
 To actually test your bot, you need to expose your function to the internet so that the Telegram API can send updates to your bot.
-There are several services, such as [localtunnel](https://localtunnel.me) or [ngrok](https://ngrok.com), that can help you with that.
+There are several services, such as [Cloudflare Tunnel](https://learnaws.io/blog/cloudflare-tunnel) or [ngrok](https://ngrok.com), that can help you with that.
 In this example, we will be using localtunnel.
 
 First, let's install localtunnel:

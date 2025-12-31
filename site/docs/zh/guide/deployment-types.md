@@ -379,7 +379,7 @@ ______________                                     _____________
 请记住，一旦你响应了一个 webhook 请求，Telegram 将发送该聊天的下一个 update。
 但是，由于旧的 update 仍在处理中，先前顺序处理的两个 update 突然并行处理。
 这可能导致竞态效应。
-例如，插件将不可避免地由于 [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) 的危险而中断。
+例如，插件将不可避免地由于 [WAR](https://handwiki.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) 的危险而中断。
 **这会导致数据丢失！**
 其他插件，甚至你自己的中间件也可能崩溃。
 这种情况的程度是未知的，取决于你的 bot。

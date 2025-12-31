@@ -10,7 +10,7 @@ This guide tells you about the ways you can host your grammY bots on [Deno Deplo
 Please note that this guide is only for Deno users, and you need to have a [GitHub](https://github.com) account for creating a [Deno Deploy](https://deno.com/deploy) account.
 
 Deno Deploy is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Deno Deploy.
-For example, the platform only supports a [limited set](https://docs.deno.com/deploy/api/runtime-fs) of the file system APIs available in Deno.
+For example, the platform only supports a [limited set](https://docs.deno.com/deploy/classic/api/runtime-fs/) of the file system APIs available in Deno.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
 The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
@@ -89,7 +89,7 @@ Here, we are using the bot token (`/<bot token>`).
    :::
 4. To set up GitHub Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
-Check out the [deployctl documentation](https://docs.deno.com/deploy/manual/deployctl) for more information.
+Check out the [deployctl documentation](https://docs.deno.com/deploy/classic/deployctl/) for more information.
 
 ### Note
 

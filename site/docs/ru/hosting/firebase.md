@@ -36,7 +36,7 @@ next: false
 
 > Важно отметить, что в настоящее время Firebase Functions поддерживает только
 > Node.js версий 14, 16 и 18. Подробнее о поддерживаемых версиях Node.js читайте
-> [здесь](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
+> [здесь](https://firebase.google.com/docs/functions/manage-functions?gen=2nd#set-node.js).
 
 После установки Node.js и npm установите Firebase CLI глобально:
 
@@ -127,7 +127,7 @@ npm run build:watch
 только для localhost на вашем компьютере. Чтобы протестировать бота, вам нужно
 вывести функцию в интернет, чтобы Telegram API мог отправлять обновления вашему
 боту. Существует несколько сервисов, таких как
-[localtunnel](https://localtunnel.me) или [ngrok](https://ngrok.com), которые
+[Cloudflare Tunnel](https://learnaws.io/blog/cloudflare-tunnel) или [ngrok](https://ngrok.com), которые
 могут помочь вам в этом. В этом примере мы будем использовать localtunnel.
 
 Сначала давайте установим localtunnel:

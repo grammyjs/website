@@ -190,7 +190,7 @@ As usual, this is optional.
 Every time your server starts up, grammY will request [information about the bot](https://core.telegram.org/bots/api#getme) from Telegram in order to provide it on the [context object](../guide/context) under `ctx.me`.
 We can set the [bot information](/ref/core/botconfig#botinfo) to prevent excessive `getMe` calls.
 
-1. Open this link `https://api.telegram.org/bot<bot_token>/getMe` in your favorite web browser. [Firefox](https://www.mozilla.org/en-US/firefox/) is recommended since it displays `json` format nicely.
+1. Open this link `https://api.telegram.org/bot<bot_token>/getMe` in your favorite web browser. [Firefox](https://www.firefox.com/en-US/) is recommended since it displays `json` format nicely.
 2. Change our code at line 4 above and fill the value according to the results from `getMe`:
 
    ```ts

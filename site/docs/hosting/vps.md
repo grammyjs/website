@@ -73,7 +73,7 @@ Replace `<ip-address>` with the IP address of your server which you can find on 
 
 ::: tip Configuring SSH
 It can be difficult and tedious to remember which IP address and whose name you need to connect to a server.
-To eliminate these routine steps and improve your server experience, you can configure SSH by creating a `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file>) file on your computer that stores all the data you need to connect to the server under certain arbitrary identifiers.
+To eliminate these routine steps and improve your server experience, you can configure SSH by creating a `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file/>) file on your computer that stores all the data you need to connect to the server under certain arbitrary identifiers.
 This is beyond the scope of this article, so you'll have to configure it yourself.
 :::
 
@@ -267,7 +267,7 @@ pnpm add -g pm2
 PM2 offers two ways to create an application:
 
 1. Use the command line interface.
-2. Use the [configuration file](https://pm2.keymetrics.io/docs/usage/application-declaration).
+2. Use the [configuration file](https://pm2.keymetrics.io/docs/usage/application-declaration/).
 
 The first method is convenient when getting to know PM2.
 However, during deployment, you should use the second method, which is what we did in our case.
@@ -403,7 +403,7 @@ Edit this record by changing the IP address in the "Points to" field to the IP a
 Next, find and delete the record of type `CNAME` with the name `www`.
 Instead, create a new record of type `A` with the name `www`, pointing to the IP address of your VPS, and set the TTL to 3600.
 
-> If you run into problems, use the other method described in the [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
+> If you run into problems, use the other method described in the [knowledge base](https://www.hostinger.com/support/1583227-how-to-point-a-domain-to-your-vps-at-hostinger/).
 
 ### Setting up a Web Server
 
@@ -526,8 +526,8 @@ Replace `<token>` with your bot token and `<domain>` with your domain.
 
 ## CI/CD
 
-[CI/CD](https://about.gitlab.com/topics/ci-cd) is an important part of the modern software development process.
-This guide covers almost all of the [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline).
+[CI/CD](https://about.gitlab.com/topics/ci-cd/) is an important part of the modern software development process.
+This guide covers almost all of the [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline/).
 
 We will focus on writing scripts for GitHub and GitLab.
 You can easily adapt the examples below to your CI/CD service of choice, such as Jenkins, Buddy, etc., if needed.
@@ -639,7 +639,7 @@ Files are delivered to the server using the `rsync` utility, which is implemente
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot directory, where we install all the dependencies except `devDependencies`, and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.
@@ -688,7 +688,7 @@ After `build` is executed, the artifact of this task, namely the `dist` director
 The files are delivered to the server using the `rsync` utility, which we must install before executing the main script.
 After the files are delivered, we connect to the server using SSH to run a command to install all dependencies except `devDependencies` and restart the application.
 
-Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
+Note that you need to add three [environment variables](https://docs.gitlab.com/ci/variables/):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.
@@ -733,7 +733,7 @@ This script sends files to the server using the `rsync` utility, which is implem
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot's directory and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.
@@ -770,7 +770,7 @@ where `<target-directory>` is replaced with the name of the directory where the 
 This script sends files to the server using `rsync`, which has to be installed previously.
 After the files are copied, we connect to the server using SSH to restart the bot.
 
-Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
+Note that you need to add three [environment variables](https://docs.gitlab.com/ci/variables/):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.

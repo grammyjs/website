@@ -10,7 +10,7 @@ next: false
 Обратите внимание, что это руководство предназначено только для пользователей Deno, и для создания учетной записи [Deno Deploy](https://deno.com/deploy) вам необходимо иметь аккаунт [GitHub](https://github.com).
 
 Deno Deploy идеально подходит для большинства простых ботов, но следует учитывать, что не все функции Deno доступны для приложений, работающих на Deno Deploy.
-Например, платформа поддерживает только [ограниченный набор](https://docs.deno.com/deploy/api/runtime-fs) API файловой системы, доступных в Deno.
+Например, платформа поддерживает только [ограниченный набор](https://docs.deno.com/deploy/classic/api/runtime-fs/) API файловой системы, доступных в Deno.
 Она похожа на другие многочисленные бессерверные платформы, но предназначена для приложений Deno.
 
 Результат этого руководства [можно увидеть в нашем примере репозитория ботов](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
@@ -89,7 +89,7 @@ Deno.serve(async (req) => {
    :::
 4. Чтобы настроить GitHub Actions, обратитесь к [этому README](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
-Для получения дополнительной информации ознакомьтесь с документацией [deployctl](https://docs.deno.com/deploy/manual/deployctl).
+Для получения дополнительной информации ознакомьтесь с документацией [deployctl](https://docs.deno.com/deploy/classic/deployctl/).
 
 ### Примечание
 
