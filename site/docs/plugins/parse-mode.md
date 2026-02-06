@@ -246,7 +246,7 @@ The `fmt` tagged template accepts a wide variety of values for constructing your
 - Nullary functions that returns an EntityTag (such as `b` and `i`)
 - Any types that implements `toString()` (will be treated as plain text value)
 
-### TextWithEntities
+### `TextWithEntities`
 
 The `TextWithEntities` interface represents text with optional formatting entities.
 
