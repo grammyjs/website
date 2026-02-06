@@ -267,7 +267,7 @@ bot.on("msg:text", async (ctx) => {
 });
 ```
 
-### CaptionWithEntities
+### `CaptionWithEntities`
 
 The `CaptionWithEntities` interface represents a caption with optional formatting entities.
 
