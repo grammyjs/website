@@ -73,6 +73,7 @@ Check out the [tutorial](./vps) on how to host grammY bots on a VPS.
 | IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
 | Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
 | MVPS          | €4         | 6-9 ms :de: Germany                       | 1 core, 2 GB RAM, 25 GB SSD, 2 TB  |
+| [exe.dev](https://exe.dev) | $20 | 150 ms :us: Boardman, Oregon | 2 CPUs, 8 GB RAM, 25 GB disk, 25 VMs |
 
 ## Unit Explanations
 
