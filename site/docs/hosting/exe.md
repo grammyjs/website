@@ -21,7 +21,7 @@ Adjust it to match your project (e.g. change the repo URL, runtime, or deploymen
 
 ### Long Polling
 
-````text
+```text
 Clone my Telegram bot from <repo-url> into ~/bot.
 Install Node.js via fnm, then run npm install in ~/bot.
 Create a .env file at ~/bot/.env with BOT_TOKEN="<your-token>".
@@ -32,7 +32,7 @@ Create a systemd service at /etc/systemd/system/bot.service that:
   - restarts on failure
 Enable and start the service.
 Verify the bot is running with systemctl status bot.
-````
+```
 
 Replace `<repo-url>` with your repository URL and `<your-token>` with your bot token from [@BotFather](https://t.me/BotFather).
 
@@ -40,7 +40,7 @@ Replace `<repo-url>` with your repository URL and `<your-token>` with your bot t
 
 exe.dev automatically proxies HTTPS traffic to your VM at `https://<vm-name>.exe.xyz/`.
 
-````text
+```text
 Clone my Telegram bot from <repo-url> into ~/bot.
 Install Node.js via fnm, then run npm install in ~/bot.
 Create a .env file at ~/bot/.env with BOT_TOKEN="<your-token>".
@@ -56,7 +56,7 @@ Run: ssh exe.dev share set-public <vm-name>
 Set the Telegram webhook by opening:
   https://api.telegram.org/bot<your-token>/setWebhook?url=https://<vm-name>.exe.xyz/<your-token>
 Verify the bot is running with systemctl status bot.
-````
+```
 
 Replace `<repo-url>`, `<your-token>`, and `<vm-name>` with your values.
 

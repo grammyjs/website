@@ -64,16 +64,16 @@ On a VPS, you can run bots using both long polling or webhooks.
 
 Check out the [tutorial](./vps) on how to host grammY bots on a VPS.
 
-| Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
-| ------------- | ---------- | ----------------------------------------- | ---------------------------------- |
-| Hostinger     | $14        |                                           | 1 vCPU, 4 GB RAM, 50 GB SSD, 1 TB  |
-| Contabo       |            | 15 ms :de: Nuremberg                      |                                    |
-| DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB  |
-| Hetzner Cloud | €4.15      | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB |
-| IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
-| Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
-| MVPS          | €4         | 6-9 ms :de: Germany                       | 1 core, 2 GB RAM, 25 GB SSD, 2 TB  |
-| [exe.dev](https://exe.dev) | $20 | 150 ms :us: Boardman, Oregon | 2 CPUs, 8 GB RAM, 25 GB disk, 25 VMs |
+| Name                       | Min. price | Ping to Bot API                           | Cheapest option                      |
+| -------------------------- | ---------- | ----------------------------------------- | ------------------------------------ |
+| Hostinger                  | $14        |                                           | 1 vCPU, 4 GB RAM, 50 GB SSD, 1 TB    |
+| Contabo                    |            | 15 ms :de: Nuremberg                      |                                      |
+| DigitalOcean               | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB    |
+| Hetzner Cloud              | €4.15      | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB   |
+| IONOS VPS                  | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD         |
+| Scaleway                   | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD         |
+| MVPS                       | €4         | 6-9 ms :de: Germany                       | 1 core, 2 GB RAM, 25 GB SSD, 2 TB    |
+| [exe.dev](https://exe.dev) | $20        | 150 ms :us: Boardman, Oregon              | 2 CPUs, 8 GB RAM, 25 GB disk, 25 VMs |
 
 ## Unit Explanations
 
