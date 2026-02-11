@@ -73,7 +73,6 @@ Serverless 和 PaaS 有一个缺点，默认情况下不会为你提供持久存
 | IONOS VPS     | €1 or $2 | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
 | Scaleway      | €~7      |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
 | MVPS          | €4       | 6-9 ms :de: 德国                          | 1 core, 2 GB RAM, 25 GB SSD, 2 TB  |
-| [exe.dev](https://exe.dev) | $20 | | 2 CPUs, 8 GB RAM, 25 GB disk, 25 VMs |
 
 ## 单位解释
 
