@@ -88,6 +88,7 @@ next: false
 | IONOS VPS     | €1 или $2 | 15 мс :de: Баден-Баден                    | 1 vCPU, 0.5 ГБ ОЗУ, 8 ГБ SSD       |
 | Scaleway      | €~7       |                                           | 2 cores, 2 ГБ ОЗУ, 20 ГБ SSD       |
 | MVPS          | €4        | 6-9 мс :de: Германия                      | 1 core, 2 ГБ ОЗУ, 25 ГБ SSD, 2 ТБ  |
+| [exe.dev](https://exe.dev) | $20 | | 2 CPUs, 8 ГБ ОЗУ, 25 ГБ диск, 25 VMs |
 
 ## Пояснения к сокращениям
 

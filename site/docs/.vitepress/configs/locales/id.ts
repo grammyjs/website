@@ -368,6 +368,10 @@ const hostingTutorials = {
       text: "Heroku",
       link: "/id/hosting/heroku",
     },
+    {
+      text: "exe.dev",
+      link: "/id/hosting/exe",
+    },
   ],
 };
 export const siteId: LocaleConfig = {

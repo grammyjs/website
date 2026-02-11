@@ -373,6 +373,10 @@ const hostingTutorials = {
       text: "Heroku",
       link: "/ru/hosting/heroku",
     },
+    {
+      text: "exe.dev",
+      link: "/ru/hosting/exe",
+    },
   ],
 };
 
