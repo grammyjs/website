@@ -216,6 +216,10 @@ const pluginOfficial = {
       text: "Команди (commands)",
       link: "/uk/plugins/commands",
     },
+    {
+      text: "Зберігання медіагруп (media-groups)",
+      link: "/uk/plugins/media-groups-storage",
+    },
   ],
 };
 

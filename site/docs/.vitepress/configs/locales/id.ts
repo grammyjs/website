@@ -213,6 +213,10 @@ const pluginOfficial = {
       text: "Perintah (commands)",
       link: "/id/plugins/commands",
     },
+    {
+      text: "Penyimpanan Grup Media (media-groups)",
+      link: "/id/plugins/media-groups-storage",
+    },
   ],
 };
 const pluginThirdparty = {
