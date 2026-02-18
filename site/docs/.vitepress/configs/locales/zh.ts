@@ -216,6 +216,10 @@ const pluginOfficial = {
       text: "指令 (commands)",
       link: "/zh/plugins/commands",
     },
+    {
+      text: "媒体组存储 (media-groups)",
+      link: "/zh/plugins/media-groups-storage",
+    },
   ],
 };
 

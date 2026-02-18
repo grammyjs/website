@@ -216,6 +216,10 @@ const pluginOfficial = {
       text: "Команды (commands)",
       link: "/ru/plugins/commands",
     },
+    {
+      text: "Хранение медиагрупп (media-groups)",
+      link: "/ru/plugins/media-groups-storage",
+    },
   ],
 };
 
