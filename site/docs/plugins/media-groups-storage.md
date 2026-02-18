@@ -12,7 +12,7 @@ These messages may arrive in any order and with unpredictable timing.
 This creates a fundamental challenge: there is no built-in way to know when all parts of the album have arrived, and no way to retrieve the full album later, for example when the user replies to one of the messages or when you need to forward the entire group.
 
 The media groups storage plugin solves this problem.
-It automatically collects and stores all messages that share the same `media_group_id`---both from incoming updates and outgoing API responses---and lets you retrieve the complete group at any time by any of its messages.
+It automatically collects and stores all messages that share the same `media_group_id` (both from incoming updates and outgoing API responses) and lets you retrieve the complete group at any time by any of its messages.
 
 ::: tip Built-in Media Groups
 grammY has a [built-in plugin](./media-group) for building `InputMedia` objects.
@@ -73,10 +73,10 @@ The plugin has two components that need to be registered: middleware (via `bot.u
 // Uses in-memory storage by default
 const mg = mediaGroups();
 
-// Register middleware — stores incoming media group messages
+// Register middleware to store incoming media group messages
 bot.use(mg);
 
-// Register transformer — stores outgoing media group API responses
+// Register transformer to store outgoing media group API responses
 bot.api.config.use(mg.transformer);
 ```
 
