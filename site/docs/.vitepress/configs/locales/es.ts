@@ -216,10 +216,6 @@ const pluginOfficial = {
       text: "Comandos (commands)",
       link: "/es/plugins/commands",
     },
-    {
-      text: "Almacenamiento de grupos de medios (media-groups)",
-      link: "/es/plugins/media-groups-storage",
-    },
   ],
 };
 
