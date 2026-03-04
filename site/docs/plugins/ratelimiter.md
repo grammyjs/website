@@ -179,7 +179,7 @@ With `.limitFor()`, you define the entity to which the limit is applied.
 - `.limitFor('global')`: Applies a single limit to the _entire bot_. This is a powerful tool to protect against high traffic spikes or to control the bot's overall API usage. Be very careful about choosing this option!
 - **Custom Function**: For ultimate control, you can provide a function that returns a unique string key. The limiter will be applied to whatever entity that key represents.
 
-**Example: A custom key per command for each user**
+**Example:** A custom key per command for each user
 
 This rule limits a user to 5 uses of `/commandA` and 5 uses of `/commandB` per minute, with each command's limit counted separately.
 
@@ -229,7 +229,7 @@ The following features provide granular control over your bot's rate-limiting be
 
 The `.onlyIf()` method allows a limit to be applied only under specific conditions. It accepts a predicate function that returns `true` if the limiter should run for the current update, and `false` if it should be skipped.
 
-**Example: Only limit users when they send stickers**
+**Example:** Only limit users when they send stickers
 
 ```ts
 import type { Context } from "grammy";
@@ -250,7 +250,7 @@ The callback receives three arguments:
 - `info`: An object with details about the limit (`info.reset` is the time in milliseconds until the user's limit resets).
 - `storage`: The storage engine instance, for advanced use cases like notification locks.
 
-**Example: A simple (but unsafe) reply**
+**Example:** A simple (but unsafe) reply
 
 ```ts
 import type { Context } from "grammy";
@@ -344,7 +344,7 @@ This feature allows for different rate limits for different users within a singl
 
 The `.fixedWindow()` strategy supports a **dynamic limit generator**. Instead of passing a fixed number to the `limit` property, you can pass a function that receives the `ctx` object and returns the appropriate limit.
 
-**Example: Give chat admins a higher limit**
+**Example:** Give chat admins a higher limit
 
 ```ts
 import type { Context } from "grammy";
@@ -398,7 +398,7 @@ For persistent spammers, the **Penalty Box** feature allows you to temporarily "
 
 - `penaltyTime`: The duration of the mute (in ms). This can be a fixed number or a dynamic function.
 
-**Example: Mute a user and increase the penalty for repeat offenses**
+**Example:** Mute a user and increase the penalty for repeat offenses
 
 ```ts
 import type { Context } from "grammy";
@@ -431,7 +431,7 @@ For advanced logging, analytics, or monitoring, you can listen to events that th
 - `throttled: [ctx, info]` - Fired when a request is rate-limited.
 - `penaltyApplied: [ctx, key, duration]` - Fired when a user is put in the Penalty Box.
 
-**Example: Logging penalties**
+**Example:** Logging penalties
 
 ```ts
 import { Bot, type Context } from "grammy";
@@ -610,7 +610,7 @@ As your bot grows in complexity, placing all configuration directly in your main
 
 ### Proposed Project Structure
 
-```
+```asciiart:no-line-numbers
 .
 └── src/
     ├── bot.ts           # Your main bot file (imports and starts the bot)
@@ -643,9 +643,9 @@ imagineLimiter.on('penaltyApplied', ...);
 
 // Export the configured middleware, ready to use.
 export const rateLimiters = [
-	limit(globalLimiter),
-	limit(imagineLimiter),
-	limit(privateChatLimiter.build()),
+  limit(globalLimiter),
+  limit(imagineLimiter),
+  limit(privateChatLimiter.build()),
 ];
 ```
 
