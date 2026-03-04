@@ -249,6 +249,12 @@ const pluginOfficial = {
       // do not add the following line to translations:
       activeMatch: "^(/plugins/commands|/ref/commands/)$",
     },
+    {
+      text: "Media Groups Storage (media-groups)",
+      link: "/plugins/media-groups-storage",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/media-groups-storage)$",
+    },
   ],
 };
 
