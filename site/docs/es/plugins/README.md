@@ -36,6 +36,7 @@ Instalar plugins es divertido y fácil, y queremos que sepas lo que tenemos para
 | [Grupos de medios](./media-group)                | _incluido_                                         | Simplificar el envío de grupos de medios y la edición de medios   |
 | [Consultas en línea](./inline-query)             | _incluido_                                         | Construya fácilmente resultados para consultas en línea           |
 | [Auto-reintento](./auto-retry)                   | [`auto-retry`](./auto-retry)                       | Gestión automática de la limitación de velocidad                  |
+| [Commands](./commands)                           | [`commands`](./commands)                           | Gestiona los comandos de forma eficaz                             |
 | [Conversaciones](./conversations)                | [`conversations`](./conversations)                 | Construya potentes interfaces y diálogos conversacionales         |
 | [Miembros de chat](./chat-members)               | [`chat-members`](./chat-members)                   | Saber qué usuario se ha unido a qué chat                          |
 | [Emojis](./emoji)                                | [`emoji`](./emoji)                                 | Simplificar el uso de emoji en el código                          |
