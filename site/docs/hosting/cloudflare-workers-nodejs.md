@@ -277,7 +277,7 @@ If successful, you will see a JSON response similar to this:
 
 Now, open `wrangler.jsonc` in the root of your project and add an environment variable `BOT_INFO` under `"vars"` section with the value from `result` object you get above like this:
 
-```jsonc
+````jsonc
 {
     "vars": {
         "BOT_INFO": "{\"id\": 1234567890,\"is_bot\": true,\"first_name\": \"mybot\",\"username\": \"MyBot\",\"can_join_groups\": true,\"can_read_all_group_messages\": false,\"supports_inline_queries\": true,\"can_connect_to_business\": false}"
@@ -300,7 +300,7 @@ You can add a secret to your project using the following command:
 
 ```sh
 npx wrangler secret put BOT_TOKEN
-```
+````
 
 Follow the instruction and input your bot token, your bot token will be uploaded and encrypted.
 
