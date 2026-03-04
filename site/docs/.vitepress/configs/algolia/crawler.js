@@ -52,11 +52,9 @@ new Crawler({
             lvl5: ".content h5",
             lvl6: ".content h6",
             content: ".content p, .content li",
-            pageRank,
+            weight: { pageRank, },
           },
           indexHeadings: true,
-          aggregateContent: true,
-          recordVersion: "v3",
         });
       },
     },
@@ -110,11 +108,11 @@ new Crawler({
       distinct: true,
       attributeForDistinct: "url",
       customRanking: [
+        "desc(weight.pageRank)",
         "desc(weight.level)",
         "asc(weight.position)",
       ],
       ranking: [
-        "desc(weight.pageRank)",
         "typo",
         "words",
         "filters",
