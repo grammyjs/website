@@ -74,6 +74,7 @@ Lihat tutorial pemasangan bot ke sebuah VPS [berikut](./vps).
 | IONOS VPS     | €1 atau $2  | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
 | Scaleway      | €~7         |                                           | 2 core, 2 GB RAM, 20 GB SSD        |
 | MVPS          | €4          | 6-9 ms :de: Jerman                        | 1 core, 2 GB RAM, 25 GB SSD, 2 TB  |
+| netcup        | €5          | 8 ms :de:, 15 ms :netherlands:            | 2 vCore, 4 GB RAM, 128 GB SSD      |
 
 ## Penjelasan Satuan
 
