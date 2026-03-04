@@ -7,7 +7,7 @@ new Crawler({
   startUrls: ["https://grammy.dev"],
   renderJavaScript: false,
   sitemaps: ["https://grammy.dev/sitemap.xml"],
-  exclusionPatterns: [],
+  exclusionPatterns: ["**/*.html"],
   ignoreCanonicalTo: false,
   discoveryPatterns: ["https://grammy.dev/**"],
   schedule: "at 11:55 on Wednesday",
