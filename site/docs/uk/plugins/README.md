@@ -36,6 +36,7 @@
 | [Media Groups](./media-group)              | _вбудовано_                                        | Спрощене надсилання та редагування медіагруп                 |
 | [Inline Queries](./inline-query)           | _вбудовано_                                        | Легко будуйте результати для inline-запитів                  |
 | [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | Автоматичне оброблення лімітів                               |
+| [Commands](./commands)                     | [`commands`](./commands)                           | Ефективно керуйте командами                                  |
 | [Conversations](./conversations)           | [`conversations`](./conversations)                 | Створюйте потужні діалогові інтерфейси                       |
 | [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | Відстежуйте, хто з користувачів приєднався до якого чату     |
 | [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | Спрощене використання емодзі в коді                          |

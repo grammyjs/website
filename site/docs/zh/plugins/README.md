@@ -36,6 +36,7 @@
 | [Media Groups](./media-group)              | _内置_                                             | 简化媒体组的发送和编辑                 |
 | [Inline Queries](./inline-query)           | _内置_                                             | 轻松构建 inline query 的结果           |
 | [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | 自动处理速率限制                       |
+| [Commands](./commands)                     | [`commands`](./commands)                           | 以强大的方式管理指令                   |
 | [Conversations](./conversations)           | [`conversations`](./conversations)                 | 构建强大的对话界面和对话               |
 | [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | 跟踪哪个用户加入了哪个聊天             |
 | [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | 简化在代码中 Emoji 的使用              |
