@@ -12,20 +12,20 @@ Plugin ini mempermudah penggunaan objek `ChatMember`, dengan memberikan cara yan
 
 Bekerja dengan objek `ChatMember` dari Telegram Bot API terkadang menyulitkan. Ada beberapa status berbeda yang sering digunakan secara bergatian di sebagian besar aplikasi. Selain itu, status restricted bersifat ambigu karena dapat mewakili baik anggota grup atau pengguna terbatas yang tidak masuk ke dalam grup.
 
-Plugin ini menyederhanakan pengelolaan anggota obrolan dengan menyediakan filter *strongly-typed* untuk pembaruan anggota obrolan.
+Plugin ini menyederhanakan pengelolaan anggota obrolan dengan menyediakan filter _strongly-typed_ untuk pembaruan anggota obrolan.
 
 ## Penggunaan
 
 ### Fiter Anggota Obrolan
 
-Kamu bisa mendengarkan dua jenis pembaruan terkait anggota obrolan dengan menggunakan bot Telegram: `chat_member` dan `my_chat_member`. 
+Kamu bisa mendengarkan dua jenis pembaruan terkait anggota obrolan dengan menggunakan bot Telegram: `chat_member` dan `my_chat_member`.
 Keduanya menentukan status lama dan status baru dari pengguna.
 
 - `my_chat_member` pembaruan selalu diterima oleh bot kamu untuk memberi tahu tentang status bot yang diperbaharui di obrolan mana pun, serta ketika pengguna memblokir bot.
 - `chat_member` pembaruan hanya diterima jika kamu secara eksplisit menyertakannya dalam daftar pembaharuan yang diizinkan. Pembaruan ini memberi tahu tentang setiap perubahan status penggunaan dalam obrolan dimana bot menjadi **admin**.
 
 Dibandingkan melakukan filter secara manual status lama dan status baru, chat member fiter melakukannya secara otomatis untuk kamu, sehingga kamu dapat bertindak pada transisi apa pun yang kamu butuhkan.
-Di dalam *handler*, tipe `old_chat_member` dan `new_chat_member` otomatis dipersempit sesuai dengan kondisinya.
+Di dalam _handler_, tipe `old_chat_member` dan `new_chat_member` otomatis dipersempit sesuai dengan kondisinya.
 
 ::: code-group
 
@@ -69,7 +69,9 @@ groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
 
 // Mendengarkan perubahan dimana bot ditambahkan ke grup sebagai admin.
 groups.filter(myChatMemberFilter("out", "admin"), async (ctx) => {
-  await ctx.reply("Halo, terima kasih sudah menambahkan saya ke grup sebagai admin!");
+  await ctx.reply(
+    "Halo, terima kasih sudah menambahkan saya ke grup sebagai admin!",
+  );
 });
 
 // Mendengarkan perubahan dimana bot dipromosikan sebagai admin.
@@ -128,7 +130,9 @@ groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
 
 // Mendengarkan perubahan dimana bot ditambahkan ke grup sebagai admin.
 groups.filter(myChatMemberFilter("out", "admin"), async (ctx) => {
-  await ctx.reply("Halo, terima kasih sudah menambahkan saya ke grup sebagai admin!");
+  await ctx.reply(
+    "Halo, terima kasih sudah menambahkan saya ke grup sebagai admin!",
+  );
 });
 
 // Mendengarkan perubahan dimana bot dipromosikan sebagai admin.
@@ -190,7 +194,9 @@ groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
 
 // Mendengarkan perubahan dimana bot ditambahkan ke grup sebagai admin.
 groups.filter(myChatMemberFilter("out", "admin"), async (ctx) => {
-  await ctx.reply("Halo, terima kasih sudah menambahkan saya ke grup sebagai admin!");
+  await ctx.reply(
+    "Halo, terima kasih sudah menambahkan saya ke grup sebagai admin!",
+  );
 });
 
 // Mendengarkan perubahan dimana bot dipromosikan sebagai admin.
@@ -211,7 +217,7 @@ bot.start({
 
 :::
 
-Filter mencakup status reguler (*owner*, *administrator*, *member*, *restricted*, *left*, *kicked*) dan beberapa status tambahan untuk kenyamanan:
+Filter mencakup status reguler (_owner_, _administrator_, _member_, _restricted_, _left_, _kicked_) dan beberapa status tambahan untuk kenyamanan:
 
 - `restricted_in`: anggota obrolan dengan status terbatas
 - `restricted_out`: bukan anggota obrolan, memiliki batasan
@@ -242,6 +248,7 @@ groups.filter(
 ```
 
 #### Contoh Penggunaan
+
 Cara terbaik untuk menggunakan filter adalah dengan memilih sekumpulan status yang relevan, misalnya `out`, `regular`, dan `admin`, lalu membuat tabel transisi antarstatus tersebut:
 
 | ↱         | `out`       | `regular`            | `admin`             |
@@ -250,10 +257,10 @@ Cara terbaik untuk menggunakan filter adalah dengan memilih sekumpulan status ya
 | `regular` | exit        | restrictions-changed | promoted            |
 | `admin`   | exit        | demoted              | permissions-changed |
 
-Tetapkan *listener* pada semua transisi yang relevan dengan *use-case* kamu.
+Tetapkan _listener_ pada semua transisi yang relevan dengan _use-case_ kamu.
 
 Gabungkan filter ini dengan `bot.chatType` untuk hanya mendengarkan transisi pada jenis obrolan tertentu.
-Tambahkan sebuah *middleware* untuk mendengarkan semua pembaruan sebagai cara menjalankan operasi umum (seperti memperbarui database) sebelum kontrol dialihkan ke *handler* tertentu.
+Tambahkan sebuah _middleware_ untuk mendengarkan semua pembaruan sebagai cara menjalankan operasi umum (seperti memperbarui database) sebelum kontrol dialihkan ke _handler_ tertentu.
 
 ```typescript
 const groups = bot.chatType(["group", "supergroup"]);
@@ -286,7 +293,7 @@ groups.filter(chatMemberFilter("out", "in"), async (ctx, next) => {
 
 ### Utilitas Pengecekan Status
 
-Fungsi utilitas `chatMemberIs` berguna ketika kamu inign menggunakan logika *filtering* di dalam sebuah *handler*.
+Fungsi utilitas `chatMemberIs` berguna ketika kamu inign menggunakan logika _filtering_ di dalam sebuah _handler_.
 Fungsi ini menerima input berupa salah satu status reguler maupun kustom (atau array status), dan akan mempersempit tipe variabel yang diteruskan.
 
 ```ts
@@ -308,7 +315,8 @@ bot.callbackQuery("foo", async (ctx) => {
 ```
 
 ### Hydrating Objek Anggota Obrolan
-Kamu dapat meningkatkan pengalaman pengembangan dengan menggunakan *hydration* API *transformer*. Transformer ini akan diterapkan pada pemanggilan `getchatMember` dan `getChatAdministrators`, menambahkan metode `is` yang lebih praktis pada objek `ChatMember` yang dikembalikan.
+
+Kamu dapat meningkatkan pengalaman pengembangan dengan menggunakan _hydration_ API _transformer_. Transformer ini akan diterapkan pada pemanggilan `getchatMember` dan `getChatAdministrators`, menambahkan metode `is` yang lebih praktis pada objek `ChatMember` yang dikembalikan.
 
 ```ts
 type MyContext = HydrateChatMemberFlavor<Context>;

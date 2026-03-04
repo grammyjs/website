@@ -257,7 +257,6 @@ groups.filter(
 将这些 filter 与 `bot.chatType` 结合使用，即可仅监听特定类型聊天的转换。
 添加一个中间件来监听所有 update，以便在将控制权交给特定处理程序之前执行常见操作（例如更新数据库）。
 
-
 ```typescript
 const groups = bot.chatType(["group", "supergroup"]);
 
