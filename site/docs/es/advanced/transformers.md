@@ -95,8 +95,17 @@ type MyApi = Api & SomeApiFlavor;
 // Usa ambos flavors.
 const bot = new Bot<MyContext, MyApi>("my-token");
 
-// Usa un plugin.
+// Utiliza una función transformadora del complemento.
 bot.api.config.use(somePlugin());
+
+// Instala un alias para que no tengamos que escribir `.raw`.
+bot.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+
+// Además, instala el alias para cada contexto.
+bot.use(async (ctx, next) => {
+  ctx.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+  await next();
+});
 
 // Ahora llama a `bot.api` con los tipos ajustados del API flavor.
 bot.api.somePluginMethod();
