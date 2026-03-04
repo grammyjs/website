@@ -3,5 +3,6 @@
   "link-fragments": false,
   "no-trailing-punctuation": {
     "punctuation": ".,;:。，；：" // everything except exclamation points
-  }
+  },
+  "descriptive-link-text": false
 }
