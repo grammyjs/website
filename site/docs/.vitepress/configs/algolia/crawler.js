@@ -52,7 +52,7 @@ new Crawler({
             lvl5: ".content h5",
             lvl6: ".content h6",
             content: ".content p, .content li",
-            weight: { pageRank, },
+            weight: { pageRank },
           },
           indexHeadings: true,
         });
