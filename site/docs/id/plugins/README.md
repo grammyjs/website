@@ -34,7 +34,7 @@ Memasang plugin-plugin ini cukup mudah dan menyenangkan, dan kami ingin kalian s
 | [Kelompok Media](./media-group)                 | _bawaan_                                           | Mengubah dan mengirim kelompok media dengan mudah                    |
 | [Kueri Sebaris](./inline-query)                 | _bawaan_                                           | Menciptakan hasil kueri sebaris (inline query) dengan mudah          |
 | [Pengulang Request API](./auto-retry)           | [`auto-retry`](./auto-retry)                       | Menangani rate limit secara otomatis                                 |
-| [Perintah](./commands)                          | [`commands`](./commands)                           | Kelola perintah dengan cara yang powerful
+| [Perintah](./commands)                          | [`commands`](./commands)                           | Kelola perintah dengan cara yang powerful                            |
 | [Percakapan](./conversations)                   | [`conversations`](./conversations)                 | Membuat antarmuka percakapan dan dialog                              |
 | [Anggota Chat](./chat-members)                  | [`chat-members`](./chat-members)                   | Memantau chat mana yang sedang diikuti oleh pengguna                 |
 | [Emoji](./emoji)                                | [`emoji`](./emoji)                                 | Menggunakan emoji di kode dengan mudah                               |
