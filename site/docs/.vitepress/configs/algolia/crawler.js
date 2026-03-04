@@ -26,13 +26,13 @@ new Crawler({
           ref: 1,
         };
         const segments = url.pathname.split("/").filter(Boolean);
-        const [secondToLastSegment, lastSegment] = segments.slice(-2);
+        const [firstSegment, secondSegment] = segments;
 
         let pageRank = 1;
-        if (PAGE_RANKS[secondToLastSegment]) {
-          pageRank = PAGE_RANKS[secondToLastSegment];
-        } else if (PAGE_RANKS[lastSegment]) {
-          pageRank = PAGE_RANKS[lastSegment];
+        if (firstSegment && PAGE_RANKS[firstSegment]) {
+          pageRank = PAGE_RANKS[firstSegment];
+        } else if (secondSegment && PAGE_RANKS[secondSegment]) {
+          pageRank = PAGE_RANKS[secondSegment];
         }
 
         return helpers.docsearch({
