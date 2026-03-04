@@ -158,6 +158,7 @@ async function hello( //                      |
   conversation: Conversation, //              |
   ctx0: Context, //                           |
 ) { //                                        |
+  await ctx0.reply("嗨，你好呀！"); //         |
   const ctx1 = await conversation.wait(); //  A
   await ctx1.reply("再次欢迎你！"); //
   const ctx2 = await conversation.wait(); //
@@ -170,6 +171,7 @@ async function hello( //                      .
   conversation: Conversation, //              .
   ctx0: Context, //                           .
 ) { //                                        .
+  await ctx0.reply("嗨，你好呀！"); //         .
   const ctx1 = await conversation.wait(); //  A
   await ctx1.reply("再次欢迎你！"); //         |
   const ctx2 = await conversation.wait(); //  B
@@ -182,6 +184,7 @@ async function hello( //                      .
   conversation: Conversation, //              .
   ctx0: Context, //                           .
 ) { //                                        .
+  await ctx0.reply("嗨，你好呀！"); //         .
   const ctx1 = await conversation.wait(); //  A
   await ctx1.reply("再次欢迎你！"); //         .
   const ctx2 = await conversation.wait(); //  B
@@ -895,6 +898,7 @@ bot.use(conversations());
 // 传递外部和内部上下文对象。
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 async function convo(conversation: MyConversation, ctx: MyConversationContext) {
+  // hydrate 插件安装在此处的 `ctx` 参数上。
   const other = await conversation.wait();
   // hydrate 插件也安装在此处的 `other` 变量上。
 }
@@ -910,12 +914,14 @@ bot.command("enter", async (ctx) => {
 bot.use(conversations());
 
 async function convo(conversation, ctx) {
+  // hydrate 插件安装在此处的 `ctx` 参数上。
   const other = await conversation.wait();
   // hydrate 插件也安装在此处的 `other` 变量上。
 }
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
 bot.command("enter", async (ctx) => {
+  // hydrate 插件**没有**安装在此处的 `ctx` 上。
   await ctx.conversation.enter("convo");
 });
 ```
