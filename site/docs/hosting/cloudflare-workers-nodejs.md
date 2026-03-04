@@ -62,7 +62,7 @@ bot.command("start", async (ctx: Context) => {
 });
 
 export default {
-  fetch: handleUpdate
+  fetch: handleUpdate,
 };
 ```
 
