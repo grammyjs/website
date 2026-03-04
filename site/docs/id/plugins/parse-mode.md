@@ -6,25 +6,25 @@ next: false
 # Plugin Parse Mode (`parse-mode`)
 
 Telegram menyediakan [styled messages](https://core.telegram.org/bots/api#messageentity).
-*Library* ini menambahkan utilitas formatting yang lebih simpel buat grammY.
-Fitur ini memungkinkan kamu untuk menyusun pesan dengan format lengkap dengan API deklaratif yang *type-safe*.
+_Library_ ini menambahkan utilitas formatting yang lebih simpel buat grammY.
+Fitur ini memungkinkan kamu untuk menyusun pesan dengan format lengkap dengan API deklaratif yang _type-safe_.
 
 Dalam Telegram Bot API, teks yang diformat ditandai dengan menggunakan _entity_ --- semacam marker khusus untuk nunjukin bagian mana teks yang diberikan format tertentu.
-Setiap *entity* memiliki tipe (contoh: bold, italic, dll), *offset* (mulai dari indeks keberapa), dan length (jumlah karakter yang terpengaruh).
+Setiap _entity_ memiliki tipe (contoh: bold, italic, dll), _offset_ (mulai dari indeks keberapa), dan length (jumlah karakter yang terpengaruh).
 
-Bekerja langsung dengan entity bisa merepotkan karena kita perlu melacak *offset* dan *length* secara manual.
+Bekerja langsung dengan entity bisa merepotkan karena kita perlu melacak _offset_ dan _length_ secara manual.
 Plugin Parse Mode menyelesaikan permasalahan ini dengan menyediakan API deklaratif yang sederhana untuk memformat teks.
 
 ## Dua Pendekatan: `fmt` dan `FormattedString`
 
 Pustaka ini menawarkan dua pendekatan utama untuk performatan teks:
 
-1. **Fungsi *Tagged Template* `fmt`**: 
+1. **Fungsi _Tagged Template_ `fmt`**:
    Sebuah [template literal tag](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) yang memungkinkan kamu menulis teks terformat dengan cara yang alami menggunakan ekspresi template.
-   Secara internal, fungsi ini mengelola *offset* dan *length* untuk kamu.
+   Secara internal, fungsi ini mengelola _offset_ dan _length_ untuk kamu.
 
 2. **Kelas `FormattedString`**:
-   Pendekatan berbasis kelas yang memungkinkan kamu membuat teks terformat melalui *method chaining*.
+   Pendekatan berbasis kelas yang memungkinkan kamu membuat teks terformat melalui _method chaining_.
    Ini sangat berguna untuk membuat secara terprogram menyusun pesan terformat yang kompleks.
 
 Kedua pendekatan menghasilkan objek `FormattedString` yang terpadu, yang dapat digunakan untuk memanipulasi teks terformat.
@@ -214,13 +214,13 @@ bot.start();
 
 ## Konsep Inti
 
-### `FormattedString` sebagai *Unified Return Type*
+### `FormattedString` sebagai _Unified Return Type_
 
-Kelas `FormattedString` adalah komponen inti dari *parse-mode* plugin, yang menyediakan antarmuka terpadu untuk bekerja dengan teks terformat.
+Kelas `FormattedString` adalah komponen inti dari _parse-mode_ plugin, yang menyediakan antarmuka terpadu untuk bekerja dengan teks terformat.
 Nilai kembalian dari `fmt`, `new FormattedString`, maupun `FormattedString.<staticMethod>` semuanya berupa instance `FormattedString`.
 Ini berarti penggunaan gaya berbeda dapat digabungkan.
 
-Contohnya kamu bisa menggunakan `fmt`, lalu menambahkan *method chain* dari `FormattedString`, dan akhirnya meneruskan kembali ke *template tag* `fmt`.
+Contohnya kamu bisa menggunakan `fmt`, lalu menambahkan _method chain_ dari `FormattedString`, dan akhirnya meneruskan kembali ke _template tag_ `fmt`.
 
 ```ts
 bot.on("msg:text", async ctx => {
@@ -238,17 +238,17 @@ bot.on("msg:text", async ctx => {
 
 ### Nilai yang diterima oleh `fmt`
 
-Fungsi *tagged template* `fmt` menerima berbagai macam nilai untuk membangun `FormattedString` kamu, termasuk:
+Fungsi _tagged template_ `fmt` menerima berbagai macam nilai untuk membangun `FormattedString` kamu, termasuk:
 
 - `TextWithEntities` (diimplementasikan oleh `FormattedString` dan pesan teks Telegram biasa)
 - `CaptionWithEntities` (diimplementasikan oleh `FormattedString` dan pesan media Telegram dengan caption)
 - EntityTag (seperti fungsi `b()` dan `a(url)`)
-- Fungsi tanpa argumen *(nullary functions)* yang mengembalikan EntityTag (misalnya `b` dan `i`)
+- Fungsi tanpa argumen _(nullary functions)_ yang mengembalikan EntityTag (misalnya `b` dan `i`)
 - Tipe apapun yang mengimplementasikan `toString()` (akan diperlakukan sebagai teks biasa)
 
 ### TextWithEntities
 
-*Interface* `TextWithEntities` merepresentasikan teks dengan *entity* performatan opsional.
+_Interface_ `TextWithEntities` merepresentasikan teks dengan _entity_ performatan opsional.
 
 ```ts
 interface TextWithEntities {
@@ -256,6 +256,7 @@ interface TextWithEntities {
   entities?: MessageEntity[];
 }
 ```
+
 Perhatikan bahwa bentuk tipe ini menyiratkan bahwa pesan teks biasa dari Telegram juga mengimplementasikan `TextWithEntities` secara implisit.
 Ini berarti bahwa sebenarnya memungkinkan untuk melakukan hal berikut:
 
