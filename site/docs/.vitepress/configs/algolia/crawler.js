@@ -7,7 +7,7 @@ new Crawler({
   startUrls: ["https://grammy.dev"],
   renderJavaScript: false,
   sitemaps: ["https://grammy.dev/sitemap.xml"],
-  exclusionPatterns: [],
+  exclusionPatterns: ["**/*.html"],
   ignoreCanonicalTo: false,
   discoveryPatterns: ["https://grammy.dev/**"],
   schedule: "at 11:55 on Wednesday",
@@ -55,8 +55,6 @@ new Crawler({
             pageRank,
           },
           indexHeadings: true,
-          aggregateContent: true,
-          recordVersion: "v3",
         });
       },
     },
@@ -114,7 +112,7 @@ new Crawler({
         "asc(weight.position)",
       ],
       ranking: [
-        "desc(weight.pageRank)",
+        "desc(pageRank)",
         "typo",
         "words",
         "filters",
