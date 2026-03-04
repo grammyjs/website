@@ -117,6 +117,15 @@ Some pull requests do not require a translation.
 They are labeled with “not translatable”.
 You can safely ignore them.
 
+## Translating to Russian
+
+Previously, the documentation was available in Russian.
+However, the translations were abandoned at some point.
+The last commit that still includes them is 9ec9e1d9967e8a29772629db18bd154736216c96.
+
+If you want to translate the website to Russian, it may be easier to only translate that changes since then, rather than translating everything from scratch.
+Your choice.
+
 ## Tips & Tricks
 
 ### Creating the Content Files
