@@ -98,7 +98,7 @@ If you want to get a different file while handling a message, use `ctx.api.getFi
 
 Once you have called `getFile`, you can use the returned `file_path` to download the file using this URL `https://api.telegram.org/file/bot<token>/<file_path>`, where `<token>` must be replaced by your bot token.
 
-If you [run your own Bot API server](./api#running-a-local-bot-api-server), the `file_path` will instead be an absolutely file path that points to a file on your local disk.
+If you [run your own Bot API server](./api#running-a-local-bot-api-server), the `file_path` will instead be an absolute file path that points to a file on your local disk.
 In that case, you do not need to download anything anymore, as the Bot API server downloads the file for you when calling `getFile`.
 
 ::: tip Files Plugin
