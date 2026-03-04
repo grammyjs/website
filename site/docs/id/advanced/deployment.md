@@ -57,5 +57,5 @@ Meskipun grammY sudah menyediakan sarana yang diperlukan untuk membuat pengujian
 Ini adalah wilayah baru, framework pengujian secara masal seperti itu belum pernah ada.
 Kami menantikan kontribusimu!
 
-Salah satu contoh bagaimana pengujian dilakukan [bisa ditemukan di sini](https://github.com/PavelPolyakov/grammy-with-tests).
+Salah satu contoh bagaimana pengujian dilakukan [bisa ditemukan di sini](https://github.com/PavloPoliakov/grammy-with-tests).
 :::
