@@ -21,8 +21,8 @@ export function P(
         continue;
       }
       if (!inCodeBlock) {
-        while (/<.+>/.test(part)) {
-          part = part.replace(/<(.+)>/, "&lt;$1&gt;");
+        while (/<[^<>]+>/.test(part)) {
+          part = part.replace(/<([^<>]+)>/g, "&lt;$1&gt;");
         }
         newParts.push(part);
       } else {
