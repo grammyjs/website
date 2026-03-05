@@ -108,11 +108,11 @@ new Crawler({
       distinct: true,
       attributeForDistinct: "url",
       customRanking: [
+        "desc(pageRank)",
         "desc(weight.level)",
         "asc(weight.position)",
       ],
       ranking: [
-        "desc(pageRank)",
         "typo",
         "words",
         "filters",
