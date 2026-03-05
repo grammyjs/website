@@ -14,7 +14,8 @@ transformer 是一个可以处理输出的数据的函数，例如：
 
 最后调用的 transformer 函数是一个内置的调用者，它可以对某些字段进行 JSON 序列化，并在最后调用 `fetch`。
 
-对于 transformer 函数，没有等效的 `Composer` 类，因为这可能有点过分了，但是如果你需要它的话，你可以自己写一个，然后给我们提 PR，大大的欢迎！:wink:
+对于 transformer 函数，没有等效的 `Composer` 类，因为这可能有点过分了，但是如果你需要它的话，你可以自己写一个，然后给我们提 PR，大大的欢迎！
+:wink:
 
 ## 安装一个 Transformer 函数
 
@@ -96,8 +97,17 @@ type MyApi = Api & SomeApiFlavor;
 // 同时使用两个调味剂。
 const bot = new Bot<MyContext, MyApi>("my-token");
 
-// 使用一个插件。
+// 使用插件中的转换器函数。
 bot.api.config.use(somePlugin());
+
+// 安装别名，这样我们就不必输入 `.raw`。
+bot.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+
+// 同样，为每个上下文安装别名。
+bot.use(async (ctx, next) => {
+  ctx.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+  await next();
+});
 
 // 现在用从 API 调味剂调整过的类型调用 `bot.api`。
 bot.api.somePluginMethod();

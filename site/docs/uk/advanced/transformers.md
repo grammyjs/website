@@ -97,8 +97,17 @@ type MyApi = Api & SomeApiFlavor;
 // Використовуємо обидва типи розширювачів
 const bot = new Bot<MyContext, MyApi>("");
 
-// Встановлюємо певний плагін
+// Встановлюємо розширювач для контексту з певного плагіна.
 bot.api.config.use(somePlugin());
+
+// Встановимо псевдонім, щоб не потрібно було використовувати `.raw`.
+bot.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+
+// Також встановимо псевдонім для обʼєкту контексту.
+bot.use(async (ctx, next) => {
+  ctx.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+  await next();
+});
 
 // Тепер викличемо `bot.api` зі зміненими типами з розширювачем для API.
 bot.api.somePluginMethod();
