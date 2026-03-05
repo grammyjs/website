@@ -154,7 +154,7 @@ Sólo tendrás que crear varios archivos de traducción y asegurarte de que toda
 - [Migrar desde el plugin `i18n`](https://github.com/grammyjs/fluent#i18n-plugin-replacement)
 - Familiarícese con [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `fluent`
 - [Fuente](https://github.com/grammyjs/fluent)

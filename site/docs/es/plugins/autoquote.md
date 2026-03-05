@@ -130,7 +130,7 @@ bot.start();
 
 :::
 
-## Resumen del plugin
+## Resumen del complemento
 
-- Nombre: Autoquote
+- Nombre: `Autoquote`
 - [Fuente](https://github.com/roziscoding/grammy-autoquote)

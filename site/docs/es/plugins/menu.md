@@ -526,7 +526,7 @@ Cada menú es responsable de todos los demás en el índice, y pueden manejarse 
 En tales casos, esta instancia manejará el conjunto completo).
 Como resultado, puedes navegar entre menús arbitrarios sin límite, todo mientras el manejo de las actualizaciones puede ocurrir en [`O(1)` complejidad de tiempo](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) porque no hay necesidad de buscar a través de jerarquías enteras para encontrar el menú correcto para manejar cualquier clic de botón dado.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `menu`
 - [Fuente](https://github.com/grammyjs/menu)

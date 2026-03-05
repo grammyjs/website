@@ -266,7 +266,7 @@ bot.on(":text", async (ctx) => {
 Utiliza el plugin oficial [`parse-mode`](./parse-mode) para una mejor
 experiencia en la construcción de mensajes formateados. :::
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `entity-parser`
 - [Fuente](https://jsr.io/@qz/telegram-entities-parser)
