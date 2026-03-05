@@ -35,6 +35,8 @@ new Crawler({
           pageRank = PAGE_RANKS[secondSegment];
         }
 
+        const isReference = segments[0] === "ref" || segments[1] === "ref";
+
         return helpers.docsearch({
           recordProps: {
             lvl0: {
@@ -53,6 +55,7 @@ new Crawler({
             lvl6: ".content h6",
             content: ".content p, .content li",
             pageRank,
+            isReference,
           },
           indexHeadings: true,
         });
@@ -62,7 +65,7 @@ new Crawler({
   safetyChecks: { beforeIndexPublishing: { maxLostRecordsPercentage: 10 } },
   initialIndexSettings: {
     grammy: {
-      attributesForFaceting: ["type", "lang"],
+      attributesForFaceting: ["type", "lang", "filterOnly(isReference)"],
       attributesToRetrieve: [
         "hierarchy",
         "content",
