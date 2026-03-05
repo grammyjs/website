@@ -16,7 +16,25 @@ new Crawler({
       indexName: "grammy",
       pathsToMatch: ["https://grammy.dev/**"],
       recordExtractor: ({ helpers, url }) => {
+        /** @type Record<string, number> */
+        const PAGE_RANKS = {
+          guide: 6,
+          advanced: 5,
+          plugins: 4,
+          resources: 3,
+          hosting: 2,
+          ref: 1,
+        };
         const segments = url.pathname.split("/").filter(Boolean);
+        const [firstSegment, secondSegment] = segments;
+
+        let pageRank = 1;
+        if (firstSegment && PAGE_RANKS[firstSegment]) {
+          pageRank = PAGE_RANKS[firstSegment];
+        } else if (secondSegment && PAGE_RANKS[secondSegment]) {
+          pageRank = PAGE_RANKS[secondSegment];
+        }
+
         const isReference = segments[0] === "ref" || segments[1] === "ref";
 
         return helpers.docsearch({
@@ -36,6 +54,7 @@ new Crawler({
             lvl5: ".content h5",
             lvl6: ".content h6",
             content: ".content p, .content li",
+            pageRank,
             isReference,
           },
           indexHeadings: true,
@@ -96,6 +115,7 @@ new Crawler({
         "asc(weight.position)",
       ],
       ranking: [
+        "desc(pageRank)",
         "typo",
         "words",
         "filters",
