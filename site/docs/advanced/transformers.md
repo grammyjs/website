@@ -97,8 +97,17 @@ type MyApi = Api & SomeApiFlavor;
 // Use both flavors.
 const bot = new Bot<MyContext, MyApi>("");
 
-// Use a plugin.
+// Use a transformer function from the plugin.
 bot.api.config.use(somePlugin());
+
+// Install an alias so we don't have to type out `.raw`.
+bot.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+
+// Also, install the alias for each context.
+bot.use(async (ctx, next) => {
+  ctx.api.somePluginMethod = (param) => bot.api.raw.somePluginMethod(param);
+  await next();
+});
 
 // Now call `bot.api` with adjusted types from API flavor.
 bot.api.somePluginMethod();
