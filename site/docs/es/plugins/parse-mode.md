@@ -262,7 +262,9 @@ Esto significa que, de hecho, es posible hacer lo siguiente:
 
 ```ts
 bot.on("msg:text", async (ctx) => {
-  const response = fmt`${ctx.msg}`.plain("\n---\n").bold("Esta es mi respuesta");
+  const response = fmt`${ctx.msg}`.plain("\n---\n").bold(
+    "Esta es mi respuesta",
+  );
   await ctx.reply(response.text, { entities: response.entities });
 });
 ```
@@ -283,7 +285,9 @@ Esto significa que, de hecho, también es posible hacer lo siguiente:
 
 ```ts
 bot.on("msg:caption", async (ctx) => {
-  const response = fmt`${ctx.msg}`.plain("\n---\n").bold("Esta es mi respuesta");
+  const response = fmt`${ctx.msg}`.plain("\n---\n").bold(
+    "Esta es mi respuesta",
+  );
   await ctx.reply(response.text, { entities: response.entities });
 });
 ```
