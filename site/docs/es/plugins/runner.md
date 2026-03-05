@@ -411,7 +411,7 @@ La función `run` hace algunas cosas para ayudarle a utilizar la estructura ante
 
 Se devuelve el manejador del runner creado, lo que permite controlar el runner.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `runner`
 - [Fuente](https://github.com/grammyjs/runner)

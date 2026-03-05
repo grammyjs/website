@@ -104,7 +104,7 @@ const outConfig = {
 };
 ```
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `transformer-throttler`
 - [Fuente](https://github.com/grammyjs/transformer-throttler)
