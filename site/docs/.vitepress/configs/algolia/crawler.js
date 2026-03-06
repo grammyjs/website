@@ -16,7 +16,7 @@ new Crawler({
       indexName: "grammy",
       pathsToMatch: ["https://grammy.dev/**"],
       recordExtractor: ({ helpers, url }) => {
-        /** @type Record<string, number> */
+        /** @type {Record<string, number>} */
         const PAGE_RANKS = {
           guide: 6,
           advanced: 5,
@@ -27,7 +27,8 @@ new Crawler({
         };
         const segments = url.pathname.split("/").filter(Boolean);
         const [firstSegment, secondSegment] = segments;
-
+        const contentCategory =
+          firstSegment === "ref" || secondSegment === "ref" ? "ref" : "docs";
         let pageRank = 1;
         if (firstSegment && PAGE_RANKS[firstSegment]) {
           pageRank = PAGE_RANKS[firstSegment];
@@ -52,6 +53,7 @@ new Crawler({
             lvl5: ".content h5",
             lvl6: ".content h6",
             content: ".content p, .content li",
+            contentCategory,
             pageRank,
           },
           indexHeadings: true,
@@ -62,7 +64,7 @@ new Crawler({
   safetyChecks: { beforeIndexPublishing: { maxLostRecordsPercentage: 10 } },
   initialIndexSettings: {
     grammy: {
-      attributesForFaceting: ["type", "lang"],
+      attributesForFaceting: ["type", "lang", "filterOnly(contentCategory)"],
       attributesToRetrieve: [
         "hierarchy",
         "content",
@@ -108,11 +110,11 @@ new Crawler({
       distinct: true,
       attributeForDistinct: "url",
       customRanking: [
+        "desc(pageRank)",
         "desc(weight.level)",
         "asc(weight.position)",
       ],
       ranking: [
-        "desc(pageRank)",
         "typo",
         "words",
         "filters",
