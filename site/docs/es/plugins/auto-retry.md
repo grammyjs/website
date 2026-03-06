@@ -95,7 +95,7 @@ autoRetry({
 });
 ```
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `auto-retry`
 - [Fuente](https://github.com/grammyjs/auto-retry)

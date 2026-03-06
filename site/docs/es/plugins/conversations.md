@@ -1532,7 +1532,7 @@ Muchas de estas rarezas se corrigieron en 2.x.
 
 Corregir errores técnicamente no cuenta como un cambio de ruptura, pero sigue siendo un cambio substacial en el comportamiento.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `conversations`
 - [Fuente](https://github.com/grammyjs/conversations)
