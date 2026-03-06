@@ -21,6 +21,11 @@ import { Overview } from "./components/Overview.tsx";
 import links from "./external_links.ts";
 import { Ref } from "./types.ts";
 
+/** Node kinds for which createDoc generates a page */
+const LINKABLE_KINDS = new Set(
+  ["class", "variable", "function", "interface", "typeAlias"],
+);
+
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
@@ -77,7 +82,7 @@ function namespaceGetLink(
 ): typeof getLink {
   return (typeRef) => {
     const node_ = namespace.namespaceDef.elements.find((v) =>
-      v.name == typeRef
+      v.name == typeRef && LINKABLE_KINDS.has(v.kind)
     );
     if (node_ !== undefined) {
       return "/ref/" + slug + "/" + namespace.name + "/" +
@@ -212,17 +217,23 @@ for (const [nodes, path_, slug, name, description] of refs) {
   /** Defines how to obtain a link to a symbol */
   const getLink = (repr: string): string | null => {
     // Try getting the link from the current plugin page.
-    const node = nodes.find((v) => v.name == repr);
+    const node = nodes.find((v) =>
+      v.name == repr && LINKABLE_KINDS.has(v.kind)
+    );
     if (node !== undefined) {
       return "/ref/" + slug + "/" + encodeURIComponent(repr);
     }
     // Try getting the link from the core ref.
-    const coreNode = coreNodes.find((v) => v.name === repr);
+    const coreNode = coreNodes.find((v) =>
+      v.name === repr && LINKABLE_KINDS.has(v.kind)
+    );
     if (coreNode !== undefined) {
       return "/ref/core/" + encodeURIComponent(repr);
     }
     // Try getting the link from the types ref.
-    const typesNode = typesNodes.find((v) => v.name === repr);
+    const typesNode = typesNodes.find((v) =>
+      v.name === repr && LINKABLE_KINDS.has(v.kind)
+    );
     if (typesNode !== undefined) {
       return "/ref/types/" + encodeURIComponent(repr);
     }
