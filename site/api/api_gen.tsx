@@ -217,7 +217,9 @@ for (const [nodes, path_, slug, name, description] of refs) {
   /** Defines how to obtain a link to a symbol */
   const getLink = (repr: string): string | null => {
     // Try getting the link from the current plugin page.
-    const node = nodes.find((v) => v.name == repr && LINKABLE_KINDS.has(v.kind));
+    const node = nodes.find((v) =>
+      v.name == repr && LINKABLE_KINDS.has(v.kind)
+    );
     if (node !== undefined) {
       return "/ref/" + slug + "/" + encodeURIComponent(repr);
     }
