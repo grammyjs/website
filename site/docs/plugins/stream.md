@@ -187,7 +187,7 @@ So ... what now?
 Unfortunately, there is no good solution.
 However, here are some ideas:
 
-- Tell you LLM to output text without formatting
+- Tell your LLM to output text without formatting
 - Hope that your LLM does not make mistakes in generating Markdown, and simply retry with plain text if it fails
 - Use HTML formatting and hope that this improves things a bit
 - Write a custom [transformer](../advanced/transformers) function which retries failing requests automatically
