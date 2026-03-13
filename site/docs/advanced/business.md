@@ -32,6 +32,7 @@ It could be a message by your customer---but it could also be a message sent by 
 Thus, we need to differentiate between the two users.
 For this, we need to inspect the aforementioned business connection object.
 The business connection tells us who is the business account user, i.e. the user identifier of you (or one of your employees).
+It also reveals the bot's permissions in the chat, which can be used to check whether the bot is allowed to send messages to the chat, for example.
 
 ```ts
 bot.on("business_message", async (ctx) => {
@@ -43,6 +44,9 @@ bot.on("business_message", async (ctx) => {
     // You sent this message.
   } else {
     // Your customer sent this message.
+    if (conn.rights.can_reply) {
+      // You can reply to this message.
+    }
   }
 });
 ```
@@ -99,9 +103,23 @@ bot.on("business_message").filter(async (ctx) => {
 });
 ```
 
-However, your bot is **NOT** able delete messages in the chat.
+You can also mark messages as read and delete messages received or sent in the chat, if relevant permissions are granted in the business connection.
 
-Similarly, your bot is **NOT** able to forward messages from the chat, or copy them elsewhere.
+```ts
+bot.on("business_message").filter(async (ctx) => {
+  const conn = await ctx.getBusinessConnection();
+  // Delete all messages sent by the customer that contain "delete me".
+  if (
+    ctx.from.id !== conn.user.id &&
+    ctx.msg.text.includes("delete me") &&
+    conn.rights.can_delete_all_messages
+  ) {
+    await ctx.deleteBusinessMessages([ctx.msg.message_id]);
+  }
+});
+```
+
+However, your bot is **NOT** able to forward messages from the chat, or copy them elsewhere.
 All of these things are left to humans.
 
 ### Working With Business Connections
