@@ -109,9 +109,11 @@ You can also mark messages as read and delete messages received or sent in the c
 bot.on("business_message").filter(async (ctx) => {
   const conn = await ctx.getBusinessConnection();
   // Delete all messages sent by the customer that contain "delete me".
-  if (ctx.from.id !== conn.user.id &&
+  if (
+    ctx.from.id !== conn.user.id &&
     ctx.msg.text.includes("delete me") &&
-    conn.rights.can_delete_all_messages) {
+    conn.rights.can_delete_all_messages
+  ) {
     await ctx.deleteBusinessMessages([ctx.msg.message_id]);
   }
 });
