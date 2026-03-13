@@ -160,7 +160,7 @@ bot.chatType("private")
 
 :::
 
-Pastikan untuk mengganti `gemini-2.5-flash` dengan model terbaru yang tersedia.
+Pastikan untuk mengganti `gemini-2.5-flash` dengan model apapun yang tersedia.
 
 ## Streaming Formatted Messages
 
@@ -170,17 +170,17 @@ Ini jauh _lebih_ sulit daripada yang kamu bayangkan.
    Seringkali benar, tetapi kadang-kadang tidak.
    Tidak mengikuti standar tertentu.
    Khususnya, **mereka tidak selalu menghasilkan Markdown yang kompatibel dengan Telegram**.
-   Ini berarti mencoba mengirim/mengirimkan ke Telegram akan gagal.
+   Ini berarti mencoba mengirim ke Telegram akan gagal.
 2. LLMs menghasilkan entitas Markdown yang _parsial_.
-   Meskipun outputnya sepenuhnya sesuai dengan spesifikasi [MarkdownV2](https://core.telegram.org/bots/api#markdownv2-style) Telegram, **potongan output individu mungkin rusak**.
+   Meskipun outputnya sepenuhnya sesuai dengan spesifikasi [MarkdownV2](https://core.telegram.org/bots/api#markdownv2-style) Telegram, **potongan outputnya mungkin rusak**.
    Jika Anda membuka bagian teks miring tetapi hanya menutupnya di potongan berikutnya, streaming akan crash dan pesan tidak akan terkirim.
 3. LLMs terkadang menghasilkan format yang tidak didukung oleh Telegram (meskipun Anda telah menginstruksikan mereka untuk tidak melakukannya).
    Misalnya, sebagian besar LLMs sangat menyukai **tabel, poin-poin, dan daftar bernomor**.
-   Klien Telegram tidak dapat menampilkan hal-hal ini.
+   Klien Telegram tidak dapat menampilkannya.
 
 > Telegram juga mendukung format [HTML](https://core.telegram.org/bots/api#html-style).
 > Ini memiliki masalah yang sama persis dengan Markdown.
-> Selain itu, output HTML mengonsumsi jauh lebih banyak token, yang secara tidak perlu mahal.
+> Selain itu, output HTML mengonsumsi jauh lebih banyak token, yang tidak diperlukan dan mahal.
 
 Jadi... apa sekarang?
 
