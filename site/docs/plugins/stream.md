@@ -20,9 +20,9 @@ The plugin installs [`ctx.replyWithStream`](/ref/stream/streamcontextextension#r
 ::: code-group
 
 ```ts [TypeScript]
-import { Bot, type Context } from "grammy";
-import { autoRetry } from "@grammyjs/auto-retry";
-import { stream, type StreamFlavor } from "@grammyjs/stream";
+const { Bot } = require("grammy");
+const { autoRetry } = require("@grammyjs/auto-retry");
+const { stream } = require("@grammyjs/stream");
 
 type MyContext = StreamFlavor<Context>;
 const bot = new Bot<MyContext>("");
@@ -50,7 +50,7 @@ bot.start();
 ```
 
 ```js [JavaScript]
-import { Bot } from "grammy";
+const { Bot } = require("grammy");
 import { autoRetry } from "@grammyjs/auto-retry";
 import { stream } from "@grammyjs/stream";
 
