@@ -195,7 +195,7 @@ Namun, berikut beberapa ide:
 - Stream Markdown dalam teks biasa, lalu gunakan parser Markdown biasa untuk menerapkan pemformatan hanya setelah stream selesai dan semua pesan dikirim.
 - Temukan solusi brilian yang belum pernah dipikirkan orang lain sebelumnya, dan ceritakan kepada kami di [group chat](https://t.me/grammyjs)
 
-## Plugin Summary
+## Ringkasan Plugin
 
 - Nama: `stream`
 - [Sumber](https://github.com/grammyjs/stream)
