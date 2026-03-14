@@ -11,6 +11,7 @@
     "grammy_router",
     "grammy_emoji",
     "grammy_parse_mode",
+    "grammy_stream",
     "grammy_storages",
     "grammy_conversations",
     "grammy_autoquote",
