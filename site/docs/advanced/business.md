@@ -44,7 +44,7 @@ bot.on("business_message", async (ctx) => {
     // You sent this message.
   } else {
     // Your customer sent this message.
-    if (conn.rights.can_reply) {
+    if (conn.rights?.can_reply) {
       // You can reply to this message.
     }
   }
