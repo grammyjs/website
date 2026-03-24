@@ -79,7 +79,7 @@ Plugin ini mengonversi entity menjadi semantic HTML sesuai dengan standar dan pr
 Namun, keluaran yang dihasilkan mungkin tidak sesuai dengan harapan kamu.
 
 Untuk mengatasinya, kamu bisa menggunakan `renderer`-mu sendiri untuk menyesuaikan element HTML yang membungkus teks terkait sesuai dengan aturan yang telah diterapkan.
-Kamu bisa memodifikasi aturan tertentu dengan cara meng-extend [`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) bawaan ataupun menimpa semua aturan dengan cara mengimplementasikan [`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
+Kamu bisa memodifikasi aturan tertentu dengan cara meng-extend [`RendererHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) bawaan ataupun menimpa semua aturan dengan cara mengimplementasikan [`Renderer`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
 
 Untuk meng-extend `renderer` yang sudah ada, lakukan hal berikut:
 
@@ -136,7 +136,7 @@ Berikut daftar lengkap interface beserta keluaran untuk masing-masing tipe entit
 | `underline`             | `CommonEntity`      | `<span class="tg-bot-command"> ... </span>`                                                                                                                                          |
 | `url`                   | `CommonEntity`      | `<a class="tg-url" href="${options.text}"> ... </a>`                                                                                                                                 |
 
-Jika kamu ragu interface mana yang benar, silahkan lihat pengimplentasian [Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts) dan [RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
+Jika kamu ragu interface mana yang benar, silahkan lihat pengimplentasian [Renderer](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts) dan [RendererHtml](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
 
 ### Menyesuaikan Pembersih Teks (Text Sanitizer)
 
@@ -152,9 +152,9 @@ Secara bawaan, keluaran teks dibersihkan agar HTML bisa di-render dengan baik da
 
 Sebagai contoh, hasil keluaran `<b>Tebal</b> & <i>Miring</i>` akan dibersihkan menjadi `<b>Tebal</b> &amp; <i>Miring</i>`.
 
-Kamu bisa mengubah perilaku tersebut dengan cara menentukan `textSanitizer` ketika menginisiasi [`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts):
+Kamu bisa mengubah perilaku tersebut dengan cara menentukan `textSanitizer` ketika menginisiasi [`EntitiesParser`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/mod.ts):
 
-- Jika `textSanitizer` tidak ditentukan, ia secara bawaan akan menggunakan [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) sebagai pembersihnya.
+- Jika `textSanitizer` tidak ditentukan, ia secara bawaan akan menggunakan [`sanitizerHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) sebagai pembersihnya.
 - Jika nilai `false` diberikan, pembersihan tidak akan dilakukan, sehingga keluaran teks yang dihasilkan apa adanya.
   Langkah ini tidak disarankan karena dapat menyebabkan kesalahan pe-render-an dan membuat aplikasimu rentan terhadap serangan XSS.
   Pastikan penanganan dilakukan dengan baik jika kamu memilih opsi ini.
@@ -235,4 +235,4 @@ Gunakan plugin resmi [`parse-mode`](./parse-mode) untuk memformat pesan dengan c
 
 - Nama: `entity-parser`
 - [Package](https://jsr.io/@qz/telegram-entities-parser)
-- [Sumber](https://github.com/quadratz/telegram-entities-parser)
+- [Sumber](https://github.com/Quadratz-Org/telegram-entities-parser)

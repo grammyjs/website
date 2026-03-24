@@ -78,7 +78,7 @@ This package converts entities into semantic HTML, adhering to best practices an
 However, the provided output might not always be what you expect.
 
 To address this, you can use your own `renderer` to customize the HTML elements surrounding the text according to your rules.
-You can modify specific rules by extending the default [`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) or override all the rules by implementing the [`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
+You can modify specific rules by extending the default [`RendererHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) or override all the rules by implementing the [`Renderer`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
 
 To extend the existing `renderer`, do the following:
 
@@ -135,7 +135,7 @@ Here is the full list of interfaces and the output for each entity type:
 | `underline`             | `CommonEntity`      | `<span class="tg-bot-command"> ... </span>`                                                                                                                                        |
 | `url`                   | `CommonEntity`      | `<a class="tg-url" href="${options.text}"> ... </a>`                                                                                                                               |
 
-If you are unsure which interface is correct, refer to how the [Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts) or [RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) is implemented.
+If you are unsure which interface is correct, refer to how the [Renderer](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts) or [RendererHtml](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) is implemented.
 
 ### Customize the Text Sanitizer
 
@@ -151,9 +151,9 @@ The output text is sanitized by default to ensure proper HTML rendering and prev
 
 For example, the result `<b>Bold</b> & <i>Italic</i>` will be sanitized to `<b>Bold</b> &amp; <i>Italic</i>`.
 
-You can override this behavior by specifying a `textSanitizer` when instantiating the [`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts):
+You can override this behavior by specifying a `textSanitizer` when instantiating the [`EntitiesParser`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/mod.ts):
 
-- If you do not specify `textSanitizer`, it will default to using [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) as the sanitizer.
+- If you do not specify `textSanitizer`, it will default to using [`sanitizerHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) as the sanitizer.
 - Setting the value to `false` will skip sanitization, keeping the output text as the original.
   This is not recommended, as it may result in incorrect rendering and make your application vulnerable to XSS attacks.
   Ensure proper handling if you choose this option.
@@ -234,4 +234,4 @@ Use the official [`parse-mode`](./parse-mode) plugin for a better experience con
 
 - Name: `entity-parser`
 - [Package](https://jsr.io/@qz/telegram-entities-parser)
-- [Source](https://github.com/quadratz/telegram-entities-parser)
+- [Source](https://github.com/Quadratz-Org/telegram-entities-parser)

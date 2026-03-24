@@ -56,7 +56,7 @@ bot.start();
 
 > Catatan: Ambil token bot kamu di [@BotFather](https://t.me/BotFather), lalu buat sebuah environment variable di Zeabur bernama `TOKEN_BOT_TELEGRAM` yang memuat token bot tersebut.
 >
-> Panduan untuk menyetel environment variable di Zeabur bisa dilihat di [tutorial berikut](https://zeabur.com/docs/en-US/deploy/variables).
+> Panduan untuk menyetel environment variable di Zeabur bisa dilihat di [tutorial berikut](https://zeabur.com/docs/en-US/deploy/config/environment-variables).
 
 Jika sudah, jalankan perintah berikut untuk memulai bot kamu:
 
@@ -78,7 +78,7 @@ Sekarang, kamu bisa mulai menulis kode bot menggunakan templat tersebut.
 ### Cara 1: Men-deploy dari GitHub melalui Dashboard Zeabur
 
 1. Buat sebuah repositori privat ataupun publik di GitHub, kemudian push kode kamu ke repository tersebut.
-2. Beralih ke [dashboard Zeabur](https://dash.zeabur.com).
+2. Beralih ke [dashboard Zeabur](https://zeabur.com/).
 3. Klik tombol `New Project`, lalu klik tombol `Deploy New Service`, pilih `GitHub` sebagai sumbernya, kemudian pilih repositori yang telah kamu buat tadi.
 4. Beralih ke tab `Variables` untuk menambahkan environment variable yang diperlukan, misalnya `TOKEN_BOT_TELEGRAM`.
 5. Jika sudah, bot akan ter-deploy secara otomatis.

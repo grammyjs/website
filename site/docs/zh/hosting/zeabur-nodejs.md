@@ -65,7 +65,7 @@ bot.start();
 
 > 注意：在 Telegram 上使用 [@BotFather](https://t.me/BotFather) 获取你的 bot token，并在 Zeabur 中将其设置为环境变量 `TELEGRAM_BOT_TOKEN`。
 >
-> 你可以在 [这个教程](https://zeabur.com/docs/zh-CN/deploy/variables) 中查看如何在 Zeabur 中设置环境变量。
+> 你可以在 [这个教程](https://zeabur.com/docs/zh-CN/deploy/config/environment-variables) 中查看如何在 Zeabur 中设置环境变量。
 
 现在你的项目的根目录应该如下所示：
 
@@ -121,7 +121,7 @@ Zeabur 已经提供了一个模板供你使用。
 ### 方法 1：在 Zeabur Dashboard 中从 GitHub 进行部署
 
 1. 在 GitHub 上创建一个仓库，它可以是公共的或私有的，并将你的代码推送到其中。
-2. 跳转到 [Zeabur dashboard](https://dash.zeabur.com)。
+2. 跳转到 [Zeabur dashboard](https://zeabur.com/)。
 3. 点击 `New Project` 按钮，然后点击 `Deploy New Service` 按钮，选择 `GitHub` 作为源并选择你的仓库。
 4. 跳转到 `Variables` 选项卡添加环境变量，例如 `TELEGRAM_BOT_TOKEN`。
 5. 你的服务将自动部署。
