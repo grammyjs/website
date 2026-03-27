@@ -163,6 +163,16 @@ export const modules: ModuleConfig[] = [
     shortdescription: sdesc("the [parse mode plugin](/plugins/parse-mode)"),
   },
   {
+    repo: "stream",
+    slug: "stream",
+    name: "Stream Plugin",
+    description: desc(
+      "the [stream plugin](/plugins/stream)",
+      "the stream plugin",
+    ),
+    shortdescription: sdesc("the [stream plugin](/plugins/stream)"),
+  },
+  {
     repo: "chat-members",
     slug: "chat-members",
     name: "Chat Members",
