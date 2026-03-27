@@ -78,7 +78,7 @@ bot.on(":photo", (ctx) => {
 但是，提供的输出可能并不总是你所期望的。
 
 为了解决这个问题，你可以使用自己的 `renderer` 根据规则自定义环绕文本的 HTML 元素。
-你可以通过扩展默认的 [`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) 来修改特定规则，或者通过实现 [`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts) 来覆盖所有规则。
+你可以通过扩展默认的 [`RendererHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) 来修改特定规则，或者通过实现 [`Renderer`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts) 来覆盖所有规则。
 
 要扩展现有的 `renderer`，请执行以下操作：
 
@@ -135,7 +135,7 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 | `underline`             | `CommonEntity`      | `<span class="tg-bot-command"> ... </span>`                                                                                                                                        |
 | `url`                   | `CommonEntity`      | `<a class="tg-url" href="${options.text}"> ... </a>`                                                                                                                               |
 
-如果你不确定哪个接口是正确的，请参考 [Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts) 或 [RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) 的实现方式。
+如果你不确定哪个接口是正确的，请参考 [Renderer](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts) 或 [RendererHtml](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) 的实现方式。
 
 ### 自定义文本清理器
 
@@ -151,9 +151,9 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 
 例如，结果 `<b>粗体</b> & <i>斜体</i>` 将被清理为 `<b>粗体</b> &amp; <i>斜体</i>`。
 
-你可以在实例化 [`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts) 时指定 `textSanitizer` 来覆盖此行为：
+你可以在实例化 [`EntitiesParser`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/mod.ts) 时指定 `textSanitizer` 来覆盖此行为：
 
-- 如果你未指定 `textSanitizer`，它将默认使用 [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) 作为清理程序。
+- 如果你未指定 `textSanitizer`，它将默认使用 [`sanitizerHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) 作为清理程序。
 - 将值设置为 `false` 将跳过清理，保持输出文本为原始文本。
   不建议这样做，因为它可能会导致渲染不正确，并使你的应用程序容易受到 XSS 攻击。
   如果选择此选项，请确保你正确处理输出文本。
@@ -234,4 +234,4 @@ bot.on(":text", async (ctx) => {
 
 - 名称: `entity-parser`
 - [包](https://jsr.io/@qz/telegram-entities-parser)
-- [源码](https://github.com/quadratz/telegram-entities-parser)
+- [源码](https://github.com/Quadratz-Org/telegram-entities-parser)

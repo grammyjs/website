@@ -90,9 +90,9 @@ no ser siempre la esperada.
 Para solucionarlo, puede utilizar su propio `renderer` para personalizar los
 elementos HTML que rodean al texto de acuerdo con sus reglas. Puedes modificar
 reglas específicas extendiendo el
-[`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts)
+[`RendererHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts)
 por defecto o anular todas las reglas implementando el
-[`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
+[`Renderer`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
 
 Para extender el `renderer` existente, haz lo siguiente:
 
@@ -154,9 +154,9 @@ Aquí está la lista completa de interfaces y la salida para cada tipo de entida
 | `url`                   | `CommonEntity`      | `<a class="tg-url" href="${options.text}"> ... </a>`                                                                                                                              |
 
 Si no está seguro de cuál es la interfaz correcta, consulte cómo se implementa
-[Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts)
+[Renderer](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts)
 o
-[RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
+[RendererHtml](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
 
 ### Personalizar el sanitizador de texto
 
@@ -176,10 +176,10 @@ Por ejemplo, el resultado `<b>Negrita</b> & <i>Cursiva</i>` se saneará a
 
 Puede anular este comportamiento especificando un `textSanitizer` al crear una
 instancia de
-[`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts):
+[`EntitiesParser`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/mod.ts):
 
 - Si no especifica `textSanitizer`, se utilizará de manera predeterminada
-  [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts)
+  [`sanitizerHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts)
   como sanitizador.
 - Si establece el valor en `false`, se omitirá la sanitización y se mantendrá el
   texto de salida como el original. Esto no se recomienda, ya que puede generar
@@ -270,4 +270,4 @@ experiencia en la construcción de mensajes formateados. :::
 
 - Nombre: `entity-parser`
 - [Fuente](https://jsr.io/@qz/telegram-entities-parser)
-- [Referencia](https://github.com/quadratz/telegram-entities-parser)
+- [Referencia](https://github.com/Quadratz-Org/telegram-entities-parser)
