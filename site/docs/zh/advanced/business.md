@@ -32,17 +32,21 @@ bot.on("business_message", async (ctx) => {
 因此，我们需要区分这两个用户。
 为此，我们需要查看前面提到的 business connection 对象。
 business connection 会告诉我们谁是业务账户用户，也就是你（或你的员工之一）的用户标识符。
+它还会反映 bot 在聊天中的权限，例如，可以用它来检查 bot 是否被允许向聊天发送消息。
 
 ```ts
 bot.on("business_message", async (ctx) => {
   // 获取有关 business connection 的信息。
   const conn = await ctx.getBusinessConnection();
   const employee = conn.user;
-  // 查看是谁发送的这条消息
+  // 查看是谁发送的这条消息。
   if (ctx.from.id === employee.id) {
-    // 你发送的这条消息
+    // 你发送的这条消息。
   } else {
-    // 你的客户发送的这条消息
+    // 你的客户发送了这条消息。
+    if (conn.rights?.can_reply) {
+      // 你可以回复这条消息。
+    }
   }
 });
 ```
@@ -99,9 +103,23 @@ bot.on("business_message").filter(async (ctx) => {
 });
 ```
 
-然而，你的 bot **不能**删除聊天中的消息。
+如果在 business connection 中授予了相关权限，你还可以将消息标记为已读，并删除聊天中收到或发送的消息。
 
-同样，你的 bot 也**不能**转发消息，或将其复制到其他地方。
+```ts
+bot.on("business_message").filter(async (ctx) => {
+  const conn = await ctx.getBusinessConnection();
+  // 删除所有包含 "delete me" 的客户发送的消息。
+  if (
+    ctx.from.id !== conn.user.id &&
+    ctx.msg.text.includes("delete me") &&
+    conn.rights.can_delete_all_messages
+  ) {
+    await ctx.deleteBusinessMessages([ctx.msg.message_id]);
+  }
+});
+```
+
+不过，你的 bot **不能**转发消息，或将其复制到其他地方。
 所有这些事情都留给真人去做。
 
 ### 使用 Business Connection
