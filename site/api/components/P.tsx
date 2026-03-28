@@ -11,26 +11,7 @@ export function P(
   },
 ) {
   if (props.doc && props.children) {
-    const parts = props.children.split(/(```|```ts)/);
-    const newParts = new Array<string>();
-    let inCodeBlock = false;
-    for (let part of parts) {
-      if (part == "```" || part == "```ts" || part == "```ts:no-line-numbers") {
-        inCodeBlock = !inCodeBlock;
-        newParts.push(part);
-        continue;
-      }
-      if (!inCodeBlock) {
-        while (/<.+>/.test(part)) {
-          part = part.replace(/<(.+)>/, "&lt;$1&gt;");
-        }
-        newParts.push(part);
-      } else {
-        newParts.push(part);
-      }
-    }
-    props.children = newParts
-      .join("")
+    props.children = props.children
       .replaceAll("```ts", "```ts:no-line-numbers");
     props.children = replaceModuleSymbolLinks(
       props.children,
