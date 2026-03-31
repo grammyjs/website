@@ -78,7 +78,7 @@ bot.on(":photo", (ctx) => {
 Однак, результат може не завжди відповідати вашим очікуванням.
 
 Щоб вирішити цю проблему, ви можете використати власний `renderer` для налаштування елементів HTML, що оточують текст, відповідно до ваших правил.
-Ви можете змінити певні правила, розширивши стандартний [`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) або перевизначити всі правила, застосувавши [`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
+Ви можете змінити певні правила, розширивши стандартний [`RendererHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) або перевизначити всі правила, застосувавши [`Renderer`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
 
 Щоб розширити існуючий `renderer`, зробіть наступне:
 
@@ -135,7 +135,7 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 | `underline`             | `CommonEntity`      | `<span class="tg-bot-command"> ... </span>`                                                                                                                                         |
 | `url`                   | `CommonEntity`      | `<a class="tg-url" href="${options.text}"> ... </a>`                                                                                                                                |
 
-Якщо ви не впевнені, який інтерфейс правильний, зверніться до того, як реалізовано [Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts) або [RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
+Якщо ви не впевнені, який інтерфейс правильний, зверніться до того, як реалізовано [Renderer](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer.ts) або [RendererHtml](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
 
 ### Редагування та очищення тексту
 
@@ -151,9 +151,9 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 
 Наприклад, результат `<b>Жирний</b> & <i>Курсив</i>` буде перетворений в `<b>Жирний</b> &amp; <i>Курсив</i>`.
 
-Ви можете змінити цю поведінку, вказавши `textSanitizer` при створенні екземпляра [`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts):
+Ви можете змінити цю поведінку, вказавши `textSanitizer` при створенні екземпляра [`EntitiesParser`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/mod.ts):
 
-- Якщо ви не вкажете `textSanitizer`, буде використано [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) як типовий очищувач.
+- Якщо ви не вкажете `textSanitizer`, буде використано [`sanitizerHtml`](https://github.com/Quadratz-Org/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) як типовий очищувач.
 - Якщо вказати значення `false`, очищення буде пропущено, а виведений текст буде збережено як оригінал.
   Це не рекомендується, оскільки може призвести до некоректного рендерингу і зробити вашу програму вразливою до XSS-атак.
   Якщо ви вибрали цю опцію, забезпечте належну обробку результату.
@@ -235,4 +235,4 @@ bot.on(":text", async (ctx) => {
 
 - Назва: `entity-parser`
 - [Пакет](https://jsr.io/@qz/telegram-entities-parser)
-- [Джерело](https://github.com/quadratz/telegram-entities-parser)
+- [Джерело](https://github.com/Quadratz-Org/telegram-entities-parser)
