@@ -120,8 +120,6 @@ bot.on("business_message").filter(async (ctx) => {
 ```
 
 Sin embargo, tu bot **NO** puede reenviar mensajes del chat ni copiarlos en otro lugar.
-
-Del mismo modo, tu bot **NO** puede reenviar mensajes desde el chat, o copiarlos en otro lugar.
 Todo esto queda en manos de los humanos.
 
 ### Trabajando con conexiones empresariales
