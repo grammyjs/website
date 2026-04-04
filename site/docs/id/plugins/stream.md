@@ -8,7 +8,7 @@ next: false
 Plugin ini memungkinkan Anda untuk mengirim pesan teks panjang ke Telegram.
 Setiap [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) potongan teks dapat langsung dialirkan ke obrolan pribadi mana pun.
 
-Misalnya, Anda dapat membuat output LLM [muncul secara bertahap](#llm-integration) saat menghasilkan respons.
+Misalnya, Anda dapat membuat output LLM [muncul secara bertahap](#integrasi-llm) saat menghasilkan respons.
 
 ## Panduan Cepat
 
