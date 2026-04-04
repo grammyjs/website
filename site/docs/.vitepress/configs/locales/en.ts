@@ -238,6 +238,12 @@ const pluginOfficial = {
       activeMatch: "^(/plugins/parse-mode|/ref/parse-mode/)$",
     },
     {
+      text: "Streaming Message Drafts (stream)",
+      link: "/plugins/stream",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/stream|/ref/stream/)$",
+    },
+    {
       text: "Chat Members (chat-members)",
       link: "/plugins/chat-members",
       // do not add the following line to translations:
