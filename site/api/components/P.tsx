@@ -21,9 +21,11 @@ export function P(
         continue;
       }
       if (!inCodeBlock) {
-        while (/<.+>/.test(part)) {
-          part = part.replace(/<(.+)>/, "&lt;$1&gt;");
-        }
+        // Escape each pair of angle brackets individually. The inner class
+        // `[^<>]+` keeps a single `<...>` from greedily swallowing every
+        // bracketed placeholder in the same sentence — see
+        // https://github.com/grammyjs/website/issues/1027.
+        part = part.replace(/<([^<>]+)>/g, "&lt;$1&gt;");
         newParts.push(part);
       } else {
         newParts.push(part);
