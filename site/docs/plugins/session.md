@@ -641,6 +641,12 @@ You can then keep using `SessionFlavor<SessionData>` for your context object.
 
 Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
 
+::: warning Lazy sessions do not support multi sessions
+Lazy sessions and [multi sessions](#multi-sessions) are mutually exclusive.
+`lazySession` is a separate implementation of the session middleware, and it does not accept the `type: "multi"` configuration that the strict `session` middleware does.
+If you need several independent session namespaces (for example, one per chat and one per user), use the default strict `session` middleware with `type: "multi"`.
+:::
+
 Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
 Without sessions, this would happen:
 
