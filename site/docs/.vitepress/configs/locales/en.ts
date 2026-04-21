@@ -278,6 +278,10 @@ const pluginThirdparty = {
       link: "/plugins/entity-parser",
     },
     {
+      text: "End-to-End Testing",
+      link: "/plugins/grammy-emulate",
+    },
+    {
       text: "[Submit your PR!]",
       link: "/plugins/#create-your-own-plugins",
     },
