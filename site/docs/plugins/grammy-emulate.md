@@ -139,7 +139,20 @@ const mounted = await emu.mount(bot, (token, apiRoot) => {
 // mounted.stop() halts polling; emuVitest() also stops it between tests.
 ```
 
-Webhook mode is planned; polling is the default today.
+### Polling or Webhook
+
+Pass `mode: "webhook"` to exercise the same delivery path your production bot uses.
+The plugin stands up a receiver on a random free port, calls `setWebhook(url, { secret_token })` on the emulator, and relies on grammY's `webhookCallback` to verify the `X-Telegram-Bot-Api-Secret-Token` header on every incoming POST.
+
+```ts
+await emu.mount(bot, factory, {
+  mode: "webhook",
+  allowedUpdates: ["message", "callback_query"],
+});
+```
+
+Polling is the default.
+Both modes accept `allowedUpdates` and `dropPendingUpdates`.
 
 ## Simulating User Actions
 
@@ -148,6 +161,11 @@ Webhook mode is planned; polling is the default today.
 ```ts
 await emu.as(alice).in(dm).send("/start");
 await emu.as(alice).in(dm).sendPhoto(photoBytes, { caption: "look" });
+await emu.as(alice).in(dm).sendVideo(videoBytes, { duration: 10 });
+await emu.as(alice).in(dm).sendAudio(audioBytes, { mimeType: "audio/mpeg" });
+await emu.as(alice).in(dm).sendVoice(voiceBytes, { duration: 3 });
+await emu.as(alice).in(dm).sendAnimation(gifBytes);
+await emu.as(alice).in(dm).sendSticker(stickerBytes);
 await emu.as(alice).in(dm).sendDocument(docBytes, { fileName: "notes.txt" });
 await emu.as(alice).in(dm).edit(messageId, "edited text");
 await emu.as(alice).in(dm).click(messageId, "menu:about");
@@ -175,6 +193,39 @@ await emu.inspect.callbackAnswer(callbackQueryId);
 ```
 
 `waitForReply` polls the emulator's store until a matching reply lands or a timeout elapses, so you never have to race the grammY poll loop by hand.
+
+## Injecting Faults
+
+Testing error paths — retry logic, rate-limit handling, "bot blocked by user" branches — is where mock-based approaches fall over.
+The emulator exposes a typed fault-injection primitive that surfaces as `emu.faults.*` in the plugin.
+
+```ts
+await emu.faults.inject({
+  bot,
+  method: "sendMessage",
+  code: 429,
+  retryAfter: 2,
+  count: 1,
+});
+
+await emu.as(alice).in(dm).send("/start");
+// The bot's ctx.reply() throws a GrammyError(429); your bot.catch handler fires.
+```
+
+The scoped `during()` sugar is cleared automatically on exit, even when the wrapped block throws.
+
+```ts
+await emu.faults.during(
+  async () => {
+    await emu.as(alice).in(dm).send("/start");
+    // assertions
+  },
+  { bot, method: "sendMessage", code: 403 },
+);
+```
+
+Supported codes are `400`, `401`, `403`, `404`, and `429`.
+`count` defaults to `1` — only the very next call fails.
 
 ## Vitest Matchers
 
