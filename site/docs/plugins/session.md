@@ -5,7 +5,7 @@ next: false
 
 # Sessions and Storing Data (built-in)
 
-While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
+While you can always just write your own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
 
 > [Jump down](#how-to-use-sessions) if you know how sessions work.
 
@@ -584,7 +584,7 @@ You may also want to [scroll down](#storage-enhancements) to see how the session
 ## Multi Sessions
 
 The session plugin is able to store different fragments of your session data in different places.
-Basically, this works as if you would install multiple independent instances of the the session plugin, each with a different configuration.
+Basically, this works as if you would install multiple independent instances of the session plugin, each with a different configuration.
 
 Each of these data fragments will have a name under which they can store their data.
 You will then be able to access `ctx.session.foo` and `ctx.session.bar` and these values were loaded from different data storages, and they will also be written back to different data storages.
