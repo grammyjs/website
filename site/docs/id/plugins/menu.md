@@ -534,7 +534,7 @@ Ketika kamu mendaftarkan menu di hierarki navigasi yang luas, pada kenyataannya 
 Di balik layar, menu-menu yang berasal dari satu struktur ditambahkan ke tempat penampungan besar yang sama, lalu penampungan tersebut digunakan secara bersama-sama oleh semua instance terkait.
 Setiap menu bertanggung jawab untuk menu-menu lain di index tersebut, dan mereka dapat menangani dan me-render satu sama lain (Biasanya, hanya menu utama yang diteruskan ke `bot.use` dan dari situ ia kan menerima update.
 Jika kasusnya seperti itu, instance tersebut akan menangani penampungan secara keseluruhan).
-Hasilnya, kamu bisa menavigasi di antara menu tanpa batas, semua bisa dilakukan selama penanganan update terjadi dalam [kompleksitas waktu `O(1)`](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) karena tidak perlu mencari ke seluruh hierarki untuk menemukan menu yang tepat untuk menangani tombol apapun yang ditekan.
+Hasilnya, kamu bisa menavigasi di antara menu tanpa batas, semua bisa dilakukan selama penanganan update terjadi dalam [kompleksitas waktu `O(1)`](https://en.wikipedia.org/wiki/Time_complexity#Table_of_common_time_complexities) karena tidak perlu mencari ke seluruh hierarki untuk menemukan menu yang tepat untuk menangani tombol apapun yang ditekan.
 
 ## Ringkasan Plugin
 

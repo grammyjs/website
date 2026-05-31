@@ -5,7 +5,7 @@ next: false
 
 # Hosting: Cloudflare Workers (Deno)
 
-[Cloudflare Workers](https://workers.cloudflare.com) adalah sebuah platform pengkomputasian serverless publik yang menawarkan solusi simpel dan nyaman untuk menjalankan beban kerja yang tidak terlalu berat di [edge](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://www.cloudflare.com/products/workers/) adalah sebuah platform pengkomputasian serverless publik yang menawarkan solusi simpel dan nyaman untuk menjalankan beban kerja yang tidak terlalu berat di [edge](https://en.wikipedia.org/wiki/Edge_computing).
 
 Panduan ini akan menuntun kamu melakukan hosting bot Telegram di Cloudflare Workers.
 
