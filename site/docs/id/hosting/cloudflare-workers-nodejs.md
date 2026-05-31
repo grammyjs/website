@@ -5,7 +5,7 @@ next: false
 
 # Hosting: Cloudflare Workers (Node.js)
 
-[Cloudflare Workers](https://workers.cloudflare.com) adalah sebuah platform pengkomputasian serverless publik yang menawarkan kemudahan serta kenyamanan untuk menjalankan JavaScript di [edge](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://www.cloudflare.com/products/workers/) adalah sebuah platform pengkomputasian serverless publik yang menawarkan kemudahan serta kenyamanan untuk menjalankan JavaScript di [edge](https://en.wikipedia.org/wiki/Edge_computing).
 Dengan kemampuannya untuk menangani lalu lintas HTTP serta ditenagai oleh [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), mengembangkan bot Telegram menjadi sangat mudah.
 Tidak berhenti di situ, kamu bahkan bisa mengembangkan [Web Apps](https://core.telegram.org/bots/webapps) di edge tersebut, semua tanpa biaya dengan kuota tertentu.
 
