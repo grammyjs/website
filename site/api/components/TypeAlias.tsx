@@ -1,4 +1,8 @@
-import { type DocNodeNamespace, type DocNodeTypeAlias, flattenSymbols } from "../types.ts";
+import {
+  type DocNodeNamespace,
+  type DocNodeTypeAlias,
+  flattenSymbols,
+} from "../types.ts";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";

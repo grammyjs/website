@@ -1,8 +1,4 @@
-import {
-  ClassMethodDef,
-  InterfaceMethodDef,
-  JsDoc,
-} from "@deno/doc/types";
+import { ClassMethodDef, InterfaceMethodDef, JsDoc } from "@deno/doc/types";
 import { type DocNodeFunction } from "../../types.ts";
 import { Params, TsType, TypeParams_ } from "../TsType.tsx";
 import { LinkGetter } from "../types.ts";
@@ -61,9 +57,13 @@ export function Def(
     getLink: LinkGetter;
   },
 ) {
-  const typeParams = "def" in method ? method.def.typeParams : method.typeParams;
+  const typeParams = "def" in method
+    ? method.def.typeParams
+    : method.typeParams;
   const params = "def" in method ? method.def.params : method.params;
-  const returnType = "def" in method ? method.def.returnType : method.returnType;
+  const returnType = "def" in method
+    ? method.def.returnType
+    : method.returnType;
   return (
     <>
       {method.kind == "setter"

@@ -1,7 +1,4 @@
-import {
-  type Declaration,
-  type Symbol as DocSymbol,
-} from "@deno/doc/types";
+import { type Declaration, type Symbol as DocSymbol } from "@deno/doc/types";
 
 export type DocNode = { name: string } & Declaration;
 

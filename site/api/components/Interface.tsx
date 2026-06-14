@@ -1,4 +1,8 @@
-import { type DocNodeInterface, type DocNodeNamespace, flattenSymbols } from "../types.ts";
+import {
+  type DocNodeInterface,
+  type DocNodeNamespace,
+  flattenSymbols,
+} from "../types.ts";
 import { Properties } from "./Properties.tsx";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";
