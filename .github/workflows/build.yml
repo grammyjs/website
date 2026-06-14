@@ -29,8 +29,12 @@ jobs:
         with:
           deno-version: "2.7.11"
 
-      - name: Install deps and generate files
-        run: deno task setup
+      - name: Install deps
+        run: deno ci
+        working-directory: site/
+
+      - name: Generate API reference
+        run: deno task index-versions && deno task genapi
         working-directory: site/
 
       - name: Build site

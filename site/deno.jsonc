@@ -6,8 +6,8 @@
   },
   "tasks": {
     "setup": "deno install --allow-scripts && deno task index-versions && deno task genapi",
-    "genapi": "cd api && deno task genapi",
     "index-versions": "deno -N docs/.vitepress/plugins/current-versions/build-index.ts > docs/.vitepress/plugins/current-versions/index.json",
+    "genapi": "cd api && deno task genapi",
     "dev": "deno -A npm:vitepress dev docs",
     "build": "deno -A npm:vitepress build docs && deno task sitemap",
     "serve": "deno -A npm:vitepress serve docs",
