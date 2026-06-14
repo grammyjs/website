@@ -1,5 +1,4 @@
 {
-  "lock": false,
   "tasks": {
     "genapi": "deno -ENRW=.cache,../docs/ref api_gen.tsx ../docs/ref",
     "reset": "rm -rf .cache"

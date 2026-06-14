@@ -1,0 +1,121 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@deno/cache-dir@0.25": "0.25.0",
+    "jsr:@deno/cache-dir@0.27": "0.27.0",
+    "jsr:@deno/doc@0.200": "0.200.0",
+    "jsr:@deno/graph@0.100": "0.100.1",
+    "jsr:@deno/graph@0.86": "0.86.9",
+    "jsr:@std/bytes@^1.0.6": "1.0.6",
+    "jsr:@std/fmt@^1.0.3": "1.0.9",
+    "jsr:@std/fs@^1.0.24": "1.0.24",
+    "jsr:@std/fs@^1.0.6": "1.0.24",
+    "jsr:@std/internal@^1.0.14": "1.0.14",
+    "jsr:@std/io@0.225": "0.225.3",
+    "jsr:@std/path@^1.0.8": "1.1.5",
+    "jsr:@std/path@^1.1.5": "1.1.5",
+    "npm:marked-smartypants@^1.1.12": "1.1.12_marked@18.0.5",
+    "npm:preact-render-to-string@^6.7.0": "6.7.0_preact@10.29.2",
+    "npm:preact@^10.29.2": "10.29.2"
+  },
+  "jsr": {
+    "@deno/cache-dir@0.25.0": {
+      "integrity": "e9c3e901f87961a813a197b076668007699953dcbeb3af51971d90fdb0d29723",
+      "dependencies": [
+        "jsr:@deno/graph@0.86",
+        "jsr:@std/fmt",
+        "jsr:@std/fs@^1.0.6",
+        "jsr:@std/io",
+        "jsr:@std/path@^1.0.8"
+      ]
+    },
+    "@deno/cache-dir@0.27.0": {
+      "integrity": "e2a7644dec864b9939e4ee3f4a9ca34c0d99d71ba2a114590d6d4af56d647c15",
+      "dependencies": [
+        "jsr:@deno/graph@0.86",
+        "jsr:@std/fmt",
+        "jsr:@std/fs@^1.0.6",
+        "jsr:@std/io",
+        "jsr:@std/path@^1.0.8"
+      ]
+    },
+    "@deno/doc@0.200.0": {
+      "integrity": "2ac4bcb04b7d492740aeae4979f9731d3e5013e354f1e50a3ecb6e1f19d50acf",
+      "dependencies": [
+        "jsr:@deno/cache-dir@0.25",
+        "jsr:@deno/graph@0.100"
+      ]
+    },
+    "@deno/graph@0.86.9": {
+      "integrity": "c4f353a695bcc5246c099602977dabc6534eacea9999a35a8cb24e807192e6a1"
+    },
+    "@deno/graph@0.100.1": {
+      "integrity": "91ae087c95fe3d97f35f84b3ea38ea21163d12df28c6ec70bb89f253fd99870e"
+    },
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/fmt@1.0.9": {
+      "integrity": "2487343e8899fb2be5d0e3d35013e54477ada198854e52dd05ed0422eddcabe0"
+    },
+    "@std/fs@1.0.24": {
+      "integrity": "f3061b45b81673a2bece689da041df32d174be064c89eb6397fb5718d3fb7877",
+      "dependencies": [
+        "jsr:@std/internal",
+        "jsr:@std/path@^1.1.5"
+      ]
+    },
+    "@std/internal@1.0.14": {
+      "integrity": "291516b3d4c35024d6ffbc0a9df5bf4c64116e05b50012cf846710152d2ffdf7"
+    },
+    "@std/io@0.225.3": {
+      "integrity": "27b07b591384d12d7b568f39e61dff966b8230559122df1e9fd11cc068f7ddd1",
+      "dependencies": [
+        "jsr:@std/bytes"
+      ]
+    },
+    "@std/path@1.1.5": {
+      "integrity": "ccea00982ea28c36becaf6e62f855406c76a8c32d462f66f415bbb7d83a271bc",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    }
+  },
+  "npm": {
+    "marked-smartypants@1.1.12_marked@18.0.5": {
+      "integrity": "sha512-Z0QL2GpihbSeG5aaCrQxMEoqvngMftF/gq1SrdlCnbecUSrX3HYgPtCZzCW+OyNe2ideQqaFdxfGryqQX1MBDA==",
+      "dependencies": [
+        "marked",
+        "smartypants"
+      ]
+    },
+    "marked@18.0.5": {
+      "integrity": "sha512-S6GcvALHg6K4ohtu4E7x0a1AqhAjp6cV8KhLSyN9qVapnzJkusVBxZRcIU9AeYsbe6P1hKDusSbEOzGyyuce6w==",
+      "bin": true
+    },
+    "preact-render-to-string@6.7.0_preact@10.29.2": {
+      "integrity": "sha512-Z4WR8fmLMRpdYqJ9i7vrlXSsSrxVJydwrkEXHapexfARbWfGb7vGcnvNQnIzN0cXciMVOlz/XLoiMCi9gUsy9Q==",
+      "dependencies": [
+        "preact"
+      ]
+    },
+    "preact@10.29.2": {
+      "integrity": "sha512-7tNmwg/7mzzAoB/8kSg6Hl37JraAZw3Z3A0JSY7VXlZwo82Xn0G7wKbNNs2qoF4ZEEsQGTwDAroNdqKs1ofJxQ=="
+    },
+    "smartypants@0.2.2": {
+      "integrity": "sha512-TzobUYoEft/xBtb2voRPryAUIvYguG0V7Tt3de79I1WfXgCwelqVsGuZSnu3GFGRZhXR90AeEYIM+icuB/S06Q==",
+      "bin": true
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@deno/cache-dir@0.27",
+      "jsr:@deno/doc@0.200",
+      "jsr:@std/fs@^1.0.24",
+      "jsr:@std/path@^1.1.5",
+      "npm:marked-smartypants@^1.1.12",
+      "npm:preact-render-to-string@^6.7.0",
+      "npm:preact@^10.29.2"
+    ]
+  }
+}
