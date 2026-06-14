@@ -11,8 +11,8 @@ import {
   type DocNodeClass,
   type DocNodeFunction,
   type DocNodeNamespace,
-  symbolsToDocNodes,
-} from "./doc_types.ts";
+  flattenSymbols,
+} from "./types.ts";
 import { ToC } from "./components/ToC.tsx";
 import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
@@ -63,7 +63,7 @@ const refs = await Promise.all(paths.map(
     [id, path, slug, name, description, shortdescription],
   ): Promise<Ref> => {
     const nodes = Object.values(await doc([id], { load: cache.load }))
-      .flatMap((d) => symbolsToDocNodes(d.symbols));
+      .flatMap((d) => flattenSymbols(d.symbols));
     Deno.stdout.writeSync(dot);
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
@@ -83,7 +83,7 @@ function namespaceGetLink(
   getLink: (typeRef: string) => string | null,
 ): typeof getLink {
   return (typeRef) => {
-    const node_ = namespace.namespaceDef.elements.find((v) =>
+    const node_ = flattenSymbols(namespace.def.elements).find((v) =>
       v.name == typeRef && LINKABLE_KINDS.has(v.kind)
     );
     if (node_ !== undefined) {
@@ -271,20 +271,21 @@ for (const [nodes, path_, slug, name, description] of refs) {
 
   for (const node of nodes) {
     if (node.kind == "namespace") {
-      for (const el of node.namespaceDef.elements) {
+      const namespaceEls = flattenSymbols(node.def.elements);
+      for (const el of namespaceEls) {
         createDoc(
           el,
           path.join(path_, node.name),
           namespaceGetLink(slug, node, getLink),
           slug,
           undefined,
-          ((el.kind == "class" && el.classDef.extends !== undefined)
-            ? node.namespaceDef.elements.find((v) =>
+          ((el.kind == "class" && el.def.extends !== undefined)
+            ? namespaceEls.find((v) =>
               v.kind == "class" &&
-              v.name == (el as DocNodeClass).classDef.extends
+              v.name == (el as DocNodeClass).def.extends
             ) ?? allNodes.find((v) =>
               v.kind == "class" &&
-              v.name == (el as DocNodeClass).classDef.extends
+              v.name == (el as DocNodeClass).def.extends
             )
             : undefined) as DocNodeClass | undefined,
           getOverloadCount(node, nodes),
@@ -301,10 +302,10 @@ for (const [nodes, path_, slug, name, description] of refs) {
           ? nodes.filter((v): v is DocNodeNamespace => v.kind == "namespace")
             .find((v) => v.name == node.name)
           : undefined,
-        ((node.kind == "class" && node.classDef.extends !== undefined)
+        ((node.kind == "class" && node.def.extends !== undefined)
           ? allNodes.find((v) =>
             v.kind == "class" &&
-            v.name == (node as DocNodeClass).classDef.extends
+            v.name == (node as DocNodeClass).def.extends
           )
           : undefined) as DocNodeClass | undefined,
         getOverloadCount(node, nodes),

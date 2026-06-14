@@ -1,4 +1,5 @@
-import { type DocNode, type DocNodeKind } from "../doc_types.ts";
+import { type DocNode } from "../types.ts";
+import { type DocNodeKind } from "@deno/doc/types";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";
 import { Sector } from "./Sector.tsx";

@@ -3,7 +3,7 @@ import {
   InterfaceMethodDef,
   JsDoc,
 } from "@deno/doc/types";
-import { type DocNodeFunction } from "../../doc_types.ts";
+import { type DocNodeFunction } from "../../types.ts";
 import { Params, TsType, TypeParams_ } from "../TsType.tsx";
 import { LinkGetter } from "../types.ts";
 import { CodeBlock } from "../CodeBlock.tsx";
@@ -61,21 +61,9 @@ export function Def(
     getLink: LinkGetter;
   },
 ) {
-  const typeParams = "functionDef" in method
-    ? method.functionDef.typeParams
-    : "def" in method
-    ? method.def.typeParams
-    : method.typeParams;
-  const params = "functionDef" in method
-    ? method.functionDef.params
-    : "def" in method
-    ? method.def.params
-    : method.params;
-  const returnType = "functionDef" in method
-    ? method.functionDef.returnType
-    : "def" in method
-    ? method.def.returnType
-    : method.returnType;
+  const typeParams = "def" in method ? method.def.typeParams : method.typeParams;
+  const params = "def" in method ? method.def.params : method.params;
+  const returnType = "def" in method ? method.def.returnType : method.returnType;
   return (
     <>
       {method.kind == "setter"

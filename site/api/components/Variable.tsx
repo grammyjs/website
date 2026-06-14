@@ -1,4 +1,4 @@
-import { type DocNodeVariable } from "../doc_types.ts";
+import { type DocNodeVariable } from "../types.ts";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";
 import { LinkGetter } from "./types.ts";
@@ -18,9 +18,9 @@ export function Variable(
       <H1>{varr.name}</H1>
       <P doc getLink={getLink}>{varr.jsDoc?.doc}</P>
       <Loc>{varr}</Loc>
-      <Sector title="Type" show={!!varr.variableDef.tsType}>
+      <Sector title="Type" show={!!varr.def.tsType}>
         <CodeBlock>
-          <TsType getLink={getLink}>{varr.variableDef.tsType!}</TsType>
+          <TsType getLink={getLink}>{varr.def.tsType!}</TsType>
         </CodeBlock>
       </Sector>
     </>

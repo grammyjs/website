@@ -1,4 +1,4 @@
-import { type DocNodeInterface, type DocNodeNamespace } from "../doc_types.ts";
+import { type DocNodeInterface, type DocNodeNamespace, flattenSymbols } from "../types.ts";
 import { Properties } from "./Properties.tsx";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";
@@ -18,9 +18,9 @@ export function Interface(
     namespace?: DocNodeNamespace;
   },
 ) {
-  const props = iface.interfaceDef.properties ?? [];
-  const methods = iface.interfaceDef.methods ?? [];
-  const indexes = iface.interfaceDef.indexSignatures ?? [];
+  const props = iface.def.properties ?? [];
+  const methods = iface.def.methods ?? [];
+  const indexes = iface.def.indexSignatures ?? [];
   const methodNameSet = new Set<string>(); // to prevent duplicates
 
   const getMethodOverloads = (name: string) => {
@@ -32,10 +32,10 @@ export function Interface(
       <H1>{iface.name}</H1>
       <P doc getLink={getLink}>{iface.jsDoc?.doc}</P>
       <Loc>{iface}</Loc>
-      <Sector title="Extends" show={!!(iface.interfaceDef.extends?.length)}>
+      <Sector title="Extends" show={!!(iface.def.extends?.length)}>
         <CodeBlock>
           {(() => {
-            const a = (iface.interfaceDef.extends ?? []).map((v) => (
+            const a = (iface.def.extends ?? []).map((v) => (
               <TsType getLink={getLink}>{v}</TsType>
             ));
             return a.length > 0 ? a.reduce((a, b) => <>{a}, {b}</>) : null;
@@ -70,7 +70,7 @@ export function Interface(
           ))}
       </Sector>
       {namespace && (
-        <ToC getLink={getLink}>{namespace.namespaceDef.elements}</ToC>
+        <ToC getLink={getLink}>{flattenSymbols(namespace.def.elements)}</ToC>
       )}
     </>
   );

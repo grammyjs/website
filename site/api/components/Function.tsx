@@ -1,4 +1,4 @@
-import { type DocNodeFunction } from "../doc_types.ts";
+import { type DocNodeFunction } from "../types.ts";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";
 import { H2 } from "./H2.tsx";
@@ -21,8 +21,8 @@ export function Function(
     overloadCount?: number;
   },
 ) {
-  const params = func.functionDef.params;
-  const typeParams = func.functionDef.typeParams ?? [];
+  const params = func.def.params;
+  const typeParams = func.def.typeParams ?? [];
   const getLink = newGetLink(oldGetLink, typeParams);
 
   return (
@@ -79,11 +79,11 @@ export function Function(
       </Sector>
       <Sector
         title="Return Type"
-        show={!!func.functionDef.returnType}
+        show={!!func.def.returnType}
         h3={!!overloadCount}
       >
         <ReturnType getLink={getLink} doc={func.jsDoc}>
-          {func.functionDef.returnType!}
+          {func.def.returnType!}
         </ReturnType>
       </Sector>
     </>
