@@ -1,4 +1,4 @@
-import { DocNodeFunction } from "@deno/doc/types";
+import { type DocNodeFunction } from "../doc_types.ts";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";
 import { H2 } from "./H2.tsx";
@@ -22,7 +22,7 @@ export function Function(
   },
 ) {
   const params = func.functionDef.params;
-  const typeParams = func.functionDef.typeParams;
+  const typeParams = func.functionDef.typeParams ?? [];
   const getLink = newGetLink(oldGetLink, typeParams);
 
   return (
@@ -72,7 +72,7 @@ export function Function(
         show={!!typeParams.length}
         h3={!!overloadCount}
       >
-        <TypeParams getLink={getLink}>{typeParams}</TypeParams>
+        <TypeParams typeParams={typeParams} getLink={getLink} />
       </Sector>
       <Sector title="Parameters" show={!!params.length} h3={!!overloadCount}>
         <Parameters getLink={getLink} doc={func.jsDoc}>{params}</Parameters>

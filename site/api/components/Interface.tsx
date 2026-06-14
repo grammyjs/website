@@ -1,4 +1,4 @@
-import { DocNodeInterface, DocNodeNamespace } from "@deno/doc/types";
+import { type DocNodeInterface, type DocNodeNamespace } from "../doc_types.ts";
 import { Properties } from "./Properties.tsx";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";
@@ -18,13 +18,13 @@ export function Interface(
     namespace?: DocNodeNamespace;
   },
 ) {
-  const props = iface.interfaceDef.properties;
-  const methods = iface.interfaceDef.methods;
-  const indexes = iface.interfaceDef.indexSignatures;
+  const props = iface.interfaceDef.properties ?? [];
+  const methods = iface.interfaceDef.methods ?? [];
+  const indexes = iface.interfaceDef.indexSignatures ?? [];
   const methodNameSet = new Set<string>(); // to prevent duplicates
 
   const getMethodOverloads = (name: string) => {
-    return iface.interfaceDef.methods.filter((v) => v.name == name).slice(1);
+    return methods.filter((v) => v.name == name).slice(1);
   };
 
   return (
@@ -32,10 +32,10 @@ export function Interface(
       <H1>{iface.name}</H1>
       <P doc getLink={getLink}>{iface.jsDoc?.doc}</P>
       <Loc>{iface}</Loc>
-      <Sector title="Extends" show={!!iface.interfaceDef.extends.length}>
+      <Sector title="Extends" show={!!(iface.interfaceDef.extends?.length)}>
         <CodeBlock>
           {(() => {
-            const a = iface.interfaceDef.extends.map((v) => (
+            const a = (iface.interfaceDef.extends ?? []).map((v) => (
               <TsType getLink={getLink}>{v}</TsType>
             ));
             return a.length > 0 ? a.reduce((a, b) => <>{a}, {b}</>) : null;
@@ -61,7 +61,7 @@ export function Interface(
             <Method
               getLink={getLink}
               inheritDoc={() =>
-                iface.interfaceDef.methods.find((v_) => (v_.name == v.name))
+                methods.find((v_) => (v_.name == v.name))
                   ?.jsDoc}
               overloads={getMethodOverloads(v.name)}
             >

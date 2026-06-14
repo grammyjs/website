@@ -2,10 +2,10 @@ import {
   type ClassConstructorParamDef,
   type ClassMethodDef,
   type ClassPropertyDef,
-  type DocNodeClass,
   type JsDocTag,
   type ParamIdentifierDef,
 } from "@deno/doc/types";
+import { type DocNodeClass } from "../doc_types.ts";
 import { Method } from "./Class/Method.tsx";
 import { Properties } from "./Properties.tsx";
 import { Constructors } from "./Class/Constructors.tsx";
@@ -34,9 +34,9 @@ export function Class(
     parent: DocNodeClass | undefined;
   },
 ) {
-  const typeParams = klass.classDef.typeParams;
-  const ctors = klass.classDef.constructors;
-  const props = klass.classDef.properties.filter(isVisible).concat(
+  const typeParams = klass.classDef.typeParams ?? [];
+  const ctors = klass.classDef.constructors ?? [];
+  const props = (klass.classDef.properties ?? []).filter(isVisible).concat(
     // display properties defined in the constructor
     ctors.flatMap((v) =>
       v.params
@@ -45,9 +45,6 @@ export function Class(
           (p.accessibility === "public" || p.accessibility === "protected")
         )
         .map((p): ClassPropertyDef => ({
-          isAbstract: false,
-          isStatic: false,
-          readonly: false,
           location: v.location,
           jsDoc: {
             doc: v.jsDoc?.tags?.find((t): t is JsDocTag & { kind: "param" } =>
@@ -55,10 +52,11 @@ export function Class(
             )?.doc,
           },
           ...p,
+          optional: p.optional || undefined,
         }))
     ),
   );
-  const nonPrivateMethods = klass.classDef.methods.filter(isVisible);
+  const nonPrivateMethods = (klass.classDef.methods ?? []).filter(isVisible);
   const methods = nonPrivateMethods.filter((v) => !v.isStatic);
   const staticMethods = nonPrivateMethods.filter((v) => v.isStatic);
   const getLink = newGetLink(oldGetLink, typeParams);
@@ -90,10 +88,10 @@ export function Class(
           </TypeRef>
         </CodeBlock>
       </Sector>
-      <Sector title="Implements" show={klass.classDef.implements.length > 0}>
+      <Sector title="Implements" show={(klass.classDef.implements?.length ?? 0) > 0}>
         <CodeBlock>
-          {klass.classDef.implements.length > 0 &&
-            klass.classDef.implements.map((v) => (
+          {(klass.classDef.implements?.length ?? 0) > 0 &&
+            klass.classDef.implements!.map((v) => (
               <TsType getLink={getLink}>{v}</TsType>
             )).reduce((a, b) => (
               (
@@ -106,7 +104,7 @@ export function Class(
         </CodeBlock>
       </Sector>
       <Sector title="Type Parameters" show={!!typeParams.length}>
-        <TypeParams getLink={getLink}>{typeParams}</TypeParams>
+        <TypeParams typeParams={typeParams} getLink={getLink} />
       </Sector>
       <Sector title="Constructors" show={!!ctors.length}>
         <Constructors getLink={getLink}>
@@ -132,7 +130,7 @@ export function Class(
             <Method
               getLink={getLink}
               inheritDoc={() =>
-                parent?.classDef.methods.find((v_) =>
+                parent?.classDef.methods?.find((v_) =>
                   (v_.name == v.name) && !v_.isStatic
                 )?.jsDoc}
               overloads={getMethodOverloads(v.name)}
@@ -154,7 +152,7 @@ export function Class(
             <Method
               getLink={getLink}
               inheritDoc={() =>
-                parent?.classDef.methods.find((v_) =>
+                parent?.classDef.methods?.find((v_) =>
                   (v_.name == v.name) && v_.isStatic
                 )?.jsDoc}
               overloads={getStaticMethodOverloads(v.name)}

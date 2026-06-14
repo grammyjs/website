@@ -1,4 +1,4 @@
-import { DocNodeNamespace, DocNodeTypeAlias } from "@deno/doc/types";
+import { type DocNodeNamespace, type DocNodeTypeAlias } from "../doc_types.ts";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";
@@ -16,7 +16,7 @@ export function TypeAlias(
     namespace?: DocNodeNamespace;
   },
 ) {
-  const typeParams = typeAlias.typeAliasDef.typeParams;
+  const typeParams = typeAlias.typeAliasDef.typeParams ?? [];
 
   return (
     <>
@@ -24,7 +24,7 @@ export function TypeAlias(
       <P doc getLink={getLink}>{typeAlias.jsDoc?.doc}</P>
       <Loc>{typeAlias}</Loc>
       <Sector title="Type Parameters" show={!!typeParams.length}>
-        <TypeParams getLink={getLink}>{typeParams}</TypeParams>
+        <TypeParams typeParams={typeParams} getLink={getLink} />
       </Sector>
       <Sector title="Type" show>
         <CodeBlock>

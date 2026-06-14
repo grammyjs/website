@@ -8,10 +8,11 @@ import { Class } from "./components/Class.tsx";
 import { Function } from "./components/Function.tsx";
 import {
   type DocNode,
-  DocNodeClass,
-  DocNodeFunction,
-  DocNodeNamespace,
-} from "@deno/doc/types";
+  type DocNodeClass,
+  type DocNodeFunction,
+  type DocNodeNamespace,
+  symbolsToDocNodes,
+} from "./doc_types.ts";
 import { ToC } from "./components/ToC.tsx";
 import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
@@ -61,7 +62,8 @@ const refs = await Promise.all(paths.map(
   async (
     [id, path, slug, name, description, shortdescription],
   ): Promise<Ref> => {
-    const nodes = Object.values(await doc([id], { load: cache.load })).flat();
+    const nodes = Object.values(await doc([id], { load: cache.load }))
+      .flatMap((d) => symbolsToDocNodes(d.symbols));
     Deno.stdout.writeSync(dot);
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),

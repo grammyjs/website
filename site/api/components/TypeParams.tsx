@@ -5,8 +5,8 @@ import { CodeBlock } from "./CodeBlock.tsx";
 import { TypeParam_ } from "./TsType.tsx";
 
 export function TypeParams(
-  { children: typeParams, getLink }: {
-    children: TsTypeParamDef[];
+  { typeParams, getLink }: {
+    typeParams: TsTypeParamDef[];
     getLink: LinkGetter;
   },
 ) {

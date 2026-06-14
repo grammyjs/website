@@ -29,7 +29,9 @@ export function Properties({
                 <StyleKw>{"abstract "}</StyleKw>
               )}
               {v.readonly && <StyleKw>{"readonly "}</StyleKw>}
-              <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>
+              <PropertyName hasType={!!v.tsType} class>
+                {{ ...v, optional: !!v.optional }}
+              </PropertyName>
               {v.tsType && (
                 <>
                   {" "}

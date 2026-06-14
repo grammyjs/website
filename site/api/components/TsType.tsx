@@ -46,54 +46,47 @@ export function TsType({
 }) {
   switch (tt.kind) {
     case "keyword":
-      return <Keyword>{tt.keyword}</Keyword>;
+      return <Keyword>{tt.value}</Keyword>;
     case "literal":
-      return <Literal>{tt.literal}</Literal>;
+      return <Literal>{tt.value}</Literal>;
     case "typeRef":
-      return <TypeRef getLink={getLink}>{tt.typeRef}</TypeRef>;
+      return <TypeRef getLink={getLink}>{tt.value}</TypeRef>;
     case "union":
-      return <Union getLink={getLink}>{tt.union}</Union>;
+      return <Union getLink={getLink}>{tt.value}</Union>;
     case "intersection":
-      return <Intersection getLink={getLink}>{tt.intersection}</Intersection>;
+      return <Intersection getLink={getLink}>{tt.value}</Intersection>;
     case "array":
-      return <Array getLink={getLink}>{tt.array}</Array>;
+      return <Array getLink={getLink}>{tt.value}</Array>;
     case "tuple":
-      return <Tuple getLink={getLink}>{tt.tuple}</Tuple>;
+      return <Tuple getLink={getLink}>{tt.value}</Tuple>;
     case "typeOperator":
-      return <TypeOperator getLink={getLink}>{tt.typeOperator}</TypeOperator>;
+      return <TypeOperator getLink={getLink}>{tt.value}</TypeOperator>;
     case "parenthesized":
-      return <Parenthesized getLink={getLink}>{tt.parenthesized}
-      </Parenthesized>;
+      return <Parenthesized getLink={getLink}>{tt.value}</Parenthesized>;
     case "rest":
-      return <Rest getLink={getLink}>{tt.rest}</Rest>;
+      return <Rest getLink={getLink}>{tt.value}</Rest>;
     case "optional":
-      return <Optional getLink={getLink}>{tt.optional}</Optional>;
+      return <Optional getLink={getLink}>{tt.value}</Optional>;
     case "typeQuery":
-      return <TypeQuery getLink={getLink}>{tt.typeQuery}</TypeQuery>;
+      return <TypeQuery getLink={getLink}>{tt.value}</TypeQuery>;
     case "this":
       return <This />;
     case "fnOrConstructor":
-      return (
-        <FnOrConstructor getLink={getLink}>
-          {tt.fnOrConstructor}
-        </FnOrConstructor>
-      );
+      return <FnOrConstructor getLink={getLink}>{tt.value}</FnOrConstructor>;
     case "conditional":
-      return <Conditional getLink={getLink}>{tt.conditionalType}</Conditional>;
+      return <Conditional getLink={getLink}>{tt.value}</Conditional>;
     case "importType":
       break;
     case "infer":
       break;
     case "indexedAccess":
-      return <IndexedAccess getLink={getLink}>{tt.indexedAccess}
-      </IndexedAccess>;
+      return <IndexedAccess getLink={getLink}>{tt.value}</IndexedAccess>;
     case "mapped":
-      return <Mapped getLink={getLink}>{tt.mappedType}</Mapped>;
+      return <Mapped getLink={getLink}>{tt.value}</Mapped>;
     case "typeLiteral":
-      return <TypeLiteral getLink={getLink}>{tt.typeLiteral}</TypeLiteral>;
+      return <TypeLiteral getLink={getLink}>{tt.value}</TypeLiteral>;
     case "typePredicate":
-      return <TypePredicate getLink={getLink}>{tt.typePredicate}
-      </TypePredicate>;
+      return <TypePredicate getLink={getLink}>{tt.value}</TypePredicate>;
   }
   return <>{tt.kind}</>;
 }
@@ -346,13 +339,13 @@ export function TypeParam_({
 }
 
 export function TypeParams_({
-  children: params,
+  params,
   getLink,
 }: {
-  children: TsTypeParamDef[];
+  params: TsTypeParamDef[] | undefined;
   getLink: LinkGetter;
 }) {
-  if (!params.length) {
+  if (!params?.length) {
     return null;
   }
   const items = [];
@@ -376,7 +369,7 @@ function FnOrConstructor({
   return (
     <>
       {constructor ? <StyleKw>{"new "}</StyleKw> : ""}
-      <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(
+      <TypeParams_ params={typeParams} getLink={getLink} />(
       <Params getLink={getLink}>{params}</Params>) <StyleKw>=&gt;</StyleKw>{" "}
       <TsType getLink={getLink}>{tsType}</TsType>
     </>
@@ -474,8 +467,8 @@ function MappedOptional(
 }
 
 function LiteralIndexSignatures(
-  { children: signatures, getLink }: {
-    children: LiteralIndexSignatureDef[];
+  { items: signatures, getLink }: {
+    items: LiteralIndexSignatureDef[];
     getLink: LinkGetter;
   },
 ) {
@@ -503,8 +496,8 @@ function LiteralIndexSignatures(
 }
 
 function LiteralCallSignatures(
-  { children: items, getLink }: {
-    children: LiteralCallSignatureDef[];
+  { items, getLink }: {
+    items: LiteralCallSignatureDef[];
     getLink: LinkGetter;
   },
 ) {
@@ -513,7 +506,7 @@ function LiteralCallSignatures(
       {items.map(({ typeParams, params, tsType }, i) => {
         const item = (
           <>
-            <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(<Params
+            <TypeParams_ params={typeParams} getLink={getLink} />(<Params
               getLink={getLink}
             >
               {params}
@@ -533,8 +526,8 @@ function LiteralCallSignatures(
 }
 
 function LiteralProperties(
-  { children: props, getLink }: {
-    children: LiteralPropertyDef[];
+  { items: props, getLink }: {
+    items: LiteralPropertyDef[];
     getLink: LinkGetter;
   },
 ) {
@@ -565,8 +558,8 @@ function LiteralProperties(
 }
 
 function LiteralMethods(
-  { children: methods, getLink }: {
-    children: LiteralMethodDef[];
+  { items: methods, getLink }: {
+    items: LiteralMethodDef[];
     getLink: LinkGetter;
   },
 ) {
@@ -592,7 +585,7 @@ function LiteralMethods(
               ? `[${name}]`
               : <StyleCallee>{name}</StyleCallee>}
             {optional ? "?" : undefined}
-            <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(<Params
+            <TypeParams_ params={typeParams} getLink={getLink} />(<Params
               indent="  "
               getLink={getLink}
             >
@@ -621,7 +614,12 @@ function TypeLiteral(
     getLink: LinkGetter;
   },
 ) {
-  const { indexSignatures, callSignatures, properties, methods } = typeLiteral;
+  const {
+    indexSignatures = [],
+    callSignatures = [],
+    properties = [],
+    methods = [],
+  } = typeLiteral;
   const maxLen = indexSignatures.length + callSignatures.length +
     properties.length +
     methods.length;
@@ -632,14 +630,10 @@ function TypeLiteral(
   return (
     <>
       &#123;{multiline ? "\n" : " "}
-      <LiteralIndexSignatures getLink={getLink}>
-        {indexSignatures}
-      </LiteralIndexSignatures>
-      <LiteralCallSignatures getLink={getLink}>
-        {callSignatures}
-      </LiteralCallSignatures>
-      <LiteralProperties getLink={getLink}>{properties}</LiteralProperties>
-      <LiteralMethods getLink={getLink}>{methods}</LiteralMethods>
+      <LiteralIndexSignatures items={indexSignatures} getLink={getLink} />
+      <LiteralCallSignatures items={callSignatures} getLink={getLink} />
+      <LiteralProperties items={properties} getLink={getLink} />
+      <LiteralMethods items={methods} getLink={getLink} />
       {multiline ? "\n" : " "}
       &#125;
     </>

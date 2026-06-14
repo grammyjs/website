@@ -1,4 +1,4 @@
-import { type DocNode } from "@deno/doc/types";
+import { type DocNode } from "./doc_types.ts";
 
 export type Ref = [
   nodes: DocNode[],

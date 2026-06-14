@@ -1,4 +1,4 @@
-import { DocNodeVariable } from "@deno/doc/types";
+import { type DocNodeVariable } from "../doc_types.ts";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";
 import { LinkGetter } from "./types.ts";
