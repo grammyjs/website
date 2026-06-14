@@ -18,14 +18,14 @@
     "links:fix": "deno --reload -E=DEBUG,GITHUB_API_ROOT,GITHUB_TOKEN -NR=. -W=docs --allow-run=deno https://raw.githubusercontent.com/grammyjs/link-checker/main/website_cli.ts --clean-url --fix docs"
   },
   "imports": {
-    "@vueuse/core": "npm:@vueuse/core@^14.2.1",
+    "@vueuse/core": "npm:@vueuse/core@^14.3.0",
     "$types/markdown-it": "npm:@types/markdown-it@^14.1.2",
     "country-flag-emoji-polyfill": "npm:country-flag-emoji-polyfill@^0.1.8",
     "lazy-lottie-player": "npm:lazy-lottie-player@^0.0.1",
-    "markdownlint-cli2": "npm:markdownlint-cli2@^0.21.0",
-    "sass": "npm:sass@^1.97.3",
+    "markdownlint-cli2": "npm:markdownlint-cli2@^0.22.1",
+    "sass": "npm:sass@^1.101.0",
     "vitepress": "npm:vitepress@^1.6.4",
-    "vue": "npm:vue@^3.5.29"
+    "vue": "npm:vue@^3.5.38"
   },
   "exclude": [
     "node_modules",
