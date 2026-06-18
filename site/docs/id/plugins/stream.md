@@ -12,9 +12,16 @@ Misalnya, Anda dapat membuat output LLM [muncul secara bertahap](#integrasi-llm)
 
 ## Panduan Cepat
 
-Plugin ini menginstal [`ctx.replyWithStream`](/ref/stream/streamcontextextension#replywithstream) pada objek konteks [context object](../guide/context).
+Plugin ini menambahkan tiga metode pada [objek konteks](../guide/context).
 
-> Streaming pesan melakukan banyak panggilan API dengan sangat cepat.
+- [`ctx.replyWithStream`](/ref/stream/streamcontextextension#replywithstream): penyiaran pesan biasa
+- [`ctx.replyWithMarkdownStream`](/ref/stream/streamcontextextension#replywithmarkdownstream): penyiaran markdown (**direkomendasikan**)
+- [`ctx.replyWithHtmlStream`](/ref/stream/streamcontextextension#replywithhtmlstream): penyiaran HTML
+
+Penyiaran pesan biasa (opsi pertama) mengirimkan pesan teks biasa.
+Dua metode lainnya menggunakan [pesan yang diperkaya](https://core.telegram.org/bots/api#rich-messages) dari Telegram dan disarankan untuk sebagian besar kasus.
+
+> Penyiaran pesan melakukan banyak panggilan API dengan sangat cepat.
 > Disarankan untuk menggunakan plugin [auto-retry](./auto-retry) bersama dengan plugin stream.
 
 ::: code-group
@@ -137,7 +144,7 @@ bot.chatType("private")
     });
 
     // Otomatis mengalirkan respons dengan grammY:
-    await ctx.replyWithStream(textStream);
+    await ctx.replyWithMarkdownStream(textStream);
   });
 ```
 
@@ -154,46 +161,13 @@ bot.chatType("private")
     });
 
     // Otomatis mengalirkan respons dengan grammY:
-    await ctx.replyWithStream(textStream);
+    await ctx.replyWithMarkdownStream(textStream);
   });
 ```
 
 :::
 
 Pastikan untuk mengganti `gemini-2.5-flash` dengan model apapun yang tersedia.
-
-## Streaming Formatted Messages
-
-Ini jauh _lebih_ sulit daripada yang kamu bayangkan.
-
-1. LLMs menghasilkan Markdown _probabilistik_.
-   Seringkali benar, tetapi kadang-kadang tidak.
-   Tidak mengikuti standar tertentu.
-   Khususnya, **mereka tidak selalu menghasilkan Markdown yang kompatibel dengan Telegram**.
-   Ini berarti mencoba mengirim ke Telegram akan gagal.
-2. LLMs menghasilkan entitas Markdown yang _parsial_.
-   Meskipun outputnya sepenuhnya sesuai dengan spesifikasi [MarkdownV2](https://core.telegram.org/bots/api#markdownv2-style) Telegram, **potongan outputnya mungkin rusak**.
-   Jika Anda membuka bagian teks miring tetapi hanya menutupnya di potongan berikutnya, streaming akan crash dan pesan tidak akan terkirim.
-3. LLMs terkadang menghasilkan format yang tidak didukung oleh Telegram (meskipun Anda telah menginstruksikan mereka untuk tidak melakukannya).
-   Misalnya, sebagian besar LLMs sangat menyukai **tabel, poin-poin, dan daftar bernomor**.
-   Klien Telegram tidak dapat menampilkannya.
-
-> Telegram juga mendukung format [HTML](https://core.telegram.org/bots/api#html-style).
-> Ini memiliki masalah yang sama persis dengan Markdown.
-> Selain itu, output HTML mengonsumsi jauh lebih banyak token, yang tidak diperlukan dan mahal.
-
-Jadi... apa sekarang?
-
-Sayangnya, tidak ada solusi yang baik.
-Namun, berikut beberapa ide:
-
-- Minta LLM Anda untuk menghasilkan teks tanpa format.
-- Semoga LLM Anda tidak membuat kesalahan saat menghasilkan Markdown, dan jika gagal, coba ulang dengan teks biasa.
-- Gunakan format HTML dan semoga ini dapat memperbaiki situasi sedikit.
-- Tulis fungsi [transformer](../advanced/transformers) kustom yang secara otomatis mencoba ulang permintaan yang gagal.
-- Gunakan parser Markdown streaming dan buat array [`MessageEntity`](https://core.telegram.org/bots/api#messageentity) Anda sendiri untuk memformat setiap [`MessageDraftPiece`](/ref/stream/messagedraftpiece)
-- Stream Markdown dalam teks biasa, lalu gunakan parser Markdown biasa untuk menerapkan pemformatan hanya setelah stream selesai dan semua pesan dikirim.
-- Temukan solusi brilian yang belum pernah dipikirkan orang lain sebelumnya, dan ceritakan kepada kami di [group chat](https://t.me/grammyjs)
 
 ## Ringkasan Plugin
 
