@@ -5,7 +5,7 @@ next: false
 
 # Alojamiento: Cloudflare Workers (Deno)
 
-[Cloudflare Workers](https://workers.cloudflare.com) es una plataforma pública de computación sin servidor que ofrece una solución cómoda y sencilla para ejecutar pequeñas cargas de trabajo en el [edge](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://www.cloudflare.com/products/workers/) es una plataforma pública de computación sin servidor que ofrece una solución cómoda y sencilla para ejecutar pequeñas cargas de trabajo en el [edge](https://en.wikipedia.org/wiki/Edge_computing).
 
 Esta guía te llevará a través del proceso de alojar tu bot en Cloudflare Workers.
 

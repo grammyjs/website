@@ -529,7 +529,7 @@ Under the hood, all menus of that one structure are added to the same large pool
 Every menu is responsible for every other one in the index, and they can handle and render each other.
 (Most often, it is only the root menu that is actually passed to `bot.use` and that receives any updates.
 In such cases, this one instance will handle the complete pool.)
-As a result, you are able to navigate between arbitrary menus without limit, all while the update handling can happen in [`O(1)` time complexity](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) because there is no need to search through entire hierarchies to find the right menu to handle any given button click.
+As a result, you are able to navigate between arbitrary menus without limit, all while the update handling can happen in [`O(1)` time complexity](https://en.wikipedia.org/wiki/Time_complexity#Table_of_common_time_complexities) because there is no need to search through entire hierarchies to find the right menu to handle any given button click.
 
 ## Plugin Summary
 
