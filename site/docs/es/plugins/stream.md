@@ -11,7 +11,7 @@ Cualquier
 de fragmentos de texto se puede enviar directamente a cualquier chat privado.
 
 Por ejemplo, puedes hacer que la salida del LLM
-[aparezca gradualmente](#integración-de-llm) mientras se genera la respuesta.
+[aparezca gradualmente](#integracion-de-llm) mientras se genera la respuesta.
 
 ## Inicio rápido
 

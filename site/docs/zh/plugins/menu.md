@@ -534,7 +534,7 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 每个菜单都对索引中的每个其他菜单负责，并且它们可以互相处理和渲染。
 （大多数情况下，只有根菜单被传递给 `bot.use` 并且接收所有 update。
 在这种情况下，这个实例将负责整个的池。）
-因此，你能够在任意的菜单之间无限制地浏览，并且这个更新处理可以在 [`O(1)` 时间复杂度](https://en.wikipedia.org/wiki/Time_complexity#Constant_time)中发生，因为不需要在层次结构中搜索到正确的菜单来处理按钮点击。
+因此，你能够在任意的菜单之间无限制地浏览，并且这个更新处理可以在 [`O(1)` 时间复杂度](https://en.wikipedia.org/wiki/Time_complexity#Table_of_common_time_complexities)中发生，因为不需要在层次结构中搜索到正确的菜单来处理按钮点击。
 
 ## 插件概述
 

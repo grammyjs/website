@@ -91,7 +91,7 @@ Check out the `HttpError` class in the [grammY API Reference](/ref/core/httperro
 > This is an advanced topic that is mostly useful for larger bots.
 > If you are relatively new to grammY, simply skip the remainder of this section.
 
-If you divide your code base into different parts, _error boundaries_ allow you install different error handlers for different parts of your middleware.
+If you divide your code base into different parts, _error boundaries_ allow you to install different error handlers for different parts of your middleware.
 They achieve this by letting you fence errors in a part of your middleware.
 In other words, if an error is thrown in a specially protected part of middleware, it will not be able to escape from that part of the middleware system.
 Instead, a dedicated error handler is invoked, and the surrounded part of the middleware pretends to complete successfully.
