@@ -112,7 +112,7 @@ bot.on("message", (ctx) => ctx.react(Reactions.thumbs_up));
 
 Qué bien.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `emoji`
 - [Fuente](https://github.com/grammyjs/emoji)

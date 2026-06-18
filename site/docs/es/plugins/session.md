@@ -897,7 +897,7 @@ Por ejemplo, para [free sessions](#almacenamiento-gratuito), puedes usar `freeSt
 
 Lo mismo ocurre con el resto de adaptadores de almacenamiento.
 
-## Resumen del plugin
+## Resumen del complemento
 
 Este plugin está incorporado en el núcleo de grammY.
 No necesitas instalar nada para usarlo.

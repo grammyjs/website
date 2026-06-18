@@ -206,6 +206,10 @@ const pluginOfficial = {
       link: "/id/plugins/parse-mode",
     },
     {
+      text: "Streaming Message Drafts (stream)",
+      link: "/id/plugins/stream",
+    },
+    {
       text: "Chat Members (chat-members)",
       link: "/id/plugins/chat-members",
     },

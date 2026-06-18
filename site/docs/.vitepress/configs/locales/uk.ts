@@ -209,6 +209,10 @@ const pluginOfficial = {
       link: "/uk/plugins/parse-mode",
     },
     {
+      text: "Потокова передача повідомлень (stream)",
+      link: "/uk/plugins/stream",
+    },
+    {
       text: "Учасники чату (chat-members)",
       link: "/uk/plugins/chat-members",
     },

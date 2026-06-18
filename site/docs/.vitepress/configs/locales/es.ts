@@ -209,6 +209,12 @@ const pluginOfficial = {
       link: "/es/plugins/parse-mode",
     },
     {
+      text: "Borradores de mensajes en tiempo real (stream)",
+      link: "/plugins/stream",
+      // No añadas la siguiente línea a las traducciones:
+      activeMatch: "^(/plugins/stream|/ref/stream/)$",
+    },
+    {
       text: "Miembros del chat (chat-members)",
       link: "/es/plugins/chat-members",
     },

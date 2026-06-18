@@ -464,7 +464,7 @@ Ten en cuenta que esto significa que se llamará al almacenamiento para **cada a
 Esto puede afectar drásticamente al rendimiento de tu bot.
 Utilízalo sólo si _realmente_ sabes lo que estás haciendo y estás de acuerdo con los riesgos y consecuencias.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `chat-members`
 - [Fuente](https://github.com/grammyjs/chat-members)

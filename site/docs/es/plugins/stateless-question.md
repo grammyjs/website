@@ -63,7 +63,7 @@ bot.command("unicornio", async (ctx) => {
 
 Consulte el [plugin README](https://github.com/grammyjs/stateless-question) para obtener más información.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `stateless-question`
 - [Fuente](https://github.com/grammyjs/stateless-question)

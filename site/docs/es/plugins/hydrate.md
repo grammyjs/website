@@ -176,7 +176,7 @@ Todos los objetos se hidratan en
 - los accesos directos al objeto de contexto, como `ctx.msg`, y
 - los resultados de las llamadas a la API, cuando corresponda.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `hydrate`
 - [Fuente](https://github.com/grammyjs/hydrate)

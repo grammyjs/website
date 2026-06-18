@@ -314,8 +314,10 @@ await ctx.reply(text, {
 
 Junto a `remove_keyboard`, puede establecer `selective: true` para eliminar el teclado personalizado sólo para los usuarios seleccionados. Esto funciona de forma análoga a [enviar selectivamente un teclado personalizado](#enviar-selectivamente-un-teclado-personalizado).
 
-## Resumen del plugin
+## Resumen del complemento
 
-Este plugin está incorporado en el núcleo de grammY. No necesitas instalar nada para usarlo. Simplemente importa todo desde el propio grammY.
+Este plugin está integrado en el núcleo de grammY.
+No necesitas instalar nada para usarlo.
+Simplemente importa todo desde el propio grammY.
 
-Además, tanto la documentación como la referencia de la API de este plugin están unificadas con el paquete del núcleo.
+Además, tanto la documentación como la referencia API de este plugin están unificadas con el paquete del núcleo.

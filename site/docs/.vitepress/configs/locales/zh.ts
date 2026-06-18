@@ -209,6 +209,10 @@ const pluginOfficial = {
       link: "/zh/plugins/parse-mode",
     },
     {
+      text: "流式消息草稿 (stream)",
+      link: "/zh/plugins/stream",
+    },
+    {
       text: "聊天成员 (chat-members)",
       link: "/zh/plugins/chat-members",
     },

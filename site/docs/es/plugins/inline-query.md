@@ -269,7 +269,7 @@ Estos bots no funcionarán para administradores anónimos o cuando se envíen me
 Sin embargo, si esto no es un problema para ti, entonces este hack te permitirá no tener que generar un montón de contenido de mensaje para mensajes que nunca terminan siendo enviados.
 Esto puede ahorrar recursos a tu bot.
 
-## Resumen del plugin
+## Resumen del complemento
 
 Este plugin está integrado en el núcleo de grammY.
 No necesitas instalar nada para usarlo.

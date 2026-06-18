@@ -31,7 +31,7 @@ Mungkin pesan tersebut berasal dari pelanggan kamu, tapi bisa juga pesan tersebu
 
 Oleh karena itu, kita memerlukan suatu cara untuk membedakan kedua belah pihak.
 Kita bisa memulainya dengan memeriksa object business connection terkait.
-Business connection tersebut akan memberi tahu kita siapa pemilik akun business yang dimaksud, misalnya melalui user identifier kamu (atau salah satu karyawan kamu).
+Business connection tersebut akan memberi tahu kita siapa pemilik akun business yang dimaksud, misalnya melalui user identifier kamu (atau salah satu karyawan kamu). Hal ini juga menampilkan izin bot di obrolan, yang dapat digunakan untuk memeriksa apakah bot diizinkan mengirim pesan ke obrolan, misalnya:
 
 ```ts
 bot.on("business_message", async (ctx) => {
@@ -43,6 +43,9 @@ bot.on("business_message", async (ctx) => {
     // Kamu yang mengirim pesan ini.
   } else {
     // Pelanggan kamu yang mengirim pesan ini.
+    if (conn.rights?.can_reply) {
+      // Kamu bisa membalas pesan ini.
+    }
   }
 });
 ```
@@ -99,9 +102,23 @@ bot.on("business_message").filter(async (ctx) => {
 });
 ```
 
-Meski demikian, bot kamu **TIDAK** bisa menghapus pesan di chat tersebut.
+Kamu juga dapat menandai pesan sebagai sudah dibaca dan menghapus pesan yang diterima atau dikirim dalam obrolan, asalkan izin yang diperlukan telah diberikan dalam koneksi bisnis.
 
-Bot juga **TIDAK** bisa meneruskan pesan dari chat tersebut ataupun menyalinnya ke tempat lain.
+```ts
+bot.on("business_message").filter(async (ctx) => {
+  const conn = await ctx.getBusinessConnection();
+  // Hapus semua pesan yang dikirim oleh pelanggan yang berisi “hapus aku”.
+  if (
+    ctx.from.id !== conn.user.id &&
+    ctx.msg.text.includes("hapus aku") &&
+    conn.rights.can_delete_all_messages
+  ) {
+    await ctx.deleteBusinessMessages([ctx.msg.message_id]);
+  }
+});
+```
+
+Namun, bot kamu **TIDAK** dapat meneruskan pesan dari obrolan, atau menyalinnya ke tempat lain.
 Semua operasi tersebut diserahkan ke manusia.
 
 ### Bekerja dengan Business Connection

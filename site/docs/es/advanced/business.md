@@ -32,6 +32,7 @@ Podría ser un mensaje de tu cliente... ¡pero también podría ser un mensaje e
 Por lo tanto, tenemos que diferenciar entre los dos usuarios.
 Para ello, tenemos que inspeccionar el objeto de conexión de negocios antes mencionado.
 La conexión comercial nos dice quién es el usuario de la cuenta comercial, es decir, el identificador de usuario suyo (o de uno de sus empleados).
+También muestra los permisos del bot en el chat, lo que permite comprobar, por ejemplo, si el bot tiene permiso para enviar mensajes al chat.
 
 ```ts
 bot.on("business_message", async (ctx) => {
@@ -43,6 +44,9 @@ bot.on("business_message", async (ctx) => {
     // Has enviado este mensaje.
   } else {
     // Su cliente ha enviado este mensaje.
+    if (conn.rights?.can_reply) {
+      // Puedes responder a este mensaje.
+    }
   }
 });
 ```
@@ -99,9 +103,23 @@ bot.on("business_message").filter(async (ctx) => {
 });
 ```
 
-Sin embargo, tu bot **NO** puede borrar mensajes en el chat.
+También puedes marcar los mensajes como leídos y eliminar los mensajes recibidos o enviados en el chat, siempre que se hayan concedido los permisos pertinentes en la conexión empresarial.
 
-Del mismo modo, tu bot **NO** puede reenviar mensajes desde el chat, o copiarlos en otro lugar.
+```ts
+bot.on("business_message").filter(async (ctx) => {
+  const conn = await ctx.getBusinessConnection();
+  // Elimina todos los mensajes enviados por el cliente que contengan "borrarme".
+  if (
+    ctx.from.id !== conn.user.id &&
+    ctx.msg.text.includes("borrarme") &&
+    conn.rights.can_delete_all_messages
+  ) {
+    await ctx.deleteBusinessMessages([ctx.msg.message_id]);
+  }
+});
+```
+
+Sin embargo, tu bot **NO** puede reenviar mensajes del chat ni copiarlos en otro lugar.
 Todo esto queda en manos de los humanos.
 
 ### Trabajando con conexiones empresariales

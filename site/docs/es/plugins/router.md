@@ -472,7 +472,7 @@ Observe cómo la sesión tiene una propiedad `step` que almacena el paso del for
 El router se utiliza para saltar entre diferentes middleware que completan los campos `month` y `dayOfMonth` de la sesión.
 Si ambos valores son conocidos, el bot calcula los días restantes y los envía de vuelta al usuario.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `router`
 - [Fuente](https://github.com/grammyjs/router)

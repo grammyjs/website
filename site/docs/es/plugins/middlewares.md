@@ -64,8 +64,8 @@ Tienes que proporcionar el id de superadministrador.
 
 El middleware básico [sequentialize](../advanced/scaling#la-concurrencia-es-dificil) que toma el id del chat como identificador secuencial.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `grammy-middlewares`
 - [Fuente](https://github.com/backmeupplz/grammy-middlewares)
-- Referencia: <https://github.com/backmeupplz/grammy-middlewares>
+- [Referencia](https://github.com/backmeupplz/grammy-middlewares)

@@ -226,7 +226,7 @@ bot.use(
 
 En este ejemplo, he utilizado `chat.id` como clave única para la limitación de la tasa.
 
-## Resumen del plugin
+## Resumen del complemento
 
 - Nombre: `ratelimitador`
 - [Fuente](https://github.com/grammyjs/ratelimiter)
