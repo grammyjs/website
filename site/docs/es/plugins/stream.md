@@ -6,7 +6,7 @@ next: false
 # Borradores de mensajes en tiempo real (`stream`)
 
 Este complemento te permite enviar mensajes de texto largos a Telegram.
-Cualquier [iterador](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols de fragmentos de texto se puede enviar directamente a cualquier chat privado.
+Cualquier [iterador](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) de fragmentos de texto se puede enviar directamente a cualquier chat privado.
 
 Por ejemplo, puedes hacer que la salida del LLM [aparezca gradualmente](#integracion-de-llm) mientras se genera la respuesta.
 
