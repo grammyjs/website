@@ -1526,7 +1526,7 @@ Forms were really broken with 1.x.
 For example, `conversation.form.text()` returned text messages even for `edited_message` updates of old messages.
 Many of these oddities were corrected for 2.x.
 
-Fixing bugs technically does not count as a breaking change, but it is still a substatial change in behavior.
+Fixing bugs technically does not count as a breaking change, but it is still a substantial change in behavior.
 
 ## Plugin Summary
 
