@@ -140,7 +140,7 @@ It makes a lot of sense to store business connection objects in your database.
 That way, you can avoid calling `ctx.getBusinessConnection()` for every update only to [find out who sent a message](#receiving-business-messages).
 
 Moreover, a `business_connection` update contains a `user_chat_id`.
-This chat identifier can be used to initate a conversation with the user who connected the bot.
+This chat identifier can be used to initiate a conversation with the user who connected the bot.
 
 ```ts
 bot.on("business_connection:is_enabled", async (ctx) => {
