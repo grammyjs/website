@@ -254,7 +254,7 @@ In order to support many different web frameworks, grammY adopts the concept of 
 Each adapter is responsible for relaying input and output from the web framework to grammY and vice versa.
 The second parameter passed to `webhookCallback` ([API reference](/ref/core/webhookcallback)) defines the framework adapter used to communicate with the web framework.
 
-Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similiar interface, there are adapters that are known to work with multiple frameworks.
+Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similar interface, there are adapters that are known to work with multiple frameworks.
 Below is a table containing the currently available adapters, and the framework, APIs, or runtimes they are known to work with.
 
 | Adapter            | Framework/API/Runtime                                                                               |
