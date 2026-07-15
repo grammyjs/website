@@ -236,7 +236,7 @@ Inline query results are delivered in a fire-and-forget fashion.
 In other words, after your bot sent the list of inline query results to Telegram, it will not know which result the user picked (or if they picked one at all).
 
 If you are interested in this, you can enable inline feedback with [@BotFather](https://t.me/BotFather).
-You can decide how much feedback you want to receive by chosing among several options between 0 % (feedback disabled) and 100 % (receive feedback for every chosen inline result).
+You can decide how much feedback you want to receive by choosing among several options between 0 % (feedback disabled) and 100 % (receive feedback for every chosen inline result).
 
 Inline feedback is delivered via `chosen_inline_result` updates.
 You can listen for specific result identifiers via string or regular expression.
