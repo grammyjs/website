@@ -12,7 +12,14 @@ next: false
 
 ## 快速开始
 
-这个插件会在 [上下文对象](../guide/context) 上安装 [`ctx.replyWithStream`](/ref/stream/streamcontextextension#replywithstream)。
+这个插件会在 [上下文对象](../guide/context) 上安装这三个方法：
+
+- [`ctx.replyWithStream`](/ref/stream/streamcontextextension#replywithstream): 流式传输普通消息
+- [`ctx.replyWithMarkdownStream`](/ref/stream/streamcontextextension#replywithmarkdownstream): 流式传输 Markdown（**推荐**）
+- [`ctx.replyWithHtmlStream`](/ref/stream/streamcontextextension#replywithhtmlstream): 流式传输 HTML
+
+流式传输普通消息（第一个选项）用于发送常规文本消息。
+其他两种方法使用 Telegram 的 [富媒体消息 (rich message)](https://core.telegram.org/bots/api#rich-messages)，在大多数情况下我们推荐这种方法。
 
 > 流式发送消息会非常频繁地发起大量 API 调用。
 > 强烈建议将 [auto-retry 插件](./auto-retry) 与 stream 插件搭配使用。
@@ -137,7 +144,7 @@ bot.chatType("private")
     });
 
     // 使用 grammY 自动流式发送回复：
-    await ctx.replyWithStream(textStream);
+    await ctx.replyWithMarkdownStream(textStream);
   });
 ```
 
@@ -154,46 +161,13 @@ bot.chatType("private")
     });
 
     // 使用 grammY 自动流式发送回复：
-    await ctx.replyWithStream(textStream);
+    await ctx.replyWithMarkdownStream(textStream);
   });
 ```
 
 :::
 
 记得把 `gemini-2.5-flash` 替换为当前最新最热的模型。
-
-## 流式发送格式化消息
-
-这件事比你想象中要 _难得多_。
-
-1. LLM 生成出来的 Markdown 是否正确是存在 _概率_ 的。
-   它通常是对的，但有时会出错。
-   它并不遵循某个明确的标准。
-   特别是，**它们生成出来的 Markdown 不一定和 Telegram 兼容**。
-   这意味着你尝试发送消息到 Telegram 时有可能失败，无论是直接发送还是流式发送。
-2. LLM 会生成 _不完整_ 的 Markdown 实体。
-   即便输出内容完全符合 Telegram 的 [MarkdownV2](https://core.telegram.org/bots/api#markdownv2-style) 规范，**单个输出分片 (chunk) 也仍然可能是损坏的**。
-   如果你在一个分片中开启斜体，而在下一个分片才闭合它，流式发送就会崩溃，而且整条消息都发不出去。
-3. LLM 有时会生成 Telegram 不支持的格式内容，即便你已经明确要求它不要这么做。
-   例如，大多数 LLM 都 _很爱用_ **表格、项目符号和枚举列表**。
-   Telegram 客户端无法渲染这些内容。
-
-> Telegram 也接受 [HTML](https://core.telegram.org/bots/api#html-style) 格式。
-> 但它同样会遇到和 Markdown 一样的问题。
-> 此外，HTML 输出会消耗更多 token，这会带来不必要的开销。
-
-那…怎么办呢？
-
-遗憾的是，并没有什么理想方案。
-不过，下面有一些思路：
-
-- 让 LLM 输出不带格式的纯文本
-- 祈祷 LLM 在生成 Markdown 时不要出错，如果失败了就直接退回纯文本重试
-- 使用 HTML 格式，并祈祷这样多少能好一些
-- 编写一个自定义的 [转换器函数](../advanced/transformers)，自动重试失败的请求
-- 使用流式 Markdown 解析器，并为每个 [`MessageDraftPiece`](/ref/stream/messagedraftpiece) 构建一个自己的 [`MessageEntity`](https://core.telegram.org/bots/api#messageentity) 数组
-- 先把 Markdown 当作纯文本流式发送，等流结束并且所有消息都发送完成后，再用常规 Markdown 解析器补上格式
-- 想到一个天才般的新办法，然后在 [群聊](https://t.me/grammyjs) 里和我们分享
 
 ## 插件概述
 
