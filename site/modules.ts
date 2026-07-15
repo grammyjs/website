@@ -184,16 +184,6 @@ export const modules: ModuleConfig[] = [
   },
   {
     repo: "storages",
-    slug: "storages/denodb",
-    entrypoint: "packages/denodb/src/mod.ts",
-    name: "DenoDB Storage Adapter",
-    description: desc("the DenoDB storage adapter"),
-    shortdescription: sdesc(
-      "the DenoDB [storage adapter](/plugins/session#external-storage-solutions)",
-    ),
-  },
-  {
-    repo: "storages",
     slug: "storages/deta",
     entrypoint: "packages/deta/src/mod.ts",
     name: "Deta Storage Adapter",
