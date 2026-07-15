@@ -12,7 +12,14 @@ For example, you can make LLM output [appear gradually](#llm-integration) while 
 
 ## Quickstart
 
-The plugin installs [`ctx.replyWithStream`](/ref/stream/streamcontextextension#replywithstream) on the [context object](../guide/context).
+The plugin installs three methods on the [context object](../guide/context):
+
+- [`ctx.replyWithStream`](/ref/stream/streamcontextextension#replywithstream): plain message streaming
+- [`ctx.replyWithMarkdownStream`](/ref/stream/streamcontextextension#replywithmarkdownstream): markdown streaming (**recommended**)
+- [`ctx.replyWithHtmlStream`](/ref/stream/streamcontextextension#replywithhtmlstream): HTML streaming
+
+Plain text streaming (first option) sends regular text messages.
+The other two methods use Telegram's [rich messages](https://core.telegram.org/bots/api#rich-messages) and are recommended for most cases.
 
 > Streaming messages performs many API calls very rapidly.
 > It is strongly recommended to use the [auto-retry plugin](./auto-retry) alongside the stream plugin.
@@ -137,7 +144,7 @@ bot.chatType("private")
     });
 
     // Automatically stream response with grammY:
-    await ctx.replyWithStream(textStream);
+    await ctx.replyWithMarkdownStream(textStream);
   });
 ```
 
@@ -154,46 +161,13 @@ bot.chatType("private")
     });
 
     // Automatically stream response with grammY:
-    await ctx.replyWithStream(textStream);
+    await ctx.replyWithMarkdownStream(textStream);
   });
 ```
 
 :::
 
 Make sure to replace `gemini-2.5-flash` by whatever the latest model is.
-
-## Streaming Formatted Messages
-
-This is _much_ harder than you think.
-
-1. LLMs generate _probabilistic_ Markdown.
-   It is often correct, but sometimes not.
-   It follows no specific standard.
-   In particular, **they do not always generate Telegram-compatible Markdown**.
-   This means that trying to send/stream it to Telegram will fail.
-2. LLMs generate _partial_ Markdown entities.
-   Even if the output is perfectly aligned with Telegram's [MarkdownV2](https://core.telegram.org/bots/api#markdownv2-style) specification, **individual output chunks might be broken**.
-   If you open a section of italic text but only close it in the next chunk, the streaming will crash and no message will be sent.
-3. LLMs sometimes generate formatting that is not supported by Telegram (even if you instruct them not to).
-   For example, most LLMs _love_ **tables, bullet points, and enumerations**.
-   Telegram clients cannot render these things.
-
-> Telegram also accepts [HTML](https://core.telegram.org/bots/api#html-style) formatting.
-> This has the exact same problems as Markdown.
-> Also, HTML output consumes a lot more tokens, which is needlessly expensive.
-
-So ... what now?
-
-Unfortunately, there is no good solution.
-However, here are some ideas:
-
-- Tell your LLM to output text without formatting
-- Hope that your LLM does not make mistakes in generating Markdown, and simply retry with plain text if it fails
-- Use HTML formatting and hope that this improves things a bit
-- Write a custom [transformer](../advanced/transformers) function which retries failing requests automatically
-- Use a streaming markdown parser and build your own [`MessageEntity`](https://core.telegram.org/bots/api#messageentity) arrays for formatting each [`MessageDraftPiece`](/ref/stream/messagedraftpiece)
-- Stream Markdown in plain text and then use a regular markdown parser to apply the formatting only after the stream is complete and all messages are sent
-- Come up with a genius solution that nobody else has thought of before, and tell us about it in the [group chat](https://t.me/grammyjs)
 
 ## Plugin Summary
 
