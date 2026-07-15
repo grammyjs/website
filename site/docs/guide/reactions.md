@@ -203,7 +203,7 @@ You can handle it like so.
 ```ts
 bot.on("message_reaction_count", async (ctx) => {
   const counts = ctx.messageReactionCount;
-  // Again, we can only see the message identifer.
+  // Again, we can only see the message identifier.
   const message = counts.message_id;
   // Here is a list of reactions with a count.
   const { reactions } = counts;

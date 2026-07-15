@@ -130,7 +130,7 @@ Your choice.
 
 ### Creating the Content Files
 
-You can basically copy the English docs from `site/docs/` to a new directory next to the other languages, and then translating every page.
+You can basically copy the English docs from `site/docs/` to a new directory next to the other languages, and then start translating every page.
 
 ### Creating the Configuration Files
 
