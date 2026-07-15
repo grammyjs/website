@@ -140,8 +140,8 @@ You can edit a message sent by your bot like this:
 bot.command("think", async (ctx) => {
   const msg = await ctx.reply("Thinking...");
 
-  const result = await getSomeResult();
+  const newText = await getSomeNewText();
 
-  await ctx.api.editMessageText(ctx.chatId, msg.message_id, `The result is ${result}.`);
+  await ctx.api.editMessageText(ctx.chatId, msg.message_id, newText);
 });
 ```
