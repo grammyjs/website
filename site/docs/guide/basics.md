@@ -145,3 +145,5 @@ bot.command("think", async (ctx) => {
   await ctx.api.editMessageText(ctx.chatId, msg.message_id, newText);
 });
 ```
+
+> Consider using the [hydrate plugin](../plugins/hydrate) which simplifies message editing.
