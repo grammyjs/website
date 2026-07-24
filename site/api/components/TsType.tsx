@@ -889,7 +889,7 @@ export function Params({
   getLink: LinkGetter;
   indent?: string;
 }) {
-  if (!params.length) {
+  if (!params?.length) {
     return null;
   }
 
