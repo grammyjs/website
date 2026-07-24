@@ -76,7 +76,7 @@ async function sendHelloTo12345() {
 ```
 
 ```ts [Deno]
-import { Api, Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Api, Bot } from "npm:grammy";
 
 const bot = new Bot("");
 
@@ -130,7 +130,7 @@ Estas definiciones de tipos también se exportan directamente desde el paquete `
 En Deno, puede simplemente importar definiciones de tipos desde `types.ts`, que está justo al lado de `mod.ts`:
 
 ```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
+import { type Chat } from "npm:grammy/types";
 ```
 
 #### Definiciones de tipos en Node.js

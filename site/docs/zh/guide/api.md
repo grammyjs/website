@@ -76,7 +76,7 @@ async function sendHelloTo12345() {
 ```
 
 ```ts [Deno]
-import { Api, Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Api, Bot } from "npm:grammy";
 
 const bot = new Bot("");
 
@@ -130,7 +130,7 @@ grammY 提供了完整的 Bot API 的类型覆盖。
 在 Deno 中, 你可以简单地从 `types.ts` 导入类型定义：
 
 ```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
+import { type Chat } from "npm:grammy/types";
 ```
 
 #### 在 Node.js 中的类型定义

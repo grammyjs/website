@@ -63,11 +63,11 @@ bot.on([":video", ":animation"], async (ctx) => {
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, Context } from "npm:grammy";
 import {
   FileFlavor,
   hydrateFiles,
-} from "https://deno.land/x/grammy_files/mod.ts";
+} from "npm:@grammyjs/files";
 
 // 添加上下文调味剂
 type MyContext = FileFlavor<Context>;
@@ -124,12 +124,12 @@ const bot = new Bot<MyContext, MyApi>("");
 ```
 
 ```ts [Deno]
-import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Api, Bot, Context } from "npm:grammy";
 import {
   FileApiFlavor,
   FileFlavor,
   hydrateFiles,
-} from "https://deno.land/x/grammy_files/mod.ts";
+} from "npm:@grammyjs/files";
 
 type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;

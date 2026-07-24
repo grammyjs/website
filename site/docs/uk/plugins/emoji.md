@@ -58,11 +58,11 @@ bot.use(emojiParser());
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, Context } from "npm:grammy";
 import {
   EmojiFlavor,
   emojiParser,
-} from "https://deno.land/x/grammy_emoji/mod.ts";
+} from "npm:@grammyjs/emoji";
 
 // Це називається розширювач для контексту
 // Ви можете прочитати про це докладніше за посиланням:

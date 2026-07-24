@@ -101,7 +101,7 @@ import {
   type CallbackQueryMiddleware,
   type CommandContext,
   type NextFunction,
-} from "https://deno.land/x/grammy/mod.ts";
+} from "npm:grammy";
 
 function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
   // 处理命令

@@ -40,7 +40,7 @@ touch deno.json
 然后使用以下代码修改 `main.ts` 文件：
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
 if (!token) throw new Error("未设置TELEGRAM_BOT_TOKEN");

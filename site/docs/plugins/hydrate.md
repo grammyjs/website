@@ -80,11 +80,11 @@ bot.use(hydrate());
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, Context } from "npm:grammy";
 import {
   hydrate,
   HydrateFlavor,
-} from "https://deno.land/x/grammy_hydrate/mod.ts";
+} from "npm:@grammyjs/hydrate";
 
 type MyContext = HydrateFlavor<Context>;
 
@@ -137,13 +137,13 @@ bot.api.config.use(hydrateApi());
 ```
 
 ```ts [Deno]
-import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Api, Bot, Context } from "npm:grammy";
 import {
   hydrateApi,
   HydrateApiFlavor,
   hydrateContext,
   HydrateFlavor,
-} from "https://deno.land/x/grammy_hydrate/mod.ts";
+} from "npm:@grammyjs/hydrate";
 
 type MyContext = HydrateFlavor<Context>;
 type MyApi = HydrateApiFlavor<Api>;

@@ -137,7 +137,7 @@ InlineQueryResultBuilder.article("id-4", "Inline-запити")
 import {
   InlineKeyboard,
   InlineQueryResultBuilder,
-} from "https://deno.land/x/grammy/mod.ts";
+} from "npm:grammy";
 
 // Будуємо результат з фото.
 InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");

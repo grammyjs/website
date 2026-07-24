@@ -309,8 +309,8 @@ import {
   Keyboard,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
-import { Router } from "https://deno.land/x/grammy_router/router.ts";
+} from "npm:grammy";
+import { Router } from "npm:@grammyjs/router";
 
 interface SessionData {
   step: "idle" | "day" | "month"; // 我们在表单的哪一步

@@ -21,7 +21,7 @@ You can run your bot using both [webhooks or long polling](../guide/deployment-t
 ::: code-group
 
 ```ts{11} [Deno]
-import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "npm:grammy";
 // You might modify this to the correct way to import your `Bot` object.
 import { bot } from "./bot.ts";
 
@@ -69,7 +69,7 @@ Create a file named `app.ts` or `app.js`, or actually any name you like (but you
 ::: code-group
 
 ```ts{4} [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const token = Deno.env.get("BOT_TOKEN");
 if (!token) throw new Error("BOT_TOKEN is unset");

@@ -171,7 +171,7 @@ Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 // Create an instance of the `Bot` class and pass your bot token to it.
 const bot = new Bot(""); // <-- put your bot token between the ""

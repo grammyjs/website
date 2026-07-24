@@ -125,8 +125,8 @@ run(bot);
 ```
 
 ```ts [Deno]
-import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
-import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
+import { Bot, Context, session } from "npm:grammy";
+import { run, sequentialize } from "npm:@grammyjs/runner";
 
 // Create a bot.
 const bot = new Bot("");

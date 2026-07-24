@@ -164,7 +164,7 @@ import {
   Context,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
+} from "npm:grammy";
 
 // 定义我们的会话。
 interface SessionData {
@@ -441,7 +441,7 @@ bot.use(session({
 ```
 
 ```ts [Deno]
-import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
+import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 bot.use(session({
   initial: ...
@@ -518,8 +518,8 @@ import {
   Context,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
+} from "npm:grammy";
+import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 // 定义会话结构。
 interface SessionData {
@@ -572,8 +572,8 @@ bot.start();
 例如，Supabase 的存储适配器可以通过 `npm i @grammyjs/storage-supabase` 安装。
 
 **在 Deno 中**，所有的存储适配器都在同一个 Deno 模块中发布。
-你可以从 `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts` 的子路径中导入你需要的适配器。
-例如，Supabase 的存储适配器可以通过 `https://deno.land/x/grammy_storages/supabase/src/mod.ts` 导入。
+你可以从 `npm:@grammyjs/storages/<adapter>/src` 的子路径中导入你需要的适配器。
+例如，Supabase 的存储适配器可以通过 `npm:@grammyjs/storages/supabase/src` 导入。
 
 请查看各自的仓库，了解不同适配器的设置。
 它们的仓库中包含了如何连接到你的存储解决方案的信息。

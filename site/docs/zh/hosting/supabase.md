@@ -36,7 +36,7 @@ supabase functions new telegram-bot
 你可以使用这个简单的示例 bot 作为一个起点。
 
 ```ts
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, webhookCallback } from "npm:grammy";
 
 const token = Deno.env.get("BOT_TOKEN");
 if (!token) throw new Error("BOT_TOKEN is unset");

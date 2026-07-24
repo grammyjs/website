@@ -25,7 +25,7 @@ Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github
 2. Buat sebuah file dengan nama `main.ts` atau `main.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
 ```ts
-import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "npm:grammy";
 // Kamu mungkin perlu mengubah ini agar dapat melakukan import pada object bot-mu.
 import bot from "./bot.ts";
 

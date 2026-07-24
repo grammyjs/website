@@ -122,7 +122,7 @@ InlineQueryResultBuilder.article("id-4", "Consultas en línea")
 import {
   InlineKeyboard,
   InlineQueryResultBuilder,
-} from "https://deno.land/x/grammy/mod.ts";
+} from "npm:grammy";
 
 // Construye un resultado de foto.
 InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");

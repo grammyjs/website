@@ -166,7 +166,7 @@ import {
   Context,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
+} from "npm:grammy";
 
 // Tentukan bentuk session kita.
 interface SessionData {
@@ -443,7 +443,7 @@ bot.use(session({
 ```
 
 ```ts [Deno]
-import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
+import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 bot.use(session({
   initial: ...
@@ -520,8 +520,8 @@ import {
   Context,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
+} from "npm:grammy";
+import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 // Tentukan struktur session-nya.
 interface SessionData {
@@ -574,8 +574,8 @@ Sebagai contoh, storage adapter Supabase memiliki nama package `supabase`.
 Misal, storage adapter Supabase bisa diinstal dengan cara `npm i @grammyjs/storage-supabase`.
 
 **Di Deno**, semua storage adapter dipublikasikan di module Deno yang sama.
-Kamu bisa meng-import adapter yang kamu butuhkan melalui `https://deno.land/x/grammy_storages/<nama_adapter>/src/mod.ts`.
-Misal, storage adapter Supabase bisa di-import melalui `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+Kamu bisa meng-import adapter yang kamu butuhkan melalui `npm:@grammyjs/storages/<nama_adapter>/src`.
+Misal, storage adapter Supabase bisa di-import melalui `npm:@grammyjs/storages/supabase/src`.
 
 Lihat bagian pemasangan di repositori masing-masing untuk mengetahui cara menghubungkan adapter terkait ke storage pilihanmu.
 

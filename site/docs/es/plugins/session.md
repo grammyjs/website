@@ -165,7 +165,7 @@ import {
   Context,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
+} from "npm:grammy";
 
 // Definir la forma de nuestra sesión.
 interface SessionData {
@@ -442,7 +442,7 @@ bot.use(session({
 ```
 
 ```ts [Deno]
-import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
+import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 bot.use(session({
   initial: ...
@@ -519,8 +519,8 @@ import {
   Context,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
+} from "npm:grammy";
+import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 // Definir la estructura de la sesión.
 interface SessionData {
@@ -573,8 +573,8 @@ Por ejemplo, el adaptador de almacenamiento para Supabase se llama `supabase`.
 Por ejemplo, el adaptador de almacenamiento para Supabase puede instalarse mediante `npm i @grammyjs/storage-supabase`.
 
 **En Deno**, todos los adaptadores de almacenamiento se publican en el mismo módulo de Deno.
-A continuación, puede importar el adaptador que necesite desde su sub-ruta en `https://deno.land/x/grammy_storages/<adaptador>/src/mod.ts`.
-Por ejemplo, el adaptador de almacenamiento para Supabase puede importarse desde `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+A continuación, puede importar el adaptador que necesite desde su sub-ruta en `npm:@grammyjs/storages/<adaptador>/src`.
+Por ejemplo, el adaptador de almacenamiento para Supabase puede importarse desde `npm:@grammyjs/storages/supabase/src`.
 
 Consulta los repositorios respectivos sobre cada configuración individual.
 Contienen información sobre cómo conectarlos a tu solución de almacenamiento.

@@ -21,7 +21,7 @@ next: false
 ::: code-group
 
 ```ts{11} [Deno]
-import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "npm:grammy";
 // 你可以将其修改为导入 `Bot` 对象的正确方式
 import { bot } from "./bot.ts";
 
@@ -69,7 +69,7 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 ::: code-group
 
 ```ts{4} [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const token = Deno.env.get("BOT_TOKEN");
 if (!token) throw new Error("BOT_TOKEN is unset");
