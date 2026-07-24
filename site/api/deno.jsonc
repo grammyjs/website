@@ -18,5 +18,6 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
-  }
+  },
+  "fmt": { "indentWidth": 2 }
 }
