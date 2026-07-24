@@ -34,7 +34,7 @@ jobs:
         working-directory: site/
 
       - name: Generate API reference
-        run: deno task index-versions && deno task genapi
+        run: deno task genapi
         working-directory: site/
 
       - name: Build site

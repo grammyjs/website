@@ -1,6 +1,15 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@cliffy/command@^1.0.0-rc.8": "1.2.1",
+    "jsr:@cliffy/flags@1.2.1": "1.2.1",
+    "jsr:@cliffy/internal@1.2.1": "1.2.1",
+    "jsr:@cliffy/table@1.2.1": "1.2.1",
+    "jsr:@knorpelsenf/sitemap@1.2.4": "1.2.4",
+    "jsr:@std/fmt@^1.0.10": "1.0.10",
+    "jsr:@std/internal@^1.0.14": "1.0.14",
+    "jsr:@std/path@^1.1.2": "1.1.6",
+    "jsr:@std/text@^1.0.19": "1.0.19",
     "npm:@types/markdown-it@^14.1.2": "14.1.2",
     "npm:@vueuse/core@^14.3.0": "14.3.0_vue@3.5.38",
     "npm:country-flag-emoji-polyfill@~0.1.8": "0.1.8",
@@ -9,6 +18,56 @@
     "npm:sass@^1.101.0": "1.101.0",
     "npm:vitepress@^1.6.4": "1.6.4_sass@1.101.0",
     "npm:vue@^3.5.38": "3.5.38"
+  },
+  "jsr": {
+    "@cliffy/command@1.2.1": {
+      "integrity": "b7b017c81560d96580ea810c8564566884d8194416f6fc06bfdc8846e8fd590f",
+      "dependencies": [
+        "jsr:@cliffy/flags",
+        "jsr:@cliffy/internal",
+        "jsr:@cliffy/table",
+        "jsr:@std/fmt",
+        "jsr:@std/text"
+      ]
+    },
+    "@cliffy/flags@1.2.1": {
+      "integrity": "10034920ef7595db586fecec5a3b10a4ec800c513cbbc368414cd748dac706fb",
+      "dependencies": [
+        "jsr:@cliffy/internal",
+        "jsr:@std/text"
+      ]
+    },
+    "@cliffy/internal@1.2.1": {
+      "integrity": "e398f41c6839d3d4d249c963bfcb1058013091425926d53a3cb482b1ca70684b"
+    },
+    "@cliffy/table@1.2.1": {
+      "integrity": "be333e62f2c754f8bf75a38c8177515b152040572c9f75298e9bcef1314b82ff",
+      "dependencies": [
+        "jsr:@std/fmt"
+      ]
+    },
+    "@knorpelsenf/sitemap@1.2.4": {
+      "integrity": "492e5d670531c0c00498485cca20be1929c34468c4588e4d8c029a4c64128316",
+      "dependencies": [
+        "jsr:@cliffy/command",
+        "jsr:@std/path"
+      ]
+    },
+    "@std/fmt@1.0.10": {
+      "integrity": "90dfba288802ac6de82fb31d0917eb9e4450b9925b954d5e51fc29ac07419db5"
+    },
+    "@std/internal@1.0.14": {
+      "integrity": "291516b3d4c35024d6ffbc0a9df5bf4c64116e05b50012cf846710152d2ffdf7"
+    },
+    "@std/path@1.1.6": {
+      "integrity": "c68485c2a4dfbb5ae3cc74fae4e8c4e5d874cf8a8ed12927917235c758b46cbe",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/text@1.0.19": {
+      "integrity": "003a0e032d360e8c3a4e0410fb792c77a66bd6553fee9d60c6ec1bce30d29223"
+    }
   },
   "npm": {
     "@algolia/abtesting@1.15.1": {
