@@ -432,10 +432,7 @@ bot.start();
 
 ```ts [Deno]
 import { Bot, Context } from "npm:grammy";
-import type {
-  Update,
-  UserFromGetMe,
-} from "npm:grammy/types";
+import type { Update, UserFromGetMe } from "npm:grammy/types";
 
 // 自定义一个上下文类
 class MyContext extends Context {

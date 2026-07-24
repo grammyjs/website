@@ -159,12 +159,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import {
-  Bot,
-  Context,
-  session,
-  SessionFlavor,
-} from "npm:grammy";
+import { Bot, Context, session, SessionFlavor } from "npm:grammy";
 
 // 定义我们的会话。
 interface SessionData {
@@ -513,12 +508,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import {
-  Bot,
-  Context,
-  session,
-  SessionFlavor,
-} from "npm:grammy";
+import { Bot, Context, session, SessionFlavor } from "npm:grammy";
 import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 // 定义会话结构。

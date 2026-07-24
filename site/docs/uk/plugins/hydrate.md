@@ -81,10 +81,7 @@ bot.use(hydrate());
 
 ```ts [Deno]
 import { Bot, Context } from "npm:grammy";
-import {
-  hydrate,
-  HydrateFlavor,
-} from "npm:@grammyjs/hydrate";
+import { hydrate, HydrateFlavor } from "npm:@grammyjs/hydrate";
 
 type MyContext = HydrateFlavor<Context>;
 

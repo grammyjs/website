@@ -60,10 +60,7 @@ bot.use(emojiParser());
 
 ```ts [Deno]
 import { Bot, Context } from "npm:grammy";
-import {
-  EmojiFlavor,
-  emojiParser,
-} from "npm:@grammyjs/emoji";
+import { EmojiFlavor, emojiParser } from "npm:@grammyjs/emoji";
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：

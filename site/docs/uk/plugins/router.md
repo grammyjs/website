@@ -332,13 +332,7 @@ function getDays(month: number, day: number) {
 ```
 
 ```ts [Deno]
-import {
-  Bot,
-  Context,
-  Keyboard,
-  session,
-  SessionFlavor,
-} from "npm:grammy";
+import { Bot, Context, Keyboard, session, SessionFlavor } from "npm:grammy";
 import { Router } from "npm:@grammyjs/router";
 
 interface SessionData {

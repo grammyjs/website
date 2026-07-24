@@ -432,10 +432,7 @@ bot.start();
 
 ```ts [Deno]
 import { Bot, Context } from "npm:grammy";
-import type {
-  Update,
-  UserFromGetMe,
-} from "npm:grammy/types";
+import type { Update, UserFromGetMe } from "npm:grammy/types";
 
 // Define a custom context class.
 class MyContext extends Context {

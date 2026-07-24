@@ -88,10 +88,7 @@ bot.start();
 ```ts [Deno]
 import { Bot, type Context } from "npm:grammy";
 import { autoRetry } from "npm:@grammyjs/auto_retry";
-import {
-  stream,
-  type StreamFlavor,
-} from "npm:@grammyjs/stream";
+import { stream, type StreamFlavor } from "npm:@grammyjs/stream";
 
 type MyContext = StreamFlavor<Context>;
 const bot = new Bot<MyContext>("");

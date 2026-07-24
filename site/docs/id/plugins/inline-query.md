@@ -128,10 +128,7 @@ InlineQueryResultBuilder.article("id-4", "Inline Query")
 ```
 
 ```ts [Deno]
-import {
-  InlineKeyboard,
-  InlineQueryResultBuilder,
-} from "npm:grammy";
+import { InlineKeyboard, InlineQueryResultBuilder } from "npm:grammy";
 
 // Membuat sebuah hasil foto.
 InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");

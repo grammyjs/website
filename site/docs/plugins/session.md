@@ -160,12 +160,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import {
-  Bot,
-  Context,
-  session,
-  SessionFlavor,
-} from "npm:grammy";
+import { Bot, Context, session, SessionFlavor } from "npm:grammy";
 
 // Define shape of our session.
 interface SessionData {
@@ -514,12 +509,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import {
-  Bot,
-  Context,
-  session,
-  SessionFlavor,
-} from "npm:grammy";
+import { Bot, Context, session, SessionFlavor } from "npm:grammy";
 import { freeStorage } from "npm:@grammyjs/storages/free/src";
 
 // Define the session structure.
