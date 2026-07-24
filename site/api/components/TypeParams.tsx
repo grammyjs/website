@@ -5,21 +5,21 @@ import { CodeBlock } from "./CodeBlock.tsx";
 import { TypeParam_ } from "./TsType.tsx";
 
 export function TypeParams(
-  { typeParams, getLink }: {
-    typeParams: TsTypeParamDef[];
-    getLink: LinkGetter;
-  },
+    { typeParams, getLink }: {
+        typeParams: TsTypeParamDef[];
+        getLink: LinkGetter;
+    },
 ) {
-  return (
-    <>
-      {typeParams.map((v) => (
+    return (
         <>
-          <H4>{v.name}</H4>
-          <CodeBlock>
-            <TypeParam_ getLink={getLink}>{v}</TypeParam_>
-          </CodeBlock>
+            {typeParams.map((v) => (
+                <>
+                    <H4>{v.name}</H4>
+                    <CodeBlock>
+                        <TypeParam_ getLink={getLink}>{v}</TypeParam_>
+                    </CodeBlock>
+                </>
+            ))}
         </>
-      ))}
-    </>
-  );
+    );
 }

@@ -9,40 +9,46 @@ import { StyleKw } from "./styles.tsx";
 import { Loc } from "./Loc.tsx";
 
 export function Properties({
-  getLink,
-  children: i,
+    getLink,
+    children: i,
 }: {
-  getLink: LinkGetter;
-  children: InterfacePropertyDef[] | ClassPropertyDef[];
+    getLink: LinkGetter;
+    children: InterfacePropertyDef[] | ClassPropertyDef[];
 }) {
-  return (
-    <>
-      {i.filter((v) =>
-        "accessiblity" in v ? v.accessiblity !== "private" : true
-      )
-        .map((v) => (
-          <>
-            <H3>{v.name}</H3>
-            <CodeBlock>
-              {"isStatic" in v && v.isStatic && <StyleKw>{"static "}</StyleKw>}
-              {"isAbstract" in v && v.isAbstract && (
-                <StyleKw>{"abstract "}</StyleKw>
-              )}
-              {v.readonly && <StyleKw>{"readonly "}</StyleKw>}
-              <PropertyName hasType={!!v.tsType} class>
-                {{ ...v, optional: !!v.optional }}
-              </PropertyName>
-              {v.tsType && (
-                <>
-                  {" "}
-                  <TsType getLink={getLink}>{v.tsType}</TsType>
-                </>
-              )};
-            </CodeBlock>
-            {"jsDoc" in v && <P doc getLink={getLink}>{v.jsDoc?.doc}</P>}
-            <Loc>{v}</Loc>
-          </>
-        ))}
-    </>
-  );
+    return (
+        <>
+            {i.filter((v) =>
+                "accessiblity" in v ? v.accessiblity !== "private" : true
+            )
+                .map((v) => (
+                    <>
+                        <H3>{v.name}</H3>
+                        <CodeBlock>
+                            {"isStatic" in v && v.isStatic && (
+                                <StyleKw>{"static "}</StyleKw>
+                            )}
+                            {"isAbstract" in v && v.isAbstract && (
+                                <StyleKw>{"abstract "}</StyleKw>
+                            )}
+                            {v.readonly && <StyleKw>{"readonly "}</StyleKw>}
+                            <PropertyName hasType={!!v.tsType} class>
+                                {{ ...v, optional: !!v.optional }}
+                            </PropertyName>
+                            {v.tsType && (
+                                <>
+                                    {" "}
+                                    <TsType getLink={getLink}>
+                                        {v.tsType}
+                                    </TsType>
+                                </>
+                            )};
+                        </CodeBlock>
+                        {"jsDoc" in v && (
+                            <P doc getLink={getLink}>{v.jsDoc?.doc}</P>
+                        )}
+                        <Loc>{v}</Loc>
+                    </>
+                ))}
+        </>
+    );
 }

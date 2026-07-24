@@ -11,16 +11,16 @@ export type DocNodeVariable = Extract<DocNode, { kind: "variable" }>;
 export type DocNodeEnum = Extract<DocNode, { kind: "enum" }>;
 
 export function flattenSymbols(symbols: DocSymbol[]): DocNode[] {
-  return symbols.flatMap((sym) =>
-    sym.declarations.map((decl) => ({ name: sym.name, ...decl }))
-  );
+    return symbols.flatMap((sym) =>
+        sym.declarations.map((decl) => ({ name: sym.name, ...decl }))
+    );
 }
 
 export type Ref = [
-  nodes: DocNode[],
-  path: string,
-  slug: string,
-  name: string,
-  description: string,
-  shortdescription: string,
+    nodes: DocNode[],
+    path: string,
+    slug: string,
+    name: string,
+    description: string,
+    shortdescription: string,
 ];

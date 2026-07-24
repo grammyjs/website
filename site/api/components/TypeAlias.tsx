@@ -1,7 +1,7 @@
 import {
-  type DocNodeNamespace,
-  type DocNodeTypeAlias,
-  flattenSymbols,
+    type DocNodeNamespace,
+    type DocNodeTypeAlias,
+    flattenSymbols,
 } from "../types.ts";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
@@ -14,30 +14,32 @@ import { Loc } from "./Loc.tsx";
 import { ToC } from "./ToC.tsx";
 
 export function TypeAlias(
-  { getLink, children: typeAlias, namespace }: {
-    getLink: LinkGetter;
-    children: DocNodeTypeAlias;
-    namespace?: DocNodeNamespace;
-  },
+    { getLink, children: typeAlias, namespace }: {
+        getLink: LinkGetter;
+        children: DocNodeTypeAlias;
+        namespace?: DocNodeNamespace;
+    },
 ) {
-  const typeParams = typeAlias.def.typeParams ?? [];
+    const typeParams = typeAlias.def.typeParams ?? [];
 
-  return (
-    <>
-      <H1>{typeAlias.name}</H1>
-      <P doc getLink={getLink}>{typeAlias.jsDoc?.doc}</P>
-      <Loc>{typeAlias}</Loc>
-      <Sector title="Type Parameters" show={!!typeParams.length}>
-        <TypeParams typeParams={typeParams} getLink={getLink} />
-      </Sector>
-      <Sector title="Type" show>
-        <CodeBlock>
-          <TsType getLink={getLink}>{typeAlias.def.tsType}</TsType>
-        </CodeBlock>
-      </Sector>
-      {namespace && (
-        <ToC getLink={getLink}>{flattenSymbols(namespace.def.elements)}</ToC>
-      )}
-    </>
-  );
+    return (
+        <>
+            <H1>{typeAlias.name}</H1>
+            <P doc getLink={getLink}>{typeAlias.jsDoc?.doc}</P>
+            <Loc>{typeAlias}</Loc>
+            <Sector title="Type Parameters" show={!!typeParams.length}>
+                <TypeParams typeParams={typeParams} getLink={getLink} />
+            </Sector>
+            <Sector title="Type" show>
+                <CodeBlock>
+                    <TsType getLink={getLink}>{typeAlias.def.tsType}</TsType>
+                </CodeBlock>
+            </Sector>
+            {namespace && (
+                <ToC getLink={getLink}>
+                    {flattenSymbols(namespace.def.elements)}
+                </ToC>
+            )}
+        </>
+    );
 }

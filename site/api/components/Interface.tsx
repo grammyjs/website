@@ -1,7 +1,7 @@
 import {
-  type DocNodeInterface,
-  type DocNodeNamespace,
-  flattenSymbols,
+    type DocNodeInterface,
+    type DocNodeNamespace,
+    flattenSymbols,
 } from "../types.ts";
 import { Properties } from "./Properties.tsx";
 import { H1 } from "./H1.tsx";
@@ -16,66 +16,70 @@ import { Method } from "./Class/Method.tsx";
 import { Indexes } from "./Indexes.tsx";
 
 export function Interface(
-  { children: iface, getLink, namespace }: {
-    children: DocNodeInterface;
-    getLink: LinkGetter;
-    namespace?: DocNodeNamespace;
-  },
+    { children: iface, getLink, namespace }: {
+        children: DocNodeInterface;
+        getLink: LinkGetter;
+        namespace?: DocNodeNamespace;
+    },
 ) {
-  const props = iface.def.properties ?? [];
-  const methods = iface.def.methods ?? [];
-  const indexes = iface.def.indexSignatures ?? [];
-  const methodNameSet = new Set<string>(); // to prevent duplicates
+    const props = iface.def.properties ?? [];
+    const methods = iface.def.methods ?? [];
+    const indexes = iface.def.indexSignatures ?? [];
+    const methodNameSet = new Set<string>(); // to prevent duplicates
 
-  const getMethodOverloads = (name: string) => {
-    return methods.filter((v) => v.name == name).slice(1);
-  };
+    const getMethodOverloads = (name: string) => {
+        return methods.filter((v) => v.name == name).slice(1);
+    };
 
-  return (
-    <>
-      <H1>{iface.name}</H1>
-      <P doc getLink={getLink}>{iface.jsDoc?.doc}</P>
-      <Loc>{iface}</Loc>
-      <Sector title="Extends" show={!!(iface.def.extends?.length)}>
-        <CodeBlock>
-          {(() => {
-            const a = (iface.def.extends ?? []).map((v) => (
-              <TsType getLink={getLink}>{v}</TsType>
-            ));
-            return a.length > 0 ? a.reduce((a, b) => <>{a}, {b}</>) : null;
-          })()}
-        </CodeBlock>
-      </Sector>
-      <Sector title="Properties" show={!!props.length}>
-        <Properties getLink={getLink}>{props}</Properties>
-      </Sector>
-      <Sector title="Indexes" show={!!indexes.length}>
-        <Indexes getLink={getLink}>{indexes}</Indexes>
-      </Sector>
-      <Sector title="Methods" show={!!methods.length}>
-        {methods
-          .filter((v) => {
-            try {
-              return !methodNameSet.has(v.name);
-            } finally {
-              methodNameSet.add(v.name);
-            }
-          })
-          .map((v) => (
-            <Method
-              getLink={getLink}
-              inheritDoc={() =>
-                methods.find((v_) => (v_.name == v.name))
-                  ?.jsDoc}
-              overloads={getMethodOverloads(v.name)}
-            >
-              {v}
-            </Method>
-          ))}
-      </Sector>
-      {namespace && (
-        <ToC getLink={getLink}>{flattenSymbols(namespace.def.elements)}</ToC>
-      )}
-    </>
-  );
+    return (
+        <>
+            <H1>{iface.name}</H1>
+            <P doc getLink={getLink}>{iface.jsDoc?.doc}</P>
+            <Loc>{iface}</Loc>
+            <Sector title="Extends" show={!!(iface.def.extends?.length)}>
+                <CodeBlock>
+                    {(() => {
+                        const a = (iface.def.extends ?? []).map((v) => (
+                            <TsType getLink={getLink}>{v}</TsType>
+                        ));
+                        return a.length > 0
+                            ? a.reduce((a, b) => <>{a}, {b}</>)
+                            : null;
+                    })()}
+                </CodeBlock>
+            </Sector>
+            <Sector title="Properties" show={!!props.length}>
+                <Properties getLink={getLink}>{props}</Properties>
+            </Sector>
+            <Sector title="Indexes" show={!!indexes.length}>
+                <Indexes getLink={getLink}>{indexes}</Indexes>
+            </Sector>
+            <Sector title="Methods" show={!!methods.length}>
+                {methods
+                    .filter((v) => {
+                        try {
+                            return !methodNameSet.has(v.name);
+                        } finally {
+                            methodNameSet.add(v.name);
+                        }
+                    })
+                    .map((v) => (
+                        <Method
+                            getLink={getLink}
+                            inheritDoc={() =>
+                                methods.find((v_) => (v_.name == v.name))
+                                    ?.jsDoc}
+                            overloads={getMethodOverloads(v.name)}
+                        >
+                            {v}
+                        </Method>
+                    ))}
+            </Sector>
+            {namespace && (
+                <ToC getLink={getLink}>
+                    {flattenSymbols(namespace.def.elements)}
+                </ToC>
+            )}
+        </>
+    );
 }
