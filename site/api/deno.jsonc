@@ -5,10 +5,10 @@
   },
   "imports": {
     "@deno/cache-dir": "jsr:@deno/cache-dir@^0.27.0",
-    "@deno/doc": "jsr:@deno/doc@^0.200.0",
+    "@deno/doc": "jsr:@deno/doc@^0.202.1",
     "@std/fs": "jsr:@std/fs@^1.0.24",
-    "@std/path": "jsr:@std/path@^1.1.5",
-    "preact": "npm:preact@^10.29.2",
+    "@std/path": "jsr:@std/path@^1.1.6",
+    "preact": "npm:preact@^10.29.7",
     "preact-render-to-string": "npm:preact-render-to-string@^6.7.0",
     "marked-smartypants": "npm:marked-smartypants@^1.1.12"
   },
