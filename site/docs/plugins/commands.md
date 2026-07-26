@@ -105,7 +105,7 @@ Here's how to do that with the commands plugin:
 type MyContext = CommandsFlavor<Context>;
 
 // Use the new context to instantiate your bot
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
+const bot = new Bot<MyContext>("<YOUR_BOT_TOKEN>"); // check https://t.me/BotFather
 
 // Register the context shortcut
 bot.use(commands());
@@ -140,7 +140,7 @@ await loggedOutCommands.setCommands(bot);
 ```
 
 ```js [JavaScript]
-const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
+const bot = new Bot("<YOUR_BOT_TOKEN>"); // check https://t.me/BotFather
 
 // Register the context shortcut
 bot.use(commands());
@@ -223,7 +223,7 @@ import { devCommands } from "./commands/admin.ts";
 import { userCommands } from "./commands/users/group.ts";
 import type { MyContext } from "./types.ts";
 
-export const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
+export const bot = new Bot<MyContext>("<YOUR_BOT_TOKEN>"); // check https://t.me/BotFather
 
 bot.use(commands());
 
@@ -599,7 +599,7 @@ Plus, it's easy to use.
 type MyContext = Context & CommandsFlavor;
 
 // Use the new context to instantiate your bot
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
+const bot = new Bot<MyContext>("<YOUR_BOT_TOKEN>"); // check https://t.me/BotFather
 const myCommands = new CommandGroup<MyContext>();
 
 // ... Register the commands
@@ -622,7 +622,7 @@ bot
 ```
 
 ```js [JavaScript]
-const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
+const bot = new Bot("<YOUR_BOT_TOKEN>"); // check https://t.me/BotFather
 const myCommands = new CommandGroup();
 
 // ... Register the commands
