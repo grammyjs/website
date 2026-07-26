@@ -480,6 +480,118 @@ function addLocalizations(command: Command) {
 myCommands.commands.forEach(addLocalizations);
 ```
 
+## Ephemeral Commands
+
+Now that you have got used to the ins and outs of the Command Menu, it is just
+the right time to learn about Ephemeral Commands.
+
+Since Telegram Bot API 10.2, bots can now send private responses directly inside
+group chats, those are called
+[Ephemeral Messages](https://core.telegram.org/bots/features#ephemeral-messages).
+As a paired feature, there were the new born Ephemeral Commands. This are
+special commands in which the invocation message stays invisible to the other
+group members. The Telegram client also highlights them with a special icon in
+the command menu.
+
+You can tag a command as ephemeral by using the `.ephemeral()` method. However, Ephemeral Commands are strictly about the invisible invocation of that command, the "receiving end"  from our point of view. It is up to your handler logic to define however you want to respond to that  message:
+
+```ts
+myCommands
+  .command("invisible", "Boo something")
+  .ephemeral()
+  .addToScope(
+    { type: "all_group_chats" },
+    ( ctx ) => { /** Do something ephemerally triggered */},
+  );
+// Update the Command Menu with the "invisible" command shown as ephemeral
+await myCommands.setCommands(bot);
+```
+
+### Strictly Ephemeral: The Story of an Edge Case
+
+By default, a command registered as ephemeral will only be triggered if the incoming command message was indeed ephemeral. _"What?"_ —would you ask. Seems obvious, but, there is an edge case.
+
+We internally register Ephemeral Commands as `strict`. This means that, if the user manually types the command, for example, `/invisible@your_bot`, and their client does not recognize it as an Ephemeral Command, the message _can_ be sent as a normal message, a normal command. In this case, by default, we'll ignore that command call.
+
+_"Why that could happen?"_ —I hear you saying… If the user client is old or working with an outdated (likely cached) Command Menu in which our command was not marked as ephemeral, their client can send it as normal command.
+
+You can deactivate this at registration time with `.ephemeral({ strict : false })`. Which makes the command to trigger even if the command call wasn't properly _ephemerically_ sent.
+
+### Ephemeral Responses
+
+That is where the receiving end of Ephemeral Commands stops.
+
+However, since most of the time you'll also want to respond _ephemerally_ to Ephemeral Commands, we'll take a look at that. See [Reply Targets and Conditions](https://core.telegram.org/bots/api#ephemeral-messages-and-commands) section first.
+
+To send an Ephemeral Message you'll need to specify the target with `receiver_user_id`. In this case we'll reply to the user which called our `/whisp_n_shout` command:
+
+```ts
+myCommands
+  .command("whisp_n_shout", "Reply with an ephemeral and a normal message")
+  .ephemeral()
+  .addToScope(
+    { type: "all_group_chats" },
+    async (ctx) => {
+        await ctx.reply("This is only visible to you", {
+          receiver_user_id: ctx.from.id,
+        });
+        await ctx.reply("This is be visible to everyone in the group chat");
+      },
+  )
+```
+
+At first it looks alright, but the first reply, which is an ephemeral one, will fail if your bot has no admin rights in the chat you're trying to reply in.
+
+Being that case, you'll need to specify to which ephemeral message the bot is exactly replying. This will trigger the "reply" client UI.
+
+```ts
+myCommands
+  .command("whisper", "Replies with a message only you can see")
+  .ephemeral()
+  .addToScope(
+    { type: "all_group_chats" },
+    (ctx ) =>
+      ctx.reply("This is only visible to you", {
+        receiver_user_id: ctx.from.id,
+          reply_parameters: {
+            ephemeral_message_id: ctx.msg.ephemeral_message_id,
+          }
+      });
+  );
+```
+
+Since your bot may have admin rights in one chat but not another, just to give you an idea, you could add a chat-specific check.
+
+```ts
+myCommands
+  .command("whisper", "Replies with a message only you can see")
+  .ephemeral()
+  .addToScope(
+    { type: "all_group_chats" },
+    async (ctx ) => {
+      const botMember = await ctx.api.getChatMember(ctx.chat.id, ctx.me.id);
+      const isBotChatAdmin = 
+        ["administrator", "creator"].includes(botMember.status);
+
+      ctx.reply("This is only visible to you", {
+        receiver_user_id: ctx.from.id,
+        ...(!isBotChatAdmin
+          ? {
+            reply_parameters: {
+              ephemeral_message_id: ctx.msg.ephemeral_message_id,
+            }
+          } : {}),
+      });
+    },
+  );
+```
+
+That will make the ephemeral reply to happen, at least on our end, since Ephemeral Message are not guaranteed to be delivered, on both chats, the ones were the bot is and not is admin. Besides not forcing to reply with the client reply UI. The downside being having an api call each time that command is called.
+
+::: danger
+Double check [Reply Targets and Conditions](https://core.telegram.org/bots/api#ephemeral-messages-and-commands) in regards of the volatile nature of sending Ephemeral Messages.
+:::
+
 ## Finding the Nearest Command
 
 Telegram can automatically complete registered commands.
@@ -622,9 +734,9 @@ That is made possible by the `prefix` option, which will tell the commands plugi
 
 If you ever need to retrieve `botCommand` entities from an update and need them to be hydrated with the custom prefix you have registered, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`, which returns the same interface as `ctx.entities('bot_command')`
 
-::: tip
+::: warning
 
-Commands with custom prefixes cannot be shown in the Commands Menu.
+Commands with custom prefixes cannot be registered in the Commands Menu, and are therefore incompatible with [Ephemeral Commands](#ephemeral-commands).
 
 :::
 
@@ -649,6 +761,12 @@ myCommands
 ```
 
 This command handler will trigger on `/delete_me` the same as on `/delete_you`, and it will reply `Deleting me` in the first case and `Deleting you` in the second, but will not trigger on `/delete_` nor `/delete_123xyz`, passing through as if it wasn't there.
+
+::: warning
+
+Due to the nature of RegExp Commands, they cannot be registered in the Commands Menu and are therefore incompatible with [Ephemeral Commands](#ephemeral-commands).
+
+:::
 
 ## Plugin Summary
 
