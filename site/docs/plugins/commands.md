@@ -481,7 +481,7 @@ special commands in which the invocation message stays invisible to the other
 group members. The Telegram client also highlights them with a special icon in
 the command menu.
 
-You can tag a command as ephemeral by using the `.ephemeral()` method. However, Ephemeral Commands are strictly about the invisible invocation of that command, the "receiving end"  from our point of view. It is up to your handler logic to define however you want to respond to that  message:
+You can tag a command as ephemeral by using the `.ephemeral()` method. However, Ephemeral Commands are strictly about the invisible invocation of that command, the "receiving end" from our point of view. It is up to your handler logic to define however you want to respond to that message:
 
 ```ts
 myCommands
@@ -489,7 +489,7 @@ myCommands
   .ephemeral()
   .addToScope(
     { type: "all_group_chats" },
-    ( ctx ) => { /** Do something ephemerally triggered */},
+    (ctx) => {/** Do something ephemerally triggered */},
   );
 // Update the Command Menu with the "invisible" command shown as ephemeral
 await myCommands.setCommands(bot);
@@ -520,12 +520,12 @@ myCommands
   .addToScope(
     { type: "all_group_chats" },
     async (ctx) => {
-        await ctx.reply("This is only visible to you", {
-          receiver_user_id: ctx.from.id,
-        });
-        await ctx.reply("This is be visible to everyone in the group chat");
-      },
-  )
+      await ctx.reply("This is only visible to you", {
+        receiver_user_id: ctx.from.id,
+      });
+      await ctx.reply("This is be visible to everyone in the group chat");
+    },
+  );
 ```
 
 At first it looks alright, but the first reply, which is an ephemeral one, will fail if your bot has no admin rights in the chat you're trying to reply in.
@@ -556,10 +556,11 @@ myCommands
   .ephemeral()
   .addToScope(
     { type: "all_group_chats" },
-    async (ctx ) => {
+    async (ctx) => {
       const botMember = await ctx.api.getChatMember(ctx.chat.id, ctx.me.id);
-      const isBotChatAdmin = 
-        ["administrator", "creator"].includes(botMember.status);
+      const isBotChatAdmin = ["administrator", "creator"].includes(
+        botMember.status,
+      );
 
       ctx.reply("This is only visible to you", {
         receiver_user_id: ctx.from.id,
@@ -567,8 +568,9 @@ myCommands
           ? {
             reply_parameters: {
               ephemeral_message_id: ctx.msg.ephemeral_message_id,
-            }
-          } : {}),
+            },
+          }
+          : {}),
       });
     },
   );
