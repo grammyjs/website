@@ -7,33 +7,32 @@ import { StyleKw } from "../styles.tsx";
 import { LinkGetter } from "../types.ts";
 
 export function Constructors({
-    children: ctors,
-    getLink,
+  children: ctors,
+  getLink,
 }: {
-    children: ClassConstructorDef[];
-    getLink: LinkGetter;
+  children: ClassConstructorDef[];
+  getLink: LinkGetter;
 }) {
-    if (!ctors.length) {
-        return null;
-    }
-    return (
+  if (!ctors.length) {
+    return null;
+  }
+  return (
+    <>
+      {ctors.map((v) => (
         <>
-            {ctors.map((v) => (
-                <>
-                    <CodeBlock>
-                        {v.accessibility
-                            ? <StyleKw>{v.accessibility}{" "}</StyleKw>
-                            : undefined}
-                        <span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">
-                            {v.name}
-                        </span>(
-                        <Params getLink={getLink}>{v.params}</Params>);
-                    </CodeBlock>
-                    {"jsDoc" in v && <P doc getLink={getLink}>{v.jsDoc?.doc}
-                    </P>}
-                    <Loc>{v}</Loc>
-                </>
-            ))}
+          <CodeBlock>
+            {v.accessibility
+              ? <StyleKw>{v.accessibility}{" "}</StyleKw>
+              : undefined}
+            <span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">
+              {v.name}
+            </span>(
+            <Params getLink={getLink}>{v.params}</Params>);
+          </CodeBlock>
+          {"jsDoc" in v && <P doc getLink={getLink}>{v.jsDoc?.doc}</P>}
+          <Loc>{v}</Loc>
         </>
-    );
+      ))}
+    </>
+  );
 }

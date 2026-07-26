@@ -8,21 +8,21 @@ import { TsType } from "./TsType.tsx";
 import { Loc } from "./Loc.tsx";
 
 export function Variable(
-    { children: varr, getLink }: {
-        children: DocNodeVariable;
-        getLink: LinkGetter;
-    },
+  { children: varr, getLink }: {
+    children: DocNodeVariable;
+    getLink: LinkGetter;
+  },
 ) {
-    return (
-        <>
-            <H1>{varr.name}</H1>
-            <P doc getLink={getLink}>{varr.jsDoc?.doc}</P>
-            <Loc>{varr}</Loc>
-            <Sector title="Type" show={!!varr.def.tsType}>
-                <CodeBlock>
-                    <TsType getLink={getLink}>{varr.def.tsType!}</TsType>
-                </CodeBlock>
-            </Sector>
-        </>
-    );
+  return (
+    <>
+      <H1>{varr.name}</H1>
+      <P doc getLink={getLink}>{varr.jsDoc?.doc}</P>
+      <Loc>{varr}</Loc>
+      <Sector title="Type" show={!!varr.def.tsType}>
+        <CodeBlock>
+          <TsType getLink={getLink}>{varr.def.tsType!}</TsType>
+        </CodeBlock>
+      </Sector>
+    </>
+  );
 }

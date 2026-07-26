@@ -1,963 +1,951 @@
 import {
-    LiteralCallSignatureDef,
-    LiteralDef,
-    LiteralIndexSignatureDef,
-    LiteralMethodDef,
-    LiteralPropertyDef,
-    ObjectPatPropAssignDef,
-    ObjectPatPropDef,
-    ObjectPatPropKeyValueDef,
-    ObjectPatPropRestDef,
-    ParamArrayDef,
-    ParamAssignDef,
-    ParamDef,
-    ParamIdentifierDef,
-    ParamObjectDef,
-    ParamRestDef,
-    TruePlusMinus,
-    TsConditionalDef,
-    TsFnOrConstructorDef,
-    TsIndexedAccessDef,
-    TsMappedTypeDef,
-    TsTypeDef,
-    TsTypeLiteralDef,
-    TsTypeOperatorDef,
-    TsTypeParamDef,
-    TsTypePredicateDef,
-    TsTypeRefDef,
+  LiteralCallSignatureDef,
+  LiteralDef,
+  LiteralIndexSignatureDef,
+  LiteralMethodDef,
+  LiteralPropertyDef,
+  ObjectPatPropAssignDef,
+  ObjectPatPropDef,
+  ObjectPatPropKeyValueDef,
+  ObjectPatPropRestDef,
+  ParamArrayDef,
+  ParamAssignDef,
+  ParamDef,
+  ParamIdentifierDef,
+  ParamObjectDef,
+  ParamRestDef,
+  TruePlusMinus,
+  TsConditionalDef,
+  TsFnOrConstructorDef,
+  TsIndexedAccessDef,
+  TsMappedTypeDef,
+  TsTypeDef,
+  TsTypeLiteralDef,
+  TsTypeOperatorDef,
+  TsTypeParamDef,
+  TsTypePredicateDef,
+  TsTypeRefDef,
 } from "@deno/doc/types";
 import { Fragment, JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
 import { LinkGetter } from "./types.ts";
 import {
-    StyleCallee,
-    StyleKw,
-    StyleNum,
-    StyleStrLit,
-    StyleTypeRef,
+  StyleCallee,
+  StyleKw,
+  StyleNum,
+  StyleStrLit,
+  StyleTypeRef,
 } from "./styles.tsx";
 
 export function TsType({
-    getLink,
-    children: tt,
+  getLink,
+  children: tt,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef;
+  getLink: LinkGetter;
+  children: TsTypeDef;
 }) {
-    switch (tt.kind) {
-        case "keyword":
-            return <Keyword>{tt.value}</Keyword>;
-        case "literal":
-            return <Literal>{tt.value}</Literal>;
-        case "typeRef":
-            return <TypeRef getLink={getLink}>{tt.value}</TypeRef>;
-        case "union":
-            return <Union getLink={getLink}>{tt.value}</Union>;
-        case "intersection":
-            return <Intersection getLink={getLink}>{tt.value}</Intersection>;
-        case "array":
-            return <Array getLink={getLink}>{tt.value}</Array>;
-        case "tuple":
-            return <Tuple getLink={getLink}>{tt.value}</Tuple>;
-        case "typeOperator":
-            return <TypeOperator getLink={getLink}>{tt.value}</TypeOperator>;
-        case "parenthesized":
-            return <Parenthesized getLink={getLink}>{tt.value}</Parenthesized>;
-        case "rest":
-            return <Rest getLink={getLink}>{tt.value}</Rest>;
-        case "optional":
-            return <Optional getLink={getLink}>{tt.value}</Optional>;
-        case "typeQuery":
-            return <TypeQuery getLink={getLink}>{tt.value}</TypeQuery>;
-        case "this":
-            return <This />;
-        case "fnOrConstructor":
-            return (
-                <FnOrConstructor getLink={getLink}>{tt.value}</FnOrConstructor>
-            );
-        case "conditional":
-            return <Conditional getLink={getLink}>{tt.value}</Conditional>;
-        case "importType":
-            break;
-        case "infer":
-            break;
-        case "indexedAccess":
-            return <IndexedAccess getLink={getLink}>{tt.value}</IndexedAccess>;
-        case "mapped":
-            return <Mapped getLink={getLink}>{tt.value}</Mapped>;
-        case "typeLiteral":
-            return <TypeLiteral getLink={getLink}>{tt.value}</TypeLiteral>;
-        case "typePredicate":
-            return <TypePredicate getLink={getLink}>{tt.value}</TypePredicate>;
-    }
-    return <>{tt.kind}</>;
+  switch (tt.kind) {
+    case "keyword":
+      return <Keyword>{tt.value}</Keyword>;
+    case "literal":
+      return <Literal>{tt.value}</Literal>;
+    case "typeRef":
+      return <TypeRef getLink={getLink}>{tt.value}</TypeRef>;
+    case "union":
+      return <Union getLink={getLink}>{tt.value}</Union>;
+    case "intersection":
+      return <Intersection getLink={getLink}>{tt.value}</Intersection>;
+    case "array":
+      return <Array getLink={getLink}>{tt.value}</Array>;
+    case "tuple":
+      return <Tuple getLink={getLink}>{tt.value}</Tuple>;
+    case "typeOperator":
+      return <TypeOperator getLink={getLink}>{tt.value}</TypeOperator>;
+    case "parenthesized":
+      return <Parenthesized getLink={getLink}>{tt.value}</Parenthesized>;
+    case "rest":
+      return <Rest getLink={getLink}>{tt.value}</Rest>;
+    case "optional":
+      return <Optional getLink={getLink}>{tt.value}</Optional>;
+    case "typeQuery":
+      return <TypeQuery getLink={getLink}>{tt.value}</TypeQuery>;
+    case "this":
+      return <This />;
+    case "fnOrConstructor":
+      return <FnOrConstructor getLink={getLink}>{tt.value}</FnOrConstructor>;
+    case "conditional":
+      return <Conditional getLink={getLink}>{tt.value}</Conditional>;
+    case "importType":
+      break;
+    case "infer":
+      break;
+    case "indexedAccess":
+      return <IndexedAccess getLink={getLink}>{tt.value}</IndexedAccess>;
+    case "mapped":
+      return <Mapped getLink={getLink}>{tt.value}</Mapped>;
+    case "typeLiteral":
+      return <TypeLiteral getLink={getLink}>{tt.value}</TypeLiteral>;
+    case "typePredicate":
+      return <TypePredicate getLink={getLink}>{tt.value}</TypePredicate>;
+  }
+  return <>{tt.kind}</>;
 }
 
 function Keyword({ children: keyword }: { children: string }) {
-    return <StyleTypeRef>{keyword}</StyleTypeRef>;
+  return <StyleTypeRef>{keyword}</StyleTypeRef>;
 }
 
 function Literal({ children: literal }: { children: LiteralDef }) {
-    switch (literal.kind) {
-        case "string":
-            return <StyleStrLit>"{literal.string}"</StyleStrLit>;
-        case "bigInt":
-            return (
-                <>
-                    <StyleNum>{literal.string}</StyleNum>
-                    <StyleKw>n</StyleKw>
-                </>
-            );
-        case "number":
-            return <StyleNum>{literal.number}</StyleNum>;
-        case "boolean":
-            return <StyleTypeRef>{literal.boolean.toString()}</StyleTypeRef>;
-        case "template":
-            break;
-    }
-    return <>{literal.kind}</>;
+  switch (literal.kind) {
+    case "string":
+      return <StyleStrLit>"{literal.string}"</StyleStrLit>;
+    case "bigInt":
+      return (
+        <>
+          <StyleNum>{literal.string}</StyleNum>
+          <StyleKw>n</StyleKw>
+        </>
+      );
+    case "number":
+      return <StyleNum>{literal.number}</StyleNum>;
+    case "boolean":
+      return <StyleTypeRef>{literal.boolean.toString()}</StyleTypeRef>;
+    case "template":
+      break;
+  }
+  return <>{literal.kind}</>;
 }
 
 function TypeParams({
-    children: typeParams,
-    getLink,
+  children: typeParams,
+  getLink,
 }: {
-    children: TsTypeDef[];
-    getLink: LinkGetter;
+  children: TsTypeDef[];
+  getLink: LinkGetter;
 }) {
-    if (!typeParams.length) {
-        return null;
-    }
-    return (
-        <>
-            &lt;
-            {typeParams
-                .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
-                .reduce((a, b) => <>{a}, {b}</>)}
-            &gt;
-        </>
-    );
+  if (!typeParams.length) {
+    return null;
+  }
+  return (
+    <>
+      &lt;
+      {typeParams
+        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
+        .reduce((a, b) => <>{a}, {b}</>)}
+      &gt;
+    </>
+  );
 }
 
 export function TypeRef({
-    getLink,
-    children: typeRef,
+  getLink,
+  children: typeRef,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeRefDef;
+  getLink: LinkGetter;
+  children: TsTypeRefDef;
 }) {
-    const link = getLink(typeRef.typeName);
-    let name: JSX.Element;
-    if (link != null) {
-        const differentOrigin = link.startsWith("http");
-        name = (
-            <a
-                href={differentOrigin ? link : link.toLowerCase()}
-                class="typeRef"
-                style={{ textDecoration: "underline" }}
-                target={differentOrigin ? "blank" : undefined}
-                rel={differentOrigin ? undefined : "noopener noreferrer"}
-            >
-                <StyleTypeRef>{typeRef.typeName}</StyleTypeRef>
-            </a>
-        );
-    } else {
-        name = <StyleTypeRef>{typeRef.typeName}</StyleTypeRef>;
-    }
-    return (
-        <>
-            {name}
-            {typeRef.typeParams && (
-                <TypeParams getLink={getLink}>{typeRef.typeParams}</TypeParams>
-            )}
-        </>
+  const link = getLink(typeRef.typeName);
+  let name: JSX.Element;
+  if (link != null) {
+    const differentOrigin = link.startsWith("http");
+    name = (
+      <a
+        href={differentOrigin ? link : link.toLowerCase()}
+        class="typeRef"
+        style={{ textDecoration: "underline" }}
+        target={differentOrigin ? "blank" : undefined}
+        rel={differentOrigin ? undefined : "noopener noreferrer"}
+      >
+        <StyleTypeRef>{typeRef.typeName}</StyleTypeRef>
+      </a>
     );
+  } else {
+    name = <StyleTypeRef>{typeRef.typeName}</StyleTypeRef>;
+  }
+  return (
+    <>
+      {name}
+      {typeRef.typeParams && (
+        <TypeParams getLink={getLink}>{typeRef.typeParams}</TypeParams>
+      )}
+    </>
+  );
 }
 
 function Union({
-    getLink,
-    children: union,
+  getLink,
+  children: union,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef[];
+  getLink: LinkGetter;
+  children: TsTypeDef[];
 }) {
-    return union
-        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
-        .reduce((a, b) => (
-            <>
-                {a} <StyleKw>|</StyleKw> {b}
-            </>
-        ));
+  return union
+    .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
+    .reduce((a, b) => (
+      <>
+        {a} <StyleKw>|</StyleKw> {b}
+      </>
+    ));
 }
 
 function Intersection({
-    getLink,
-    children: intersection,
+  getLink,
+  children: intersection,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef[];
+  getLink: LinkGetter;
+  children: TsTypeDef[];
 }) {
-    return intersection
-        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
-        .reduce((a, b) => (
-            <>
-                {a} <StyleKw>&</StyleKw> {b}
-            </>
-        ));
+  return intersection
+    .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
+    .reduce((a, b) => (
+      <>
+        {a} <StyleKw>&</StyleKw> {b}
+      </>
+    ));
 }
 
 function Array({
-    getLink,
-    children: array,
+  getLink,
+  children: array,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef;
+  getLink: LinkGetter;
+  children: TsTypeDef;
 }) {
-    return (
-        <>
-            <TsType getLink={getLink}>{array}</TsType>[]
-        </>
-    );
+  return (
+    <>
+      <TsType getLink={getLink}>{array}</TsType>[]
+    </>
+  );
 }
 
 function Tuple({
-    getLink,
-    children: tuple,
+  getLink,
+  children: tuple,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef[];
+  getLink: LinkGetter;
+  children: TsTypeDef[];
 }) {
-    return (
-        <>
-            [{tuple
-                .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
-                .reduce((a, b) => <>{a}, {b}</>)}]
-        </>
-    );
+  return (
+    <>
+      [{tuple
+        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
+        .reduce((a, b) => <>{a}, {b}</>)}]
+    </>
+  );
 }
 
 function TypeOperator({
-    getLink,
-    children: typeOperator,
+  getLink,
+  children: typeOperator,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeOperatorDef;
+  getLink: LinkGetter;
+  children: TsTypeOperatorDef;
 }) {
-    return (
-        <>
-            {typeOperator.operator}{" "}
-            <TsType getLink={getLink}>{typeOperator.tsType}</TsType>
-        </>
-    );
+  return (
+    <>
+      {typeOperator.operator}{" "}
+      <TsType getLink={getLink}>{typeOperator.tsType}</TsType>
+    </>
+  );
 }
 
 function Parenthesized({
-    getLink,
-    children: parenthesized,
+  getLink,
+  children: parenthesized,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef;
+  getLink: LinkGetter;
+  children: TsTypeDef;
 }) {
-    return (
-        <>
-            (<TsType getLink={getLink}>{parenthesized}</TsType>)
-        </>
-    );
+  return (
+    <>
+      (<TsType getLink={getLink}>{parenthesized}</TsType>)
+    </>
+  );
 }
 
 function Rest({
-    getLink,
-    children: rest,
+  getLink,
+  children: rest,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef;
+  getLink: LinkGetter;
+  children: TsTypeDef;
 }) {
-    return (
-        <>
-            <StyleKw>...</StyleKw>
-            <TsType getLink={getLink}>{rest}</TsType>
-        </>
-    );
+  return (
+    <>
+      <StyleKw>...</StyleKw>
+      <TsType getLink={getLink}>{rest}</TsType>
+    </>
+  );
 }
 
 function Optional({
-    getLink,
-    children: optional,
+  getLink,
+  children: optional,
 }: {
-    getLink: LinkGetter;
-    children: TsTypeDef;
+  getLink: LinkGetter;
+  children: TsTypeDef;
 }) {
-    return (
-        <>
-            <TsType getLink={getLink}>{optional}</TsType>
-        </>
-    );
+  return (
+    <>
+      <TsType getLink={getLink}>{optional}</TsType>
+    </>
+  );
 }
 
 function TypeQuery({
-    children: typeQuery,
+  children: typeQuery,
 }: {
-    getLink: LinkGetter;
-    children: string;
+  getLink: LinkGetter;
+  children: string;
 }) {
-    return (
-        <>
-            <StyleKw>{"typeof "}</StyleKw>
-            {typeQuery}
-        </>
-    );
+  return (
+    <>
+      <StyleKw>{"typeof "}</StyleKw>
+      {typeQuery}
+    </>
+  );
 }
 
 function This() {
-    return <StyleTypeRef>this</StyleTypeRef>;
+  return <StyleTypeRef>this</StyleTypeRef>;
 }
 
 export function TypeParam_({
-    children: param,
-    constraint = "extends",
-    getLink,
+  children: param,
+  constraint = "extends",
+  getLink,
 }: {
-    children: TsTypeParamDef;
-    constraint?: string;
-    getLink: LinkGetter;
+  children: TsTypeParamDef;
+  constraint?: string;
+  getLink: LinkGetter;
 }) {
-    return (
+  return (
+    <>
+      <>{param.name}</>
+      {param.constraint && (
         <>
-            <>{param.name}</>
-            {param.constraint && (
-                <>
-                    <StyleKw>{` ${constraint} `}</StyleKw>
-                    <TsType getLink={getLink}>{param.constraint}</TsType>
-                </>
-            )}
-            {param.default && (
-                <>
-                    <StyleKw>{" = "}</StyleKw>
-                    <TsType getLink={getLink}>{param.default}</TsType>
-                </>
-            )}
+          <StyleKw>{` ${constraint} `}</StyleKw>
+          <TsType getLink={getLink}>{param.constraint}</TsType>
         </>
-    );
+      )}
+      {param.default && (
+        <>
+          <StyleKw>{" = "}</StyleKw>
+          <TsType getLink={getLink}>{param.default}</TsType>
+        </>
+      )}
+    </>
+  );
 }
 
 export function TypeParams_({
-    params,
-    getLink,
+  params,
+  getLink,
 }: {
-    params: TsTypeParamDef[] | undefined;
-    getLink: LinkGetter;
+  params: TsTypeParamDef[] | undefined;
+  getLink: LinkGetter;
 }) {
-    if (!params?.length) {
-        return null;
+  if (!params?.length) {
+    return null;
+  }
+  const items = [];
+  for (let i = 0; i < params.length; i++) {
+    items.push(<TypeParam_ getLink={getLink}>{params[i]}</TypeParam_>);
+    if (i < params.length - 1) {
+      items.push(<>{", "}</>);
     }
-    const items = [];
-    for (let i = 0; i < params.length; i++) {
-        items.push(<TypeParam_ getLink={getLink}>{params[i]}</TypeParam_>);
-        if (i < params.length - 1) {
-            items.push(<>{", "}</>);
-        }
-    }
-    return <>&lt;{items}&gt;</>;
+  }
+  return <>&lt;{items}&gt;</>;
 }
 
 function FnOrConstructor({
-    children,
-    getLink,
+  children,
+  getLink,
 }: {
-    children: TsFnOrConstructorDef;
-    getLink: LinkGetter;
+  children: TsFnOrConstructorDef;
+  getLink: LinkGetter;
 }) {
-    const { constructor, typeParams, params, tsType } = children;
-    return (
-        <>
-            {constructor ? <StyleKw>{"new "}</StyleKw> : ""}
-            <TypeParams_ params={typeParams} getLink={getLink} />(
-            <Params getLink={getLink}>{params}</Params>){" "}
-            <StyleKw>=&gt;</StyleKw> <TsType getLink={getLink}>{tsType}</TsType>
-        </>
-    );
+  const { constructor, typeParams, params, tsType } = children;
+  return (
+    <>
+      {constructor ? <StyleKw>{"new "}</StyleKw> : ""}
+      <TypeParams_ params={typeParams} getLink={getLink} />(
+      <Params getLink={getLink}>{params}</Params>) <StyleKw>=&gt;</StyleKw>{" "}
+      <TsType getLink={getLink}>{tsType}</TsType>
+    </>
+  );
 }
 
 function Conditional({
-    getLink,
-    children: conditional,
+  getLink,
+  children: conditional,
 }: {
-    getLink: LinkGetter;
-    children: TsConditionalDef;
+  getLink: LinkGetter;
+  children: TsConditionalDef;
 }) {
-    return (
-        <>
-            <TsType getLink={getLink}>{conditional.checkType}</TsType>{" "}
-            <StyleKw>extends</StyleKw>{" "}
-            <TsType getLink={getLink}>{conditional.extendsType}</TsType>{" "}
-            <StyleKw>?</StyleKw>{" "}
-            <TsType getLink={getLink}>{conditional.trueType}</TsType>{" "}
-            <StyleKw>:</StyleKw>{" "}
-            <TsType getLink={getLink}>{conditional.falseType}</TsType>
-        </>
-    );
+  return (
+    <>
+      <TsType getLink={getLink}>{conditional.checkType}</TsType>{" "}
+      <StyleKw>extends</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.extendsType}</TsType>{" "}
+      <StyleKw>?</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.trueType}</TsType>{" "}
+      <StyleKw>:</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.falseType}</TsType>
+    </>
+  );
 }
 
 function IndexedAccess(
-    { children: { objType, indexType }, getLink }: {
-        children: TsIndexedAccessDef;
-        getLink: LinkGetter;
-    },
+  { children: { objType, indexType }, getLink }: {
+    children: TsIndexedAccessDef;
+    getLink: LinkGetter;
+  },
 ) {
-    return (
-        <>
-            <TsType getLink={getLink}>{objType}</TsType>[<TsType
-                getLink={getLink}
-            >
-                {indexType}
-            </TsType>]
-        </>
-    );
+  return (
+    <>
+      <TsType getLink={getLink}>{objType}</TsType>[<TsType
+        getLink={getLink}
+      >
+        {indexType}
+      </TsType>]
+    </>
+  );
 }
 
 function Mapped(
-    { children: { readonly, typeParam, nameType, optional, tsType }, getLink }:
-        {
-            children: TsMappedTypeDef;
-            getLink: LinkGetter;
-        },
+  { children: { readonly, typeParam, nameType, optional, tsType }, getLink }: {
+    children: TsMappedTypeDef;
+    getLink: LinkGetter;
+  },
 ) {
-    return (
+  return (
+    <>
+      <MappedReadOnly>{readonly}</MappedReadOnly>
+      [<TypeParam_ constraint="in" getLink={getLink}>
+        {typeParam}
+      </TypeParam_>
+      {nameType && (
         <>
-            <MappedReadOnly>{readonly}</MappedReadOnly>
-            [<TypeParam_ constraint="in" getLink={getLink}>
-                {typeParam}
-            </TypeParam_>
-            {nameType && (
-                <>
-                    <StyleKw>in keyof{" "}</StyleKw>
-                    <TsType getLink={getLink}>{nameType}</TsType>
-                </>
-            )}]<MappedOptional>{optional}</MappedOptional>
-            {tsType && (
-                <>
-                    <StyleKw>:</StyleKw>{" "}
-                    <TsType getLink={getLink}>{tsType}</TsType>
-                </>
-            )};
+          <StyleKw>in keyof{" "}</StyleKw>
+          <TsType getLink={getLink}>{nameType}</TsType>
         </>
-    );
+      )}]<MappedOptional>{optional}</MappedOptional>
+      {tsType && (
+        <>
+          <StyleKw>:</StyleKw> <TsType getLink={getLink}>{tsType}</TsType>
+        </>
+      )};
+    </>
+  );
 }
 
 function MappedReadOnly(
-    { children: readonly }: { children: TruePlusMinus | undefined },
+  { children: readonly }: { children: TruePlusMinus | undefined },
 ) {
-    switch (readonly) {
-        case true:
-            return <StyleKw>readonly{" "}</StyleKw>;
-        case "+":
-            return <StyleKw>+readonly{" "}</StyleKw>;
-        case "-":
-            return <StyleKw>-readonly{" "}</StyleKw>;
-        default:
-            return null;
-    }
+  switch (readonly) {
+    case true:
+      return <StyleKw>readonly{" "}</StyleKw>;
+    case "+":
+      return <StyleKw>+readonly{" "}</StyleKw>;
+    case "-":
+      return <StyleKw>-readonly{" "}</StyleKw>;
+    default:
+      return null;
+  }
 }
 
 function MappedOptional(
-    { children: optional }: { children: TruePlusMinus | undefined },
+  { children: optional }: { children: TruePlusMinus | undefined },
 ) {
-    switch (optional) {
-        case true:
-            return <StyleKw>?</StyleKw>;
-        case "+":
-            return <StyleKw>+?</StyleKw>;
-        case "-":
-            return <StyleKw>-?</StyleKw>;
-        default:
-            return null;
-    }
+  switch (optional) {
+    case true:
+      return <StyleKw>?</StyleKw>;
+    case "+":
+      return <StyleKw>+?</StyleKw>;
+    case "-":
+      return <StyleKw>-?</StyleKw>;
+    default:
+      return null;
+  }
 }
 
 function LiteralIndexSignatures(
-    { items: signatures, getLink }: {
-        items: LiteralIndexSignatureDef[];
-        getLink: LinkGetter;
-    },
+  { items: signatures, getLink }: {
+    items: LiteralIndexSignatureDef[];
+    getLink: LinkGetter;
+  },
 ) {
-    if (!signatures.length) {
-        return null;
-    }
-    const items = signatures.map(({ params, readonly, tsType }, i) => {
-        const item = (
-            <>
-                {readonly
-                    ? <StyleKw>{"readonly "}</StyleKw>
-                    : undefined}[<Params
-                    getLink={getLink}
-                >
-                    {params}
-                </Params>]{tsType && (
-                    <>
-                        <StyleKw>{": "}</StyleKw>
-                        <TsType getLink={getLink}>{tsType}</TsType>
-                    </>
-                )};{" "}
-            </>
-        );
-        return <Fragment key={i}>{"  "}{item}</Fragment>;
-    });
-    return <>{"  "}{items}</>;
+  if (!signatures.length) {
+    return null;
+  }
+  const items = signatures.map(({ params, readonly, tsType }, i) => {
+    const item = (
+      <>
+        {readonly ? <StyleKw>{"readonly "}</StyleKw> : undefined}[<Params
+          getLink={getLink}
+        >
+          {params}
+        </Params>]{tsType && (
+          <>
+            <StyleKw>{": "}</StyleKw>
+            <TsType getLink={getLink}>{tsType}</TsType>
+          </>
+        )};{" "}
+      </>
+    );
+    return <Fragment key={i}>{"  "}{item}</Fragment>;
+  });
+  return <>{"  "}{items}</>;
 }
 
 function LiteralCallSignatures(
-    { items, getLink }: {
-        items: LiteralCallSignatureDef[];
-        getLink: LinkGetter;
-    },
+  { items, getLink }: {
+    items: LiteralCallSignatureDef[];
+    getLink: LinkGetter;
+  },
 ) {
-    return (
-        <>
-            {items.map(({ typeParams, params, tsType }, i) => {
-                const item = (
-                    <>
-                        <TypeParams_
-                            params={typeParams}
-                            getLink={getLink}
-                        />(<Params
-                            getLink={getLink}
-                        >
-                            {params}
-                        </Params>){tsType &&
-                            (
-                                <>
-                                    <StyleKw>{": "}</StyleKw>
-                                    <TsType getLink={getLink}>{tsType}</TsType>
-                                </>
-                            )};{" "}
-                    </>
-                );
-                return <Fragment key={i}>{"  "}{item}</Fragment>;
-            })}
-        </>
-    );
+  return (
+    <>
+      {items.map(({ typeParams, params, tsType }, i) => {
+        const item = (
+          <>
+            <TypeParams_
+              params={typeParams}
+              getLink={getLink}
+            />(<Params
+              getLink={getLink}
+            >
+              {params}
+            </Params>){tsType &&
+              (
+                <>
+                  <StyleKw>{": "}</StyleKw>
+                  <TsType getLink={getLink}>{tsType}</TsType>
+                </>
+              )};{" "}
+          </>
+        );
+        return <Fragment key={i}>{"  "}{item}</Fragment>;
+      })}
+    </>
+  );
 }
 
 function LiteralProperties(
-    { items: props, getLink }: {
-        items: LiteralPropertyDef[];
-        getLink: LinkGetter;
-    },
+  { items: props, getLink }: {
+    items: LiteralPropertyDef[];
+    getLink: LinkGetter;
+  },
 ) {
-    if (!props.length) {
-        return null;
-    }
-    return (
-        <>
-            {props
-                .map(({ name, readonly, computed, optional, tsType }) => (
-                    <>
-                        {readonly
-                            ? <StyleKw>{"readonly "}</StyleKw>
-                            : undefined}
-                        {computed ? `[${name}]` : name}
-                        {optional ? "?" : undefined}
-                        {tsType
-                            ? (
-                                <>
-                                    <StyleKw>{": "}</StyleKw>
-                                    <TsType getLink={getLink}>{tsType}</TsType>
-                                </>
-                            )
-                            : ""}
-                    </>
-                ))
-                .reduce((a, b) => <>{a}; {b}</>)}
-        </>
-    );
+  if (!props.length) {
+    return null;
+  }
+  return (
+    <>
+      {props
+        .map(({ name, readonly, computed, optional, tsType }) => (
+          <>
+            {readonly ? <StyleKw>{"readonly "}</StyleKw> : undefined}
+            {computed ? `[${name}]` : name}
+            {optional ? "?" : undefined}
+            {tsType
+              ? (
+                <>
+                  <StyleKw>{": "}</StyleKw>
+                  <TsType getLink={getLink}>{tsType}</TsType>
+                </>
+              )
+              : ""}
+          </>
+        ))
+        .reduce((a, b) => <>{a}; {b}</>)}
+    </>
+  );
 }
 
 function LiteralMethods(
-    { items: methods, getLink }: {
-        items: LiteralMethodDef[];
-        getLink: LinkGetter;
-    },
+  { items: methods, getLink }: {
+    items: LiteralMethodDef[];
+    getLink: LinkGetter;
+  },
 ) {
-    if (!methods.length) {
-        return null;
-    }
-    return (
-        <>
-            {"  "}
-            {methods.map((
-                {
-                    name,
-                    kind,
-                    optional,
-                    computed,
-                    returnType,
-                    typeParams,
-                    params,
-                },
-            ) => {
-                return (
-                    <>
-                        {kind === "getter"
-                            ? <StyleKw>{"get "}</StyleKw>
-                            : kind === "setter"
-                            ? <StyleKw>{"set "}</StyleKw>
-                            : undefined}
-                        {name === "new"
-                            ? <StyleKw>{name}{" "}</StyleKw>
-                            : computed
-                            ? `[${name}]`
-                            : <StyleCallee>{name}</StyleCallee>}
-                        {optional ? "?" : undefined}
-                        <TypeParams_
-                            params={typeParams}
-                            getLink={getLink}
-                        />(<Params
-                            indent="  "
-                            getLink={getLink}
-                        >
-                            {params}
-                        </Params>
-                        {params.length < 3 ? "" : "  "}
-                        ){returnType
-                            ? (
-                                <>
-                                    <StyleKw>{": "}</StyleKw>
-                                    <TsType getLink={getLink}>
-                                        {returnType}
-                                    </TsType>
-                                </>
-                            )
-                            : ""}
-                        {"; "}
-                    </>
-                );
-            }).reduce((a, b) => <>{a}{"\n  "}{b}</>)}
-        </>
-    );
+  if (!methods.length) {
+    return null;
+  }
+  return (
+    <>
+      {"  "}
+      {methods.map((
+        {
+          name,
+          kind,
+          optional,
+          computed,
+          returnType,
+          typeParams,
+          params,
+        },
+      ) => {
+        return (
+          <>
+            {kind === "getter"
+              ? <StyleKw>{"get "}</StyleKw>
+              : kind === "setter"
+              ? <StyleKw>{"set "}</StyleKw>
+              : undefined}
+            {name === "new"
+              ? <StyleKw>{name}{" "}</StyleKw>
+              : computed
+              ? `[${name}]`
+              : <StyleCallee>{name}</StyleCallee>}
+            {optional ? "?" : undefined}
+            <TypeParams_
+              params={typeParams}
+              getLink={getLink}
+            />(<Params
+              indent="  "
+              getLink={getLink}
+            >
+              {params}
+            </Params>
+            {params.length < 3 ? "" : "  "}
+            ){returnType
+              ? (
+                <>
+                  <StyleKw>{": "}</StyleKw>
+                  <TsType getLink={getLink}>
+                    {returnType}
+                  </TsType>
+                </>
+              )
+              : ""}
+            {"; "}
+          </>
+        );
+      }).reduce((a, b) => <>{a}{"\n  "}{b}</>)}
+    </>
+  );
 }
 
 function TypeLiteral(
-    { children: typeLiteral, getLink }: {
-        children: TsTypeLiteralDef;
-        getLink: LinkGetter;
-    },
+  { children: typeLiteral, getLink }: {
+    children: TsTypeLiteralDef;
+    getLink: LinkGetter;
+  },
 ) {
-    const {
-        indexSignatures = [],
-        callSignatures = [],
-        properties = [],
-        methods = [],
-    } = typeLiteral;
-    const maxLen = indexSignatures.length + callSignatures.length +
-        properties.length +
-        methods.length;
-    if (!maxLen) {
-        return <>{"{}"}</>;
-    }
-    const multiline = maxLen >= 3;
-    return (
-        <>
-            &#123;{multiline ? "\n" : " "}
-            <LiteralIndexSignatures items={indexSignatures} getLink={getLink} />
-            <LiteralCallSignatures items={callSignatures} getLink={getLink} />
-            <LiteralProperties items={properties} getLink={getLink} />
-            <LiteralMethods items={methods} getLink={getLink} />
-            {multiline ? "\n" : " "}
-            &#125;
-        </>
-    );
+  const {
+    indexSignatures = [],
+    callSignatures = [],
+    properties = [],
+    methods = [],
+  } = typeLiteral;
+  const maxLen = indexSignatures.length + callSignatures.length +
+    properties.length +
+    methods.length;
+  if (!maxLen) {
+    return <>{"{}"}</>;
+  }
+  const multiline = maxLen >= 3;
+  return (
+    <>
+      &#123;{multiline ? "\n" : " "}
+      <LiteralIndexSignatures items={indexSignatures} getLink={getLink} />
+      <LiteralCallSignatures items={callSignatures} getLink={getLink} />
+      <LiteralProperties items={properties} getLink={getLink} />
+      <LiteralMethods items={methods} getLink={getLink} />
+      {multiline ? "\n" : " "}
+      &#125;
+    </>
+  );
 }
 
 function TypePredicate(
-    { children: { asserts, param, type }, getLink }: {
-        children: TsTypePredicateDef;
-        getLink: LinkGetter;
-    },
+  { children: { asserts, param, type }, getLink }: {
+    children: TsTypePredicateDef;
+    getLink: LinkGetter;
+  },
 ) {
-    return (
+  return (
+    <>
+      {asserts ? <StyleKw>{"asserts "}</StyleKw> : undefined}
+      {param.type === "this" ? <StyleKw>this</StyleKw> : param.name}
+      {type && (
         <>
-            {asserts ? <StyleKw>{"asserts "}</StyleKw> : undefined}
-            {param.type === "this" ? <StyleKw>this</StyleKw> : param.name}
-            {type && (
-                <>
-                    <StyleKw>{" is "}</StyleKw>
-                    <TsType getLink={getLink}>{type}</TsType>
-                </>
-            )}
+          <StyleKw>{" is "}</StyleKw>
+          <TsType getLink={getLink}>{type}</TsType>
         </>
-    );
+      )}
+    </>
+  );
 }
 
 //#region params
 
 function ParamArray({
-    children: param,
-    optional,
-    getLink,
+  children: param,
+  optional,
+  getLink,
 }: {
-    children: ParamArrayDef;
-    optional: boolean;
-    getLink: LinkGetter;
+  children: ParamArrayDef;
+  optional: boolean;
+  getLink: LinkGetter;
 }) {
-    const elements = param.elements.map((e, i) =>
-        e && <Param key={i} getLink={getLink}>{e}</Param>
-    );
-    let elementsElement: JSX.Element | undefined;
-    if (elements.length) {
-        elementsElement = elements.reduce((a, b) => <>{a}, {b}</>);
-    }
-    return (
+  const elements = param.elements.map((e, i) =>
+    e && <Param key={i} getLink={getLink}>{e}</Param>
+  );
+  let elementsElement: JSX.Element | undefined;
+  if (elements.length) {
+    elementsElement = elements.reduce((a, b) => <>{a}, {b}</>);
+  }
+  return (
+    <>
+      [{elementsElement || elements}]
+      {param.optional || optional ? "?" : ""}
+      {param.tsType && (
         <>
-            [{elementsElement || elements}]
-            {param.optional || optional ? "?" : ""}
-            {param.tsType && (
-                <>
-                    <StyleKw>{": "}</StyleKw>
-                    <TsType getLink={getLink}>{param.tsType}</TsType>
-                </>
-            )}
+          <StyleKw>{": "}</StyleKw>
+          <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
-    );
+      )}
+    </>
+  );
 }
 
 function ParamAssign({
-    children: param,
-    getLink,
+  children: param,
+  getLink,
 }: {
-    children: ParamAssignDef;
-    getLink: LinkGetter;
+  children: ParamAssignDef;
+  getLink: LinkGetter;
 }) {
-    return (
-        <>
-            <Param optional getLink={getLink}>
-                {param.left}
-            </Param>
-            {param.tsType && <TsType getLink={getLink}>{param.tsType}</TsType>}
-        </>
-    );
+  return (
+    <>
+      <Param optional getLink={getLink}>
+        {param.left}
+      </Param>
+      {param.tsType && <TsType getLink={getLink}>{param.tsType}</TsType>}
+    </>
+  );
 }
 
 function ParamIdentifier({
-    children: param,
-    optional: _,
-    getLink,
+  children: param,
+  optional: _,
+  getLink,
 }: {
-    children: ParamIdentifierDef;
-    optional: boolean;
-    getLink: LinkGetter;
+  children: ParamIdentifierDef;
+  optional: boolean;
+  getLink: LinkGetter;
 }) {
-    return (
+  return (
+    <>
+      <PropertyName hasType={!!param.tsType}>{param}</PropertyName>
+      {param.tsType && (
         <>
-            <PropertyName hasType={!!param.tsType}>{param}</PropertyName>
-            {param.tsType && (
-                <>
-                    {" "}
-                    <TsType getLink={getLink}>{param.tsType}</TsType>
-                </>
-            )}
+          {" "}
+          <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
-    );
+      )}
+    </>
+  );
 }
 
 function ObjectAssignPat({
-    children: pattern,
+  children: pattern,
 }: {
-    children: ObjectPatPropAssignDef;
-    getLink: LinkGetter;
+  children: ObjectPatPropAssignDef;
+  getLink: LinkGetter;
 }) {
-    return (
-        <>
-            {pattern.key}
-            {pattern.value && pattern.value !== "[UNSUPPORTED]"
-                ? `= ${pattern.value}`
-                : undefined}
-        </>
-    );
+  return (
+    <>
+      {pattern.key}
+      {pattern.value && pattern.value !== "[UNSUPPORTED]"
+        ? `= ${pattern.value}`
+        : undefined}
+    </>
+  );
 }
 
 function ObjectKeyValuePat({
-    children,
-    getLink,
+  children,
+  getLink,
 }: {
-    children: ObjectPatPropKeyValueDef;
-    getLink: LinkGetter;
+  children: ObjectPatPropKeyValueDef;
+  getLink: LinkGetter;
 }) {
-    return (
-        <>
-            {children.key}: <Param getLink={getLink}>{children.value}</Param>
-        </>
-    );
+  return (
+    <>
+      {children.key}: <Param getLink={getLink}>{children.value}</Param>
+    </>
+  );
 }
 
 function ObjectRestPat({
-    children,
-    getLink,
+  children,
+  getLink,
 }: {
-    children: ObjectPatPropRestDef;
-    getLink: LinkGetter;
+  children: ObjectPatPropRestDef;
+  getLink: LinkGetter;
 }) {
-    return (
-        <>
-            <StyleKw>...</StyleKw>
-            <Param getLink={getLink}>{children.arg}</Param>
-        </>
-    );
+  return (
+    <>
+      <StyleKw>...</StyleKw>
+      <Param getLink={getLink}>{children.arg}</Param>
+    </>
+  );
 }
 
 function ObjectPat({
-    children: pattern,
-    getLink,
+  children: pattern,
+  getLink,
 }: {
-    children: ObjectPatPropDef;
-    getLink: LinkGetter;
+  children: ObjectPatPropDef;
+  getLink: LinkGetter;
 }) {
-    switch (pattern.kind) {
-        case "assign":
-            return (
-                <ObjectAssignPat getLink={getLink}>{pattern}</ObjectAssignPat>
-            );
-        case "keyValue":
-            return (
-                <ObjectKeyValuePat getLink={getLink}>
-                    {pattern}
-                </ObjectKeyValuePat>
-            );
-        case "rest":
-            return <ObjectRestPat getLink={getLink}>{pattern}</ObjectRestPat>;
-    }
+  switch (pattern.kind) {
+    case "assign":
+      return <ObjectAssignPat getLink={getLink}>{pattern}</ObjectAssignPat>;
+    case "keyValue":
+      return (
+        <ObjectKeyValuePat getLink={getLink}>
+          {pattern}
+        </ObjectKeyValuePat>
+      );
+    case "rest":
+      return <ObjectRestPat getLink={getLink}>{pattern}</ObjectRestPat>;
+  }
 }
 
 function ParamObject({
-    children: param,
-    optional,
-    getLink,
+  children: param,
+  optional,
+  getLink,
 }: {
-    children: ParamObjectDef;
-    optional: boolean;
-    getLink: LinkGetter;
+  children: ParamObjectDef;
+  optional: boolean;
+  getLink: LinkGetter;
 }) {
-    const props = [];
-    for (let i = 0; i < param.props.length; i++) {
-        props.push(<ObjectPat getLink={getLink}>{param.props[i]}</ObjectPat>);
-        if (i < param.props.length - 1) {
-            props.push(<>{", "}</>);
-        }
+  const props = [];
+  for (let i = 0; i < param.props.length; i++) {
+    props.push(<ObjectPat getLink={getLink}>{param.props[i]}</ObjectPat>);
+    if (i < param.props.length - 1) {
+      props.push(<>{", "}</>);
     }
-    return (
+  }
+  return (
+    <>
+      &#123; {props} &#125;{param.optional || optional ? "?" : ""}
+      {param.tsType && (
         <>
-            &#123; {props} &#125;{param.optional || optional ? "?" : ""}
-            {param.tsType && (
-                <>
-                    <StyleKw>{": "}</StyleKw>
-                    <TsType getLink={getLink}>{param.tsType}</TsType>
-                </>
-            )}
+          <StyleKw>{": "}</StyleKw>
+          <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
-    );
+      )}
+    </>
+  );
 }
 
 function ParamRest({
-    children: param,
-    getLink,
+  children: param,
+  getLink,
 }: {
-    children: ParamRestDef;
-    getLink: LinkGetter;
+  children: ParamRestDef;
+  getLink: LinkGetter;
 }) {
-    return (
+  return (
+    <>
+      <StyleKw>...</StyleKw>
+      <Param getLink={getLink}>{param.arg}</Param>
+      {param.tsType && (
         <>
-            <StyleKw>...</StyleKw>
-            <Param getLink={getLink}>{param.arg}</Param>
-            {param.tsType && (
-                <>
-                    <StyleKw>{": "}</StyleKw>
-                    <TsType getLink={getLink}>{param.tsType}</TsType>
-                </>
-            )}
+          <StyleKw>{": "}</StyleKw>
+          <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
-    );
+      )}
+    </>
+  );
 }
 
 export function Param({
-    children: param,
-    optional = false,
-    getLink,
+  children: param,
+  optional = false,
+  getLink,
 }: {
-    children: ParamDef;
-    optional?: boolean;
-    getLink: LinkGetter;
+  children: ParamDef;
+  optional?: boolean;
+  getLink: LinkGetter;
 }) {
-    switch (param.kind) {
-        case "array":
-            return (
-                <ParamArray getLink={getLink} optional={optional}>
-                    {param}
-                </ParamArray>
-            );
-        case "assign":
-            return <ParamAssign getLink={getLink}>{param}</ParamAssign>;
-        case "identifier":
-            return (
-                <>
-                    <ParamIdentifier getLink={getLink} optional={optional}>
-                        {param}
-                    </ParamIdentifier>
-                </>
-            );
-        case "object":
-            return (
-                <ParamObject getLink={getLink} optional={optional}>
-                    {param}
-                </ParamObject>
-            );
-        case "rest":
-            return <ParamRest getLink={getLink}>{param}</ParamRest>;
-    }
+  switch (param.kind) {
+    case "array":
+      return (
+        <ParamArray getLink={getLink} optional={optional}>
+          {param}
+        </ParamArray>
+      );
+    case "assign":
+      return <ParamAssign getLink={getLink}>{param}</ParamAssign>;
+    case "identifier":
+      return (
+        <>
+          <ParamIdentifier getLink={getLink} optional={optional}>
+            {param}
+          </ParamIdentifier>
+        </>
+      );
+    case "object":
+      return (
+        <ParamObject getLink={getLink} optional={optional}>
+          {param}
+        </ParamObject>
+      );
+    case "rest":
+      return <ParamRest getLink={getLink}>{param}</ParamRest>;
+  }
 }
 
 export function Params({
-    children: params,
-    getLink,
-    indent = "",
+  children: params,
+  getLink,
+  indent = "",
 }: {
-    children: ParamDef[];
-    getLink: LinkGetter;
-    indent?: string;
+  children: ParamDef[];
+  getLink: LinkGetter;
+  indent?: string;
 }) {
-    if (!params?.length) {
-        return null;
-    }
+  if (!params?.length) {
+    return null;
+  }
 
-    if (params.length < 3) {
-        const items = [];
-        for (let i = 0; i < params.length; i++) {
-            items.push(
-                <>
-                    <Param getLink={getLink}>{params[i]}</Param>
-                </>,
-            );
-            if (i < params.length - 1) {
-                items.push(<>{", "}</>);
-            }
-        }
-        return <>{items}</>;
-    }
-    return (
+  if (params.length < 3) {
+    const items = [];
+    for (let i = 0; i < params.length; i++) {
+      items.push(
         <>
-            {"\n  " + indent}
-            {params
-                .map((param, i) => (
-                    <Param key={i} getLink={getLink}>{param}</Param>
-                ))
-                .reduce((a, b) => (
-                    <>
-                        {a}
-                        {",\n  " + indent}
-                        {b}
-                    </>
-                ))}
-            {",\n"}
-        </>
-    );
+          <Param getLink={getLink}>{params[i]}</Param>
+        </>,
+      );
+      if (i < params.length - 1) {
+        items.push(<>{", "}</>);
+      }
+    }
+    return <>{items}</>;
+  }
+  return (
+    <>
+      {"\n  " + indent}
+      {params
+        .map((param, i) => <Param key={i} getLink={getLink}>{param}</Param>)
+        .reduce((a, b) => (
+          <>
+            {a}
+            {",\n  " + indent}
+            {b}
+          </>
+        ))}
+      {",\n"}
+    </>
+  );
 }
 
 //#endregion

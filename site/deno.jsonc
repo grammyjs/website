@@ -2,7 +2,9 @@
   "lock": true,
   "nodeModulesDir": "manual",
   "fmt": {
-    "proseWrap": "preserve"
+    "proseWrap": "preserve",
+    "useTabs": false,
+    "indentWidth": 2
   },
   "tasks": {
     "setup": "deno install --allow-scripts && deno task genapi",
