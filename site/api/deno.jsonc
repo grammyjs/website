@@ -15,6 +15,10 @@
   "exclude": [
     ".cache"
   ],
+  "fmt": {
+    "useTabs": false,
+    "indentWidth": 2
+  },
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
