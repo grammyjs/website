@@ -62,8 +62,8 @@ run(bot);
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { run } from "https://deno.land/x/grammy_runner/mod.ts";
+import { Bot } from "npm:grammy";
+import { run } from "npm:@grammyjs/runner";
 
 // Crear un bot.
 const bot = new Bot("");
@@ -243,8 +243,8 @@ run(bot);
 
 ```ts [Deno]
 // bot.ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
+import { Bot } from "npm:grammy";
+import { distribute, run } from "npm:@grammyjs/runner";
 
 // Crea el bot.
 const bot = new Bot(""); // <-- pon tu bot token entre los ""
@@ -290,7 +290,7 @@ bot.on("message", (ctx) => ctx.reply("¡Viva!"));
 
 ```ts [Deno]
 // worker.ts
-import { BotWorker } from "https://deno.land/x/grammy_runner/mod.ts";
+import { BotWorker } from "npm:@grammyjs/runner";
 
 // Crea un nuevo bot worker.
 const bot = new BotWorker(""); // <-- pasa tu bot token aquí de nuevo.

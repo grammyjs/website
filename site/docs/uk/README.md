@@ -71,7 +71,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
 

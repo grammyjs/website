@@ -168,7 +168,7 @@ Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
 Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 // Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
 const bot = new Bot(""); // <-- taruh token bot-mu di antara ""

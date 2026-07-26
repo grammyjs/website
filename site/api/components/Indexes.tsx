@@ -39,7 +39,9 @@ export function Indexes({
                 {{
                   raw: (
                     <>
-                      [{(v.params[0] as ParamIdentifierDef).name}
+                      [{(v.params[
+                        0
+                      ] as ParamIdentifierDef).name}
                       {v.params[0].tsType && (
                         <>
                           :{" "}
@@ -55,7 +57,9 @@ export function Indexes({
               {v.tsType && (
                 <>
                   {" "}
-                  <TsType getLink={getLink}>{v.tsType}</TsType>
+                  <TsType getLink={getLink}>
+                    {v.tsType}
+                  </TsType>
                 </>
               )};
             </CodeBlock>

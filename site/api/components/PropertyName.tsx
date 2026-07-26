@@ -11,7 +11,9 @@ export function PropertyName({
   const optional = "raw" in children ? false : children.optional;
   return (
     <>
-      <span style={klass ? "" : "--shiki-light:#24292E;--shiki-dark:#E1E4E8;"}>
+      <span
+        style={klass ? "" : "--shiki-light:#24292E;--shiki-dark:#E1E4E8;"}
+      >
         {"raw" in children ? children.raw : children.name}
       </span>
       {(optional || hasType) && (

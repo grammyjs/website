@@ -50,8 +50,8 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
+import { Bot } from "npm:grammy";
+import { addReplyParam } from "npm:@grammyjs/autoquote";
 
 const bot = new Bot("");
 
@@ -110,8 +110,8 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
+import { Bot } from "npm:grammy";
+import { autoQuote } from "npm:@grammyjs/autoquote";
 
 const bot = new Bot("");
 

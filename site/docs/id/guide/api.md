@@ -76,7 +76,7 @@ async function kirimHaloKe12345() {
 ```
 
 ```ts [Deno]
-import { Api, Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Api, Bot } from "npm:grammy";
 
 const bot = new Bot("");
 
@@ -130,7 +130,7 @@ Selain itu, type definition tersebut juga sudah di-export langsung dari package 
 Di Deno, kamu tinggal import type definition dari `types.ts`, yang mana berdampingan dengan file `mod.ts`:
 
 ```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
+import { type Chat } from "npm:grammy/types";
 ```
 
 #### Type Definition di Node.js

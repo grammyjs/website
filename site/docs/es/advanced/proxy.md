@@ -7,7 +7,7 @@ Mira las `ApiClientOptions` en la [referencia de la API de grammY](/ref/core/api
 En Deno, así es como se usaría un proxy `http`:
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },

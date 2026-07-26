@@ -71,7 +71,7 @@ import {
   commandNotFound,
   commands,
   type CommandsFlavor,
-} from "https://deno.land/x/grammy_commands/mod.ts";
+} from "npm:@grammyjs/commands";
 ```
 
 :::
@@ -438,7 +438,7 @@ myCommands.command(
 ```
 
 ```ts [Deno]
-import { LanguageCodes } from "https://deno.land/x/grammy_commands/mod.ts";
+import { LanguageCodes } from "npm:@grammyjs/commands";
 
 myCommands.command(
   "chef",

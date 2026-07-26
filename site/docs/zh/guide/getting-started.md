@@ -169,7 +169,7 @@ Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
 你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 // 创建一个 `Bot` 类的实例，并将你的 bot token 传给它。
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间

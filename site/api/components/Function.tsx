@@ -1,4 +1,4 @@
-import { DocNodeFunction } from "@deno/doc/types";
+import { type DocNodeFunction } from "../types.ts";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";
 import { H2 } from "./H2.tsx";
@@ -21,8 +21,8 @@ export function Function(
     overloadCount?: number;
   },
 ) {
-  const params = func.functionDef.params;
-  const typeParams = func.functionDef.typeParams;
+  const params = func.def.params;
+  const typeParams = func.def.typeParams ?? [];
   const getLink = newGetLink(oldGetLink, typeParams);
 
   return (
@@ -54,7 +54,9 @@ export function Function(
                     class="typeRef"
                     style={{ textDecoration: "underline" }}
                   >
-                    <StyleTypeRef>Overload {n}</StyleTypeRef>
+                    <StyleTypeRef>
+                      Overload {n}
+                    </StyleTypeRef>
                   </a>
                   {"\n"}
                   <Def method={v} getLink={getLink} />
@@ -72,18 +74,24 @@ export function Function(
         show={!!typeParams.length}
         h3={!!overloadCount}
       >
-        <TypeParams getLink={getLink}>{typeParams}</TypeParams>
+        <TypeParams typeParams={typeParams} getLink={getLink} />
       </Sector>
-      <Sector title="Parameters" show={!!params.length} h3={!!overloadCount}>
-        <Parameters getLink={getLink} doc={func.jsDoc}>{params}</Parameters>
+      <Sector
+        title="Parameters"
+        show={!!params.length}
+        h3={!!overloadCount}
+      >
+        <Parameters getLink={getLink} doc={func.jsDoc}>
+          {params}
+        </Parameters>
       </Sector>
       <Sector
         title="Return Type"
-        show={!!func.functionDef.returnType}
+        show={!!func.def.returnType}
         h3={!!overloadCount}
       >
         <ReturnType getLink={getLink} doc={func.jsDoc}>
-          {func.functionDef.returnType!}
+          {func.def.returnType!}
         </ReturnType>
       </Sector>
     </>

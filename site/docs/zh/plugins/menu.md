@@ -66,8 +66,8 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
+import { Bot } from "npm:grammy";
+import { Menu } from "npm:@grammyjs/menu";
 
 // 创建一个 bot。
 const bot = new Bot("");

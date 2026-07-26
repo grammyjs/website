@@ -58,11 +58,11 @@ bot.use(emojiParser());
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, Context } from "npm:grammy";
 importar {
   EmojiFlavor,
   emojiParser,
-} from "https://deno.land/x/grammy_emoji/mod.ts";
+} from "npm:@grammyjs/emoji";
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
