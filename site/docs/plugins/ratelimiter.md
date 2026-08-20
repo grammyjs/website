@@ -12,14 +12,14 @@ Unlike a simple message counter, ratelimiter supports several rate-limiting algo
 
 ![How ratelimiter processes Telegram updates](/images/grammY-ratelimiter-schema.webp)
 
-::: warning Rate-limiting users, not Telegram
+::: warning Rate-limiting Users, Not Telegram
 ratelimiter does **not** reduce the number of updates Telegram sends to your bot.
 The update has already reached your application when the middleware runs.
 
 What ratelimiter does is stop an abusive update **before your expensive handlers, database work, API calls, or other middleware execute**.
 :::
 
-## Quick start
+## Quick Start
 
 A limiter rule needs three things:
 
@@ -84,12 +84,12 @@ bot.start();
 `limit()` returns normal grammY middleware, so it can be used anywhere grammY accepts middleware.
 It also exposes additional methods such as `inspect()`, `diagnose()`, `consume()`, and `reset()` which we will cover later.
 
-::: tip Start simple
+::: tip Start Simple
 For many bots, a per-user Token Bucket with `MemoryStore` is a good development setup.
 Move to Redis when limiter state must be shared between multiple processes or machines.
 :::
 
-## How a rule is built
+## How A Rule Is Built
 
 The fluent `Limiter` builder lets you describe one policy without hiding important behavior behind defaults.
 A typical rule reads from left to right:
@@ -123,7 +123,7 @@ const rule = limiter.build();
 bot.use(limit(rule));
 ```
 
-## Choosing a rate-limiting algorithm
+## Choosing A Rate-limiting Algorithm
 
 ratelimiter currently provides four rate-limiting algorithms plus the high-level `cooldown()` helper.
 They solve different problems.
@@ -136,7 +136,7 @@ They solve different problems.
 | GCRA | Smooth sustained pacing | Explicit burst capacity | No fixed reset boundary | O(1) | Yes |
 | Cooldown | Minimum delay between actions | One action at a time | No fixed-window edge case | O(1) | Fixed at one |
 
-::: tip There is no universally best algorithm
+::: tip There Is No Universally Best Algorithm
 The right algorithm depends on what you are protecting.
 A command that should run at most once every 30 seconds has different semantics from a chat where users should be allowed to send a short burst and then slow down.
 :::
@@ -164,7 +164,7 @@ The main trade-off is the **window boundary**.
 A client may consume capacity near the end of one window and immediately consume a fresh window after the boundary.
 That can create a short burst much larger than the nominal average rate.
 
-::: warning Fixed Window is not a minimum-delay primitive
+::: warning Fixed Window Is Not A Minimum-delay Primitive
 A Fixed Window configured as `{ limit: 1, timeFrame: 30_000 }` does not guarantee 30 seconds between two accepted actions.
 One action may arrive at the end of one window and another just after the next window begins.
 
@@ -203,7 +203,7 @@ const limiter = Limiter.perUser<Context>()
 
 Use Sliding Window Counter when you want a familiar "N requests per time frame" policy but do not want the sharp reset behavior of Fixed Window.
 
-::: info Counter, not request log
+::: info Counter, Not Request Log
 This is a **Sliding Window Counter**, not an exact sliding log of every request timestamp.
 It deliberately keeps O(1) state per limited key.
 That makes it practical for large keyspaces while giving a much smoother result than a plain Fixed Window.
@@ -267,7 +267,7 @@ const limiter = Limiter.perUser<Context>()
 All Token Bucket numeric options may be static or generated from the current context.
 This makes it possible to vary burst capacity, refill rate, interval, or cost by user tier or operation type.
 
-::: tip Weighted cost is useful beyond messages
+::: tip Weighted Cost Is Useful Beyond Messages
 A "request" does not need to mean one Telegram update.
 You can use `cost` to model expensive operations.
 For example, a lightweight lookup may cost `1` while a report generation request costs `10`.
@@ -330,12 +330,12 @@ const limiter = Limiter.perUser<Context>()
 Internally, cooldown uses GCRA with a rate, burst, and cost of one.
 It therefore inherits the same atomic Memory/Redis behavior, inspection, reset, refund, and atomic-composition support.
 
-## Scoping a limiter
+## Scoping A Limiter
 
 A strategy describes **how much** capacity exists.
 The scope describes **who shares that capacity**.
 
-### Scope helpers
+### Scope Helpers
 
 The common scopes have concise factory helpers.
 
@@ -349,7 +349,7 @@ Limiter.global<Context>();
 They only configure the key generator.
 They do not select a strategy, storage engine, penalty, or other policy.
 
-#### Per user
+#### Per User
 
 ```ts
 const limiter = Limiter.perUser<Context>()
@@ -361,7 +361,7 @@ const limiter = Limiter.perUser<Context>()
 Each `ctx.from.id` receives independent state.
 Updates without `ctx.from` bypass the rule.
 
-#### Per chat
+#### Per Chat
 
 ```ts
 const limiter = Limiter.perChat<Context>()
@@ -372,7 +372,7 @@ const limiter = Limiter.perChat<Context>()
 
 All users inside the same chat share one limit.
 
-#### Per user per chat
+#### Per User Per Chat
 
 ```ts
 const limiter = Limiter.perUserPerChat<Context>()
@@ -403,12 +403,12 @@ const limiter = Limiter.global<Context>()
 
 Every matching update shares one global capacity pool.
 
-::: warning Be careful with global limits
+::: warning Be Careful With Global Limits
 A global limit can intentionally slow down **every user** because they all share the same key.
 It is useful as a final protection layer around scarce resources, but it is rarely a replacement for per-user anti-spam limits.
 :::
 
-### Custom scope
+### Custom Scope
 
 Use `.limitFor()` directly when the built-in scopes are not enough.
 
@@ -485,12 +485,12 @@ interface IRedisClient {
 This keeps the plugin driver-agnostic.
 You may adapt ioredis, node-redis, a Deno Redis client, or another client as long as the required Redis command semantics are preserved.
 
-::: info No Redis client dependency
+::: info No Redis Client Dependency
 Installing ratelimiter does not install or choose a Redis client for your application.
 `RedisStore` is the rate-limit storage implementation; the network client remains your choice.
 :::
 
-### Redis uses atomic server-side operations
+### Redis Uses Atomic Server-side Operations
 
 The Redis implementation uses Lua scripts for operations that must remain atomic under concurrency.
 Token Bucket, GCRA, Sliding Window, escalation, refunds, and atomic composites are not implemented as unsafe client-side `GET` then `SET` sequences.
@@ -503,7 +503,7 @@ A Redis Cluster can execute a multi-key atomic script only when all participatin
 If you use `limitAllAtomic()` with Redis Cluster, choose key prefixes/hash tags so the participating keys share a slot.
 :::
 
-### Custom storage engines
+### Custom Storage Engines
 
 The public storage API is capability-based.
 The core storage contract includes primitives for the built-in strategies, while newer capabilities such as atomic composition, penalty escalation, and refunds are optional where possible.
@@ -512,12 +512,12 @@ This makes custom storage possible, but the atomicity guarantees are part of the
 For example, a Token Bucket backend must atomically perform refill + consume for one key.
 A plain read followed by a write is not sufficient under concurrency.
 
-::: danger Do not fake atomicity
+::: danger DO NOT FAKE ATOMICITY
 If a custom storage engine claims a built-in atomic capability, it must actually preserve that capability under concurrent access.
 Incorrect storage semantics can make a limiter appear to work in development while allowing substantial over-admission in production.
 :::
 
-## Key prefixes and rule isolation
+## Key Prefixes And Rule Isolation
 
 Every logical rule should have its own storage namespace.
 Use `.withKeyPrefix()` to provide it.
@@ -534,7 +534,7 @@ const search = Limiter.perUser<Context>()
   .withKeyPrefix("search");
 ```
 
-::: danger Use unique prefixes for independent rules
+::: danger USE UNIQUE PREFIXES FOR INDEPENDENT RULES
 Two independent rules that share both a storage engine and the same strategy key namespace can overwrite or misinterpret one another's state.
 
 ratelimiter warns when you build a rule without an explicit key prefix.
@@ -544,7 +544,7 @@ Treat that warning seriously when your application has more than one logical rul
 Penalty keys are isolated from strategy keys.
 When no custom penalty namespace is provided, the penalty namespace is derived from the rule's key prefix.
 
-## Conditional limiting
+## Conditional Limiting
 
 `.onlyIf()` lets a rule run only for updates that match a predicate.
 The predicate may be synchronous or asynchronous.
@@ -560,7 +560,7 @@ const stickerLimiter = Limiter.perUser<Context>()
 The predicate runs before entity-key generation, penalty lookup, and strategy storage operations.
 Returning `false` fully bypasses the rule.
 
-## Handling throttled updates
+## Handling Throttled Updates
 
 Use `.onThrottled()` when an enforced strategy rejection should trigger application code.
 
@@ -584,7 +584,7 @@ The callback receives:
 
 Returned promises are awaited.
 
-::: warning Avoid creating a reply flood
+::: warning Avoid Creating A Reply Flood
 Without a penalty, `onThrottled()` may run for every request the strategy rejects.
 A user that keeps spamming could therefore make your bot send many warning messages.
 
@@ -622,7 +622,7 @@ A dynamic penalty can depend on the current context and the strategy result:
 
 Returning `0` or a negative value skips applying a penalty for that throttled update.
 
-### Escalating penalties
+### Escalating Penalties
 
 Repeated strategy violations can increase the penalty geometrically.
 
@@ -643,12 +643,12 @@ Strike history expires after `resetAfter` milliseconds of inactivity.
 Requests rejected by an already-active penalty do **not** add another strike.
 Only a new strategy throttle does.
 
-::: tip Penalty state and strike state are separate
+::: tip Penalty State and Strike State Are Separate
 The middleware exposes both `clearPenalty()` and `clearStrikes()`.
 You may remove the active penalty without forgiving recent strike history, or clear strike history without touching the current penalty.
 :::
 
-## Combining multiple rules
+## Combining Multiple Rules
 
 Real systems often need more than one limit.
 For example, a bot may enforce:
@@ -659,7 +659,7 @@ For example, a bot may enforce:
 
 ratelimiter provides two composition modes with intentionally different semantics.
 
-### Sequential composition with `limitAll()`
+### Sequential Composition With `limitAll()`
 
 `limitAll()` evaluates rules from left to right.
 All layers must allow or bypass the update before downstream middleware runs.
@@ -688,14 +688,14 @@ bot.use(limitAll(perUser, global));
 
 The chain short-circuits when one layer rejects.
 
-::: warning Sequential composition consumes as it goes
+::: warning Sequential Composition Consumes As It Goes
 If an earlier layer consumes capacity and a later layer rejects the same update, the earlier consumption is **not rolled back**.
 
 This is deliberate because sequential layers may use independent or distributed storage engines where cross-layer rollback cannot be guaranteed.
 Put the most selective rule first when that ordering better matches your policy.
 :::
 
-### Atomic composition with `limitAllAtomic()`
+### Atomic Composition With `limitAllAtomic()`
 
 Use `limitAllAtomic()` when multiple rules must behave as one all-or-nothing admission decision.
 
@@ -709,7 +709,7 @@ All active layers are evaluated as one storage transaction.
 This is stronger than "inspect every layer, then consume" because a preview/commit sequence would still race under concurrency.
 The storage backend itself performs the atomic decision.
 
-::: danger Requirements for atomic composition
+::: danger Requirements For Atomic Composition
 `limitAllAtomic()` is intentionally strict.
 
 - All participating rules must use the **same storage instance**.
@@ -721,7 +721,7 @@ The storage backend itself performs the atomic decision.
 Use normal `limitAll()` when these guarantees are not available or not required.
 :::
 
-## Manual rate limiting with `consume()`
+## Manual Rate Limiting with `consume()`
 
 The middleware returned by `limit()` can be invoked manually without entering the grammY middleware chain.
 
@@ -748,12 +748,12 @@ Filters, keys, penalties, strategy behavior, observe-only mode, failure policy, 
 The difference is that `consume()` never calls grammY's `next()`.
 It gives control flow back to you through `result.isAllowed`.
 
-::: warning Do not accidentally charge twice
+::: warning Do Not Accidentally Charge Twice
 If the same update already passed through the same limiter as middleware, calling `consume(ctx)` on that same limiter performs another consumption.
 Do that only when you intentionally want to charge the operation twice.
 :::
 
-## Refunding manual consumption
+## Refunding Manual Consumption
 
 A successful manual `consume()` can be refunded using the exact result object returned by that limiter.
 
@@ -781,7 +781,7 @@ Refund receipts are:
 A result that was bypassed, throttled, already refunded, or produced by another limiter returns `false`.
 Refunding does not clear penalties or strike history.
 
-### Best-effort refund
+### Best-effort Refund
 
 When latency matters more than waiting for the refund to finish, use `refundBestEffort()`.
 
@@ -794,12 +794,12 @@ if (!operationStarted) {
 This schedules the refund and returns immediately.
 Detached failures are contained and can be observed through the `refundError` event.
 
-::: warning Best effort means best effort
+::: warning Best Effort Means Best Effort
 The process may exit before detached refund work completes.
 Use `await middleware.refund(result)` when restoring capacity is important to the correctness of your operation.
 :::
 
-## Inspecting limiter state
+## Inspecting Limiter State
 
 `inspect(ctx)` returns a non-consuming snapshot of the rule for a particular context.
 
@@ -857,11 +857,11 @@ const diagnostic = await combined.diagnose(ctx);
 
 The result identifies the blocking or uncertain layer when possible.
 
-## Administrative controls
+## Administrative Controls
 
 The middleware returned by `limit()` exposes several state controls.
 
-### Reset strategy state
+### Reset Strategy State
 
 ```ts
 await middleware.reset(ctx);
@@ -870,7 +870,7 @@ await middleware.reset(ctx);
 This deletes the strategy state for the entity resolved from `ctx`.
 It intentionally does **not** clear an active penalty.
 
-### Clear a penalty
+### Clear A Penalty
 
 ```ts
 await middleware.clearPenalty(ctx);
@@ -878,7 +878,7 @@ await middleware.clearPenalty(ctx);
 
 This removes penalty state without touching strategy capacity.
 
-### Clear escalation strikes
+### Clear Escalation Strikes
 
 ```ts
 await middleware.clearStrikes(ctx);
@@ -888,7 +888,7 @@ This removes strike history without clearing current strategy state or the activ
 
 These administrative operations intentionally ignore `onlyIf()` so an administrator can operate on state even when the supplied context would normally bypass the rule.
 
-## Observe-only mode
+## Observe-only Mode
 
 `observeOnly()` evaluates a rule without enforcing its rate-limit decision.
 
@@ -918,7 +918,7 @@ Observe-only rules:
 - never block downstream middleware because of a limiter decision,
 - skip `onThrottled()` to avoid user-visible enforcement side effects.
 
-::: tip Safer policy rollout
+::: tip Safer Policy Rollout
 Observe-only mode is useful when replacing a production limit.
 You can measure a candidate policy against real traffic before making it enforceable, without consuming or creating the production rule's enforcement state.
 :::
@@ -926,7 +926,7 @@ You can measure a candidate policy against real traffic before making it enforce
 Storage errors still follow the configured failure policy.
 A `throw` policy can therefore still surface a broken backend even when the rule itself is observe-only.
 
-## Storage failure policy
+## Storage Failure Policy
 
 By default, limiter-owned storage failures are thrown.
 This prevents a broken backend from silently changing your application's behavior.
@@ -969,7 +969,7 @@ A resolver may choose dynamically based on the context and failure metadata:
 
 Failure metadata identifies the limiter phase, storage operation, exact key, entity key, and original error.
 
-::: danger Choose failure behavior deliberately
+::: danger Choose Failure Behavior Deliberately
 There is no universally safe default between fail-open and fail-closed.
 
 Fail-open protects availability but can temporarily remove rate-limit protection.
@@ -977,7 +977,7 @@ Fail-closed preserves protection but can block legitimate traffic during a backe
 The default `throw` makes the failure explicit so your application decides what to do.
 :::
 
-## Naming rules
+## Naming Rules
 
 `.withName()` attaches a human-readable name to structured results.
 It does not affect storage keys or limiting behavior.
@@ -992,7 +992,7 @@ const limiter = Limiter.perUser<Context>()
 
 Names are useful in logs, decisions, metrics, inspection, diagnostics, and multi-rule compositions where a raw storage prefix is not a good observability label.
 
-## Rich metadata
+## Rich Metadata
 
 Rich identity metadata is opt-in.
 Enable the built-in Telegram identifiers with:
@@ -1024,12 +1024,12 @@ const limiter = Limiter.perUser<Context>()
 Custom fields are nested under `custom`, so they cannot overwrite the built-in Telegram IDs.
 Their TypeScript type is preserved in structured results.
 
-::: info Metadata stays opt-in
+::: info Metadata Stays Opt-in
 Metadata resolution is skipped unless `.withMetadata()` is enabled.
 Normal middleware also keeps metadata off the hot path unless an observed structured decision needs it.
 :::
 
-## Events and structured decisions
+## Events And Structured Decisions
 
 Rules expose typed synchronous events through `.on()` and `.off()`.
 
@@ -1060,13 +1060,13 @@ Available events include:
 The `decision` event is the most convenient structured integration point.
 Its discriminated outcome can represent allowed, throttled, bypassed, penalty-hit, and non-throwing storage-failure decisions.
 
-::: warning Event listeners are synchronous
+::: warning Event Listeners Are Synchronous
 Listener exceptions propagate through the middleware call.
 Treat event handlers as part of your application execution path.
 If telemetry must never break bot processing, contain failures inside your telemetry handler.
 :::
 
-## Metrics hooks
+## Metrics Hooks
 
 ratelimiter does not force a metrics vendor or instrumentation SDK on your application.
 Instead, the optional `metric` event emits vendor-neutral structured data.
@@ -1098,7 +1098,7 @@ Refund metrics report awaited vs best-effort execution and whether the refund su
 Metric generation is lazy.
 If there is no `metric` listener, the limiter does not create metric objects or capture timing data for them.
 
-## Reusable presets
+## Reusable Presets
 
 Use `defineLimiterPreset()` when the same policy should be applied in several places without sharing one mutable builder.
 
@@ -1146,12 +1146,12 @@ The returned builder can then be customized normally.
 The preset itself contains no limiter state.
 Captured storage instances may intentionally be shared while each applied rule receives its own key prefix.
 
-::: tip Why a factory instead of a giant configuration object
+::: tip Why A Factory Instead Of A Giant Configuration Object?
 The preset reuses the fluent builder itself.
 That means new builder capabilities automatically remain available without maintaining a second parallel configuration API.
 :::
 
-## Custom strategies
+## Custom Strategies
 
 If none of the built-in algorithms model your policy, use `.customStrategy()` with an object implementing `ILimiterStrategy`.
 
@@ -1182,12 +1182,12 @@ Optional capabilities let custom strategies integrate more deeply:
 - `refund()` for manual refunds,
 - `toAtomicOperation()` for `limitAllAtomic()` when the custom behavior is exactly representable by one of the supported atomic storage primitives.
 
-::: warning Unsupported is better than unsafe
+::: warning Unsupported Is Better Than Unsafe
 If a custom strategy cannot preview, refund, reset, or participate atomically with correct semantics, omit that capability.
 ratelimiter reports unsupported functionality instead of mutating state or pretending an unsafe operation is atomic.
 :::
 
-## A practical layered policy
+## A Practical Layered Policy
 
 The features above can be combined into a production policy without making every rule complicated.
 For example:
@@ -1232,7 +1232,7 @@ Because both rules share an atomic-capable storage instance, the two capacity de
 That is only one possible design.
 The important part is to choose each layer according to the resource or abuse pattern it is protecting.
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `ratelimiter`
 - [Source](https://github.com/grammyjs/ratelimiter)
