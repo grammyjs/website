@@ -40,7 +40,7 @@ touch deno.json
 Kemudian, isi file `main.ts` dengan kode berikut:
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const token = Deno.env.get("TOKEN_BOT_TELEGRAM");
 if (!token) throw new Error("TOKEN_BOT_TELEGRAM belum disetel");

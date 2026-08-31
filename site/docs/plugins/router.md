@@ -319,14 +319,8 @@ function getDays(month, day) {
 ```
 
 ```ts [Deno]
-import {
-  Bot,
-  Context,
-  Keyboard,
-  session,
-  SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
-import { Router } from "https://deno.land/x/grammy_router/router.ts";
+import { Bot, Context, Keyboard, session, SessionFlavor } from "npm:grammy";
+import { Router } from "npm:@grammyjs/router";
 
 interface SessionData {
   step: "idle" | "day" | "month"; // which step of the form we are on

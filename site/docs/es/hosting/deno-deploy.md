@@ -23,7 +23,7 @@ El resultado de este tutorial [puede verse en nuestro repositorio de bots de eje
 2. Crea un archivo llamado `main.ts` o `main.js`, o en realidad cualquier nombre que te guste (pero deberías recordar y usar este como el archivo principal para desplegar), con el siguiente contenido:
 
 ```ts
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, webhookCallback } from "npm:grammy";
 // Puedes modificar esto a la forma correcta de importar tu objeto `Bot`.
 import bot from "./bot.ts";
 

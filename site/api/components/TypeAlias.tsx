@@ -1,4 +1,8 @@
-import { DocNodeNamespace, DocNodeTypeAlias } from "@deno/doc/types";
+import {
+  type DocNodeNamespace,
+  type DocNodeTypeAlias,
+  flattenSymbols,
+} from "../types.ts";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";
@@ -16,7 +20,7 @@ export function TypeAlias(
     namespace?: DocNodeNamespace;
   },
 ) {
-  const typeParams = typeAlias.typeAliasDef.typeParams;
+  const typeParams = typeAlias.def.typeParams ?? [];
 
   return (
     <>
@@ -24,15 +28,17 @@ export function TypeAlias(
       <P doc getLink={getLink}>{typeAlias.jsDoc?.doc}</P>
       <Loc>{typeAlias}</Loc>
       <Sector title="Type Parameters" show={!!typeParams.length}>
-        <TypeParams getLink={getLink}>{typeParams}</TypeParams>
+        <TypeParams typeParams={typeParams} getLink={getLink} />
       </Sector>
       <Sector title="Type" show>
         <CodeBlock>
-          <TsType getLink={getLink}>{typeAlias.typeAliasDef.tsType}</TsType>
+          <TsType getLink={getLink}>{typeAlias.def.tsType}</TsType>
         </CodeBlock>
       </Sector>
       {namespace && (
-        <ToC getLink={getLink}>{namespace.namespaceDef.elements}</ToC>
+        <ToC getLink={getLink}>
+          {flattenSymbols(namespace.def.elements)}
+        </ToC>
       )}
     </>
   );

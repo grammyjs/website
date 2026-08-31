@@ -73,7 +73,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 
@@ -102,8 +102,8 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2026 &middot; grammY mendukung API Bot Telegram versi 10.1 yang [dirilis](https://core.telegram.org/bots/api#june-11-2026) pada tanggal 11 Juni 2026.
-(Fitur yang disorot: Pesan yang Diperkaya)
+© 2021-2026 &middot; grammY mendukung API Bot Telegram versi 10.2 yang [dirilis](https://core.telegram.org/bots/api#july-14-2026) pada tanggal 14 Juli 2026.
+(Fitur yang disorot: Pesan Tersembunyi)
 
 </div>
 </footer>

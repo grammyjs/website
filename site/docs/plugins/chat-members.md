@@ -150,11 +150,11 @@ bot.start({
 ```
 
 ```ts [Deno]
-import { API_CONSTANTS, Bot } from "https://deno.land/x/grammy/mod.ts";
+import { API_CONSTANTS, Bot } from "npm:grammy";
 import {
   chatMemberFilter,
   myChatMemberFilter,
-} from "https://deno.land/x/grammy_chat_members/mod.ts";
+} from "npm:@grammyjs/chat_members";
 
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
@@ -387,12 +387,12 @@ import {
   Bot,
   type Context,
   MemorySessionStorage,
-} from "https://deno.land/x/grammy/mod.ts";
-import { type ChatMember } from "https://deno.land/x/grammy/types.ts";
+} from "npm:grammy";
+import { type ChatMember } from "npm:grammy/types";
 import {
   chatMembers,
   type ChatMembersFlavor,
-} from "https://deno.land/x/grammy_chat_members/mod.ts";
+} from "npm:@grammyjs/chat_members";
 
 type MyContext = Context & ChatMembersFlavor;
 

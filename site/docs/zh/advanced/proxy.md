@@ -7,7 +7,7 @@ grammY 可以让你对网络请求如何执行进行配置。
 在 Deno 中，下面是如何使用 `http` 代理的例子：
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });

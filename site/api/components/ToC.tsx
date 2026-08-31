@@ -1,4 +1,5 @@
-import { DocNode, DocNodeKind } from "@deno/doc/types";
+import { type DocNode } from "../types.ts";
+import { type DocNodeKind } from "@deno/doc/types";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";
 import { Sector } from "./Sector.tsx";
@@ -38,7 +39,8 @@ export function ToC(
   const k = (k: DocNodeKind) =>
     nodes.filter((v) => v.kind == k)
       .filter((v) =>
-        !(set.has(`${v.kind}_${v.name}`) || void set.add(`${v.kind}_${v.name}`)) // remove overloads
+        !(set.has(`${v.kind}_${v.name}`) ||
+          void set.add(`${v.kind}_${v.name}`)) // remove overloads
       );
 
   return (

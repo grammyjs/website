@@ -89,13 +89,13 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot, type Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, type Context } from "npm:grammy";
 import {
   type Conversation,
   type ConversationFlavor,
   conversations,
   createConversation,
-} from "https://deno.land/x/grammy_conversations/mod.ts";
+} from "npm:@grammyjs/conversations";
 
 const bot = new Bot<ConversationFlavor<Context>>(""); // <-- taruh token bot di antara "" (https://t.me/BotFather)
 bot.use(conversations());
@@ -347,11 +347,11 @@ async function example(
 ```
 
 ```ts [Deno]
-import { Bot, type Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, type Context } from "npm:grammy";
 import {
   type Conversation,
   type ConversationFlavor,
-} from "https://deno.land/x/grammy_conversations/mod.ts";
+} from "npm:@grammyjs/conversations";
 
 // Context object luar (mencakup semua plugin middleware)
 type MyContext = ConversationFlavor<Context>;
@@ -869,7 +869,7 @@ bot.use(conversations({
 ```
 
 ```ts [Deno]
-import { FileAdapter } from "https://deno.land/x/grammy_storages/file/src/mod.ts";
+import { FileAdapter } from "npm:@grammyjs/storages/file/src";
 
 bot.use(conversations({
   storage: new FileAdapter({ dirName: "data-percakapan" }),

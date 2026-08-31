@@ -60,11 +60,8 @@ bot.use(emojiParser());
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import {
-  EmojiFlavor,
-  emojiParser,
-} from "https://deno.land/x/grammy_emoji/mod.ts";
+import { Bot, Context } from "npm:grammy";
+import { EmojiFlavor, emojiParser } from "npm:@grammyjs/emoji";
 
 // Ini dinamakan Context Flavor
 // Kamu bisa membacanya di sini:
