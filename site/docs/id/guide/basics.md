@@ -137,3 +137,17 @@ bot.command("start", async (ctx) => {
   );
 });
 ```
+## Edit Pesan
+Kamu dapat mengedit pesan yang dikirim oleh bot milikmu seperti ini:
+
+```ts
+bot.command("think", async (ctx) => {
+  const msg = await ctx.reply("Berpikir...");
+
+  const newText = await getSomeNewText();
+
+  await ctx.api.editMessageText(ctx.chatId, msg.message_id, newText);
+});
+```
+
+> Pertimbangkan untuk menggunakan [plugin hydrate](../plugins/hydrate), yang memudahkan pengeditan pesan.

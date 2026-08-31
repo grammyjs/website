@@ -131,3 +131,19 @@ bot.command("start", async (ctx) => {
   });
 });
 ```
+
+## 编辑信息
+
+你可以像这样编辑你的 bot 发送的信息：
+
+```ts
+bot.command("think", async (ctx) => {
+  const msg = await ctx.reply("深度思考中……");
+
+  const newText = await getSomeNewText();
+
+  await ctx.api.editMessageText(ctx.chatId, msg.message_id, newText);
+});
+```
+
+> 考虑使用 [hydrate 插件](../plugins/hydrate)，它可以简化信息编辑。
