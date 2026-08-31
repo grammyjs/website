@@ -39,7 +39,8 @@ function getTitle(t: ParamDef): string {
     case "assign":
       return getTitle(t.left);
     case "object":
-      return "{ " + t.props.map((v) => getObjectPatPropTitle(v)).join(", ") +
+      return "{ " +
+        t.props.map((v) => getObjectPatPropTitle(v)).join(", ") +
         " }";
   }
 }

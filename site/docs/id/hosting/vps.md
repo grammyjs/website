@@ -355,7 +355,7 @@ server.listen();
 ```
 
 ```ts [Deno]
-import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "npm:grammy";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 

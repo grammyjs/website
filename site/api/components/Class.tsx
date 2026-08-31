@@ -2,10 +2,10 @@ import {
   type ClassConstructorParamDef,
   type ClassMethodDef,
   type ClassPropertyDef,
-  type DocNodeClass,
   type JsDocTag,
   type ParamIdentifierDef,
 } from "@deno/doc/types";
+import { type DocNodeClass } from "../types.ts";
 import { Method } from "./Class/Method.tsx";
 import { Properties } from "./Properties.tsx";
 import { Constructors } from "./Class/Constructors.tsx";
@@ -34,31 +34,32 @@ export function Class(
     parent: DocNodeClass | undefined;
   },
 ) {
-  const typeParams = klass.classDef.typeParams;
-  const ctors = klass.classDef.constructors;
-  const props = klass.classDef.properties.filter(isVisible).concat(
+  const typeParams = klass.def.typeParams ?? [];
+  const ctors = klass.def.constructors ?? [];
+  const props = (klass.def.properties ?? []).filter(isVisible).concat(
     // display properties defined in the constructor
     ctors.flatMap((v) =>
       v.params
         .filter((p): p is ParamIdentifierDef =>
           p.kind === "identifier" &&
-          (p.accessibility === "public" || p.accessibility === "protected")
+          (p.accessibility === "public" ||
+            p.accessibility === "protected")
         )
         .map((p): ClassPropertyDef => ({
-          isAbstract: false,
-          isStatic: false,
-          readonly: false,
           location: v.location,
           jsDoc: {
-            doc: v.jsDoc?.tags?.find((t): t is JsDocTag & { kind: "param" } =>
+            doc: v.jsDoc?.tags?.find((
+              t,
+            ): t is JsDocTag & { kind: "param" } =>
               t.kind === "param" && t.name === p.name
             )?.doc,
           },
           ...p,
+          optional: p.optional || undefined,
         }))
     ),
   );
-  const nonPrivateMethods = klass.classDef.methods.filter(isVisible);
+  const nonPrivateMethods = (klass.def.methods ?? []).filter(isVisible);
   const methods = nonPrivateMethods.filter((v) => !v.isStatic);
   const staticMethods = nonPrivateMethods.filter((v) => v.isStatic);
   const getLink = newGetLink(oldGetLink, typeParams);
@@ -80,20 +81,23 @@ export function Class(
       <H1>{klass.name}</H1>
       <P doc getLink={getLink} anchors={anchors}>{klass.jsDoc?.doc}</P>
       <Loc>{klass}</Loc>
-      <Sector title="Extends" show={!!klass.classDef.extends}>
+      <Sector title="Extends" show={!!klass.def.extends}>
         <CodeBlock>
           <TypeRef getLink={getLink}>
             {{
-              typeName: klass.classDef.extends!,
-              typeParams: klass.classDef.superTypeParams,
+              typeName: klass.def.extends!,
+              typeParams: klass.def.superTypeParams,
             }}
           </TypeRef>
         </CodeBlock>
       </Sector>
-      <Sector title="Implements" show={klass.classDef.implements.length > 0}>
+      <Sector
+        title="Implements"
+        show={(klass.def.implements?.length ?? 0) > 0}
+      >
         <CodeBlock>
-          {klass.classDef.implements.length > 0 &&
-            klass.classDef.implements.map((v) => (
+          {(klass.def.implements?.length ?? 0) > 0 &&
+            klass.def.implements!.map((v) => (
               <TsType getLink={getLink}>{v}</TsType>
             )).reduce((a, b) => (
               (
@@ -106,7 +110,7 @@ export function Class(
         </CodeBlock>
       </Sector>
       <Sector title="Type Parameters" show={!!typeParams.length}>
-        <TypeParams getLink={getLink}>{typeParams}</TypeParams>
+        <TypeParams typeParams={typeParams} getLink={getLink} />
       </Sector>
       <Sector title="Constructors" show={!!ctors.length}>
         <Constructors getLink={getLink}>
@@ -132,7 +136,7 @@ export function Class(
             <Method
               getLink={getLink}
               inheritDoc={() =>
-                parent?.classDef.methods.find((v_) =>
+                parent?.def.methods?.find((v_) =>
                   (v_.name == v.name) && !v_.isStatic
                 )?.jsDoc}
               overloads={getMethodOverloads(v.name)}
@@ -154,7 +158,7 @@ export function Class(
             <Method
               getLink={getLink}
               inheritDoc={() =>
-                parent?.classDef.methods.find((v_) =>
+                parent?.def.methods?.find((v_) =>
                   (v_.name == v.name) && v_.isStatic
                 )?.jsDoc}
               overloads={getStaticMethodOverloads(v.name)}

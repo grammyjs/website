@@ -167,7 +167,7 @@ Se utiliza para autenticar tu bot.
 Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al constructor `Bot`:
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 // Crea una instancia de la clase `Bot` y pásale tu token.
 const bot = new Bot(""); // <-- pon tu token entre los ""

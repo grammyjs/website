@@ -433,11 +433,8 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type {
-  Update,
-  UserFromGetMe,
-} from "https://deno.land/x/grammy/types.ts";
+import { Bot, Context } from "npm:grammy";
+import type { Update, UserFromGetMe } from "npm:grammy/types";
 
 // Definisikan class context khusus.
 class MyContext extends Context {

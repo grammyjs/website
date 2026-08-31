@@ -71,7 +71,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 
@@ -100,8 +100,8 @@ Works! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2026 &middot; grammY supports Telegram Bot API 10.1 which was [released](https://core.telegram.org/bots/api#june-11-2026) on June 11, 2026.
-(Last highlight: Rich Messages)
+© 2021-2026 &middot; grammY supports Telegram Bot API 10.2 which was [released](https://core.telegram.org/bots/api#july-14-2026) on July 14, 2026.
+(Last highlight: Ephemeral Messages)
 
 </div>
 </footer>

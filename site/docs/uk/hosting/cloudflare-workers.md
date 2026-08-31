@@ -61,8 +61,8 @@ next: false
 Створіть новий файл з назвою `bot.ts` і помістіть в нього наступний вміст:
 
 ```ts
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-import { UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
+import { Bot, webhookCallback } from "npm:grammy";
+import { UserFromGetMe } from "npm:grammy/types";
 
 interface Environment {
   BOT_TOKEN: string;

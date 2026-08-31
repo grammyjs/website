@@ -8,12 +8,14 @@
   viewBox="0 0 320 320"
 >
   <defs>
-    <style>.cls-1 {
+    <style>
+    .cls-1 {
       fill: none;
     }
     .cls-2 {
       fill: url(#linear-gradient);
-    }</style>
+    }
+    </style>
     <linearGradient
       id="linear-gradient"
       x1="-483.3"

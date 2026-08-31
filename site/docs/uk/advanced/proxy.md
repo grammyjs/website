@@ -7,7 +7,7 @@ grammY дозволяє вам налаштувати деякі парамет�
 Ось як у Deno можна використовувати проксі-сервер `http`:
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },

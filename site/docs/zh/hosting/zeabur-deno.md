@@ -40,7 +40,7 @@ touch deno.json
 然后使用以下代码修改 `main.ts` 文件：
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
 if (!token) throw new Error("未设置TELEGRAM_BOT_TOKEN");
@@ -56,7 +56,7 @@ bot.start();
 
 > 注意：在 Telegram 上使用 [@BotFather](https://t.me/BotFather) 获取你的 bot token，并在 Zeabur 中将其设置为环境变量 `TELEGRAM_BOT_TOKEN`。
 >
-> 你可以在 [这个教程](https://zeabur.com/docs/en-US/deploy/config/environment-variables) 中查看如何在 Zeabur 中设置环境变量。
+> 你可以在 [这个教程](https://zeabur.com/docs/zh-CN/deploy/config/environment-variables) 中查看如何在 Zeabur 中设置环境变量。
 
 然后运行以下命令来启动你的 bot：
 

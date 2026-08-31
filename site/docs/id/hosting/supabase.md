@@ -37,7 +37,7 @@ Setelah berhasil membuat sebuah proyek Supabase Function, sekarang kamu bisa men
 Kamu bisa menggunakan contoh bot singkat ini sebagai entry point-nya.
 
 ```ts
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, webhookCallback } from "npm:grammy";
 
 const token = Deno.env.get("BOT_TOKEN");
 if (!token) throw new Error("BOT_TOKEN belum diisi");

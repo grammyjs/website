@@ -21,7 +21,7 @@ next: false
 ::: code-group
 
 ```ts{11} [Deno]
-import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "npm:grammy";
 // Ви можете змінити це на правильний спосіб імпорту вашого обʼєкта `Bot`.
 import { bot } from "./bot.ts";
 
@@ -69,7 +69,7 @@ app.listen(port, () => console.log(`працюю на порті ${port}`));
 ::: code-group
 
 ```ts{4} [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const token = Deno.env.get("BOT_TOKEN");
 if (!token) throw new Error("BOT_TOKEN не вказано");

@@ -61,8 +61,8 @@ Al crear su token de API, puede elegir el preajuste "Editar Cloudflare Workers" 
 Crea un nuevo fichero llamado `bot.ts` y pon en él el siguiente contenido:
 
 ```ts
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-import { UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
+import { Bot, webhookCallback } from "npm:grammy";
+import { UserFromGetMe } from "npm:grammy/types";
 
 interface Environment {
   BOT_TOKEN: string;

@@ -33,7 +33,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```
 
 ```ts [Deno]
-import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
+import { InputMediaBuilder } from "npm:grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
