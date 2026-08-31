@@ -73,7 +73,7 @@ bot.start();
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 

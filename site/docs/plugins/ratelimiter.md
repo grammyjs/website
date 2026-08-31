@@ -72,7 +72,7 @@ bot.use(limit());
 ```
 
 ```ts [Deno]
-import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+import { limit } from "npm:@grammyjs/ratelimiter";
 
 // Limits message handling to a message per second for each user.
 bot.use(limit());
@@ -144,7 +144,7 @@ bot.use(
 
 ```ts [Deno]
 import { connect } from "https://deno.land/x/redis/mod.ts";
-import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+import { limit } from "npm:@grammyjs/ratelimiter";
 
 const redis = await connect(...);
 
@@ -213,7 +213,7 @@ bot.use(
 ```
 
 ```ts [Deno]
-import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+import { limit } from "npm:@grammyjs/ratelimiter";
 
 bot.use(
   limit({

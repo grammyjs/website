@@ -15,7 +15,10 @@ export function P(
     const newParts = new Array<string>();
     let inCodeBlock = false;
     for (let part of parts) {
-      if (part == "```" || part == "```ts" || part == "```ts:no-line-numbers") {
+      if (
+        part == "```" || part == "```ts" ||
+        part == "```ts:no-line-numbers"
+      ) {
         inCodeBlock = !inCodeBlock;
         newParts.push(part);
         continue;
@@ -51,7 +54,8 @@ export function P(
   }
   if ("html" in props) {
     return (
-      <div dangerouslySetInnerHTML={{ __html: props.children as string }}></div>
+      <div dangerouslySetInnerHTML={{ __html: props.children as string }}>
+      </div>
     );
   }
   return <>{"\n\n"}{props.children}{"\n\n"}</>;

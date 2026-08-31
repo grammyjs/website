@@ -39,7 +39,7 @@ bot.api.config.use(autoRetry());
 ```
 
 ```ts [Deno]
-import { autoRetry } from "https://deno.land/x/grammy_auto_retry/mod.ts";
+import { autoRetry } from "npm:@grammyjs/auto_retry";
 
 // Pasang plugin-nya
 bot.api.config.use(autoRetry());

@@ -21,7 +21,7 @@ Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/d
 ::: code-group
 
 ```ts{11} [Deno]
-import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "npm:grammy";
 // Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
 import { bot } from "./bot.ts";
 
@@ -70,7 +70,7 @@ File tersebut berisikan:
 ::: code-group
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot } from "npm:grammy";
 
 const token = Deno.env.get("BOT_TOKEN");
 if (!token) throw new Error("BOT_TOKEN belum diisi");

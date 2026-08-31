@@ -58,9 +58,9 @@ run(bot);
 ```
 
 ```ts [Deno]
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { run } from "https://deno.land/x/grammy_runner/mod.ts";
-import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
+import { Bot } from "npm:grammy";
+import { run } from "npm:@grammyjs/runner";
+import { apiThrottler } from "npm:@grammyjs/transformer_throttler";
 
 const bot = new Bot("");
 

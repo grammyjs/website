@@ -17,7 +17,8 @@ export function ReturnType(
         <TsType getLink={getLink}>{ret}</TsType>
       </CodeBlock>
       <P doc getLink={getLink}>
-        {doc?.tags?.find((v): v is JsDocTagReturn => v.kind == "return")?.doc}
+        {doc?.tags?.find((v): v is JsDocTagReturn => v.kind == "return")
+          ?.doc}
       </P>
     </>
   );
