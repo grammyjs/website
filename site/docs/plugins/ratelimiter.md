@@ -32,7 +32,7 @@ The following rule allows each user to send a short burst of messages and then g
 ::: code-group
 
 ```ts [Node.js]
-import { Bot, type Context } from "grammy";
+import { Bot, type Context } from "@grammyjs/grammy";
 import { limit, Limiter } from "@grammyjs/ratelimiter";
 import { MemoryStore } from "@grammyjs/ratelimiter/storages";
 
@@ -50,7 +50,7 @@ const messages = Limiter.perUser<Context>()
 
 bot.use(limit(messages));
 
-bot.on("message", (ctx) => ctx.reply("Accepted"));
+bot.on("message", (ctx) => ctx.sendMessage("Accepted"));
 
 bot.start();
 ```
@@ -74,7 +74,7 @@ const messages = Limiter.perUser<Context>()
 
 bot.use(limit(messages));
 
-bot.on("message", (ctx) => ctx.reply("Accepted"));
+bot.on("message", (ctx) => ctx.sendMessage("Accepted"));
 
 bot.start();
 ```
@@ -128,13 +128,13 @@ bot.use(limit(rule));
 ratelimiter currently provides four rate-limiting algorithms plus the high-level `cooldown()` helper.
 They solve different problems.
 
-| Strategy | Best fit | Burst behavior | Boundary behavior | State | Weighted cost |
-| --- | --- | --- | --- | --- | --- |
-| Fixed Window | Simple hard quotas | Can burst near boundaries | Has fixed boundaries | O(1) | No |
-| Sliding Window Counter | Rolling quotas without boundary spikes | Limited by rolling estimate | Smooths boundaries | O(1) | Yes |
-| Token Bucket | General anti-spam and burst-friendly UX | Explicit burst capacity | No fixed reset boundary | O(1) | Yes |
-| GCRA | Smooth sustained pacing | Explicit burst capacity | No fixed reset boundary | O(1) | Yes |
-| Cooldown | Minimum delay between actions | One action at a time | No fixed-window edge case | O(1) | Fixed at one |
+| Strategy               | Best fit                                | Burst behavior              | Boundary behavior         | State | Weighted cost |
+| ---------------------- | --------------------------------------- | --------------------------- | ------------------------- | ----- | ------------- |
+| Fixed Window           | Simple hard quotas                      | Can burst near boundaries   | Has fixed boundaries      | O(1)  | No            |
+| Sliding Window Counter | Rolling quotas without boundary spikes  | Limited by rolling estimate | Smooths boundaries        | O(1)  | Yes           |
+| Token Bucket           | General anti-spam and burst-friendly UX | Explicit burst capacity     | No fixed reset boundary   | O(1)  | Yes           |
+| GCRA                   | Smooth sustained pacing                 | Explicit burst capacity     | No fixed reset boundary   | O(1)  | Yes           |
+| Cooldown               | Minimum delay between actions           | One action at a time        | No fixed-window edge case | O(1)  | Fixed at one  |
 
 ::: tip There Is No Universally Best Algorithm
 The right algorithm depends on what you are protecting.
@@ -572,7 +572,7 @@ const limiter = Limiter.perUser<Context>()
   .onThrottled(async (ctx, info) => {
     const seconds = Math.ceil(info.reset / 1_000);
 
-    await ctx.reply(`Please try again in ${seconds} seconds.`);
+     await ctx.sendMessage(`Please try again in ${seconds} seconds.`);
   });
 ```
 
@@ -947,11 +947,11 @@ const limiter = Limiter.perUser<Context>()
 
 Three modes are available:
 
-| Mode | Behavior | Typical priority |
-| --- | --- | --- |
-| `throw` | Propagate the backend failure | Visibility/correctness |
-| `fail-open` | Avoid blocking because limiter state is unavailable | Availability |
-| `fail-closed` | Do not allow traffic when the limiter cannot decide safely | Protection |
+| Mode          | Behavior                                                   | Typical priority       |
+| ------------- | ---------------------------------------------------------- | ---------------------- |
+| `throw`       | Propagate the backend failure                              | Visibility/correctness |
+| `fail-open`   | Avoid blocking because limiter state is unavailable        | Availability           |
+| `fail-closed` | Do not allow traffic when the limiter cannot decide safely | Protection             |
 
 A resolver may choose dynamically based on the context and failure metadata:
 
@@ -1158,8 +1158,8 @@ If none of the built-in algorithms model your policy, use `.customStrategy()` wi
 At minimum, a custom strategy implements `check()`:
 
 ```ts
-const strategy = {
-  async check(key, storage) {
+const strategy: ILimiterStrategy = {
+    async check(key, storage) {
     // Evaluate and consume your custom state here.
     return {
       isAllowed: true,
