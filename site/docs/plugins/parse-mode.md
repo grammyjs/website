@@ -227,7 +227,7 @@ bot.on("msg:text", async ctx => {
   // The result of fmt`${u}Memory updated!${u}` is a FormattedString
   // whose instance method call of `.plain("\n")` also returns a FormattedString
   const header = fmt`${u}Memory updated!${u}`.plain("\n");
-  const body = new FormattedString("I will remember this!");
+  const body = FormattedString.i("I will remember this!");
   const footer = "\n - by grammy AI";
 
   // This is also legal - you can give FormattedString and string to `fmt`

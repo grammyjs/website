@@ -227,7 +227,7 @@ bot.on("msg:text", async ctx => {
   // El resultado de fmt`${u}¡Memoria actualizada!${u}` es un FormattedString
   // cuya llamada al método de instancia `.plain(«\n»)` también devuelve un FormattedString.
   const header = fmt`${u}¡Memoria actualizada!${u}`.plain("\n");
-  const body = new FormattedString("¡Lo recordaré!");
+  const body = FormattedString.i("¡Lo recordaré!");
   const footer = "\n - por Grammy AI";
 
   // Esto también es válido: puedes pasar FormattedString y string a `fmt`.
