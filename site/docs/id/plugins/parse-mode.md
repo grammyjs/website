@@ -224,10 +224,10 @@ Contohnya kamu bisa menggunakan `fmt`, lalu menambahkan _method chain_ dari `For
 
 ```ts
 bot.on("msg:text", async ctx => {
-  // Hasil dari fmt`${${u}Memory updated!${u}}` adalah FormattedString
+  // Hasil dari fmt`${u}Memory updated!${u}` adalah FormattedString
   // pemanggilan method `.plain("\n") juga mengembalikan FormattedString
-  const header = fmt`${${u}Memory updated!${u}}`.plain("\n");
-  const body = FormattedString.plain("I will remember this!");
+  const header = fmt`${u}Memory updated!${u}`.plain("\n");
+  const body = new FormattedString("I will remember this!");
   const footer = "\n - by grammy AI";
 
   // Ini juga valid - kamu bisa memberikan FormattedString dan string ke `fmt`
