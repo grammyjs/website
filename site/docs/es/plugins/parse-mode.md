@@ -223,11 +223,11 @@ Esto significa que se pueden combinar diferentes estilos de uso.
 Por ejemplo, es posible utilizar `fmt`, seguido de métodos de instancia encadenables de `FormattedString`, y luego pasar el resultado a otra plantilla etiquetada como `fmt`.
 
 ```ts
-bot.on("msg:text", async ctx => {
-  // El resultado de fmt`${${u}¡Memoria actualizada!${u}}` es un FormattedString
+bot.on("msg:text", async (ctx) => {
+  // El resultado de fmt`${u}¡Memoria actualizada!${u}` es un FormattedString
   // cuya llamada al método de instancia `.plain(«\n»)` también devuelve un FormattedString.
-  const header = fmt`${${u}¡Memoria actualizada!${u}}`.plain("\n");
-  const body = FormattedString.plain("¡Lo recordaré!");
+  const header = fmt`${u}¡Memoria actualizada!${u}`.plain("\n");
+  const body = FormattedString.i("¡Lo recordaré!");
   const footer = "\n - por Grammy AI";
 
   // Esto también es válido: puedes pasar FormattedString y string a `fmt`.
