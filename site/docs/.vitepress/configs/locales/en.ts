@@ -278,6 +278,10 @@ const pluginThirdparty = {
       link: "/plugins/entity-parser",
     },
     {
+      text: "FlowCastle",
+      link: "/plugins/flowcastle",
+    },
+    {
       text: "[Submit your PR!]",
       link: "/plugins/#create-your-own-plugins",
     },
