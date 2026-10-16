@@ -44,24 +44,15 @@ const bot = new Bot("", {
 });
 ```
 
+Be sure to specify the `timeout` option for the agent.
+It causes the connection to be dropped if no data was sent or received for the given number of milliseconds.
+This is important because connections can die silently, for example when the SSH tunnel behind a SOCKS proxy (`ssh -D`) loses its connection.
+grammY has its own timeout of 500 seconds which cancels the request, but **it is unable to drop the underlying connections**.
+Setting this option fixes that.
+
 > Note that specifying `compress: true` is an optional performance optimization.
 > It has nothing to do with proxy support.
 > It is part of the default value for `baseFetchConfig`, so if you still want it, you should specify it again.
-
-Specifying a `timeout` for the agent is not optional, though.
-Proxied connections can die silently, for example when the SSH tunnel behind a SOCKS proxy (`ssh -D`) loses its connection.
-Nobody notices this, so Node.js keeps waiting for a response that will never arrive.
-grammY only gives up on the request after [`timeoutSeconds`](/ref/core/apiclientoptions#timeoutseconds) have passed, which is 500 seconds by default.
-Until then, your bot hangs without any error, and it does not receive any updates.
-
-The `timeout` option makes the agent close the connection if no data was sent or received for the given number of milliseconds.
-grammY then reports an error and retries the request.
-
-::: warning Long Polling Timeout
-When you use long polling, Telegram keeps the connection open without sending any data for up to 30 seconds.
-Make sure that the `timeout` of the agent is larger than that, or else every long polling request without new updates will be cancelled.
-If you pass a custom `timeout` to `bot.start()`, adjust the `timeout` of the agent accordingly.
-:::
 
 Getting a proxy to work can be difficult.
 Contact us in the [Telegram chat](https://t.me/grammyjs) if you run into issues, or if you need grammY to support further configuration options.
