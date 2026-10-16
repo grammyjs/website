@@ -30,9 +30,8 @@ In Node.js, here is how you would use a proxy with the `socks-proxy-agent` packa
 import { Bot } from "grammy";
 import { SocksProxyAgent } from "socks-proxy-agent";
 
-const socksAgent = new SocksProxyAgent({
-  hostname: host, // put in the proxy host
-  port: port, // put in the proxy port
+const socksAgent = new SocksProxyAgent("socks5://host:port", {
+  timeout: 60_000, // close stalled connections after 60 seconds
 });
 
 const bot = new Bot("", {
@@ -44,6 +43,12 @@ const bot = new Bot("", {
   },
 });
 ```
+
+Be sure to specify the `timeout` option for the agent.
+It causes the connection to be dropped if no data was sent or received for the given number of milliseconds.
+This is important because connections can die silently, for example when the SSH tunnel behind a SOCKS proxy (`ssh -D`) loses its connection.
+grammY has its own timeout of 500 seconds which cancels the request, but **it is unable to drop the underlying connections**.
+Setting this option fixes that.
 
 > Note that specifying `compress: true` is an optional performance optimization.
 > It has nothing to do with proxy support.
