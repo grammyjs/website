@@ -152,7 +152,7 @@ await emu.mount(bot, factory, {
 ```
 
 Polling is the default.
-Both modes accept `allowedUpdates` and `dropPendingUpdates`.
+Both modes accept `allowedUpdates`.
 
 ## Simulating User Actions
 
@@ -187,7 +187,7 @@ await emu
   .in(dm)
   .waitForReply({ matcher: (m) => /welcome/i.test(m.text ?? "") });
 await emu.in(dm).waitForReplyCount(3);
-await emu.in(dm).drafts(messageId); // sendMessageDraft snapshots
+await emu.in(dm).drafts(draftId); // sendMessageDraft snapshots
 
 await emu.inspect.callbackAnswer(callbackQueryId);
 ```
@@ -238,7 +238,7 @@ expect(reply).toMatchReply({ text: "hello", reply_markup: undefined });
 
 await expect(emu.in(dm)).toHaveReplied(/welcome/i);
 await expect(emu.in(dm)).toHaveReplyCount(2);
-expect(answer).toHaveAnsweredCallback();
+await expect(answer).toHaveAnsweredCallback();
 ```
 
 The same inspector target passed to `emu.in(chat).replies()` can be handed directly to the matchers.
