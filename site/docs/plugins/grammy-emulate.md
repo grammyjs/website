@@ -9,12 +9,12 @@ Testing a grammY bot end-to-end has always been awkward.
 You either stub `bot.api.config.use` one method at a time, hand-craft `Update` objects for `bot.handleUpdate`, or drive a real bot through [a second Telegram account via Telethon](https://dev.to/shallowdepth/end-to-end-testing-for-telegram-bots-18d4).
 None of these exercise the full wire format, and none of them let you assert on multi-turn flows (edits, callbacks, follow-up messages) without fabricating state by hand.
 
-The [`grammy-emulate`](https://github.com/serejke/grammy-emulate) plugin fills that gap.
+The [`grammy-emulate`](https://github.com/serejke/telegram-emulator/tree/main/packages/grammy-emulate) plugin fills that gap.
 It boots a stateful, in-process Telegram Bot API emulator, points your grammY bot at it via the `apiRoot` option, and exposes a fluent surface for seeding fixtures, simulating user actions, and inspecting bot output.
 No real bot token, no network, no second Telegram account.
 
 ::: tip Built on @serejke/telegram-emulator
-The underlying Bot API emulator is [`@serejke/telegram-emulator`](https://github.com/serejke/grammy-emulate/tree/main/packages/telegram-emulator).
+The underlying Bot API emulator is [`@serejke/telegram-emulator`](https://github.com/serejke/telegram-emulator/tree/main/packages/telegram-emulator).
 It is a framework-agnostic HTTP server that speaks the real Bot API — this plugin just wires grammY's `Bot` lifecycle to it and adds a test-facing ergonomic surface.
 :::
 
@@ -245,7 +245,7 @@ The same inspector target passed to `emu.in(chat).replies()` can be handed direc
 
 ## What the Emulator Covers
 
-Inherited from [`@serejke/telegram-emulator`](https://github.com/serejke/grammy-emulate/tree/main/packages/telegram-emulator):
+Inherited from [`@serejke/telegram-emulator`](https://github.com/serejke/telegram-emulator/tree/main/packages/telegram-emulator):
 
 - **Delivery**: `getUpdates` with `offset` confirmation, long-poll takeover 409, `setWebhook` with `secret_token` and 5xx retry, `deleteWebhook`, `getWebhookInfo`.
 - **Messaging**: `sendMessage`, `sendPhoto`, `sendDocument`, `sendVideo`, `sendAudio`, `sendVoice`, `sendAnimation`, `sendSticker`, `editMessageText`, `editMessageReplyMarkup`, `deleteMessage`, `sendChatAction`.
@@ -259,15 +259,15 @@ Inherited from [`@serejke/telegram-emulator`](https://github.com/serejke/grammy-
 - **Fault injection**: 401 / 403 / 404 / 429 with `retry_after` for exercising adapter retry paths.
 
 The following are explicit non-goals for the underlying emulator: payments, games, Business API, Passport, inline mode, media groups (`sendMediaGroup`), polls, and the legacy stories / web-apps surfaces.
-See the emulator's [non-goals](https://github.com/serejke/grammy-emulate/tree/main/packages/telegram-emulator#non-goals) for the full list.
+See the emulator's [non-goals](https://github.com/serejke/telegram-emulator/tree/main/packages/telegram-emulator#non-goals) for the full list.
 
 ## Showcase
 
-A production-shaped grammY bot with 22 end-to-end tests lives in the [`examples/echo-bot`](https://github.com/serejke/grammy-emulate/tree/main/examples/echo-bot) directory of the plugin repository.
-The same `/echo hello` test is also written in the classic transformer-mock style in [`bot.before.test.ts`](https://github.com/serejke/grammy-emulate/blob/main/examples/echo-bot/src/bot.before.test.ts) so you can compare the two approaches side by side.
+A production-shaped grammY bot with 22 end-to-end tests lives in the [`examples/echo-bot`](https://github.com/serejke/telegram-emulator/tree/main/examples/echo-bot) directory of the plugin repository.
+The same `/echo hello` test is also written in the classic transformer-mock style in [`bot.before.test.ts`](https://github.com/serejke/telegram-emulator/blob/main/examples/echo-bot/src/bot.before.test.ts) so you can compare the two approaches side by side.
 
 ## Resources
 
-- [Source code and issue tracker](https://github.com/serejke/grammy-emulate)
-- [Underlying Bot API emulator (`@serejke/telegram-emulator`)](https://github.com/serejke/grammy-emulate/tree/main/packages/telegram-emulator)
-- [Open a discussion if something is missing](https://github.com/serejke/grammy-emulate/issues)
+- [Source code and issue tracker](https://github.com/serejke/telegram-emulator)
+- [Underlying Bot API emulator (`@serejke/telegram-emulator`)](https://github.com/serejke/telegram-emulator/tree/main/packages/telegram-emulator)
+- [Open a discussion if something is missing](https://github.com/serejke/telegram-emulator/issues)
