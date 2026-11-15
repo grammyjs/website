@@ -66,7 +66,7 @@ using create-cloudflare version 2.74.12
 
 Next, you will be asked which template would you like to use, here we choose `Worker only`:
 
-```ansi{8}
+```ansi{9}
 ╭ Create an application with Cloudflare Step 1 of 3
 │
 ├ In which directory do you want to create your application?
@@ -91,7 +91,7 @@ Next, you will be asked which template would you like to use, here we choose `Wo
 Next, you will be asked which language do you want to use: TypeScript, JavaScript or Python (beta).
 Here we choose TypeScript:
 
-```ansi{11}
+```ansi{14}
 using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -114,7 +114,7 @@ using create-cloudflare version 2.74.12
 
 Your project will be set up in a few minutes. At some point you will be asked about AGENTS.md file:
 
-```ansi{11}
+```ansi{1}
 Do you want to add an AGENTS.md file to help AI coding tools understand Cloudflare APIs?
   Yes / No // [!code focus]
 ```
@@ -123,7 +123,7 @@ After that, you will be asked whether you want to use git for version control, c
 
 Here we choose `Yes`:
 
-```ansi{36}
+```ansi{45}
 using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -174,7 +174,7 @@ using create-cloudflare version 2.74.12
 
 Finally, you will be asked whether you want to deploy your worker, choose `No`, since we are going to deploy it when we have a working Telegram bot:
 
-```ansi{49}
+```ansi{73}
 using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -263,7 +263,7 @@ npm install grammy
 
 Edit `src/index.js` or `src/index.ts`, and write this code inside:
 
-```ts{11,28-29,38,40-42,44}
+```ts{11-12,29-30,39,41-43,45}
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -349,7 +349,7 @@ If successful, you will see a JSON response similar to this:
 
 Now, open `wrangler.jsonc` in the root of your project and add an environment variable `BOT_INFO` under `"vars"` section with the value from `result` object you get above like this:
 
-```toml
+```json
 "vars": {  
     "BOT_INFO": {
         "id": 1234567890,
