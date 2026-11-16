@@ -116,7 +116,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
 Puedes especificar otros secretos de la misma manera.
-Para más información sobre estos _secretos_, véase <https://fly.io/docs/apps/secrets/>.
+Para más información sobre estos _secretos_, véase <https://docs.fly.io/apps/secrets>.
 
 ## Despliegue
 
@@ -124,7 +124,7 @@ Para más información sobre estos _secretos_, véase <https://fly.io/docs/apps/
 
 Este es el método más sencillo.
 
-1. Instalar [flyctl](https://fly.io/docs/flyctl/install/) e [inicia la sesión](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. Instalar [flyctl](https://docs.fly.io/flyctl/install) e [inicia la sesión](https://docs.fly.io/getting-started/sign-up-sign-in).
 2. Ejecuta `flyctl launch` para generar un `Dockerfile` y un archivo `fly.toml` para el despliegue.
    Pero **NO** despliega.
 
@@ -361,9 +361,9 @@ Este es el método más sencillo.
 ### Método 2: Con acciones de GitHub
 
 La principal ventaja del siguiente método es que Fly vigilará los cambios en tu repositorio que incluye el código de tu bot, y desplegará las nuevas versiones automáticamente.
-Visite <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> para obtener instrucciones más detalladas.
+Visite <https://docs.fly.io/launch/continuous-deployment-with-github-actions> para obtener instrucciones más detalladas.
 
-1. Instala [flyctl](https://fly.io/docs/flyctl/install/) e [inicia la sesión](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. Instala [flyctl](https://docs.fly.io/flyctl/install) e [inicia la sesión](https://docs.fly.io/getting-started/sign-up-sign-in).
 2. Obtén un token de la API de Fly ejecutando `flyctl auth token`.
 3. Crea un repositorio en GitHub, puede ser privado o público.
 4. Ve a Configuración, elige Secretos y crea un secreto llamado `FLY_API_TOKEN` con el valor del token del paso 2.
@@ -409,5 +409,5 @@ También puedes utilizar `.dockerignore` para no copiar ningún otro archivo que
 
 ## Reference
 
-- <https://fly.io/docs/js/frameworks/deno/>
-- <https://fly.io/docs/js/>
+- <https://docs.fly.io/js/frameworks/deno>
+- <https://docs.fly.io/js>

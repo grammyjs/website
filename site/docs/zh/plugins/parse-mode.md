@@ -224,10 +224,10 @@ bot.start();
 
 ```ts
 bot.on("msg:text", async (ctx) => {
-  // fmt`${${u}内存已更新！${u}}` 的结果是一个 FormattedString
+  // fmt`${u}内存已更新！${u}` 的结果是一个 FormattedString
   // 其 `.plain("\n")` 的实例方法调用也返回一个 FormattedString
   const header = fmt`${u}内存已更新！${u}`.plain("\n");
-  const body = FormattedString.plain("我会记住这个的！");
+  const body = FormattedString.i("我会记住这个的！");
   const footer = "\n - by grammy AI";
 
   // 这也可以 - 你可以给 `fmt` 传递 FormattedString 和字符串
