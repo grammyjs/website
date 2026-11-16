@@ -223,11 +223,11 @@ This means that different style of usages can be combined.
 For example, it is possible to use `fmt`, followed by chainable instance methods of `FormattedString`, and then passing the result into another `fmt` tagged template.
 
 ```ts
-bot.on("msg:text", async ctx => {
-  // The result of fmt`${${u}Memory updated!${u}}` is a FormattedString
+bot.on("msg:text", async (ctx) => {
+  // The result of fmt`${u}Memory updated!${u}` is a FormattedString
   // whose instance method call of `.plain("\n")` also returns a FormattedString
-  const header = fmt`${${u}Memory updated!${u}}`.plain("\n");
-  const body = FormattedString.plain("I will remember this!");
+  const header = fmt`${u}Memory updated!${u}`.plain("\n");
+  const body = FormattedString.i("I will remember this!");
   const footer = "\n - by grammy AI";
 
   // This is also legal - you can give FormattedString and string to `fmt`

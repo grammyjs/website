@@ -117,7 +117,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
 Dengan cara yang sama, kamu bisa menyimpan informasi sensitif lainnya.
-Kunjungi <https://fly.io/docs/apps/secrets/> untuk informasi lebih lanjut mengenai _secrets_ di Fly.
+Kunjungi <https://docs.fly.io/apps/secrets> untuk informasi lebih lanjut mengenai _secrets_ di Fly.
 
 ## Men-deploy Bot
 
@@ -125,7 +125,7 @@ Kunjungi <https://fly.io/docs/apps/secrets/> untuk informasi lebih lanjut mengen
 
 Metode ini adalah cara yang termudah.
 
-1. Instal [flyctl](https://fly.io/docs/flyctl/install/) lalu [login](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. Instal [flyctl](https://docs.fly.io/flyctl/install) lalu [login](https://docs.fly.io/getting-started/sign-up-sign-in).
 2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
    Tetapi, **JANGAN** di-deploy terlebih dahulu.
 
@@ -363,9 +363,9 @@ Metode ini adalah cara yang termudah.
 
 Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di repositori tempat kamu menaruh kode bot.
 Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
-Untuk instruksi detailnya, silahkan kunjungi <https://fly.io/docs/launch/continuous-deployment-with-github-actions/>.
+Untuk instruksi detailnya, silahkan kunjungi <https://docs.fly.io/launch/continuous-deployment-with-github-actions>.
 
-1. Instal [flyctl](https://fly.io/docs/flyctl/install/) lalu [login](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. Instal [flyctl](https://docs.fly.io/flyctl/install) lalu [login](https://docs.fly.io/getting-started/sign-up-sign-in).
 2. Dapatkan token API Fly dengan cara menjalankan perintah `flyctl auth token`.
 3. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
 4. Pergi ke Settings, pilih Secrets dan buat sebuah secret bernama `FLY_API_TOKEN` yang berisi nilai atau value token dari langkah ke-2.
@@ -411,5 +411,5 @@ Kamu juga bisa menggunakan `.dockerignore` untuk mencegah file-file yang tidak d
 
 ## Referensi
 
-- <https://fly.io/docs/js/frameworks/deno/>
-- <https://fly.io/docs/js/>
+- <https://docs.fly.io/js/frameworks/deno>
+- <https://docs.fly.io/js>

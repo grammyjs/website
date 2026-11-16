@@ -10,7 +10,7 @@ next: false
 Зверніть увагу, що цей посібник призначений лише для користувачів Deno, а також для створення облікового запису на [Deno Deploy](https://deno.com/deploy) вам потрібно мати обліковий запис на [GitHub](https://github.com).
 
 Deno Deploy ідеально підходить для більшості простих ботів, проте варто зазначити, що не всі функції Deno доступні для застосунків, що працюють на Deno Deploy.
-Наприклад, платформа підтримує лише [обмежений набір](https://docs.deno.com/deploy/classic/api/runtime-fs/) API файлової системи, які доступні в Deno.
+Наприклад, платформа підтримує лише [обмежений набір](https://github.com/denoland/docs/blob/dd78a6fbf0288960c8dc53168ec34a4c75d3b0c3/deploy/classic/api/runtime-fs.md) API файлової системи, які доступні в Deno.
 Це така ж платформа, як і багато інших безсерверних платформ, але призначена для застосунків на Deno.
 
 Результат цього посібника [можна побачити в репозиторії з прикладами ботів](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
@@ -59,7 +59,7 @@ Deno.serve(async (req) => {
 
    > Рекомендується мати одну стабільну гілку, а тестувати свої напрацювання в інших гілках, щоб уникнути непередбачуваних помилок.
 
-3. Відвідайте свою [панель керування Deno Deploy](https://dash.deno.com/account/overview).
+3. Відвідайте свою [панель керування Deno Deploy](https://console.deno.com/login?redirect=%2F).
 4. Натисніть на "New Project".
 5. Встановіть GitHub-застосунок Deno Deploy на свій обліковий запис або організацію та виберіть свій репозиторій.
 6. Виберіть гілку, яку ви хочете розгорнути.
@@ -71,7 +71,7 @@ Deno.serve(async (req) => {
 > Він дозволяє розгорнути проєкт через командний рядок або GitHub Actions.
 
 1. Встановіть [`deployctl`](https://github.com/denoland/deployctl).
-2. Створіть токен доступу в розділі "Access Tokens" в [налаштуваннях облікового запису](https://dash.deno.com/account).
+2. Створіть токен доступу в розділі "Access Tokens" в [налаштуваннях облікового запису](https://console.deno.com/login?redirect=%2F).
 3. Перейдіть до каталогу вашого проєкту і виконайте наступну команду:
 
    ```sh:no-line-numbers
@@ -90,7 +90,7 @@ Deno.serve(async (req) => {
 
 4. Щоб налаштувати Github Actions, дивіться [це](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
-Перегляньте [документацію deployctl](https://docs.deno.com/deploy/classic/deployctl/) для отримання додаткової інформації.
+Перегляньте [документацію deployctl](https://github.com/denoland/docs/blob/dd78a6fbf0288960c8dc53168ec34a4c75d3b0c3/deploy/classic/deployctl.md) для отримання додаткової інформації.
 
 ### Примітка
 
