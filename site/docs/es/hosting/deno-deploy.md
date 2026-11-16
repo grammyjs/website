@@ -10,7 +10,7 @@ Esta guía te explica cómo puedes alojar tus bots de grammy en [Deno Deploy](ht
 Ten en cuenta que esta guía es solo para usuarios de Deno, y que necesitas tener una cuenta [GitHub](https://github.com) para crear una cuenta [Deno Deploy](https://deno.com/deploy).
 
 Deno Deploy es ideal para la mayoría de los bots sencillos, y debe tener en cuenta que no todas las funciones de Deno están disponibles para las aplicaciones que se ejecutan en Deno Deploy.
-Por ejemplo, la plataforma solo admite un [conjunto limitado](https://docs.deno.com/deploy/classic/api/runtime-fs/) de las API del sistema de archivos disponibles en Deno.
+Por ejemplo, la plataforma solo admite un [conjunto limitado](https://github.com/denoland/docs/blob/dd78a6fbf0288960c8dc53168ec34a4c75d3b0c3/deploy/classic/api/runtime-fs.md) de las API del sistema de archivos disponibles en Deno.
 Es como las otras muchas plataformas serverless-y-paas, pero dedicadas a las aplicaciones Deno.
 
 El resultado de este tutorial [puede verse en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
@@ -59,7 +59,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 
    > Es recomendable que tengas una única rama estable y que hagas tus pruebas en otras ramas, para que no te ocurran cosas inesperadas.
 
-3. Visite su [Deno Deploy dashboard](https://dash.deno.com/account/overview).
+3. Visite su [Deno Deploy dashboard](https://console.deno.com/login?redirect=%2F).
 4. Haga clic en "Nuevo proyecto".
 5. Instala la app de GitHub en tu cuenta u organización, y elige tu repositorio.
 6. Selecciona la rama que quieres desplegar.
@@ -71,7 +71,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 > Te permite desplegar el proyecto a través de la línea de comandos o de las GitHub Actions.
 
 1. Instala [`deployctl`](https://github.com/denoland/deployctl).
-2. Crea un token de acceso desde la sección "Access Tokens" en [configuración de la cuenta](https://dash.deno.com/account).
+2. Crea un token de acceso desde la sección "Access Tokens" en [configuración de la cuenta](https://console.deno.com/login?redirect=%2F).
 3. Vaya al directorio de su proyecto y ejecute el siguiente comando:
 
    ```sh:no-line-numbers
@@ -89,7 +89,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
    :::
 4. Para configurar las Acciones de GitHub, consulta [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
-Consulta la [documentación de deployctl](https://docs.deno.com/deploy/classic/deployctl/) para más información.
+Consulta la [documentación de deployctl](https://github.com/denoland/docs/blob/dd78a6fbf0288960c8dc53168ec34a4c75d3b0c3/deploy/classic/deployctl.md) para más información.
 
 ### Nota
 
