@@ -5,13 +5,12 @@ next: false
 
 # Alojamiento: Deno Deploy
 
-Esta guía te explica cómo puedes alojar tus bots de grammy en [Deno Deploy](https://deno.com/deploy).
+Esta guía explica cómo ejecutar un bot de grammY en [Deno Deploy](https://docs.deno.com/deploy/).
 
-Ten en cuenta que esta guía es solo para usuarios de Deno, y que necesitas tener una cuenta [GitHub](https://github.com) para crear una cuenta [Deno Deploy](https://deno.com/deploy).
-
-Deno Deploy es ideal para la mayoría de los bots sencillos, y debe tener en cuenta que no todas las funciones de Deno están disponibles para las aplicaciones que se ejecutan en Deno Deploy.
-Por ejemplo, la plataforma solo admite un [conjunto limitado](https://docs.deno.com/deploy/classic/api/runtime-fs/) de las API del sistema de archivos disponibles en Deno.
-Es como las otras muchas plataformas serverless-y-paas, pero dedicadas a las aplicaciones Deno.
+::: warning Deno Deploy dejará de funcionar
+Deno Deploy Classic dejó de funcionar en julio de 2026 y el servicio actual de Deno Deploy [cerrará en abril de 2027](https://deno.com/blog/cloudflare).
+Para alojar un bot nuevo o migrar uno existente, puedes [ejecutar tu bot de Deno en un VPS](./vps).
+:::
 
 El resultado de este tutorial [puede verse en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
 
@@ -51,45 +50,13 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 
 ### Método 1: Con GitHub
 
-> Este es el método recomendado, y el más fácil de seguir.
-> La principal ventaja de seguir este método es que Deno Deploy estará atento a los cambios en tu repositorio que incluya el código de tu bot, y desplegará las nuevas versiones automáticamente.
+Sigue la [guía de introducción a Deno Deploy](https://docs.deno.com/deploy/getting_started/) para crear una aplicación y conectar tu repositorio de GitHub.
+Configura la aplicación como dinámica, indica `main.ts` o el archivo que elegiste antes como punto de entrada y define las variables de entorno que necesite tu bot.
 
-1. Crea un repositorio en GitHub, puede ser privado o público.
-2. Empuja tu código.
+### Método 2: Con `deno deploy`
 
-   > Es recomendable que tengas una única rama estable y que hagas tus pruebas en otras ramas, para que no te ocurran cosas inesperadas.
-
-3. Visite su [Deno Deploy dashboard](https://dash.deno.com/account/overview).
-4. Haga clic en "Nuevo proyecto".
-5. Instala la app de GitHub en tu cuenta u organización, y elige tu repositorio.
-6. Selecciona la rama que quieres desplegar.
-7. Selecciona el archivo de entrada `main.ts`, y haz clic en "Deploy Project" para desplegar.
-
-### Método 2: Con `deployctl`
-
-> Este es un método para usuarios más avanzados o si no quieres subir tu código a GitHub.
-> Te permite desplegar el proyecto a través de la línea de comandos o de las GitHub Actions.
-
-1. Instala [`deployctl`](https://github.com/denoland/deployctl).
-2. Crea un token de acceso desde la sección "Access Tokens" en [configuración de la cuenta](https://dash.deno.com/account).
-3. Vaya al directorio de su proyecto y ejecute el siguiente comando:
-
-   ```sh:no-line-numbers
-   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
-   ```
-
-   ::: tip Configuración de variables de entorno
-   Las variables de entorno pueden establecerse accediendo a la configuración del proyecto después de desplegarlo.
-
-   Pero esto también es posible desde la línea de comandos:
-
-   1. Puedes asignar variables de entorno desde un archivo dotenv añadiendo el argumento `--env-file=<file>`.
-   2. También puede especificarlas individualmente utilizando el argumento `--env=<clave=valor>`.
-
-   :::
-4. Para configurar las Acciones de GitHub, consulta [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
-
-Consulta la [documentación de deployctl](https://docs.deno.com/deploy/classic/deployctl/) para más información.
+Sigue la [documentación de `deno deploy`](https://docs.deno.com/runtime/reference/cli/deploy/) para crear y desplegar una aplicación dinámica desde tu proyecto local.
+Usa `main.ts` o el archivo que elegiste antes como punto de entrada.
 
 ### Nota
 

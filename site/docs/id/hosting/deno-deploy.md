@@ -5,15 +5,12 @@ next: false
 
 # Hosting: Deno Deploy
 
-Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot di [Deno Deploy](https://deno.com/deploy).
+Panduan ini menjelaskan cara menjalankan bot grammY di [Deno Deploy](https://docs.deno.com/deploy/).
 
-Perlu diperhatikan bahwa panduan ini hanya berlaku untuk pengguna Deno.
-Kamu diharuskan memiliki akun [GitHub](https://github.com) untuk membuat akun [Deno Deploy](https://deno.com/deploy).
-
-Deno Deploy cocok dipakai untuk bot yang sederhana.
-Namun, tidak semua fitur Deno tersedia di Deno Deploy.
-Diantaranya adalah [terbatasnya](https://docs.deno.com/deploy/classic/api/runtime-fs/) API file system Deno yang didukung.
-Deno Deploy serupa dengan platform serverless lainnya, bedanya ia diperuntukkan untuk aplikasi Deno saja.
+::: warning Deno Deploy akan dihentikan
+Deno Deploy Classic telah dihentikan pada Juli 2026, dan layanan Deno Deploy saat ini akan [dihentikan pada April 2027](https://deno.com/blog/cloudflare).
+Untuk bot baru atau untuk memindahkan bot yang sudah ada, kamu bisa [menjalankan bot Deno di VPS](./vps).
+:::
 
 Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
 
@@ -53,46 +50,13 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 
 ### Metode 1: Menggunakan GitHub
 
-> Metode ini sangat direkomendasikan karena mudah untuk digunakan.
-> Kelebihannya adalah Deno Deploy akan selalu memantau perubahan di repositori tempat kamu menaruh kode bot.
-> Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
+Ikuti [panduan memulai Deno Deploy](https://docs.deno.com/deploy/getting_started/) untuk membuat aplikasi dan menghubungkan repositori GitHub kamu.
+Atur aplikasi sebagai aplikasi dinamis, gunakan `main.ts` atau nama file yang kamu pilih sebelumnya sebagai entrypoint, lalu atur variabel lingkungan yang dibutuhkan bot.
 
-1. Buat sebuah repositori di GitHub, bisa dalam bentuk private ataupun publik.
-2. Taruh kodemu di dalam repositori tersebut.
+### Metode 2: Menggunakan `deno deploy`
 
-   > Direkomendasikan untuk mempunyai satu branch stabil dan branch lain untuk pengetesan supaya branch utama kamu terhindar dari hal-hal yang tidak diinginkan.
-
-3. Kunjungi [dashboard Deno Deploy](https://dash.deno.com/account/overview).
-4. Pilih "New Project".
-5. Pasang aplikasi GitHub di akun atau organisasimu, kemudian pilih repositori kode bot kamu berada.
-6. Pilih branch yang akan di-deploy.
-7. Pilih file `main.ts` sebagai entrypoint, lalu deploy proyek dengan mengklik "Deploy Project".
-
-### Metode 2: Menggunakan `deployctl`
-
-> Metode ini diperuntukkan untuk penggunaan tingkat lanjut atau jika kamu tidak ingin mengunggah kode proyek ke GitHub.
-> Melalui cara ini, kamu bisa men-deploy proyek menggunakan command line atau GitHub Actions.
-
-1. Instal [`deployctl`](https://github.com/denoland/deployctl).
-2. Buat sebuah token akses di bagian "Access Tokens", [pengaturan akun](https://dash.deno.com/account).
-3. Pergi ke direktori proyek, lalu jalankan perintah berikut:
-
-   ```sh:no-line-numbers
-   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
-   ```
-
-   ::: tip Mengatur environment variable
-   Setelah di-deploy, kamu bisa mengatur environment variable di bagian pengaturan proyek.
-
-   Selain melalui pengaturan proyek, kamu juga bisa mengaturnya melalui command line:
-
-   1. Taruh semua environment variable di file dotenv, lalu akses dengan menambahkan argumen `--env-file=<file>`.
-   2. Kamu juga bisa menambahkan environment variable satu per satu menggunakan argumen `--env=<key=value>`.
-
-   :::
-4. Untuk mengatur GitHub Actions, lihat panduan [berikut](https://github.com/denoland/deployctl/blob/main/action/README.md).
-
-Lihat [dokumentasi deployctl](https://docs.deno.com/deploy/classic/deployctl/) untuk informasi lebih lanjut.
+Ikuti [dokumentasi `deno deploy`](https://docs.deno.com/runtime/reference/cli/deploy/) untuk membuat dan men-deploy aplikasi dinamis dari proyek lokal kamu.
+Gunakan `main.ts` atau nama file yang kamu pilih sebelumnya sebagai entrypoint.
 
 ### Catatan
 

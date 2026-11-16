@@ -203,7 +203,7 @@ systemd 是一个功能强大的服务管理器，已预装在许多 Linux 发�
    - `WantedBy=multi-user.target` --- 定义了服务启动时的系统状态。
      `multi-user.target` --- 是服务器的典型值。
 
-   > 有关单元文件的更多信息，请阅读 [这里](https://docs.redhat.com/zh-cn/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd)。
+   > 有关更多信息，请参阅 [systemd 服务单元文档](https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html)。
 
 4. 每次编辑服务时，都要重新加载 systemd：
 

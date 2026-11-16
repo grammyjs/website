@@ -5,13 +5,12 @@ next: false
 
 # 托管：Deno Deploy
 
-这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
+本指南介绍如何在 [Deno Deploy](https://docs.deno.com/deploy/) 上运行 grammY bot。
 
-请注意，这个指南只适用于 Deno 用户，你需要一个 [GitHub](https://github.com) 账户来创建一个 [Deno Deploy](https://deno.com/deploy) 账户。
-
-Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，Deno Deploy 上运行的应用程序不一定完整支持 Deno 的所有功能。
-例如，平台仅支持 Deno 中可用的文件系统 API 的 [有限集](https://docs.deno.com/deploy/classic/api/runtime-fs/)。
-它就像其他许多 serverless 平台一样，但专门用于 Deno 应用程序。
+::: warning Deno Deploy 即将停止运营
+Deno Deploy Classic 已于 2026 年 7 月停止运营，现有的 Deno Deploy 服务将于 [2027 年 4 月停止运营](https://deno.com/blog/cloudflare)。
+如果你要部署新的 bot 或迁移现有的 bot，可以[在 VPS 上运行你的 Deno bot](./vps)。
+:::
 
 这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy)。
 
@@ -51,45 +50,13 @@ Deno.serve(async (req) => {
 
 ### 方法 1：使用 GitHub
 
-> 这是推荐的方法，也是最容易操作的方法。
-> 使用这种方法的主要优势是，Deno Deploy 将会自动监视你的仓库变化，其中包括你的代码，并自动部署新版本。
+按照 [Deno Deploy 入门指南](https://docs.deno.com/deploy/getting_started/)创建应用并连接你的 GitHub 仓库。
+将应用配置为动态应用，使用 `main.ts` 或你之前选定的文件作为入口点，并设置 bot 所需的环境变量。
 
-1. 在 GitHub 上创建一个新的仓库，它可以是私有的或公开的。
-2. 将你的代码推送到这个仓库。
+### 方法 2: 使用 `deno deploy`
 
-   > 建议你有一个单一且稳定的分支，然后在其他分支中进行测试，这样你就不会发送一些意外的事情。
-
-3. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/account/overview)。
-4. 点击 "New Project"。
-5. 安装 GitHub 应用程序到你的账户或组织，并选择你的仓库。
-6. 选择你想部署的分支，然后选择你要部署的`mod.ts`文件。
-7. 选择入口文件 `main.ts`，然后点击 "Deploy Project" 进行部署。
-
-### 方法 2: 使用 `deployctl`
-
-> 这是一种适用于更高级用户或者不想将代码上传到 GitHub 的方法。
-> 它允许你通过命令行或 Github Actions 来部署项目。
-
-1. 安装 [`deployctl`](https://github.com/denoland/deployctl)。
-2. 从 [account settings](https://dash.deno.com/account) 中的 "Access Tokens" 部分创建访问令牌。
-3. 转到你的项目目录并运行以下命令：
-
-   ```sh:no-line-numbers
-   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
-   ```
-
-   ::: tip 设置环境变量
-   部署后可以前往项目的设置来设置环境变量。
-
-   但这也可以通过命令行实现：
-
-   1. 你可以通过添加 `--env-file=<file>` 参数从 dotenv 文件添加环境变量。
-   2. 你还可以使用 `--env=<key=value>` 参数单独指定它们。
-
-   :::
-4. 要设置 GitHub Actions，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.md)。
-
-查看 [deployctl 文档](https://docs.deno.com/deploy/classic/deployctl/) 了解更多信息。
+按照 [`deno deploy` 文档](https://docs.deno.com/runtime/reference/cli/deploy/)从本地项目创建并部署动态应用。
+使用 `main.ts` 或你之前选定的文件作为入口点。
 
 ### 注意
 
