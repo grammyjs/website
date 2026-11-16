@@ -12,7 +12,7 @@ Kamu diharuskan memiliki akun [GitHub](https://github.com) untuk membuat akun [D
 
 Deno Deploy cocok dipakai untuk bot yang sederhana.
 Namun, tidak semua fitur Deno tersedia di Deno Deploy.
-Diantaranya adalah [terbatasnya](https://docs.deno.com/deploy/classic/api/runtime-fs/) API file system Deno yang didukung.
+Diantaranya adalah [terbatasnya](https://github.com/denoland/docs/blob/dd78a6fbf0288960c8dc53168ec34a4c75d3b0c3/deploy/classic/api/runtime-fs.md) API file system Deno yang didukung.
 Deno Deploy serupa dengan platform serverless lainnya, bedanya ia diperuntukkan untuk aplikasi Deno saja.
 
 Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
@@ -62,7 +62,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 
    > Direkomendasikan untuk mempunyai satu branch stabil dan branch lain untuk pengetesan supaya branch utama kamu terhindar dari hal-hal yang tidak diinginkan.
 
-3. Kunjungi [dashboard Deno Deploy](https://dash.deno.com/account/overview).
+3. Kunjungi [dashboard Deno Deploy](https://console.deno.com/login?redirect=%2F).
 4. Pilih "New Project".
 5. Pasang aplikasi GitHub di akun atau organisasimu, kemudian pilih repositori kode bot kamu berada.
 6. Pilih branch yang akan di-deploy.
@@ -74,7 +74,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 > Melalui cara ini, kamu bisa men-deploy proyek menggunakan command line atau GitHub Actions.
 
 1. Instal [`deployctl`](https://github.com/denoland/deployctl).
-2. Buat sebuah token akses di bagian "Access Tokens", [pengaturan akun](https://dash.deno.com/account).
+2. Buat sebuah token akses di bagian "Access Tokens", [pengaturan akun](https://console.deno.com/login?redirect=%2F).
 3. Pergi ke direktori proyek, lalu jalankan perintah berikut:
 
    ```sh:no-line-numbers
@@ -92,7 +92,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
    :::
 4. Untuk mengatur GitHub Actions, lihat panduan [berikut](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
-Lihat [dokumentasi deployctl](https://docs.deno.com/deploy/classic/deployctl/) untuk informasi lebih lanjut.
+Lihat [dokumentasi deployctl](https://github.com/denoland/docs/blob/dd78a6fbf0288960c8dc53168ec34a4c75d3b0c3/deploy/classic/deployctl.md) untuk informasi lebih lanjut.
 
 ### Catatan
 
