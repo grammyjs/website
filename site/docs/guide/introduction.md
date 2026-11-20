@@ -175,14 +175,11 @@ Ready?
 
 ### Prerequisites for Node.js
 
-You are going to write your bot in TypeScript, but, contrary to Deno, Node.js cannot actually run TypeScript.
-Instead, once you have a source file (e.g. called `bot.ts`), you are going to _compile_ it to JavaScript.
-You will then have two files: your original `bot.ts`, and a generated `bot.js`, which can in turn be run by Node.js.
-The exact commands for all of that will be introduced in the next section when you actually create a bot, but it is important to know that these steps are necessary.
+Install [Node.js](https://nodejs.org/en/) to run your bot.
+Recent versions of Node.js can run `node bot.ts` directly if the TypeScript syntax in your file can be removed without changing how the code runs, such as a type annotation.
+Node.js skips type checking when it runs a file this way (see [the Node.js guide to TypeScript](https://nodejs.org/api/typescript.html#type-stripping)).
 
-In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org/en/) installed.
-
-In summary, this is what you have to do for Node.js:
+In this guide, you will use the TypeScript compiler to check your code and generate JavaScript before running your bot:
 
 1. Create a source file `bot.ts` with TypeScript code, e.g. using [VS Code](https://code.visualstudio.com) (or any other code editor).
 2. Compile the code by running a command in your terminal. This generates a file called `bot.js`.
