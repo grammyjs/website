@@ -381,7 +381,7 @@ Deno.serve(async (req) => {
 Para conectar un bot que funciona con webhooks al mundo exterior, necesitas comprar un dominio.
 Vamos a explicar esto con Hostinger de nuevo, pero hay muchos otros servicios, también, y todos funcionan de manera similar.
 
-Vaya a la [página de búsqueda de nombres de dominio](https://www.hostinger.com/domain-name-search).
+Vaya a la [página de búsqueda de nombres de dominio](https://www.hostinger.com/domains).
 En el campo de entrada de texto, introduzca un nombre de dominio de la forma `<nombre>.<zona>`.
 Por ejemplo, `ejemplo.com`.
 
