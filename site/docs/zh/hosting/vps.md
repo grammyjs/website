@@ -381,7 +381,7 @@ Deno.serve(async (req) => {
 要将基于 webhook 运行的 bot 与外部世界连接起来，你需要购买一个域名。
 我们将再次用 Hostinger 解释这一点，但还有许多其他服务，而且它们的工作原理都类似。
 
-跳转到 [域名搜索页面](https://www.hostinger.com/domain-name-search)。
+跳转到 [域名搜索页面](https://www.hostinger.com/domains)。
 在文本输入框中输入 `<name>.<zone>` 形式的域名。
 例如，`example.com`。
 
