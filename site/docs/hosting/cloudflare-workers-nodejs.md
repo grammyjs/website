@@ -32,7 +32,7 @@ npm create cloudflare@latest
 Then, you will be asked to enter the name of the worker:
 
 ```ansi{6}
-using create-cloudflare version 2.17.1
+using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
 │
@@ -43,13 +43,13 @@ using create-cloudflare version 2.17.1
 Here we create a project named `grammybot`, you can choose your own, this will be the name of your worker as well as a part of the request URL.
 
 ::: tip
-You can change the name of your worker in `wrangler.toml` later.
+You can change the name of your worker in `wrangler.jsonc` or `wrangler.toml` later.
 :::
 
-Next, you will be asked to select the type of your worker, here we choose `"Hello World" Worker`:
+Next, you will be asked to select the category of your worker, here we choose `Hello World example`:
 
 ```ansi{8}
-using create-cloudflare version 2.17.1
+using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
 │
@@ -57,53 +57,88 @@ using create-cloudflare version 2.17.1
 │ dir ./grammybot
 │
 ╰ What type of application do you want to create?  // [!code focus]
-  ● "Hello World" Worker  // [!code focus]
-  ○ "Hello World" Worker (Python)  // [!code focus]
-  ○ "Hello World" Durable Object  // [!code focus]
-  ○ Website or web app  // [!code focus]
-  ○ Example router & proxy Worker  // [!code focus]
-  ○ Scheduled Worker (Cron Trigger)  // [!code focus]
-  ○ Queue consumer & producer Worker  // [!code focus]
-  ○ API starter (OpenAPI compliant)  // [!code focus]
-  ○ Worker built from a template hosted in a git repository  // [!code focus]
+  ● Hello World example // [!code focus]
+  ○ Framework Starter // [!code focus]
+  ○ Application Starter // [!code focus]
+  ○ Template from a GitHub repo // [!code focus]
+  ◁ Go back // [!code focus]
 ```
 
-Next, you will be asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`.
-Here we choose `Yes`:
+Next, you will be asked which template would you like to use, here we choose `Worker only`:
 
-```ansi{11}
-using create-cloudflare version 2.17.1
+```ansi{9}
+╭ Create an application with Cloudflare Step 1 of 3
+│
+├ In which directory do you want to create your application?
+│ dir ./grammybot
+│
+├ What would you like to start with?
+│ category Hello World example
+│
+╰ Which template would you like to use? // [!code focus]
+  ● Worker only // [!code focus]
+  ○ Static site // [!code focus]
+  ○ SSR / full-stack app // [!code focus]
+  ○ Worker + Durable Objects // [!code focus]
+  ○ Worker + Durable Objects + Assets // [!code focus]
+  ○ Workflow // [!code focus]
+  ○ Scheduled Worker (Cron Trigger) // [!code focus]
+  ○ Queue consumer & producer Worker // [!code focus]
+  ○ API starter (OpenAPI compliant) // [!code focus]
+  ◁ Go back // [!code focus]
+```
+
+Next, you will be asked which language do you want to use: TypeScript, JavaScript or Python (beta).
+Here we choose TypeScript:
+
+```ansi{14}
+using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
 │
 ├ In which directory do you want to create your application?
 │ dir ./grammybot
 │
-├ What type of application do you want to create?
-│ type "Hello World" Worker
+├ What would you like to start with?
+│ category Hello World example
 │
-╰ Do you want to use TypeScript?  // [!code focus]
-  Yes / No  // [!code focus]
+├ Which template would you like to use?
+│ type Worker only
+│
+╰ Which language do you want to use? // [!code focus]
+  ● TypeScript // [!code focus]
+  ○ JavaScript // [!code focus]
+  ○ Python (beta)
+  ◁ Go back
 ```
 
-Your project will be set up in a few minutes.
+Your project will be set up in a few minutes. At some point you will be asked about AGENTS.md file:
+
+```ansi{1}
+Do you want to add an AGENTS.md file to help AI coding tools understand Cloudflare APIs?
+  Yes / No // [!code focus]
+```
+
 After that, you will be asked whether you want to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize it by yourself later.
 
 Here we choose `Yes`:
 
-```ansi{36}
-using create-cloudflare version 2.17.1
+```ansi{45}
+using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
 │
 ├ In which directory do you want to create your application?
 │ dir ./grammybot
 │
-├ What type of application do you want to create?
-│ type "Hello World" Worker
+├ What would you like to start with?
+│ category Hello World example
 │
-├ Do you want to use TypeScript?
-│ yes typescript
+├ Which template would you like to use?
+│ type Worker only
+│
+├ Which language do you want to use?
+│ lang TypeScript
 │
 ├ Copying template files
 │ files copied to project directory
@@ -114,18 +149,24 @@ using create-cloudflare version 2.17.1
 ├ Installing dependencies
 │ installed via `npm install`
 │
+├ Do you want to add an AGENTS.md file to help AI coding tools understand Cloudflare APIs?
+│ yes agents
+│
 ╰ Application created
 
 ╭ Configuring your application for Cloudflare Step 2 of 3
 │
-├ Installing @cloudflare/workers-types
+├ Installing wrangler A command line tool for building Cloudflare Workers
+│ installed via `npm install wrangler --save-dev`
+│
+├ Selecting workerd compatibility date
+│ compatibility date 20XX-XX-XX
+│
+├ Generating types for your application
+│ generated to `./worker-configuration.d.ts` via `npm run cf-typegen`
+│
+├ Installing @types/node
 │ installed via npm
-│
-├ Adding latest types to `tsconfig.json`
-│ added @cloudflare/workers-types/2023-07-01
-│
-├ Retrieving current workerd compatibility date
-│ compatibility date 2024-04-05
 │
 ╰ Do you want to use git for version control?  // [!code focus]
   Yes / No  // [!code focus]
@@ -133,19 +174,22 @@ using create-cloudflare version 2.17.1
 
 Finally, you will be asked whether you want to deploy your worker, choose `No`, since we are going to deploy it when we have a working Telegram bot:
 
-```ansi{49}
-using create-cloudflare version 2.17.1
+```ansi{73}
+using create-cloudflare version 2.74.12
 
 ╭ Create an application with Cloudflare Step 1 of 3
 │
 ├ In which directory do you want to create your application?
 │ dir ./grammybot
 │
-├ What type of application do you want to create?
-│ type "Hello World" Worker
+├ What would you like to start with?
+│ category Hello World example
 │
-├ Do you want to use TypeScript?
-│ yes typescript
+├ Which template would you like to use?
+│ type Worker only
+│
+├ Which language do you want to use?
+│ lang TypeScript
 │
 ├ Copying template files
 │ files copied to project directory
@@ -156,18 +200,24 @@ using create-cloudflare version 2.17.1
 ├ Installing dependencies
 │ installed via `npm install`
 │
+├ Do you want to add an AGENTS.md file to help AI coding tools understand Cloudflare APIs?
+│ yes agents
+│
 ╰ Application created
 
 ╭ Configuring your application for Cloudflare Step 2 of 3
 │
-├ Installing @cloudflare/workers-types
+├ Installing wrangler A command line tool for building Cloudflare Workers
+│ installed via `npm install wrangler --save-dev`
+│
+├ Selecting workerd compatibility date
+│ compatibility date 2026-11-13
+│
+├ Generating types for your application
+│ generated to `./worker-configuration.d.ts` via `npm run cf-typegen`
+│
+├ Installing @types/node
 │ installed via npm
-│
-├ Adding latest types to `tsconfig.json`
-│ added @cloudflare/workers-types/2023-07-01
-│
-├ Retrieving current workerd compatibility date
-│ compatibility date 2024-04-05
 │
 ├ Do you want to use git for version control?
 │ yes git
@@ -175,8 +225,23 @@ using create-cloudflare version 2.17.1
 ├ Initializing git repo
 │ initialized git
 │
-├ Committing new files
-│ git commit
+[master (root-commit) b454b1c] Initial commit (by create-cloudflare CLI)
+ 14 files changed, 19573 insertions(+)
+ create mode 100644 .editorconfig
+ create mode 100644 .gitignore
+ create mode 100644 .prettierrc
+ create mode 100644 .vscode/settings.json
+ create mode 100644 AGENTS.md
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+ create mode 100644 src/index.ts
+ create mode 100644 test/index.spec.ts
+ create mode 100644 test/tsconfig.json
+ create mode 100644 tsconfig.json
+ create mode 100644 vitest.config.mts
+ create mode 100644 worker-configuration.d.ts
+ create mode 100644 wrangler.jsonc
+├ git commit
 │
 ╰ Application configured
 
@@ -198,7 +263,7 @@ npm install grammy
 
 Edit `src/index.js` or `src/index.ts`, and write this code inside:
 
-```ts{11,28-29,38,40-42,44}
+```ts{11-12,29-30,39,41-43,45}
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -210,6 +275,7 @@ Edit `src/index.js` or `src/index.ts`, and write this code inside:
  */
 
 import { Bot, Context, webhookCallback } from "grammy";
+import { UserFromGetMe } from 'grammy/types';
 
 export interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -226,7 +292,7 @@ export interface Env {
   //
   // Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
   // MY_QUEUE: Queue;
-  BOT_INFO: string;
+  BOT_INFO: UserFromGetMe;
   BOT_TOKEN: string;
 }
 
@@ -236,7 +302,7 @@ export default {
     env: Env,
     ctx: ExecutionContext,
   ): Promise<Response> {
-    const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
+    const bot = new Bot(env.BOT_TOKEN, { botInfo: env.BOT_INFO });
 
     bot.command("start", async (ctx: Context) => {
       await ctx.reply("Hello, world!");
@@ -259,7 +325,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/getMe
 Replace `<BOT_TOKEN>` with your bot token.
 If successful, you will see a JSON response similar to this:
 
-```json{3-12}
+```json{3-18}
 {
     "ok": true,
     "result": {
@@ -270,34 +336,46 @@ If successful, you will see a JSON response similar to this:
         "can_join_groups": true,
         "can_read_all_group_messages": false,
         "supports_inline_queries": true,
-        "can_connect_to_business": false
+        "supports_guest_queries": false,
+        "can_connect_to_business": false,
+        "has_main_web_app": false,
+        "has_topics_enabled": false,
+        "allows_users_to_create_topics": false,
+        "can_manage_bots": false,
+        "supports_join_request_queries": false
     }
 }
 ```
 
-Now, open `wrangler.toml` in the root of your project and add an environment variable `BOT_INFO` under `[vars]` section with the value from `result` object you get above like this:
+Now, open `wrangler.jsonc` in the root of your project and add an environment variable `BOT_INFO` under `"vars"` section with the value from `result` object you get above like this:
 
-```toml
-[vars]
-BOT_INFO = """{
-    "id": 1234567890,
-    "is_bot": true,
-    "first_name": "mybot",
-    "username": "MyBot",
-    "can_join_groups": true,
-    "can_read_all_group_messages": false,
-    "supports_inline_queries": true,
-    "can_connect_to_business": false
-}"""
+```json
+"vars": {  
+    "BOT_INFO": {
+        "id": 1234567890,
+        "is_bot": true,
+        "first_name": "mybot",
+        "username": "MyBot",
+        "can_join_groups": true,
+        "can_read_all_group_messages": false,
+        "supports_inline_queries": true,
+        "supports_guest_queries": false,
+        "can_connect_to_business": false,
+        "has_main_web_app": false,
+        "has_topics_enabled": false,
+        "allows_users_to_create_topics": false,
+        "can_manage_bots": false,
+        "supports_join_request_queries": false
+    }
+}
 ```
 
 Replace the bot info with what you get from the web browser.
-Pay attention to the three double quotation marks `"""` at the beginning and end.
 
 In addition to `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an environment variable that stores your bot token that is used to create your bot.
 
 You may notice that we just define the variable `BOT_TOKEN`, but didn't assign it yet.
-Usually you need to store your environment variable in `wrangler.toml`, however, this is not safe in our case, since the bot token should be kept secret.
+Usually you need to store your environment variable in `wrangler.jsonc` or `wrangler.toml`, however, this is not safe in our case, since the bot token should be kept secret.
 Cloudflare Workers provide us a safe way to store sensitive information like API keys and auth tokens in environment variable: [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)!
 
 ::: tip
