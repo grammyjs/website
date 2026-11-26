@@ -131,3 +131,19 @@ bot.command("start", async (ctx) => {
   );
 });
 ```
+
+## Редагування повідомлень
+
+Ви можете відредагувати повідомлення, надіслане вашим ботом, наступним чином:
+
+```ts
+bot.command("think", async (ctx) => {
+  const msg = await ctx.reply("Думаю...");
+
+  const newText = await getSomeNewText();
+
+  await ctx.api.editMessageText(ctx.chatId, msg.message_id, newText);
+});
+```
+
+> Рекомендуємо використати [плагін hydrate](../plugins/hydrate), який спрощує редагування повідомлень.

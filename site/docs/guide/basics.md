@@ -131,3 +131,19 @@ bot.command("start", async (ctx) => {
   });
 });
 ```
+
+## Editing Messages
+
+You can edit a message sent by your bot like this:
+
+```ts
+bot.command("think", async (ctx) => {
+  const msg = await ctx.reply("Thinking...");
+
+  const newText = await getSomeNewText();
+
+  await ctx.api.editMessageText(ctx.chatId, msg.message_id, newText);
+});
+```
+
+> Consider using the [hydrate plugin](../plugins/hydrate) which simplifies message editing.
