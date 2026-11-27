@@ -377,7 +377,7 @@ class MyContext extends Context {
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
-import type { Update, BotFullInfo } from "grammy/types";
+import type { BotFullInfo, Update } from "grammy/types";
 
 // 自定义一个上下文类。
 class MyContext extends Context {
@@ -432,7 +432,7 @@ bot.start();
 
 ```ts [Deno]
 import { Bot, Context } from "npm:grammy";
-import type { Update, BotFullInfo } from "npm:grammy/types";
+import type { BotFullInfo, Update } from "npm:grammy/types";
 
 // 自定义一个上下文类
 class MyContext extends Context {

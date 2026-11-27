@@ -369,7 +369,7 @@ Ten en cuenta que tu clase debe extender `Context`.
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
-import type { Update, BotFullInfo } from "grammy/types";
+import type { BotFullInfo, Update } from "grammy/types";
 
 // Definir una clase de contexto personalizada.
 class MyContext extends Context {
@@ -424,7 +424,7 @@ bot.start();
 
 ```ts [Deno]
 import { Bot, Context } from "npm:grammy";
-import type { Update, BotFullInfo } from "npm:grammy/types";
+import type { BotFullInfo, Update } from "npm:grammy/types";
 
 // Definir una clase de contexto personalizada.
 class MyContext extends Context {
