@@ -37,10 +37,10 @@ Keuntungan menggunakan method `api.sendGame` adalah kamu bisa menentukan `chat.i
    ```ts
    // Kirim ke user spesifik
    bot.command("start", async (ctx) => {
-     // Kamu bisa mendapatkan id chat user menggunakan `ctx.from.id`.
+     // Kamu bisa mendapatkan id chat user menggunakan `ctx.chat.id`.
      // Ia akan menyediakan id chat user yang memulai command start tersebut.
-     const chatId = ctx.from.id;
-     await ctx.api.sendGame(chatid, "gathotkaca_reborn");
+     const chatId = ctx.chat.id;
+     await ctx.api.sendGame(chatId, "gathotkaca_reborn");
    });
    ```
 

@@ -36,10 +36,10 @@
 
    ```ts
    bot.command("start", async (ctx) => {
-     // Отримаємо ідентифікатор чату користувача, якому потрібно надіслати гру, за допомогою `ctx.from.id`,
+     // Отримаємо ідентифікатор чату користувача, якому потрібно надіслати гру, за допомогою `ctx.chat.id`,
      // який повертає ідентифікатор чату користувача, який відправив команду start.
-     const chatId = ctx.from.id;
-     await ctx.api.sendGame(chatid, "моя-гра");
+     const chatId = ctx.chat.id;
+     await ctx.api.sendGame(chatId, "моя-гра");
    });
    ```
 

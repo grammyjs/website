@@ -36,10 +36,10 @@ Telegram 游戏是一个非常有趣的功能，很好玩。
 
    ```ts
    bot.command("start", async (ctx) => {
-     // 你可以通过 `ctx.from.id` 获得用户发送游戏的聊天标识符。
+     // 你可以通过 `ctx.chat.id` 获得用户发送游戏的聊天标识符。
      // 它提供了调用 start 命令的用户的聊天标识符。
-     const chatId = ctx.from.id;
-     await ctx.api.sendGame(chatid, "my_game");
+     const chatId = ctx.chat.id;
+     await ctx.api.sendGame(chatId, "my_game");
    });
    ```
 
