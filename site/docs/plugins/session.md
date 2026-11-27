@@ -231,7 +231,7 @@ Hence, changing the session data in one chat may accidentally impact the session
 :::
 
 You may also omit the `initial` option entirely, even though you are well advised not to do that.
-If you don't specify it, reading `ctx.session` will throw an error for new users.
+If you don't specify it, reading `ctx.session` will return `undefined` for new users instead of a fresh object.
 
 ### Session Keys
 
@@ -302,8 +302,8 @@ bot.use(session({ getSessionKey }));
 
 :::
 
-Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
-For example, the default session key resolver will not work for `poll`/`poll_answer` updates or `inline_query` updates because they do not belong to a chat (`ctx.chat` is `undefined`).
+Whenever `getSessionKey` returns `undefined`, accessing or assigning `ctx.session` will throw an error.
+For example, the default session key resolver will not work for `poll`/`poll_answer` updates or `inline_query` updates because they do not belong to a chat (`ctx.chat` is `undefined`), so reading `ctx.session` in those handlers will throw.
 
 ::: warning Session Keys and Webhooks
 When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
