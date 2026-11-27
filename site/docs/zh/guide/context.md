@@ -377,16 +377,16 @@ class MyContext extends Context {
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
-import type { Update, UserFromGetMe } from "grammy/types";
+import type { Update, BotFullInfo } from "grammy/types";
 
 // 自定义一个上下文类。
 class MyContext extends Context {
   // 自定义一些属性
   public readonly customProp: number;
 
-  constructor(update: Update, api: Api, me: UserFromGetMe) {
+  constructor(update: Update, api: Api, me: BotFullInfo) {
     super(update, api, me);
-    this.customProp = me.username.length * 42;
+    this.customProp = me.first_name.length * 42;
   }
 }
 
@@ -413,7 +413,7 @@ class MyContext extends Context {
 
   constructor(update, api, me) {
     super(update, api, me);
-    this.customProp = me.username.length * 42;
+    this.customProp = me.first_name.length * 42;
   }
 }
 
@@ -432,16 +432,16 @@ bot.start();
 
 ```ts [Deno]
 import { Bot, Context } from "npm:grammy";
-import type { Update, UserFromGetMe } from "npm:grammy/types";
+import type { Update, BotFullInfo } from "npm:grammy/types";
 
 // 自定义一个上下文类
 class MyContext extends Context {
   // 自定义一些属性。
   public readonly customProp: number;
 
-  constructor(update: Update, api: Api, me: UserFromGetMe) {
+  constructor(update: Update, api: Api, me: BotFullInfo) {
     super(update, api, me);
-    this.customProp = me.username.length * 42;
+    this.customProp = me.first_name.length * 42;
   }
 }
 
