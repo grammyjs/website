@@ -62,13 +62,13 @@ Buat sebuah file baru bernama `bot.ts` lalu isi dengan kode berikut:
 
 ```ts
 import { Bot, webhookCallback } from "npm:grammy";
-import { UserFromGetMe } from "npm:grammy/types";
+import { BotFullInfo } from "npm:grammy/types";
 
 interface Environment {
   BOT_TOKEN: string;
 }
 
-let botInfo: UserFromGetMe | undefined = undefined;
+let botInfo: BotFullInfo | undefined = undefined;
 
 export default {
   async fetch(request: Request, env: Environment) {
