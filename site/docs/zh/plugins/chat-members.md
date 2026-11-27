@@ -153,7 +153,7 @@ import { API_CONSTANTS, Bot } from "npm:grammy";
 import {
   chatMemberFilter,
   myChatMemberFilter,
-} from "npm:@grammyjs/chat_members";
+} from "npm:@grammyjs/chat-members";
 
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
@@ -391,7 +391,7 @@ import { type ChatMember } from "npm:grammy/types";
 import {
   chatMembers,
   type ChatMembersFlavor,
-} from "npm:@grammyjs/chat_members";
+} from "npm:@grammyjs/chat-members";
 
 type MyContext = Context & ChatMembersFlavor;
 
