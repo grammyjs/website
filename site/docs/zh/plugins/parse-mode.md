@@ -73,7 +73,7 @@ bot.start();
 
 ```ts [Deno]
 import { Bot } from "npm:grammy";
-import { b, fmt, u } from "npm:@grammyjs/parse_mode";
+import { b, fmt, u } from "npm:@grammyjs/parse-mode";
 
 const bot = new Bot("");
 
@@ -174,7 +174,7 @@ bot.start();
 
 ```ts [Deno]
 import { Bot } from "npm:grammy";
-import { FormattedString } from "npm:@grammyjs/parse_mode";
+import { FormattedString } from "npm:@grammyjs/parse-mode";
 
 const bot = new Bot("");
 

@@ -55,7 +55,7 @@ run(bot);
 ```ts [Deno]
 import { Bot } from "npm:grammy";
 import { run } from "npm:@grammyjs/runner";
-import { apiThrottler } from "npm:@grammyjs/transformer_throttler";
+import { apiThrottler } from "npm:@grammyjs/transformer-throttler";
 
 const bot = new Bot("");
 

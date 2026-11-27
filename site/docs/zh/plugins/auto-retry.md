@@ -38,7 +38,7 @@ bot.api.config.use(autoRetry());
 ```
 
 ```ts [Deno]
-import { autoRetry } from "npm:@grammyjs/auto_retry";
+import { autoRetry } from "npm:@grammyjs/auto-retry";
 
 // 安装插件
 bot.api.config.use(autoRetry());

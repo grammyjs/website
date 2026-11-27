@@ -42,7 +42,7 @@ bot.api.config.use(autoRetry());
 ```
 
 ```ts [Deno]
-import { autoRetry } from "npm:@grammyjs/auto_retry";
+import { autoRetry } from "npm:@grammyjs/auto-retry";
 
 // Usa el plugin.
 bot.api.config.use(autoRetry());
