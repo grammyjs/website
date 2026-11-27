@@ -36,10 +36,10 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
 
    ```ts
    bot.command("start", async (ctx) => {
-     // You can get the chat identifier of the user to send your game to with `ctx.from.id`.
+     // You can get the chat identifier of the user to send your game to with `ctx.chat.id`.
      // which gives you the chat identifier of the user who invoked the start command.
-     const chatId = ctx.from.id;
-     await ctx.api.sendGame(chatid, "my_game");
+     const chatId = ctx.chat.id;
+     await ctx.api.sendGame(chatId, "my_game");
    });
    ```
 
